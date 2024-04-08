@@ -1,0 +1,85 @@
+﻿@model ENTIDADES.compras.CProveedor
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row" id="panelregistro">
+    <div class="col-md-12 col-lg-12">
+        <div class="card">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="header text-center font-14 bg-green">
+                        <h5>LABORATORIO DE PROVEEDOR</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-left:10px">
+                <div class="col-lg-12">  
+                        <input type="hidden" id="txtidproveedor" value="@Model.idproveedor"/>
+                        <label style="font-weight:bold; font-size:larger;"> RUC: </label>
+                        <label id="txtruc">@Model.ruc</label>
+                </div>
+                <div class="col-lg-12">
+                        <label style="font-weight:bold;font-size:larger;"> RAZÓN SOCIAL: </label>
+                        <label id="txtproveedor">@Model.razonsocial</label>
+                </div>
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-header bg-blue-grey">
+                                <h7>LABORATORIOS</h7>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table  table-sm table-hover table-striped " id="tblLaboratorio">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>IDPROVEEDORLAB</th>
+                                            <th>ID</th>
+                                            <th>LABORATORIO</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 ">
+                        <div class="card">
+                            <div class="card-header bg-blue-grey">
+                                <h7>LABORATORIOS DE PROVEEDOR </h7>
+                            </div>
+                            <div class="card-body table-responsive">
+                                <table class="table  table-sm table-hover table-striped " id="tblLaboratorioProveedor">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>IDPROVEEDOR</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>IDLABORATORIO</th>
+                                            <th>LABORATORIO</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    
+
+<script src="~/js/areas/compras/distribuidor/proveedorlaboratorio.js"></script>

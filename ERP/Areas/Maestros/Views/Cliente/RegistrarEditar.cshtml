@@ -1,0 +1,59 @@
+﻿@model ENTIDADES.Generales.Cliente
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<script>
+    var _idcliente =@Html.Raw(Json.Serialize(ViewBag.idcliente));
+    //let IDEMPRESA = @Html.Raw(Json.Serialize(ViewBag.idempresa));
+</script>
+<div class="row justify-content-center">
+    <div class="col-xl-11 col-sm-12">
+
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                @if (ViewBag.idcliente is null)
+                {
+                    <a asp-action="Index"><i class="fas fa-long-arrow-alt-left font-22"></i></a><span>REGISTRAR CLIENTE</span>
+                }
+                else
+                {
+                    <a asp-action="Index"><i class="fas fa-long-arrow-alt-left font-22"></i></a> <span>EDITAR CLIENTE</span>
+                }
+            </h1>
+        </div>
+
+
+    </div>
+    <div class="col-xl-11 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="maestro-tab" data-toggle="tab" href="#tab1" role="tab">Maestro</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="asociado-tab" data-toggle="tab" href="#tab2" role="tab">Asociado</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+
+                        <partial name="~/Areas/Maestros/Views/Cliente/complemento/comregistro.cshtml" />
+
+                    </div>
+                    <div class="tab-pane fade" id="tab2" role="tabpanel">
+                        <partial name="~/Areas/Maestros/Views/Cliente/complemento/comregistroasociado.cshtml" />
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/areas/maestros/cliente/registrareditar.js"></script>
+<script src="~/js/controller/finanzas/CondicionPagoController.js"></script>

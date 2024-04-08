@@ -1,0 +1,49 @@
+﻿@model Erp.SeedWork.mensajeJson
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GenerarReporteGeneral</title>
+    <script>
+
+        var data = @Html.Raw(Model.objeto)
+
+    </script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <div class="row" id="aplicacion">
+        <div class="col-xl-12">
+            <table width="100%" class="table table-sm table-bordered" style="font-size:11px">
+                <thead class="thead-dark">
+                    <tr>
+                        <th class="text-center">SUCURSAL</th>
+                        <th class="text-center">SUCURSAL ENTREGA</th>
+                        <th class="text-center">EMPLEADO</th>
+                        <th class="text-center">DOC. CLIENTE</th>
+                        <th class="text-center">CLIENTE</th>
+                        <th class="text-center">PACIENTE</th>
+                        <th class="text-center">DISTRITO</th>
+                        <th class="text-center">TIPO ENTREGA</th>
+                        <th class="text-center">DIRECCIÓN</th>
+                        <th class="text-center">REFERENCIA1</th>
+                        <th class="text-center">REFERENCIA2</th>
+                        <th class="text-center">FECHA ENTREGA</th>
+                        <th class="text-center">FECHA PEDIDO</th>
+                    </tr>
+                </thead>
+                <tbody id="tblbodydetalle" v-html="detallehtml"></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/js/areas/pedidos/motorizado/reporte/generarpdfreportegeneral.js"></script>

@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "ReporteFormulasXMedico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+    <div class="card-header">
+
+        <div class="card-title text-125 text-primary-d2">
+            FORMULAS X MEDICO
+        </div>
+
+    </div>
+    <div class="card-body">
+        <div class="row justify-content-center">
+            <div class="col-xl-4 col-md-4">
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form-control-sm" style="height:30px;width:120px">  REP. MÉDICO</span>
+                    </div>
+                    <input type="hidden" id="txtidEmpleadoRM" />
+                    <input type="text" class="form-control form-control-sm" id="txtrepresentante" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="btnbuscarrepresentante"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4">
+
+                <div class="input-group mb-1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form-control-sm" style="height:30px;width:120px">  MÉDICO</span>
+                    </div>
+                    <input type="hidden" id="txtidMedico" />
+                    <input type="text" class="form-control form-control-sm" id="txtnombremedico" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="btnbuscarmedico"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-4">
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">RANGO DE FECHA</label>
+                    </div>
+                    <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-md-12 ">
+                <div class="form-group text-center">
+                    <button class="btn btn-primary  " onclick="limpiar()">LIMPIAR</button>
+                    <button class="btn btn-info " id="btnConsultar"><i class="fa fa-search ml-2 mr-2"></i>CONSULTAR</button>
+                    <button class="btn btn-success " id="btnExportar"> <i class="fa fa-file-excel ml-2 mr-2"></i>EXPORTAR</button>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row mt-2" >
+            <div class="col-xl-12">
+                <div class=" table-responsive mt-2" id="contenedor" style="min-height:200px">
+                    <table class="table">
+                        <tr>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/controller/visitadormedico/MedicoRepresentantController.js"></script>
+<partial name="~/Areas/Administrador/Views/Empleado/modal/_modalbuscarempleadoxcargo.cshtml" />
+<partial name="~/Areas/VisitadorMedico/Views/MedicoRepresentante/modales/_modalmedicosrepmedico.cshtml" />
+<script src="~/js/areas/visitadormedico/reportes/formulasxmedico.js"></script>

@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "Reporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href='https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css' rel='stylesheet' type='text/css'>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-xl-12">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    REPORTE
+                </h1>
+            </div>
+        </div>
+        <div class="col-xl-12">
+            <div class="row">
+                <div class="col-xl-3 col-md-2">
+                    <div class="form-group">
+                        <label>SUCURSAL</label>
+                        <select id="txtidsucursal" class="form-control form-control-sm"></select>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-2">
+                    <div class="form-group">
+                        <label>FECHA INICIO</label>
+                        <input type="date" id="txtfechainicio" class="form-control form-control-sm" />
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-2">
+                    <div class="form-group">
+                        <label>FECHA FIN</label>
+                        <input type="date" id="txtfechafin" class="form-control form-control-sm" />
+                    </div>
+                </div>
+                <div class="col-xl-1 mt-4">
+                    <button type="button" class="btn btn-md btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+                </div>
+                    <div class="col-xl-3 col-md-2 text-center mt-4">
+        <button type="button" class="btn btn-secondary" id="btnconsultar"><i class="fas fa-search ml-2 mr-2"></i>Buscar</button>
+    </div>
+    <div class="col-xl-3  col-md-2 text-center  mt-4">
+        <asp.Panel button type="button" class="btn  btn-success" runat="server" id="btnexportar"><i class="fas fa-file-excel ml-2 mr-2"></i>Exportar</button>
+    </div>
+            </div>
+            @*<div class="row mt-2">
+                <div class="col-xl-12 col-sm-12 ">
+                    <div class="card bcard h-auto">
+                        <div class="border-t-3 brc-blue-m2">
+                            <table class="table table-bordered collapsed" id="tbllista" width="100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th rowspan="2"><div style="width: 50px;">SUCURSAL</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">FECHA DE VENTA</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">TOTAL VENTAS</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">VENTA AL CRÉDITO</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">VENTA CON TARJETA</div></th>
+                                        <th class="text-center" colspan="4">TIPO TARJETA</th>
+                                        <th rowspan="2"><div style="width: 35px;">VENTA EN EFECTIVO</div></th>
+                                        <th rowspan="2">FECHA DE DEPOSITO - EFECTIVO</th>
+                                        <th rowspan="2"><div style="width: 35px;">DEPOSITO AL BANCO - EFECTIVO</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">TRANSFERENCIA DE DEPÓSITOS - CLIENTES</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">TRANSFERENCIA YAPE</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">TRANSFERENCIA PLIN</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">PAGO MEDIANTE QR</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">PAGO MEDIANTE LINK DE PAGO</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">TOTAL DEPOSITOS</div></th>
+                                        <th class="text-center" colspan="2">NOTAS DE CREDITO</th>
+                                        <th rowspan="2"><div style="width: 35px;">DIFERENCIA CON DEPOSITO</div></th>
+                                        <th rowspan="2"><div style="width: 70px;">CAJEROS</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">ENCARGADO DE LOCAL</div></th>
+                                        <th rowspan="2"><div style="width: 35px;">OBSERVACION</div></th>
+                                    </tr>
+                                    <tr>
+                                        <th><div style="width: 35px;">VISA</div></th>
+                                        <th><div style="width: 35px;">MASTERDCARD</div></th>
+                                        <th><div style="width: 35px;">DINNERS CLUB</div></th>
+                                        <th><div style="width: 35px;">AMERICAN EXPRESS</div></th>
+                                        <th style="width: 150px;">N° DEL COMPROBANTE DE PAGO</th>
+                                        <th style="width: 60px;">MONTO</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+
+            <div class="row mt-2 " id="cardreport">
+                <div class="col-xl-12 col-sm-12 ">
+                    <div class="card bcard h-auto text-center">
+                        <div class="row">
+                            <div class="col">
+                                <button type="button" class="btn btn-primary">
+                                    N° REGISTROS <span class="badge badge-light" id="numRegistros">0</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="border-t-3 brc-blue-m2 table-responsive">
+                            <table class="table  table-bordered" id="tbllista" width="100%">
+                                <thead>
+                                    <tr>
+
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">SUCURSAL</th>
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">CAJERO</th>
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">VENTA</th>
+                                        @*<th class="border-0  bgc-h-yellow-l3 shadow-sm">CLASE</th>
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">SUB CLASE </th>
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">STOCK ACTUAL </th>
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">PRECIO COMPRA</th>
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">PRECIO VENTA</th>
+                                        <th class="border-0  bgc-h-yellow-l3 shadow-sm">LOTE</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody class="text-uppercase"></tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/ventas/caja/reporte.js"></script>

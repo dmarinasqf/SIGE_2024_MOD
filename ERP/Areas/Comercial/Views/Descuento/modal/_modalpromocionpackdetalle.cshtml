@@ -1,0 +1,75 @@
+﻿<!-- Modal //EARTCOD1009// -->
+<div class="modal fade" id="modalPromoPackDetalle" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modal_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalPromoPackDetalle_titulo">PROMO PACK</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal_body">
+                <div id="notificacion" class="modal-notificacion"></div>
+                <input type="hidden" id="mMCPP_idpromocionpack" class="form-control form-control-sm" required name="mMCPP_idpromocionpack">
+                <form id="form_reasignar_resp_caja">
+                    <div class="row mx-2 px-1" style="display: flex; justify-content: center; align-items: center;">
+                        @*<div class="col-xl-3 col-sm-3 px-1">
+                                <label>NOMBRE O CODIGO DEL PACK:</label>
+                            </div>
+                            <div class="col-xl-6 col-sm-6 px-1">
+                                <input type="text" id="mhMCPP_txtNombrePack" class="form-control form-control-sm" name="mhMCPP_txtNombrePack">
+                            </div>*@
+                        @*<div class="col-xl-2 col-sm-2 px-1">
+                                <label>HASTA LA FECHA:</label>
+                            </div>*@
+                        @*<div class="col-xl-3 col-sm-3 px-1">
+                                <input class="form-control form-control-sm date_fecha" id="mhMCPP_txtfechaTermino" name="date_fecha"
+                                       placeholder="DD/MM/YYYY" type="text" required readonly />
+                            </div>*@
+                        @*<div class="col-xl-3 col-sm-3 px-1">
+                                <button id="mhMCPP_btnFiltrarHistorial" type="button" class="btn btn-dark btn-block">BUSCAR</button>
+                            </div>*@
+                    </div>
+                </form>
+
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                    <div>
+                        <table class="table" id="tabla_pack_promo_det_modal">
+                            <thead>
+                                <tr>
+                                    <th>PRODUCTO COD</th>
+                                    <th>DESCRIPCION</th>
+                                    <th>CANTIDAD</th>
+                                    <th>CANT DISP</th>
+                                    <th>CANT FRAC</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                    @*<div class="py-0 my-0" id="contenedor_promopackdetalle">
+                        </div>
+                        <div style="width:100%">
+                            <div id="pagination-container" style="float:right; margin-right:15px"></div>
+                        </div>*@
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-6">
+                    </div>
+                    <div class="col-3">
+                        <input type="number" id="mMCPP_txtCantidad" class="form-control form-control-sm event-numbers" value=1 min=1 step="1" required>
+                    </div>
+                    <div class="col-2">
+                        <button id="mMCPPbtnAgregarPackPromo" type="button" class="btn btn-success">AGREGAR</button>
+                    </div>
+                </div>
+                @*<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal">CERRRAR</button>*@
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,133 @@
+﻿@model List<ENTIDADES.comercial.ListaPrecios>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var _LISTAS=@Html.Raw(Json.Serialize(Model));
+</script>
+<div class="card">
+    <div class="card-header bg-green">
+
+        <h6>LISTA DE PRECIOS</h6>
+
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-6 col-sm-12">
+                <div class="row">
+                    <div class="col-xl-6 m-1">
+                        <button class="btn btn-primary btn-block" id="btnnuevalista"><i class="fas fa-plus mr-2"></i> NUEVA LISTA</button>
+                    </div>
+                    <div class="col-xl-6 m-1">
+                        <button class="btn btn-outline-secondary btn-block" id="btncopiarlista"><i class="fas fa-copy mr-2"></i> COPIAR LISTA</button>
+                    </div>
+                    <div class="col-xl-6 m-1">
+                        <a class="btn btn-outline-info btn-block" asp-area="Comercial" asp-controller="ListaPrecios" asp-action="SubirLista"><i class="fas fa-file-excel mr-2"></i> SUBIR LISTA</a>
+                    </div>
+                    <div class="col-xl-6 m-1">
+                        <a class="btn btn-outline-dark btn-block" asp-area="Administrador" asp-controller="Sucursal" asp-action="Index" id="btnasignarsucursal"><i class="fas fa-home mr-2"></i> ASIGNAR LISTA A SUCURSAL</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-12">
+                <table class="table table-sm table-striped" width="100%">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>COD</th>
+                            <th>LISTA</th>
+                            <th>ESTADO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodylistas">
+                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalnuevo" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">DATOS DE LISTA DE PRECIOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="body">
+                        <form method="post" autocomplete="off" id="formregistro">
+                            <input type="hidden" name="idlistaprecio" value="" id="MR_txtcodigo" />
+                            <label>NOMBRE</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="MR_txtdescripcion" class="form-control mayusculas" name="descripcion" required>
+                                </div>
+                            </div>
+                            <label>ESTADO</label>
+                            <div class="form-group">
+                                <div class="form-line ">
+                                    <select class="form-control show-tick" id="MR_cmbestado" name="estado" required>
+                                        <option value="HABILITADO" selected>HABILITADO</option>
+                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-success btn-block" id="MR_btnguardar" type="submit">GUARDAR DATOS</button>
+                            <button class="btn btn-info btn-block " id="MR_btnnuevo" type="reset">LIMPIAR</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modalduplicar" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">COPIAR PRECIOS DE LISTA L1 --> L2</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="body">
+                        <form method="post" autocomplete="off" id="formduplicar">    
+                            <div class="row">
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>LISTA 1</label>
+                                        <select class="form-control" id="MD_cmblista1"></select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>LISTA 2</label>
+                                        <select class="form-control" id="MD_cmblista2"></select>
+                                    </div>
+                                </div>
+                            </div>                            
+                            <button class="btn btn-success btn-block" id="MD_btnduplicar" type="submit">DUPLICAR LISTA</button>                            
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/comercial/listaprecios/index.js"></script>
+<script src="~/js/controller/comercial/ListaPreciosController.js"></script>
+
+

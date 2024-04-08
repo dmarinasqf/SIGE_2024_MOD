@@ -1,0 +1,60 @@
+﻿
+@{ ViewData["Title"] = "GuiasTransferencias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE DE GUIAS
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-xl-2  col-md-4 col-sm-6 ">
+        <label>N° DOCUMENTO</label>
+        <input type="text" class="form-control form-control-sm" id="txtnumdocumento"/>
+    </div>
+    <div class="col-xl-2  col-md-4 col-sm-6">
+        <label>SUCURSAL ORIGEN</label>
+        <select id="cmbsucursalorigen" class="form-control form-control-sm">
+            @foreach (var item in ViewBag.sucursales1)
+            {
+                <option value="@item[0]">@item[1]</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-xl-2  col-md-4 col-sm-6">
+        <label>SUCURSAL DESTINO</label>
+        <select id="cmbsucursaldestino" class="form-control form-control-sm">
+            @foreach (var item in ViewBag.sucursales2)
+            {
+                <option value="@item[0]">@item[1]</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel"></i></button>
+    </div>
+
+    <div class="col-xl-12">
+        <div class=" table-responsive mt-2" id="contenedor">
+            <table class="table" id="tblreporte">
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/js/controller/almacen/ReporteController.js"></script>
+<script src="~/js/areas/almacen/reportes/guias.js"></script>
+<script src="~/js/site.js"></script>

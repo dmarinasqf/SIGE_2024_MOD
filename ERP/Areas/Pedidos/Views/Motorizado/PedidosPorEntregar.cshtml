@@ -1,0 +1,328 @@
+﻿@using System.Data
+@model DataTable
+
+@{
+    ViewData["Title"] = "PedidosPorEntregar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/otros/motorizado.css" rel="stylesheet" />
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+        <div class="card text-center">
+            <img src="https://image.flaticon.com/icons/svg/2331/2331708.svg" class="card-img-top" alt="..." style="height:280px">
+            <div class="card-body">
+                <h5 class="card-title">DATOS DEL MOTORIZADO</h5>
+                <div class="form-group">
+                    <input type="hidden" id="txtidmedico" value="@ViewBag.IDEMPLEADO" />
+                    <label>NOMBRES Y APELLIDOS :</label>
+                    <span>@ViewBag.NOMBREUSUARIO</span>
+                </div>
+              
+            </div>
+            <div class="card-footer">
+                <div class="input-group input-group-lg mb-1">
+                    <div class="input-group-prepend">
+                        <div class="input-group input-group-lg mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text boton-acordion">FECHA : </span>
+                            </div>
+                            @*<input type="text" class="form-control datetimepicker-input" id="txtfechacalendar" data-toggle="datetimepicker" data-target="#txtfechacalendar" value="@DateTime.Now.ToString("yyyy-MM-dd")" autocomplete="off" />*@
+                            <input type="date" class="form-control datetimepicker-input" id="txtfechacalendar" data-toggle="datetimepicker" data-target="#txtfechacalendar" value="@DateTime.Now.ToString("yyyy-MM-dd")" autocomplete="off" />
+
+                            <div class="input-group-append">
+                                <button class="btn btn-primary input-group-text" id="btnListarEntregas"><i class="fa fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+        <div class="accordion" id="accordionDelivery">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#lstentregasreprogramadas" aria-expanded="true" aria-controls="collapseOne">
+                            ENTREGAS REPROGRAMADAS
+                        </button>
+                    </h2>
+                </div>
+                <div id="lstentregasreprogramadas" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionDelivery">
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (DataRow row in Model.Rows)
+                            {
+                                @if (row["ESTADO ENTREGA"].ToString() == "REPROGRAMADO")
+                                {
+                                    <div class="col-xl-4 col-lg-6  col-md-12 col-sm-12 space-padding-between">
+                                        <div class="blog_left_sidebar">
+                                            <article class="blog_item">
+                                                <div class="blog_item_img">
+                                                    @*<img class="card-img rounded-0" src="https://image.flaticon.com/icons/png/512/2492/2492828.png" alt="">*@
+                                                    <img class="card-img rounded-0" src="~/imagenes/recursos/delivery/formula01.jpg" />
+
+                                                    <a href="#" class="texto-encima">
+                                                        <h3>@DateTime.Parse(row["FECHAENTREGA"].ToString()).Day</h3>
+                                                        <h5> @DateTime.Parse(row["FECHAENTREGA"].ToString()).ToString("MMMM")</h5>
+
+                                                    </a>
+                                                </div>
+                                                <div class="space-margin-between" style="margin-top:10px">
+                                                    <a class="d-inline-block">
+                                                        @if (row["TIPOPAGO"].ToString() == "PAGO CONTRA ENTREGA")
+                                                        {
+                                                            <h6 class="text-success text-center"> @row["TIPOPAGO"].ToString()</h6>
+                                                        }
+                                                        @if (row["ENVIARA"].ToString() == "PACIENTE")
+                                                        {
+                                                            <h6>Pac: @row["PACIENTE"].ToString()</h6>
+                                                        }
+                                                        else if (row["ENVIARA"].ToString() == "CLIENTE")
+                                                        {
+                                                            <h6>Clte: @row["CLIENTE"].ToString() </h6>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h6>Pac: @row["PACIENTE"].ToString()</h6>
+                                                            <h6>Clte: @row["CLIENTE"].ToString() </h6>
+                                                        }
+                                                    </a>
+                                                    <label class="space-margin-between">
+                                                        <b>
+                                                            FECHA ENTREGA:
+                                                            @DateTime.Parse(row["FECHAENTREGA"].ToString()).ToShortDateString()
+                                                        </b>
+                                                    </label>
+                                                    @{var texto = "ENTREGAR"; }
+                                                    @if (bool.Parse(@row["ESENCOMIENDA"].ToString()))
+                                                    {
+                                                        texto = "ENVIAR ENCOMIENDA";
+                                                    }
+                                                    <button class="btn btn-outline-primary btn-block space-padding-between" onclick="mostraModalEP(@row["ID"].ToString())"><i class="fa fa-clock fa-2x"></i> @texto</button>
+
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>}
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#lstentregaspendientes" aria-expanded="true" aria-controls="collapseOne">
+                            ENTREGAS PENDIENTES
+                        </button>
+                    </h2>
+                </div>
+                <div id="lstentregaspendientes" class="collapse" aria-labelledby="headingOne" data-parent="#accordionDelivery">
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (DataRow row in Model.Rows)
+                            {
+                                @if (row["ESTADO ENTREGA"].ToString() == "EN RUTA")
+                                {
+                                    <div class="col-xl-4 col-lg-6  col-md-12 col-sm-12 space-padding-between border mt-2">
+                                        <div class="blog_left_sidebar">
+                                            <article class="blog_item">
+                                                <div class="blog_item_img">
+                                                    @*<img class="card-img rounded-0" src="https://image.flaticon.com/icons/png/512/2492/2492828.png" alt="">*@
+                                                    @*<img class="card-img rounded-0" src="~/imagenes/recursos/delivery/formula01.jpg" alt="">*@                                                    
+                                                    <img class="card-img rounded-0" src="~/imagenes/recursos/delivery/formula01.jpg" />
+
+                                                    <a href="#" class="texto-encima">
+                                                        <h3>@DateTime.Parse(row["FECHAENTREGA"].ToString()).Day</h3>
+                                                        <h5> @DateTime.Parse(row["FECHAENTREGA"].ToString()).ToString("MMMM")</h5>
+
+                                                    </a>
+                                                </div>
+                                          
+                                                <div class="space-margin-between" style="margin-top:10px">
+                                                    <a class="d-inline-block">
+                                                        @if (row["TIPOPAGO"].ToString() == "PAGO CONTRA ENTREGA")
+                                                        {
+                                                            <h6 class="text-success text-center"> @row["TIPOPAGO"].ToString()</h6>
+                                                        }
+                                                        @if (row["ENVIARA"].ToString() == "PACIENTE")
+                                                        {
+                                                            <h6>Pac: @row["PACIENTE"].ToString()</h6>
+                                                        }
+                                                        else if (row["ENVIARA"].ToString() == "CLIENTE")
+                                                        {
+                                                            <h6>Clte: @row["CLIENTE"].ToString() </h6>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h6>Pac: @row["PACIENTE"].ToString()</h6>
+                                                            <h6>Clte: @row["CLIENTE"].ToString() </h6>
+
+                                                        }
+
+                                                    </a>
+                                                    <label class="space-margin-between">
+                                                        <b>
+                                                            FECHA ENTREGA:
+                                                            @DateTime.Parse(row["FECHAENTREGA"].ToString()).ToShortDateString()
+                                                        </b>
+                                                    </label>
+                                                    @{var texto = "ENTREGAR"; }
+                                                    @if (bool.Parse(@row["ESENCOMIENDA"].ToString()))
+                                                    {
+                                                        texto = "ENVIAR ENCOMIENDA";
+                                                    }
+                                                    <button class="btn btn-primary btn-block space-padding-between" onclick="mostraModalEP(@row["ID"].ToString())"><i class="fa fa-dolly-flatbed fa-2x"></i> @texto</button>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>}
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#lstentregasnoentregadas" aria-expanded="true" aria-controls="collapseOne">
+                            PEDIDOS NO ENTREGADOS
+                        </button>
+                    </h2>
+                </div>
+                <div id="lstentregasnoentregadas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionDelivery">
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (DataRow row in Model.Rows)
+                            {
+                                @if (row["ESTADO ENTREGA"].ToString() == "NO ENTREGADO")
+                                {
+                                    <div class="col-xl-4 col-lg-6  col-md-12 col-sm-12 space-padding-between">
+                                        <div class="blog_left_sidebar">
+                                            <article class="blog_item">
+                                                <div class="blog_item_img">
+                                                    <img class="card-img rounded-0" src="~/imagenes/recursos/delivery/formula01.jpg" />
+
+                                                    <a href="#" class="texto-encima">
+                                                        <h3>@DateTime.Parse(row["FECHAENTREGA"].ToString()).Day</h3>
+                                                        <h5> @DateTime.Parse(row["FECHAENTREGA"].ToString()).ToString("MMMM")</h5>
+
+                                                    </a>
+                                                </div>
+                                                <div class="space-margin-between" style="margin-top:10px">
+                                                    <a class="d-inline-block">
+                                                        @if (row["TIPOPAGO"].ToString() == "PAGO CONTRA ENTREGA")
+                                                        {
+                                                            <h6 class="text-success text-center"> @row["TIPOPAGO"].ToString()</h6>
+                                                        }
+                                                        @if (row["ENVIARA"].ToString() == "PACIENTE")
+                                                        {
+                                                            <h6>Pac: @row["PACIENTE"].ToString()</h6>
+                                                        }
+                                                        else if (row["ENVIARA"].ToString() == "CLIENTE")
+                                                        {
+                                                            <h6>Clte: @row["CLIENTE"].ToString() </h6>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h6>Pac: @row["PACIENTE"].ToString()</h6>
+                                                            <h6>Clte: @row["CLIENTE"].ToString() </h6>
+
+                                                        }
+
+                                                    </a>
+                                                    <label class="space-margin-between">
+                                                        <b>
+                                                            FECHA ENTREGA:
+                                                            @DateTime.Parse(row["FECHAENTREGA"].ToString()).ToShortDateString()
+                                                        </b>
+                                                    </label>
+                                                    @{var texto = "ENTREGAR"; }
+                                                    @if (bool.Parse(@row["ESENCOMIENDA"].ToString()))
+                                                    {
+                                                        texto = "ENVIAR ENCOMIENDA";
+                                                    }
+                                                    <button class="btn btn-outline-danger btn-block space-padding-between" onclick="mostraModalEP(@row["ID"].ToString())"><i class="fa fa-dolly-flatbed fa-2x"></i> @texto</button>
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#lstentregaspasadas" aria-expanded="true" aria-controls="collapseOne">
+                            PEDIDOS ENTREGADOS
+                        </button>
+                    </h2>
+                </div>
+                <div id="lstentregaspasadas" class="collapse" aria-labelledby="headingOne" data-parent="#accordionDelivery">
+                    <div class="card-body">
+                        <div class="row">
+                            @foreach (DataRow row in Model.Rows)
+                            {
+                                @if (row["ESTADO ENTREGA"].ToString() == "ENTREGADO")
+                                {
+                                    <div class="col-xl-4 col-lg-6  col-md-12 col-sm-12 space-padding-between">
+                                        <div class="blog_left_sidebar">
+                                            <article class="blog_item">
+                                                <div class="blog_item_img">
+                                                    <img class="card-img rounded-0" src="~/imagenes/recursos/delivery/formula01.jpg" />
+
+                                                    <a href="#" class="texto-encima">
+                                                        <h3>@DateTime.Parse(row["FECHAENTREGA"].ToString()).Day</h3>
+                                                        <h5> @DateTime.Parse(row["FECHAENTREGA"].ToString()).ToString("MMMM")</h5>
+
+                                                    </a>
+                                                </div>
+                                                <div class="space-margin-between" style="margin-top:10px">
+                                                    <a class="d-inline-block">
+                                                        @if (row["ENVIARA"].ToString() == "PACIENTE")
+                                                        {
+                                                            <h6>Pac: @row["PACIENTE"].ToString()</h6>
+                                                        }
+                                                        else if (row["ENVIARA"].ToString() == "CLIENTE")
+                                                        {
+                                                            <h6>Clte: @row["CLIENTE"].ToString() </h6>
+                                                        }
+                                                        else
+                                                        {
+                                                            <h6>Pac: @row["PACIENTE"].ToString()</h6>
+                                                            <h6>Clte: @row["CLIENTE"].ToString() </h6>
+
+                                                        }
+                                                    </a>
+                                                    <label class="space-margin-between">
+                                                        <b>
+                                                            FECHA ENTREGA:
+                                                            @DateTime.Parse(row["FECHAENTREGA"].ToString()).ToShortDateString()
+                                                        </b>
+                                                    </label>
+                                                    @{var texto = "VER"; }
+                                                    @if (bool.Parse(@row["ESENCOMIENDA"].ToString()))
+                                                    {
+                                                        texto = "VER ENCOMIENDA";
+                                                    }
+                                                    <button class="btn btn-outline-success btn-block space-padding-between" onclick="mostraModalEP(@row["ID"].ToString())"><i class="fa fa-eye fa-2x"></i> @texto</button>
+
+                                                </div>
+                                            </article>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="~/Areas\Pedidos\Views\Motorizado\modal\_modalEntregarPedido.cshtml" />
+<script src="~/js/areas/pedidos/motorizado/pedidosporentregar.js"></script>

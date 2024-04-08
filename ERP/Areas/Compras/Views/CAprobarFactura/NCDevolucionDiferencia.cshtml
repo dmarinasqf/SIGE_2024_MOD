@@ -1,0 +1,100 @@
+﻿@{
+    ViewData["Title"] = "Nota Crédito - Devolución y Diferencia";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-md-6">
+        <div class="page-header pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE NOTAS DE CRÉDITOS DE DEVOLUCIÓN Y DIFERENCIA
+            </h1>
+        </div>
+    </div>
+    @*<div class="col-xl-2 col-md-6 pt-1">
+        <a asp-action="AprobarFactura" class="btn btn-primary btn-block">Aprobar Factura<i class="fas fa-check ml-2"></i></a>
+    </div>*@
+</div>
+
+<div class="body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card p-2">
+                <div class="header bg-blue-grey">
+                    <h7>PANEL DE BÚSQUEDA</h7>
+                </div>
+                <div class="body">
+                    <form autocomplete="off" id="form-busqueda">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label>NÚMERO FACTURA</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txtnumfactura" class="form-control" name="numfactura">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-2">
+                                            <label>FECHA REGISTRO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" id="txtfechaconsulta" class="form-control" name="fecha">
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="col-lg-3">
+                                        <label>ESTADO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control" id="cmbestadoNC" name="estadoNC">
+                                                    <option value="" selected> [TODO]</option>
+                                                    <option value="APROBADO"> APROBADO</option>
+                                                    <option value="RECHAZADO"> RECHAZADO</option>
+                                                    <option value="ANULADO"> ANULADO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-3">
+                                <button type="button" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive" id="contenedorTabla">
+        <table class="table table-detalle table-sm table-bordered text-center" width="100%" id="tblfactura">
+            <thead>
+                <tr class="thead-dark">
+                    <th style="width:3%"></th>
+                    <th></th>
+                    <th>COD</th>
+                    <th>N° FACTURA</th>
+                    <th>USUARIO</th>
+                    <th>FECHA APROBACIÓN</th>
+                    <th>DEVOLUCIÓN TOTAL</th>
+                    <th>DIF. DESC. TOTAL</th>
+                    <th>ESTADO</th>
+                </tr>
+            </thead>
+            <tbody id="tbodydetalle">
+            </tbody>
+        </table>
+    </div>
+    <div class=col-xl-12>
+        <div id="paginacion">
+
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/_modalValidarUsuario.cshtml" />
+
+<script src="~/js/areas/compras/aprobarfactura/devoluciondiferencia.js"></script>
+<script src="~/js/controller/compras/AprobarFacturaController.js"></script>

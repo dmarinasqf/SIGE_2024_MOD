@@ -1,0 +1,158 @@
+﻿<script>
+    var lListaSubClases = @Html.Raw(Json.Serialize(@ViewBag.subclases));
+</script>
+
+<div class="row">
+    <div class="col-xl-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-xl-12 col-xs-12">
+                        <div class="col-12">
+                            <form method="post" autocomplete="off" id="CD_form-panel-busqueda-producto">
+                                <div class="row">
+                                    <div class="col-xl-1 col-xs-12" hidden>
+                                        <div class="row">
+                                            <div class="col-xl-12 col-xs-12">
+                                                <div class="btn-group ml-2 mt-3">
+                                                    @*<button type="button" id="limpiartbl" class="btn btn-bgc-tp btn-lighter-grey btn-h-primary btn-a-primary">
+                                                            <i class="fa fa-trash w-3"></i>
+                                                        </button>*@
+                                                    <div style="vertical-align:middle" hidden>
+                                                        <input type="checkbox" class="chk-col-red checkbox" id="CD_sugerido" />
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-10 col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-xs-6">
+                                                <label>LABORATORIO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="hidden" class="form-control form-control-sm" id="CD_txtidlaboratorio" />
+                                                        <input type="text" class="form-control form-control-sm" id="CD_txtlaboratorio" readonly/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-xs-6">
+                                                <label>CLASE</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm" id="CD_cmbclase" name="idclase">
+                                                            <option value="">[SELECCIONE]</option>
+                                                            @foreach (var item in ViewBag.clases)
+                                                            {
+                                                                <option value="@item.idclase">@item.descripcion</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-xs-6">
+                                                <label>SUB CLASE</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm" id="CD_cmbsubclase" name="idsubclase">
+                                                            @*<option value="">[SELECCIONE]</option>
+                                                                @foreach (var item in ViewBag.subclases)
+                                                                {
+                                                                    <option value="@item.idsubclase">@item.descripcion</option>
+                                                                }*@
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-xs-6">
+                                                <label>PRODUCTO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control form-control-sm" id="CD_txtproducto" name="producto" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-xs-12">
+                                        <div class="btn-group ml-2 mt-3">
+                                            <button type="button" class="btn btn-bgc-tp btn-lighter-grey btn-h-primary btn-a-primary" onclick="CD_ListarProductos()">
+                                                <i class="fa fa-search w-3"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-bgc-tp btn-lighter-grey btn-h-orange btn-a-orange" onclick="CD_limpiarpanelbusqueda()">
+                                                <i class="fa fa-trash w-3"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="table-responsive border-t-3 brc-blue-m2 ">
+                                <div class="contenedor-sticky-300">
+                                    <table class="table table-sm table-bordered font-10" width="100%" id="CD_tblproductos">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th class="header-sticky">ID</th>
+                                                <th class="header-sticky">CODIGO</th>
+                                                <th class="header-sticky">PRODUCTO</th>
+                                                <th class="header-sticky">LABORATORIO</th>
+                                                <th class="header-sticky">LOTE</th>
+                                                <th class="header-sticky">STOCK ACTUAL(C)</th>
+                                                <th class="header-sticky">STOCK ACTUAL(F)</th>
+                                                <th class="header-sticky">VENTAS</th>
+                                                <th class="header-sticky"></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-xs-12" id="contenedordistribucion">
+                        <div class="text-center" style="color:red">
+                            <input type="hidden" id="CD_txtidproducto" />
+                            <input type="hidden" id="CD_txtidalmacensucursal" />
+                            <input type="hidden" id="CD_txtidstock" />
+                            <label class="form-control-lg" id="CD_lblproducto"></label> - <label>LABORATORIO: </label> <label id="CD_lbllaboratorio"></label> - <label>Stock Actual:</label> <label class="form-control-lg" id="CD_lblstockactual"></label>
+                        </div>
+                        <div class="table-responsive contenedor-sticky-400" id="CD_tabla-distribucion" style="min-height:200px">
+                            <table class="table tabla-sticky font-11 table-sm table-hover table-striped" width="100%" id="CD_tbldistribucion">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th class="header-sticky" style="width: auto;">ID</th>
+                                        <th class="header-sticky" style="width: auto;">RUC</th>
+                                        <th class="header-sticky" style="width: auto;">DESCRIPCION</th>
+                                        <th class="header-sticky" style="width: auto;">idproducto</th>
+                                        <th class="header-sticky" style="width: auto;">CANTIDAD A ENVIAR</th>
+                                        <th class="header-sticky" id="CD_campoLoteCliente" style="width: auto;">LOTE</th>
+                                        <th class="header-sticky" id="CD_campoFechaVencimientoCliente" style="width: auto;">FECHA VENCIMIENTO</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center font-10">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row justify-content-center mt-2">
+                    <div class="col-xl-4 col-xs-12">
+                        @*<button type="button" class="btn btn-success waves-effect btn-block" id="cdbtn_generar"> GRABAR Y GENERAR</button>*@
+                        <button type="button" class="btn btn-success waves-effect btn-block" id="cdbtn_validar"> VALIDAR </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-secondary" id="btnnuevoregistro"> <i class="fa fa-arrow-left"> </i> NUEVO </button>
+    <div class="col-xl-6 col-xs-12">
+    </div>
+</div>
+
+<script src="~/js/areas/almacen/guiaproveedor/complemento/complementoDistribucion.js"></script>
+<script src="~/js/modelos/almacen/AGuiaSalida.js"></script>

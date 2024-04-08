@@ -1,0 +1,68 @@
+﻿@{ ViewData["Title"] = "Inicio"; }
+<div class="row  justify-content-center">
+
+    <div class="col-xl-8 text-center">
+        <div class="card">
+            <div class="card-header bg-dark text-white">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <h5>BIENVENIDO SR(A). <em>  @ViewBag.NOMBREUSUARIO  </em>al  </h5>
+                    </div>
+                    <div class="col-xl-12">
+                        <h3 class="text-capitalize">SISTEMA DE ORDENES DE PEDIDO PARA TERCEROS QF - SIGQF</h3>
+                    </div>
+                    <div class="col-xl-12">
+                        <h4 class="horaactual"></h4>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+@if (!User.IsInRole("MOTORIZADO") && !User.IsInRole("JEFE_MOTORIZADO")) { }
+
+
+<div class="row justify-content-center">
+    @if (User.IsInRole("ADMINISTRADOR")) {
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+            <div class="card animated pulse">
+                <img src="~/imagenes/recursos/home/administrador.png" class="card-img-top" height="250px">
+                <div class="card-header bg-dark text-center text-white">
+                    <span>MAESTROS</span>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a asp-area="Administrador" asp-controller="Empresa" asp-action="Index">Empresas</a></li>
+                        <li class="list-group-item"><a asp-area="Administrador" asp-controller="Sucursal" asp-action="Index">Sucursales</a></li>
+                        <li class="list-group-item"><a asp-area="Administrador" asp-controller="Empleado" asp-action="Index">Empleados</a></li>
+                        <li class="list-group-item"><a asp-area="Almacen" asp-controller="AProducto" asp-action="Index">Productos</a></li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+    @if (User.IsInRole("VENTAS") || User.IsInRole("LABORATORIO") || User.IsInRole("ADMINISTRADOR")) {
+        <div class="col-xl-3 col-lg-4 col-sm-6">
+            <div class="card animated pulse">
+                <img src="~/imagenes/recursos/home/ventas.png" class="card-img-top" height="250px">
+                <div class="card-header bg-dark text-center text-white">
+                    <span>Pedido</span>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><a asp-area="Administrador" asp-controller="Pedidos" asp-action="Index">Pedido</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+
+
+    </div>

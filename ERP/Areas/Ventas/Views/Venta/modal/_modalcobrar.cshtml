@@ -1,0 +1,153 @@
+﻿
+<div class="modal fade" id="modalcobrar" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">COBRAR VENTA</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12">
+                                <div class="row">
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>MONEDA</label>
+                                            <select id="cmbmoneda" class="form-control" name="pago.idmoneda" required></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>TIPO DE PAGO </label>
+                                            <select id="cmbtipopago" class="form-control" name="pago.idtipopago" required></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-sm-12 ocultar" id="divtarjeta">
+                                        <div class="row border">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>TIPO TARJETA </label>
+                                                    <select class="form-control " id="cmbtipotarjeta" name="pago.idtipotarjeta">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-6 ">
+                                                <div class="form-group">
+                                                    <label>N° TARJETA </label>
+                                                    <input type="number" class="form-control" id="txtnumtarjeta" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-sm-12 ocultar" id="divtransferencia">
+                                        <div class="row border">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>TIPO TRANSFERENCIA </label>
+                                                    <select class="form-control " id="cmbtipotransferencia" name="transferencia">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-sm-12 ocultar" id="MCdivcredito">
+                                        <div class="row border">
+                                            <div class="col-xl-12 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>CREDITO DISPONIBLE </label>
+                                                    <input type="number" class="form-control" id="MCtxtcreditoactual" disabled />
+                                                    <label class="text-danger" id="MClblmensajecredito"> </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>SALDO VENTA <span class="lblsimbolomoneda"></span></label>
+                                            <input type="number" name="pago.total" class="form-control" id="txttotalcobrar" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>INGRESAR MONTO <span class="lblsimbolomoneda"></span></label>
+                                            <input type="number" name="pago.montopagado" class="form-control" id="txtmontototalpagado" min="0" step="any" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>ADELANTOS <span class="lblsimbolomoneda"></span></label>
+                                            <input type="number" class="form-control" id="txtadelanto" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>SALDO <span class="lblsimbolomoneda"></span></label>
+                                            <input type="number" name="pago.montosaldo" class="form-control" id="txtsaldocobrar1" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>VUELTO <span class="lblsimbolomoneda"></span></label>
+                                            <input type="number" name="pago.montodevuelto" class="form-control" id="txtvueltocobrar1" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12 ocultar">
+                                        <div class="form-group">
+                                            <label>VUELTO <span class="lblsimbolomoneda"></span></label>
+                                            <input type="number" class="form-control" id="txtvueltocobrar2" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-12">
+                                                <button class="btn btn-outline-secondary btn-lg btn-block" id="btnnuevopago" type="button">AGREGAR PAGO</button>
+                                            </div>
+                                            <div class="col-xl-6 col-sm-12">
+                                                <button class="btn btn-success btn-lg btn-block" id="btnguardarventa" type="submit">REALIZAR VENTA</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 table-responsive">
+                                <table class="table table-sm table-bordered table-hover" width="100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>Moneda</th>
+                                            <th>Tipo Pago</th>
+                                            <th class="text-right">Importe</th>
+                                            <th class="text-right">Vuelto</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodymontopago">
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="table-warning font-20">
+                                            <td colspan="2">Total:</td>
+                                            <td class="text-right font-weight-bold" id="totaltblpago">0.00</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/controller/finanzas/LineaCreditoController.js"></script>
+<script src="~/js/controller/finanzas/BancoController.js"></script>

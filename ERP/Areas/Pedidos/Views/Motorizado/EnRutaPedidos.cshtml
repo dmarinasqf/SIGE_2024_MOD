@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "En Ruta Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header text-center">
+        <h5>EN RUTA PEDIDOS</h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="form-control form-control-sm"><i class="fas fa-search"></i></span>
+                        </div>
+                        <input type="text" class="form-control form-control-sm" placeholder="Buscar" id="txtbuscaritemlista" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12 table-responsive">
+                <table class="table table-sm table-bordered" id="tblpedidos" style="font-size:11px">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width:5%">@*<button class="btn btn-sm btn-success"></button>*@</th>
+                            <th style="width:5%"></th>
+                            <th>DATOS DE PEDIDO</th>
+                            <th>CANT</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/controller/pedidos/MotorizadoController.js"></script>
+<script src="~/js/areas/pedidos/motorizado/enrutapedidos.js"></script>
+<partial name="~/Areas\Pedidos\Views\Motorizado\modal\_modalEntregarPedido.cshtml" />

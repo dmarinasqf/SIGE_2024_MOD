@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Reporte";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-success main-card card">
+
+
+    <div class="box-body card-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <h3 class="text-center">REPORTE DE DEPOSITOS</h3>
+
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">RANGO DE FECHA</label>
+                    </div>
+                    <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 ">
+                <div class="form-group text-center">
+                    <button class="btn btn-outline-info " style="width:150px;margin-bottom:3px" id="btnConsultar" onclick="getReporteGeneral()">CONSULTAR</button>
+                    <button class="btn btn-outline-success " style="width:150px" id="btnExportar" @*onclick="exportTableToExcel()"*@>EXPORTAR</button>
+                    @*<button class="btn btn-outline-secondary " style="width:150px;margin-bottom:3px" id="btnImprimir" onclick="imprimir()">IMPRIMIR</button>*@
+                </div>
+                <div class="text-center mostrar" id="spinners">
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-secondary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-danger" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box box-success main-card card mt-2">
+    <div class="box-body text-center card-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <button type="button" class="btn btn-primary">
+                    N° REGISTROS <span class="badge badge-light" id="numRegistros">0</span>
+                </button>
+            </div>
+            <div class="col-xl-12 col-sm-12">
+                <div class=" table-responsive contenedor-bigtable" id="tabla">
+                    <table class="table table-sm table-striped" id="tblReportes">
+                        <thead class="thead-dark" style="font-size:10px">
+                        </thead>
+                        <tbody style="font-size:10px"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="~/js/controller/finanzas/PagoController.js"></script>
+<script src="~/js/areas/finanzas/pagos/Reporte.js"></script>

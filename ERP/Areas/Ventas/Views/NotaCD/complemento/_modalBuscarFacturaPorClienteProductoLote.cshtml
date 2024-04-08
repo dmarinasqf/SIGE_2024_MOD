@@ -1,0 +1,56 @@
+﻿<div class="modal fade" id="modalBuscarFacturaPorCliente" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">BUSCAR FACTURAS</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6">
+                                <label>CLIENTE</label>
+                                <input type="text" class="form-control form-control-sm" id="MBFCPL_txtcliente"/>
+                            </div>
+                            <div class="col-xl-4">
+                                <label>PRODUCTO</label>
+                                <input type="text" class="form-control form-control-sm" id="MBFCPL_txtproducto" />
+                            </div>
+                            <div class="col-xl-2">
+                                <label>LOTE</label>
+                                <input type="text" class="form-control form-control-sm" id="MBFCPL_txtlote"/>
+                            </div>
+                            <div class="col-xl-12 table-responsive contenedor-sticky-500 mt-3" id="modalGetVentasMatrizParaNC" >
+                                <table class="table table-sm table-bordered" id="MBFCPL_tblfacturas" width="100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="header-sticky" width="3%"></th>
+                                            <th class="header-sticky">SUCURSAL</th>
+                                            <th class="header-sticky">DOCUMENTO</th>
+                                            <th class="header-sticky">FECHA</th>
+                                            <th class="header-sticky">CLIENTE</th>
+                                            <th class="header-sticky">IMPORTE</th>
+                                            <th class="header-sticky">USUARIO</th>
+                                            <th class="header-sticky">ESTADO</th>
+                                            <th class="header-sticky"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/ventas/notacd/complemento/modalbuscarfacturascliente.js"></script>

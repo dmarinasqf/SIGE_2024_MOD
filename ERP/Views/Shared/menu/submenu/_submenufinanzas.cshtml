@@ -1,0 +1,166 @@
+﻿@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU FINANZAS"))
+{
+    <li class="nav-item">
+
+        <a href="#" class="nav-link dropdown-toggle collapsed">
+            <i class="nav-icon fa fa-cube"></i>
+            <span class="nav-text fadeable">
+                <span>Finanzas</span>
+            </span>
+            <b class="caret fa fa-angle-left rt-n90"></b>
+        </a>
+        <div class=" submenu collapse">
+            <ul class="submenu-inner">
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Cuenta corriente</span>
+                        </span>
+
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            <li class="nav-item">
+
+                                <a href="#" class="nav-link dropdown-toggle collapsed">
+                                    <span class="nav-text">
+                                        <span>Cliente</span>
+                                    </span>
+
+                                    <b class="caret fa fa-angle-left rt-n90"></b>
+                                </a>
+                                <div class=" submenu collapse">
+                                    <ul class="submenu-inner">
+                                        @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REGISTRO DE LINEA CREDITO"))
+                                        {
+                                            <li class="nav-item">
+                                                <a class="nav-link" asp-area="Finanzas" asp-controller="FLineaCredito" asp-action="AsignarLineaCredito">Línea de crédito</a>
+                                            </li>
+                                        }
+                                        @*@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REGISTRO DE LINEA CREDITO"))
+                                            {
+                                                <li class="nav-item">
+                                                    <a class="nav-link" asp-area="Finanzas" asp-controller="FLineaCredito" asp-action="AsignarLineaCredito">Documentos por cobrar</a>
+                                                </li>
+                                            }*@
+                                    </ul>
+                                </div>
+
+                                <b class="sub-arrow"></b>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                    <b class="sub-arrow"></b>
+
+                </li>
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Reportes</span>
+                        </span>
+
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REPORTE DE VENTAS"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Ventas" asp-controller="Reporte" asp-action="ReporteVentas">Ventas</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REPORTE DE VENTAS"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Ventas" asp-controller="Reporte" asp-action="ReporteVentasVinali">Ventas Vinali</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REPORTE DE NOTAS CD"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Ventas" asp-controller="Reporte" asp-action="ReporteNotas">Notas de crédito</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REPORTE DESCUENTOS A COBRAR"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Comercial" asp-controller="Descuento" asp-action="ReporteDescuentosACobrar">Descuentos a cobrar</a>
+                                </li>
+                            }
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Finanzas" asp-controller="FReporte" asp-action="InterfazStartSoft">Reporte de StartSoft</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                    <b class="sub-arrow"></b>
+
+                </li>
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Maestros</span>
+                        </span>
+
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_FINANZAS_BANCO"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Finanzas" asp-controller="FBanco" asp-action="Index">Banco</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_FINANZAS_CONDICIONPAGO"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Finanzas" asp-controller="FCondicionPago" asp-action="Index">Condición de Pago</a>
+                                </li>
+                            }
+
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_FINANZAS_MONEDA"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Finanzas" asp-controller="FMoneda" asp-action="Index">Moneda</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_FINANZAS_TIPOPAGO"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Finanzas" asp-controller="FTipoPago" asp-action="Index">Tipo de Pago</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_FINANZAS_DOCUMENTO_TRIBUTARIO"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Finanzas" asp-controller="FDocumentoTributario" asp-action="Index">Documento Tributario</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_COMPRAS_PROVEEDOR"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Compras" asp-controller="CProveedor" asp-action="Index">Proveedor</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+
+                    <b class="sub-arrow"></b>
+
+                </li>
+            </ul>
+        </div>
+
+
+        <b class="sub-arrow"></b>
+
+    </li>
+}

@@ -1,0 +1,113 @@
+﻿
+@{
+    ViewData["Title"] = "ReporteAsignacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+
+    var _SUCURSALES = [];
+    _SUCURSALES =@Html.Raw(Json.Serialize(ViewBag.sucursales));
+</script>
+
+<div class="card">
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <h3 class="text-center">REPORTE PEDIDOS DELIVERY</h3>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-xl-4 col-sm-6">
+                <div class="form-group">
+                    <div class="input-group input-group-sm mb-1">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text form-control-sm">SUCURSAL</label>
+                        </div>
+                        <select class="custom-select" id="pb_sucursal">
+                            <option value="">[SELECCIONE]</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-sm mb-1">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">RANGO DE FECHA</label>
+                        </div>
+                        <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-sm-6">
+                <div class="form-group">
+                    <div class="input-group input-group-sm mb-1">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text form-control-sm">ESTADO ENTREGA</label>
+                        </div>
+                        <select class="custom-select" id="pb_estadoentrega">
+                            <option value="">[SELECCIONE]</option>
+                            <option value="EN RUTA">EN RUTA</option>
+                            <option value="ENTREGADO">ENTREGADO</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-sm mb-1">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text form-control-sm">TIPO ENTREGA</label>
+                        </div>
+                        <select class="custom-select" id="pb_cmbtipoentrega">
+                            <option value="">[SELECCIONE]</option>
+                            <option value="DELIVERY">DELIVERY</option>
+                            <option value="CONSULTORIO">CONSULTORIO</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <div class="btn-group">
+                    <button class="btn btn-primary" id="btnConsultar"><i class="fa fa-search"></i> CONSULTAR</button>
+
+                    <button class="btn btn-success" id="btnExportar"><i class="fa fa-file-excel"></i> EXPORTAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mt-2 text-center">
+    <div class="text-center card-body" style="max-width:100%">
+        <div class="row justify-content-center mb-2">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary" style="margin-left:1px">
+                        PEDIDOS EN RUTA <span class="badge badge-light" id="lblpedidoruta" style="font-size:13px">0</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" style="margin-left:1px">
+                        PEDIDOS ENTREGADOS <span class="badge badge-light" id="lblpedidoentregado" style="font-size:13px">0</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" style="margin-left:1px">
+                        TOTAL PEDIDOS DELIVERY <span class="badge badge-light" id="lblpedidototal" style="font-size:13px">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="container" id="cardacciones" style="min-height:500px">
+
+            <div class="table-responsive " id="tabla">
+                <table class="table  table-sm table-striped" id="tblReportes">
+                    <thead class="thead-dark font-10">
+                    </thead>
+                    <tbody class="font-10"></tbody>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/js/areas/pedidos/delivery/reporteasignacion.js"></script>

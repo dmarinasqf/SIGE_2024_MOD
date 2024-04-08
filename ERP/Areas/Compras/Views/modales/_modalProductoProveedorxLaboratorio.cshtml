@@ -1,0 +1,112 @@
+﻿<style>
+    .btnlaboratorios:hover {
+        cursor: pointer;
+        font-weight: bold;
+    }
+</style>
+<div class="modal fade" id="modalproductoproveedorlaboratorio" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-xl-1500 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header ">
+                <label>PRODUCTOS DE PROVEEDOR POR LABORATORIO</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-12">
+                                <input type="text" class="form-control text-uppercase" placeholder="BUSCAR LABORATORIOS" tipobusqueda="" id="txtbuscarlaboratorioproveedor" value="" />
+                                <table class="table table-bordered table-hover " id="tbllaboratoriosproveedor" width="100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>LABORATORIOS</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                                <div id="divgrupodelaboratorios" class="" style="height:100px">
+
+
+                                </div>
+                            </div>
+                            <div class="col-lg-9 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-8"><label id="lbllaboratorioproductoproveedor" class="font-13"></label></div>
+                                    <input type="hidden" id="MBPLP_txtidlaboratorio" />
+                                    <div class="col-lg-4">
+                                        <div class="row mb-2">
+                                            <div class="col-lg-6">
+                                                <button class="btn btn-sm btn-block btn-success" onclick="agregarItems('PT')">[AGREGAR]</button>
+
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="form-inline mb-2">
+                                                    <input class="" type="checkbox" id="checktodosPT">
+                                                    <label class="" for="checktodosPT">
+                                                        [TODOS]
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-8 mb-2">
+                                        <input type="text" class="form-control  text-uppercase" placeholder="BUSCAR PRODUCTOS" id="txtbuscarproxlab_pro" value="" />
+                                    </div>
+                                    <div class="col-xl-4 mb-2">
+                                        <select class="custom-select" id="cmbTipoProducto">
+                                            <option value="">SELECCIONAR</option>
+                                            <option value="EC">ECONOMATO</option>
+                                            <option value="FM">FORMULA MAGISTRAL</option>
+                                            <option value="IM">MATERIA PRIMA</option>
+                                            <option value="IS">INSUMOS</option>
+                                            <option value="ML">MATERIAL LABORATORIO</option>
+                                            <option value="PT">PRODUCTO TERMINADO</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="card bcard h-auto">
+                                            <div class="border-t-3 brc-blue-m2 table-responsive contenedor-sticky-500">
+                                                <table class="table  table-bordered  table-hover" id="tblproductosxlaboratoriodeproveedor" width="100%">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th class="header-sticky">CODIGO</th>
+                                                            <th class="header-sticky" style="width:40%">PRODUCTO</th>
+                                                            <th class="header-sticky">LABORATORIO</th>
+                                                            <th class="header-sticky">U.M</th>
+                                                            <th class=" header-sticky">VVF</th>
+                                                            <th class=" header-sticky">PVF</th>
+
+                                                            <th class="header-sticky"></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbbody_prod_lab_prov"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/areas/compras/modales/modalproductoproveedorxlaboratorio.js"></script>

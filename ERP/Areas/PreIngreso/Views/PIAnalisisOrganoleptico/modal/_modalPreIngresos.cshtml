@@ -1,0 +1,73 @@
+﻿@*MODAL DE PRE INGRESOS*@
+<!--<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalpreingresos" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="exampleModalLabel">LISTA PREINGRESOS <b>TERMINADOS</b></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive" id="paneltabla">-->
+                            @*<table class="table table-sm text-center table-striped" width="100%" id="tbllista">
+                    <thead class="thead-dark">
+                    </thead>
+                    <tbody class="text-center font-11">
+                    </tbody>
+                </table>*@
+                        <!--</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>-->
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalpreingresos" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1200 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="exampleModalLabel">BUSCAR PREINGRESO POR FACTURA</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="card">
+                    <input type="text" class="form-control" placeholder="Ingrese Factura" id="MDP_txtfactura" autocomplete="off" />
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table font-12 table-hover table-bordered" id="MDP_tblpreingreso" width="100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>IDFACTURA</th>
+                                        <th>FACTURA</th>
+                                        <th>CODIGO</th>
+                                        <th>RUC</th>
+                                        <th>PROVEEDOR</th>
+                                        <th>FECHA</th>
+                                        <th>SUCURSAL</th>
+                                        <th>ESTADO</th>
+                                        <th>ESTADOFACTURA</th>
+                                        <th>USUARIO</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/preingreso/analisisorganoleptico/modal/modal_preingreso.js"></script>

@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewData["Title"] = "Empleados";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var _CANALVENTAS = [];
+    var _SUCURSALES = [];
+    _CANALVENTAS =@Html.Raw(Json.Serialize(ViewBag.canalventas));
+    _SUCURSALES =@Html.Raw(Json.Serialize(ViewBag.sucursales));
+</script>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE EMPLEADOS
+            </h1>
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                <!-- dataTables search box will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        
+                <div class="card bcard h-auto">
+                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                        <table class="table table-sm table-hover table-bordered" width="100%" id="tblempleados">
+                            <thead >
+                                <tr>
+                                    <th>FOTO</th>
+                                    <th>ID</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>NOMBRES </th>
+                                    <th>SUCURSAL</th>
+                                    <th>EMPRESA</th>
+                                    <th>GRUPO</th>
+                                    <th>USUARIO</th>
+                                    <th>CLAVE</th>
+                                    <th>ESTADO</th>
+                                    <th>FECHA CREACIÓN</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+           
+    </div>
+</div>
+
+
+
+
+<partial name="~/Areas/Administrador/Views/Empleado/_modalPermisos.cshtml" />
+<partial name="~/Areas/Administrador/Views/Empleado/modal/_modalRegistrarEditar.cshtml" />
+
+<script src="~/js/areas/administrador/empleados/empleados.js"></script>

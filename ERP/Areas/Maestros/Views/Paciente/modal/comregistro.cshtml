@@ -1,0 +1,209 @@
+﻿<form autocomplete="off" id="MCPformregistro">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <input type="hidden" id="MCPtxtcodigo" name="idpaciente" />
+                <div class="col-xl-8 col-md-12">
+                    <div class="form-group">
+                        <label>TUTOR</label>
+                        <input type="hidden" name="idtutor" id="MCPidtutor" />
+                        <select class="form-control" id="MCPcmbtutor"></select>
+                        <span id="MCPlblnombretutor" class="text-success mt-2"></span>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-6">
+                    <label>TIPO DE PACIENTE</label>
+                    <select id="MCPcmbtipopaciente" class="form-control form-control-sm" required name="tipopaciente">
+                        <option value="PERSONA">PERSONA</option>
+                        <option value="MASCOTA">MASCOTA</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row" id="MCPdivpersona">
+
+                <div class="col-xl-3 col-md-6">
+                    <div class="form-group ">
+                        <label>TIPO DE DOCUMENTO</label>
+                        <select id="MCPcmbtipodoc" class="form-control form-control-sm" required name="iddocumento" ></select>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6">
+                    <div class="form-group ">
+                        <label>N°DOCUMENTO</label>
+                        <input id="MCPtxtnumdocumento" type="text" onkeypress="return justNumbers(event);" class="form-control form-control-sm" name="numdocumento" required>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12">
+                    <div class="form-group ">
+                        <label id="MCPlblnombre">NOMBRES</label>
+                        <input id="MCPtxtnombres" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" name="nombres" required>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 divpaciente">
+                    <div class="form-group ">
+                        <label>APELLIDO PATERNO</label>
+                        <input id="MCPtxtapepaterno" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" name="apepaterno" required>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-6 divpaciente">
+                    <div class="form-group ">
+                        <label>APELLIDO MATERNO</label>
+                        <input id="MCPtxtapematerno" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" name="apematerno" required>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 divpaciente">
+                    <div class="form-group ">
+                        <label>SEXO</label>
+                        <select class="form-control form-control-sm" id="MCPcmbsexo" name="sexo" required>
+                            <option value=""></option>
+                            <option value="M">MASCULINO</option>
+                            <option value="F">FEMENINO</option>
+                            <option value="N">NO PRECISA</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 ">
+                    <div class="form-group ">
+                        <label>FECHA NACIMIENTO</label>
+                        <input id="MCPtxtfechanacimiento" type="date" class="form-control form-control-sm" name="fechanacimiento" required />
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="form-group ">
+                        <label>EMAIL</label>
+                        <input id="MCPtxtemail" type="text" class="form-control form-control-sm" name="email" >
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-4">
+                    <div class="form-group ">
+                        <label>TELÉFONO</label>
+                        <input id="MCPtxttelefono" type="number" maxlength="8" class="form-control form-control-sm" name="telefono" >
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-4">
+
+                    <div class="form-group ">
+                        <label>CELULAR 1</label>
+                        <input id="MCPtxtcelular" type="number" maxlength="11" class="form-control form-control-sm" name="celular" required>
+                    </div>
+
+                </div>
+                <div class="col-xl-3 col-sm-4">
+
+                    <div class="form-group ">
+                        <label hidden>CELULAR 2</label>
+                        <input id="MCPtxtcelular2" type="number" hidden maxlength="11" class="form-control form-control-sm" name="celular2">
+                    </div>
+
+                </div>
+                <div class="col-xl-3 col-sm-4">
+                    <div class="form-group ">
+                        <label>DEPARTAMENTO </label>
+                        <select class="form-control form-control-sm" id="MCPcmbdepartamento" name="iddepartamento" >
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-4">
+                    <div class="form-group ">
+                        <label>PROVINCIA </label>
+                        <select class="form-control form-control-sm" id="MCPcmbprovincia" name="idprovincia" >
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-4">
+                    <div class="form-group ">
+                        <label>DISTRITO </label>
+                        <select class="form-control form-control-sm" id="MCPcmbdistrito" name="iddistrito" >
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-sm-12">
+                    <div class="form-group ">
+                        <label>DIRECCIÓN</label>
+                        <textarea id="MCPtxtdireccion" type="text" class="form-control form-control-sm mayusculas" rows="2" name="direccion" ></textarea>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-12">
+                    <div class="form-group ">
+                        <label>REFERENCIA</label>
+                        <textarea id="MCPtxtreferencia" type="text" class="form-control form-control-sm mayusculas" rows="2" name="referencia" ></textarea>
+                    </div>
+                </div>
+                <div class="col-xl-6">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>PACIENTE CANNABIS</td>
+                            <td><input type="checkbox" name="pacientecannabis" id="MCPcheckpacienteccanabis"/></td>
+                        </tr>
+                        <tr>
+                            <td>ES EMPLEADO</td>
+                            <td>
+                                <input type="checkbox" name="isempleado" id="MCPcheckisempleado"/>
+                                <select class="form-control form-control-sm MCPdivarea ocultar " id="MCPcmbarea" name="idgrupo">
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <div class="row ocultar" id="MCPdivmascota">
+                <div class="col-xl-8 col-sm-12">
+                    <div class="form-group">
+                        <label>NOMBRE MASCOTA</label>
+                        <input type="text" class="form-control form-control-sm" name="nombremascota" id="MCPtxtnombremascota" />
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-12">
+                    <div class="form-group">
+                        <label>TIPO MASCOTA</label>
+                        <select class="form-control form-control-sm " id="MCPcmbtipomascota">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-12">
+                    <div class="form-group">
+                        <label>PATOLOGIA</label>
+                        <select class="form-control form-control-sm " id="MCPcmbpatologia">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-12">
+                    <div class="form-group">
+                        <label>RAZA</label>
+                        <select class="form-control form-control-sm " id="MCPcmbraza">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-12">
+                    <div class="form-group">
+                        <label>PESO</label>
+                        <input class="form-control form-control-sm " id="MCPtxtpeso" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-sm-3">
+                    <button type="reset" class="btn btn-primary btn-block" id="MCPbtnlimpiar">LIMPIAR</button>
+                </div>
+                <div class="col-xl-3 col-sm-3">
+                    <button type="submit" class="btn btn-success  btn-block" id="MCPbtnguardar">GUARDAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
+<script src="~/js/areas/maestros/paciente/modal/comregistro.js"></script>
+
+<script src="~/js/controller/veterinaria/PatologiaController.js"></script>
+<script src="~/js/controller/veterinaria/RazaController.js"></script>
+<script src="~/js/controller/veterinaria/TipoMascotaController.js"></script>

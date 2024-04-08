@@ -1,0 +1,83 @@
+﻿@model Erp.Entidades.Contabilidad.ResponsableSede
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<partial name="~/Areas/Contabilidad/Views/AsignarCajaChica/modal/_modalAsignarCajaChica.cshtml" />
+<partial name="~/Areas/Contabilidad/Views/AsignarCajaChica/modal/_modalReponerCajaChica.cshtml" />
+<partial name="~/Areas/Contabilidad/Views/AsignarCajaChica/modal/_modalReasignarRespCajaChica.cshtml" />
+<script src="~/js/areas/contabilidad/AsignarCajaChica/funciones_ajax.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+
+
+<!--CONTENEDOR-->
+<div>
+    <!--CABECERA-->
+    <div class="row">
+        <!--SECCION DE CAMPOS CABECERA-->
+        <div class="col-xl-8 col-md-8 col-sm-12">
+            <div class="row ml-2 py-0 my-0">
+                <!--FILA 1-->
+                <div class="col-xl-4 col-sm-4 py-0 my-0">
+                    <div class="form-group">
+                        <label>FECHA DESDE</label>
+                        <input class="form-control form-control-sm date_fecha" id="date_fechaInicial" name="date_fecha"
+                               placeholder="DD/MM/YYYY" type="text" />
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-4 py-0 my-0">
+                    <div class="form-group">
+                        <label>FECHA HASTA</label>
+                        <input class="form-control form-control-sm date_fecha" id="date_fechaFinal" name="date_fecha"
+                               placeholder="DD/MM/YYYY" type="text" />
+                    </div>
+                </div>
+            </div>
+            <hr />
+        </div>
+
+        <!--CONTROLES DE VENTANA-->
+        <div class="col-xl-4 col-md-4 col-sm-4">
+            <div class="card ml-4 px-3">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12">
+                        <div class="form-group">
+                            <button id="btnAsignar" type="button" class="btn btn-secondary btn-block mt-2 mb-2">
+                                ASIGNAR CAJA CHICA
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-md-12">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary btn-block mt-2 mb-2"
+                                    onclick="CajaAsignacionListar()">
+                                FILTRAR DATOS
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!---->
+    </div>
+    <!---->
+    <!--DETALLE DE CAJA CHICA-->
+    <div class="col-xl-12 col-md-12 col-sm-12" id="contenedor_detalle">
+    </div>
+    <div style="width:100%">
+        <div id="pagination-container" style="float:right; margin-right:15px"></div>
+    </div>
+</div>
+
+<script src="~/js/areas/contabilidad/AsignarCajaChica/funciones_interaccion.js"></script>
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+

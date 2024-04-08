@@ -1,0 +1,34 @@
+﻿@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MODULO DE DIGEMID"))
+{
+    <li class="nav-item">
+
+        <a href="#" class="nav-link dropdown-toggle collapsed">
+            <i class="nav-icon fa fa-cube"></i>
+            <span class="nav-text fadeable">
+                <span>Observatorio de precios</span>
+            </span>
+            <b class="caret fa fa-angle-left rt-n90"></b>
+        </a>
+        <div class=" submenu collapse">
+            <ul class="submenu-inner">
+
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Digemid" asp-controller="Reporte" asp-action="MaestroMensual"> Reporte Mensual</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Digemid" asp-controller="Reporte" asp-action="PreciosMensual"> Precios Mensual</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Digemid" asp-controller="Reporte" asp-action="PreciosCovid"> Precios Covid</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Digemid" asp-controller="Alerta" asp-action="Index"> Alertas Digemid</a>
+                </li>
+            </ul>
+        </div>
+
+
+        <b class="sub-arrow"></b>
+
+    </li>
+}

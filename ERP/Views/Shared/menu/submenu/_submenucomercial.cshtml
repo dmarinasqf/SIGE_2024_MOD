@@ -1,0 +1,181 @@
+﻿@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU COMERCIAL"))
+{
+    <li class="nav-item">
+
+        <a href="#" class="nav-link dropdown-toggle collapsed">
+            <i class="nav-icon fa fa-cube"></i>
+            <span class="nav-text fadeable">
+                <span>Comercial</span>
+            </span>
+            <b class="caret fa fa-angle-left rt-n90"></b>
+        </a>
+
+        <div class="hideable submenu collapse">
+            <ul class="submenu-inner">
+
+
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Lista de precios</span>
+                        </span>
+
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VER LISTA DE PRECIOS")) {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Comercial" asp-controller="ListaPrecios" asp-action="Index"> Listar</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VER LISTA DE PRECIOS")) {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Comercial" asp-controller="ListaPrecios" asp-action="SubirLista"> Subir lista</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("LISTA DE PRECIOS CLIENTE")) {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Comercial" asp-controller="ListaPreciosCliente" asp-action="Index"> Lista de cliente</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <b class="sub-arrow "></b>
+                </li>
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("CREAR BONIFICACION CLIENTE")) {
+                    <li class="nav-item">
+                        <a href="#" class="nav-link dropdown-toggle collapsed ">
+                            <span class="nav-text">
+                                <span>Ofertas</span>
+                            </span>
+
+                            <b class="caret fa fa-angle-left rt-n90"></b>
+                        </a>
+                        <div class=" submenu collapse">
+                            <ul class="submenu-inner">
+
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Comercial" asp-controller="Oferta" asp-action="BonificacionCliente"> BonificacionCliente</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <b class="sub-arrow"></b>
+                    </li>
+}
+                @if (User.IsInRole("REGISTRAR INCENTIVOS") || User.IsInRole("ADMINISTRADOR")) {
+                    <li class="nav-item">
+
+                        <a href="#" class="nav-link dropdown-toggle collapsed">
+                            <span class="nav-text">
+                                <span>Incentivos</span>
+                            </span>
+
+                            <b class="caret fa fa-angle-left rt-n90"></b>
+                        </a>
+                        <div class=" submenu collapse">
+                            <ul class="submenu-inner">
+                                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REGISTRAR INCENTIVOS")) {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="Comercial" asp-controller="Incentivo" asp-action="Index"> Incentivos</a>
+                                    </li>
+                                }
+                                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REGISTRAR INCENTIVOS")) {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="Comercial" asp-controller="Incentivo" asp-action="RegistrarIncentivos"> Registrar</a>
+                                    </li>
+                                }@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REGISTRAR INCENTIVOS")) {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="Comercial" asp-controller="Incentivo" asp-action="SubirIncentivos"> Subir</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <b class="sub-arrow"></b>
+                    </li>
+                }
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("CREAR DESCUENTOS")) {
+                    <li class="nav-item">
+
+                        <a href="#" class="nav-link dropdown-toggle collapsed">
+                            <span class="nav-text">
+                                <span>Descuentos</span>
+                            </span>
+
+                            <b class="caret fa fa-angle-left rt-n90"></b>
+                        </a>
+                        <div class=" submenu collapse">
+                            <ul class="submenu-inner">
+                                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("CREAR DESCUENTOS"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="Comercial" asp-controller="Descuento" asp-action="Index"> Listar</a>
+                                    </li>
+                                }
+                                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("CREAR DESCUENTOS"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="Comercial" asp-controller="Descuento" asp-action="Mantenimiento"> Mantenimiento</a>
+                                    </li>
+                                }
+                                <!-- EARTCOD1008 -->
+                                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("CREAR DESCUENTOS"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="Comercial" asp-controller="Descuento" asp-action="DescuentoPersonal"> Descuento Personal</a>
+                                    </li>
+                                }
+                                <!-- EARTCOD1009 -->
+                                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("CREAR DESCUENTOS"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="Comercial" asp-controller="Descuento" asp-action="PackPromociones"> Pack de Promociones</a>
+                                    </li>
+                                }
+                                <!-- EARTCOD1021 -->
+                                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("CREAR DESCUENTOS"))
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" asp-area="Comercial" asp-controller="Descuento" asp-action="PromoProductoObsequio"> Producto Obsequio</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+
+                        <b class="sub-arrow"></b>
+
+                    </li>
+                }
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link dropdown-toggle collapsed ">
+                        <span class="nav-text">
+                            <span>Reportes</span>
+                        </span>
+
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Comercial" asp-controller="Reporte" asp-action="VentasvsCompra"> Ventas vs Compras</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Comercial" asp-controller="Reporte" asp-action="VentasRango"> Rango de Ventas</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Comercial" asp-controller="Reporte" asp-action="ComprasRango"> Rango de Compras</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <b class="sub-arrow"></b>
+                </li>
+            </ul>
+        </div>
+
+        <b class="sub-arrow"></b>
+
+    </li>
+}

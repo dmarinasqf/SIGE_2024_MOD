@@ -1,0 +1,112 @@
+﻿@import url("https://fonts.googleapis.com/css?family=Poppins:100,200,200i,300,400,500,600,700,800,900&display=swap");
+
+.texto-encima {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    /*background-color: #ff656a;*/
+    /*background-color: #058BAC;*/
+    background-color: #02657E;
+    -moz-user-select: none;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 0;
+    margin-bottom: 0;
+    padding: 10px 10px;
+    border-radius: 5px;
+}
+
+.boton-acordion {
+    color: white;
+    background-color: #3B87CE;
+    -moz-user-select: none;
+    text-transform: uppercase;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    line-height: 0;
+    margin-bottom: 0;
+    padding: 20px 20px;
+    border-radius: 5px;
+}
+
+.tab-pane-color {
+    background-color: #3B87CE;
+    /*background: #788590;*/
+    color: #fff;
+    font-size: 18px;
+}
+
+.space-margin-between {
+    /*margin-top: 10px;*/
+    margin-bottom: 10px
+}
+
+.space-padding-between {
+    padding: 10px 10px;
+}
+
+.contenedor {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.centrado {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box_cards {
+    position: relative;
+    border-radius: 3px;
+    background: #a3d7dd;
+    /*background: #19334C;*/
+    border-top: 3px solid #d2d6de;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+stilos_fondo {
+    margin: 5px;
+    padding: 0px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background: #007180;
+    font-size: 1.1rem;
+    text-decoration: none;
+}
+
+/*ESTILOS CALENDAR */
+
+
+.example {
+    min-height: 320px;
+    padding-bottom: 20px;
+}
+
+    .example .output {
+        display: inline-block;
+        vertical-align: top;
+        width: 320px;
+        min-height: 340px;
+    }
+
+        .example .output input {
+            padding: 5px;
+            width: 300px;
+        }

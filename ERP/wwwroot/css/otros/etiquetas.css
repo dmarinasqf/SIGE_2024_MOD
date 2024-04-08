@@ -1,0 +1,88 @@
+﻿
+
+.etiqueta-tamaño-pequeña {
+    font-family: Arial;
+    width: 100mm;
+    height: 38mm;
+    font-size: 13px;
+    font-weight: bold;
+    overflow: hidden;
+    resize: none;
+    line-height: 15px;
+    color: black;
+}
+
+.etiqueta-tamaño-mediana {
+    font-family: Arial;
+    width: 90mm;
+    height: 72mm;
+    font-size: 13px;
+    font-weight: bold;
+    overflow: hidden;
+    resize: none;
+    color: black;
+}
+
+.etiqueta-tamaño-grande {
+    font-family: Arial;
+    width: 90mm;
+    height:144mm;
+    font-size: 13px;
+    font-weight: bold;
+    overflow: hidden;
+    resize: none;
+    color: black;
+  
+}
+
+@media print {
+    @page {        
+        margin-top: 8px;
+        margin-right:14px;
+        margin-left:14px;
+       margin-bottom:8px;
+    }
+    .etiqueta-tamaño-pequeña {
+        font-family: Calibri;
+        width: 50mm;
+        height: 19mm;
+        font-size: 6.5px;
+        font-weight: bold;
+        overflow: hidden;
+        resize: none;
+        line-height: 7.5px;
+        background-color: white;
+        border-radius: 4px;
+        color: black;
+        border: none;
+    }
+
+    .etiqueta-tamaño-mediana {
+        font-family: Calibri;
+        width: 45mm;
+        height: 72mm;
+        font-size: 7.5px;
+        font-weight: 900;
+        overflow: hidden;
+        resize: none;
+        line-height: 9px;
+        background-color: white;
+        color: black;
+        border: none;
+    }
+
+    .etiqueta-tamaño-grande {
+        font-family: Calibri;
+        width: 45mm;
+        height: 72mm;
+        font-size: 8px;
+        font-weight: 900;
+        overflow: hidden;
+        resize: none;
+        line-height: 10px;
+        background-color: white;
+        color: black;
+        border:none;   
+        /*image-resolution:300dpi;*/
+    }   
+}

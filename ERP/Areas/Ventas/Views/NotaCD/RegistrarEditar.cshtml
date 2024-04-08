@@ -1,0 +1,416 @@
+﻿@model ENTIDADES.ventas.NotaCD
+@{
+    ViewData["Title"] = "RegistrarEditar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var IGV =@Html.Raw(Json.Serialize(ViewBag.IGV));
+    var IDSUCURSAL =@Html.Raw(Json.Serialize(ViewBag.IDSUCURSAL));
+     var _MODELO= @Html.Raw(Json.Serialize(Model));
+     var _DATOSCAJA =@Html.Raw(Json.Serialize(ViewBag.verificarcaja.objeto));
+     var _EMPRESAAUX =@Html.Raw(Json.Serialize(ViewBag.IDEMPRESA));
+        IGV = parseFloat(IGV);
+        if (IGV >= 1)
+            IGV = IGV / 100;
+        if (_EMPRESAAUX == 1001)//SACAR igv CUANDO ES AMAZONIA
+            IGV = 0;
+</script>
+@if (ViewBag.verificarcaja.mensaje == "ok")
+{
+    <div class="card">
+        <div class="row">
+            <div class="col-xl-8 ">
+                <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                    <h1 class="page-title text-primary-d2 text-140">
+                        <a asp-action="HistorialNotas"><i class="fas fa-long-arrow-alt-left font-22"></i></a>
+                        REGISTRAR NOTA DE CRÉDITO
+                    </h1>
+                </div>
+            </div>
+
+            <div class="form-group col-xl-3">
+                <label>SUCURSAL</label>
+                <select class="form-control " id="txtidsucursal" tipo="combo"></select>
+            </div>
+            <div class="form-group col-xl-1 mt-2" id="contenedorBtnBuscarPorCliente" hidden>
+                <button type="button" class="btn btn-info mt-4" id="btnbuscarPorCliente"><i class="fas fa-search"></i></button>
+            </div>
+
+
+        </div>
+        <form autocomplete="off" id="formregistro">
+            <input type="hidden" asp-for="idnota" id="txtidnota" />
+            <input type="hidden" asp-for="idventa" id="txtidventa" />
+            <input type="hidden" asp-for="idaperturacaja" id="txtidaperturacaja" />
+
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-4 col-sm-12 border">
+                        <fieldset>
+                            <legend>Datos de venta:</legend>
+                            <div class="row">
+
+                                <div class="col-xl-6 mt-1">
+                                    <label>TIPO COMPROBANTE</label>
+                                    <div class="input-group  mb-3">
+                                        <input type="text" class="form-control " id="txtdocumentoventa" disabled />
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-sm btn-dark" onclick="abrirModalBuscarVentas()" type="button" id="btnbuscarfactura">
+                                                <i class="fas fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-6 mt-1">
+                                    <label>FECHA</label>
+                                    <input type="text" class="form-control " id="txtfechaventa" disabled />
+                                </div>
+                                <div class="col-xl-4 col-sm-4 mt-1">
+                                    <label>SERIE</label>
+                                    <input type="text" id="txtserieventa" class="form-control form-control-sm" disabled />
+                                </div>
+                                <div class="col-xl-8 col-sm-8 mt-1">
+                                    <label>NÚMERO</label>
+                                    <input type="text" id="txtnumdocventa" class="form-control form-control-sm" disabled />
+                                </div>
+                                <div class="col-xl-12 col-sm-12 mb-1 mt-1">
+                                    <div class="">
+                                        <small>DATOS DE CLIENTE</small>
+
+                                        <div class=" row">
+
+                                            <div class="col-xl-12 col-sm-12">
+                                                <label>DOCUMENTO CLIENTE</label>
+                                                <input type="text" class="form-control " numdoc="" id="txtnumdoccliente" disabled />
+                                            </div>
+                                            <div class="col-xl-12 col-sm-12">
+                                                <label>NOMBRES / RAZON SOCIAL</label>
+                                                <input type="text" id="txtnombrescliente" class="form-control " disabled />
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+
+
+                    </div>
+                    <div class="col-xl-5 col-sm-12 border ">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <label>DOCUMENTO TRIBUTARIO</label>
+                                <select type="text" class="form-control " asp-for="iddocumento" id="cmbiddocumento" required></select>
+                            </div>
+                            <div class="col-xl-12 col-sm-12">
+                                <div class="form-group row">
+                                    <div class="col-xl-12 col-sm-12">
+                                        <label>TIPO DE NOTA</label>
+                                        <select type="text" class="form-control " asp-for="idtipodocumento" id="cmbidtipodocumento" required></select>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-sm-4">
+                                <div class="form-group text-center">
+                                    <label>SERIE</label>
+                                    <input type="text" class="form-control " asp-for="serie" id="txtserienota" disabled />
+                                </div>
+                            </div>
+                            <div class="col-xl-5 col-sm-4">
+                                <div class="form-group text-center">
+                                    <label>NÚMERO DOCUMENTO</label>
+                                    <input type="text" class="form-control  " asp-for="numdocumento" id="txtnumdocnota" disabled />
+
+                                </div>
+                            </div>
+                            <div class="col-xl-5 col-sm-4">
+                                <div class="form-group text-center">
+                                    <label>FECHA</label>
+                                    @if (Model is null)
+                                    {
+                                        <span type="text" class="form-control text-center horaactual" name="fecha" id="lblfecha"></span>
+                                    }
+                                    else
+                                    {
+                                        <span type="text" class="form-control text-center" name="fecha" id="lblfecha"></span>
+                                    }
+                                </div>
+                            </div>
+                            @*<div class="col-xl-4 col-sm-4 mt-1" id="txtdescuentodiv" style="display: none;">
+                                <label>DESCUENTO</label>
+                                <input type="number" id="txtdescuento" class="form-control form-control-sm" step="0.01" />
+                            </div>*@
+                            <div class="col-xl-12 col-sm-12">
+                                <div class="form-group">
+                                    <label>MOTIVO DE DEVOLUCIÓN</label>
+                                    <textarea class="form-control text-uppercase" id="txtmotivodevolucion" rows="2" asp-for="motivodevolucion" required></textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-xl-3 col-sm-12 border" id="cardreport">
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-12">
+                                <label>CAJA</label>
+                                <input type="text" id="txtnombrecaja" class="form-control form-control-sm" disabled />
+                            </div>
+                            <div class="col-xl-12 col-sm-12 mt-1">
+                                <label>USUARIO</label>
+                                <input type="text" id="txtusuario" class="form-control form-control-sm" value="@User.Identity.Name" disabled />
+                            </div>
+                            <div class="col-xl-6 col-sm-6 mt-1">
+                                <label>EMPRESA</label>
+                                <input type="text" id="txtnombreempresa" class="form-control form-control-sm" value="@ViewBag.EMPRESA" disabled />
+                            </div>
+                            <div class="col-xl-6 col-sm-6 mt-1 mb-1">
+                                <label>SUCURSAL</label>
+                                <input type="text" id="txtnombresucursal" class="form-control form-control-sm" value="@ViewBag.SUCURSAL" disabled />
+                            </div>
+                        </div>
+                        <div class="row mt-3 justify-content-center" id="cardreport">
+                            @if (Model is null)
+                            {
+                                <div class="col-xl-6 col-sm-6 mt-3">
+                                    <button class="btn btn-success btn-block" type="submit" id="btnguardar"><i class="fas fa-hand-holding-usd mr-2 mb-1"></i> GUARDAR [F1]</button>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-xl-6 col-sm-6 mt-3">
+                                    <button class="btn btn-success btn-block" type="submit" id="btnguardar" disabled><i class="fas fa-hand-holding-usd mr-2 mb-1"></i> COBRAR [F1]</button>
+                                </div>
+
+                            }
+                            <div class="col-xl-6 col-sm-6 mt-3">
+                                <button class="btn btn-outline-info btn-block" type="button" id="btnnuevo"><i class="fas fa-redo mr-2 mb-1"></i> NUEVO [F2]</button>
+                            </div>
+                            <div class="col-xl-6 col-sm-6 mt-3">
+                                <button class="btn btn-outline-dark btn-block" type="button" id="btnimprimir"> <i class="fas fa-print mr-2 mb-1"></i> IMPRIMIR [F3]</button>
+                            </div>
+                            @*<div class="col-xl-6 col-sm-6 mt-3">
+                                    <button class="btn btn-outline-danger btn-block" type="button" id="btncancelar"><i class="fas fa-times-circle mr-2 mb-1"></i>  CANCELAR [F4]</button>
+                                </div>*@
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row justify-content-end mt-4">
+                    <div class="col-xl-10 col-sm-12 border">
+                        <div class="table-responsive contenedor-sticky-400 m-1">
+                            <table class="table table-sm table-bordered" id="tbldetalle" width="100%">
+                                <thead class="thead-dark">
+                                    <tr>
+
+                                        <th style="width:2%" class="header-sticky">#</th>
+                                        <th style="width:10%" class="header-sticky">COD</th>
+                                        <th style="width:35%" class="header-sticky">PRODUCTO</th>
+                                        <th style="width:10%" class="header-sticky">CANTIDAD</th>
+                                        <th style="width:3%" class="header-sticky">F</th>
+                                        @*<th style="width:3%" class="header-sticky">B</th>*@
+                                        <th style="width:10%" class="header-sticky">PRECIO</th>
+                                        <th style="width:10%" class="header-sticky">IMPORTE</th>
+                                        <th style="width:5%" class="header-sticky"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-6 border ">
+                        <div class="form-group row mt-4">
+                            <div class="col-xl-5 col-sm-6">
+                                <label class="font-10">SUB TOTAL</label>
+                            </div>
+                            <div class="col-xl-7 col-sm-6">
+                                <input type="text" id="txtsubtotal" class="form-control font-14 text-right" disabled />
+                                <input type="text" id="newtxtsubtotal" class="form-control font-14 text-right" disabled style="display: none;" />
+                            </div>
+                        </div>
+                        <!-- //EARTCOD1009 -->
+                        <div class="form-group row">
+                            <div class="col-xl-5 col-sm-6">
+                                <label class="font-10">DESCUENTO</label>
+                            </div>
+                            <div class="col-xl-7 col-sm-6">
+                                <input type="text" id="txtpkdescuento" name="pkdescuento" class="form-control font-14 text-right" disabled />
+                                <input type="text" id="newtxtpkdescuento" class="form-control font-14 text-right" disabled style="display: none;" />
+                            </div>
+                        </div>
+                        <!-- //-EARTCOD1009 -->
+                        <div class="form-group row">
+                            <div class="col-xl-5 col-sm-6">
+                                <label class="font-10">IGV</label>
+                            </div>
+                            <div class="col-xl-7 col-sm-6">
+                                <input type="text" id="txtigv" class="form-control font-14 text-right" disabled />
+                                <input type="text" id="newtxtigv" class="form-control font-14 text-right" disabled style="display: none;" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-5 col-sm-6">
+                                <label class="font-10">TOTAL</label>
+                            </div>
+                            <div class="col-xl-7 col-sm-6">
+                                <input type="text" id="txttotal" class="form-control font-14 text-right" disabled />
+                                <input type="text" id="newtxttotal" class="form-control font-14 text-right" disabled style="display: none;" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-xl-5 col-sm-6">
+                                <label class="font-10">TOTAL REDONDEADO</label>
+                            </div>
+                            <div class="col-xl-7 col-sm-6">
+                                <input type="text" id="txttotalredondeado" class="form-control font-14 text-right" disabled />
+                                <input type="text" id="newtxttotalredondeado" class="form-control font-14 text-right" disabled style="display: none;" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- FIN DE CODIGO-->
+                </div>
+
+            </div>
+        </form>
+
+    </div>
+
+    <script src="~/js/areas/ventas/notacd/registrareditar.js"></script>
+    <script src="~/js/controller/ventas/VentasController.js"></script>
+    <script src="~/js/controller/ventas/NotaCDController.js"></script>
+    <script src="~/js/modelos/venta/NotaCD.js"></script>
+    <partial name="~/Areas/Ventas/Views/Venta/modal/_modalbuscarventas.cshtml" />
+    <partial name="~/Areas/Ventas/Views/NotaCD/complemento/_modalBuscarFacturaPorClienteProductoLote.cshtml" />
+    <partial name="~/Views/Modales/Imprimir.cshtml" />
+    <script>
+        $(document).ready(function () {
+            // Event listener for the select change event
+            function setupChangeHandler() {
+                $('#cmbidtipodocumento').off('change').on('change', handleDocumentTypeChange);
+            }
+
+            function handleDocumentTypeChange() {
+                var selectedOptionValue = $(this).find(':selected').attr('codigosunat');
+
+                if (!selectedOptionValue || selectedOptionValue !== '11') {
+                    datosiniciales();
+                    return;
+                }
+
+                // Tu código cuando es '11'
+                $('.importe_detalle').each(function () {
+                    var currentElement = $(this);
+                    currentElement.data('original-value', currentElement.text());
+                    currentElement.html('<input  class="costototalnuevo" type="number" value="0.00" step="0.01" min="0" class="text-center" style="width:100%;" />');
+                });
+
+                $('.importe_detalle input').blur(function () {
+                    var value = parseFloat($(this).val()).toFixed(2);
+                    if (isNaN(value) || value === 0) {
+                        alert('Por favor, introduce un valor diferente de 0');
+                        $(this).focus();
+                        return;
+                    }
+                    $(this).val(value);
+                });
+
+                $('#txtsubtotal, #txtpkdescuento, #txtigv, #txttotal, #txttotalredondeado').hide();
+                $('#newtxtsubtotal, #newtxtpkdescuento, #newtxtigv, #newtxttotal, #newtxttotalredondeado').show();
+                $('#newtxtsubtotal, #newtxtpkdescuento, #newtxtigv, #newtxttotal, #newtxttotalredondeado').val('0.00');
+            }
+
+            setTimeout(setupChangeHandler, 0);
+
+     
+            $(document).on('input', '.importe_detalle input', function () {
+                let total = 0;
+
+                // Sumar los valores de todos los inputs para obtener el total
+                $('.importe_detalle input').each(function () {
+                    const value = parseFloat($(this).val());
+                    if (!isNaN(value)) {  // Verificar que el valor no sea NaN
+                        total += value;
+                    }
+                });
+
+                // Calcular el IGV a partir del total
+                const igv = total * 0.18;
+
+                // Calcular el subtotal
+                const subtotal = total - igv;
+
+                function customFloor(value) {
+                    return Math.floor(value * 10) / 10;
+                }
+
+                const totalRounded = customFloor(total);
+               
+
+                // Actualizar los valores en la interfaz
+                $('#newtxtsubtotal').val(subtotal.toFixed(2));
+                $('#newtxtigv').val(igv.toFixed(2));
+                $('#newtxttotal').val(total.toFixed(2));
+                $('#newtxttotalredondeado').val(totalRounded.toFixed(2));
+            });
+
+
+            //$('#btnbuscarfactura').on('click', function () {
+            //    datosiniciales();
+            //});
+       
+        });
+
+        function datosiniciales() {     
+            $('.importe_detalle').each(function () {
+                var currentElement = $(this);
+                var originalValue = currentElement.data('original-value');
+                currentElement.text(originalValue);
+            });
+
+            // Mostrar los elementos "txt..."
+            $('#txtsubtotal, #txtpkdescuento, #txtigv, #txttotal, #txttotalredondeado').show();
+
+            // Ocultar los elementos "newtxt..."
+            $('#newtxtsubtotal, #newtxtpkdescuento, #newtxtigv, #newtxttotal, #newtxttotalredondeado').hide();
+
+        }
+    </script>
+
+
+
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="body">
+                <div class="alert-warning" style="color:black; padding:50px;margin:50px; font-size:1.2rem" role="alert">
+                    <h4 class="alert-heading">ADVERTENCIA</h4>
+                    @ViewBag.verificarcaja.mensaje .
+                    <div class="row">
+                        <div class="col-xl-2">
+                            <a asp-area="Ventas" asp-controller="Caja" asp-action="CerrarCaja">Cerrar caja</a>
+
+                        </div>
+                        <div class="col-xl-2">
+                            <a asp-area="Ventas" asp-controller="Caja" asp-action="AperturarCaja">Aperturar caja</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,289 @@
+﻿@model IEnumerable<ENTIDADES.Generales.Empresa>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE EMPRESAS
+            </h1>
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                <!-- dataTables search box will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table table-sm table-hover table-bordered" width="100%" id="tbllista">
+                    <thead>
+                        <tr>
+                            <th>IMAGEN</th>
+                            <th>ID</th>
+                            <th>COD</th>
+                            <th>RUC</th>
+                            <th> EMPRESA</th>
+                            <th> NOMBRE COMERCIAL</th>
+                            <th> TELEFONO</th>
+                            <th> CELULAR</th>
+                            <th> DIRECCION</th>
+                            <th>ESTADO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <img src="~/imagenes/empresas/@item.imagen" style="width:100px;height:60px" />
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idempresa)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.correlativo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ruc)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombrecomercial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.telefono)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.celular)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.direccion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.estado)
+                                </td>
+
+                                <td class="text-right">
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="btn btn-sm bg-warning  btn-pasar" data-toggle="tooltip" data-placement="top" title="Editar empresa"><i class="fa fa-edit"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE EMPRESA</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <form method="post" autocomplete="off" id="form-registro">
+                        <div class="card-body">
+                            <div class="row">
+                                <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                                <div class="col-xl-8 col-sm-12">
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <label>CODIGO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtcodigo" class="form-control form-control-sm mayusculas" name="idempresa" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <label>CORRELATIVO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtcorrelativo" class="form-control form-control-sm mayusculas" maxlength="2" name="correlativo" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>RUC</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtruc" class="form-control form-control-sm mayusculas" name="ruc" minlength="11" maxlength="11" onkeypress="return justNumbers(event);" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>NOMBRE</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtdescripcion" class="form-control form-control-sm mayusculas" name="descripcion" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>NOMBRE COMERCIAL</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtnombrecomercial" class="form-control form-control-sm mayusculas" name="nombrecomercial" required>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>TELEFONO</label>
+                                                <input type="tel" id="txttelefono" class="form-control form-control-sm mayusculas" name="telefono" maxlength="9" onkeypress="return justNumbers(event);" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>CELULAR</label>
+                                                <input type="tel" id="txtcelular" class="form-control form-control-sm mayusculas" name="celular" maxlength="9" onkeypress="return justNumbers(event);">
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>CORREO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtemail" class="form-control form-control-sm" name="email">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>PAGINA WEB</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtpaginaweb" class="form-control form-control-sm" name="paginaweb">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>COD SUNAT</label>
+                                                <input type="text" id="txtcodsunat" class="form-control form-control-sm mayusculas" name="codestablecimientosunat" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group">
+                                                <label>CODIGO UBIGEO</label>
+                                                <input type="text" id="txtcodigoubigeo" class="form-control form-control-sm mayusculas" name="codigoubigeo" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+                                                <label>DEPARTAMENTO</label>
+                                                <select id="cmbdepartamento" name="iddepartamento" class="form-control form-control-sm"></select>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+                                                <label>PROVINCIA</label>
+                                                <select id="cmbprovincia" name="idprovincia" class="form-control form-control-sm"></select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+
+                                            <div class="form-group">
+                                                <label>DISTRITO</label>
+                                                <select id="cmbdistrito" name="iddistrito" class="form-control form-control-sm"></select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12">
+                                            <div class="form-group">
+                                                <label>DIRECCIÓN</label>
+                                                <textarea type="text" id="txtdireccion" class="form-control form-control-sm mayusculas" name="direccion" rows="2"></textarea>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>ALMACEN PRINCIPAL</label>
+                                                <select class="form-control form-control-sm " id="cmbalmacen" name="idsucursalalmacen" required></select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>ESTADO</label>
+                                                <select class="form-control form-control-sm show-tick" id="cmbestado" name="estado" required>
+                                                    <option value="HABILITADO" selected>HABILITADO</option>
+                                                    <option value="DESHABILITADO">DESHABILITADO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-sm-12">
+                                    <div class="form-group">
+                                        <label>IMAGEN</label>
+                                        <input type="file" id="txtfile" class="form-control form-control-sm" accept="image/*" name="file">
+                                        <img src="#" alt="sin imagen" width="300px" height="100px" id="txtimagen" />
+
+                                    </div>
+
+
+                                    <div class="form-group">
+
+                                        <label>LOGO FACTURACIÓN</label>
+                                        <input type="file" id="txtlogofacturacion" class="form-control form-control-sm" accept="image/*" name="logofacturacion">
+                                        <img src="#" alt="sin imagen" width="300px" height="100px" id="imglogofacturacion" />
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-xl-6 col-sm-12">
+                                    <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                                </div>
+                                <div class="col-xl-6 col-sm-12">
+                                    <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/administrador/empresa.js"></script>
+
+<script>
+
+</script>

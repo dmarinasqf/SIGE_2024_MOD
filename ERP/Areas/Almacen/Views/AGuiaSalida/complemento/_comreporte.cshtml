@@ -1,0 +1,42 @@
+﻿<div class="row">
+    <div class="col-xl-12 col-xs-12" id="contenedordistribucion">
+        <div class="col-xl-2 col-md-3">
+            <label>LABORATORIO</label>
+            <div class="form-group">
+                <div class="form-line">
+                    <select class="form-control form-control-sm" id="cmblaboratorio" name="cmblaboratorio" required>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive contenedor-sticky-400" id="CD_tabla-distribucion" style="min-height:200px">
+            <table class="table tabla-sticky font-11 table-sm table-hover table-striped" width="100%" id="CD_tbldistribucion">
+                <thead class="thead-dark text-center">
+                    <tr>
+                    </tr>
+                </thead>
+                <tbody class="text-center font-10">
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+        <div class="col-xl-6 col-xs-12">
+            <button class="btn btn-success" id="btnagregar"> <i class="fa fa-plus"> </i>AGREGAR ITEMS</button>
+        </div>
+    </div>
+    <div class="col-xl-12 col-xs-12" id="contenedor">
+        <div class="table-responsive contenedor-sticky-400" id="CD_tabla_items" style="min-height:200px">
+            <table class="table tabla-sticky font-11 table-sm table-hover table-striped" width="100%" id="CD_items">
+                <thead class="thead-dark text-center">
+
+                </thead>
+                <tbody class="text-center font-10">
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<button class="btn btn-secondary" id="btnregresar"> <i class="fa fa-arrow-left"> </i> REGRESAR </button>
+<button class="btn btn-success" id="btnvalidar"> <i class="fa fa-arrow-right"> </i> VALIDAR </button>
+<script src="~/js/areas/almacen/producto/complemento/comopciones.js"></script>

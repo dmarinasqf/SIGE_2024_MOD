@@ -1,0 +1,159 @@
+﻿
+<script src="~/lib/vue/vue.min.js"></script>
+@*<link href="~/css/pagina/impresiones/cotizacion-orden-compra.css" rel="stylesheet" />*@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jspdf/jspdf.min.js"></script>
+<script src="~/lib/jspdf/jspdf.debug.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/pagina/colores.css" rel="stylesheet" />
+@model List<string>
+
+<script>
+    var DATA =@Html.Raw(Json.Serialize(Model)) ;
+    var CABECERA = JSON.parse( DATA[0]);
+    var DETALLE = JSON.parse(DATA[1]);
+    var EMPRESA = JSON.parse(DATA[2]);
+
+</script>
+
+<style>
+    body {
+        padding: 10px;
+        margin: 10px;
+    }
+    .table tbody tr td, table tr td, .table thead tr th {
+        font-size: 10px;
+    }
+    label {
+        font-weight: bold;
+    }
+    h5, h6 {
+        font-size: 0.7rem;
+    }
+</style>
+<body>   
+    <div class="row" id="aplicacion">
+        <div class="col-xl-12">
+        
+            <table width="100%" class="table table-sm text-left" >
+                <tr>
+                    <td  style="width:50px"><img v-bind:src="'/imagenes/empresas/' + empresa.imagen" style="width:150px;height:100px" /></td>
+                    <td colspan="2" class="text-center">
+                        <h5>{{empresa.descripcion}}</h5>
+                        <h6>{{empresa.direccion}}</h6>
+                        <h6>RUC: {{empresa.ruc}}</h6>
+                        <h6>TELEFONO:{{empresa.telefono}} &emsp;-&emsp; CELULAR: {{empresa.celular}}</h6>
+                        <h6>SUCURSAL:{{ cabecera[0]['SUCURSAL'] }}</h6>
+                    </td>
+                    <td>
+                        <h6 class="bg-blue-grey">PROFORMA N°</h6>
+                        <h6>{{cabecera[0]['CODIGO']}}</h6>
+                        <h6 class="bg-blue-grey">ESTADO</h6>
+                        <h6>{{cabecera[0]['ESTADO']}}</h6>
+                        <h6 class="bg-blue-grey">FECHA  -  FECHA VCTO.</h6>
+                        <h6>{{cabecera[0]['FECHA']}} -  {{cabecera[0]['FECHA_VENCIMIENTO']}}</h6>
+                    </td>
+                </tr>
+            </table>
+            <table class="table table-sm" width="100%">
+                <tr>
+                    <td style="width:20%">Condición pago:</td>
+                    <td>{{CABECERA[0]['CONDICION_PAGO']}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Comprador:</td>
+                    <td>{{cabecera[0]['EMPLEADO']}}</td>
+                    <td>Celular - Email</td>
+                    <td>{{cabecera[0]['EMPLEADO_EMAIL']}} - {{cabecera[0]['EMPLEADO CELULAR']}}</td>
+                </tr>
+                <tr>
+                    <td>Moneda:</td>
+                    <td>{{CABECERA[0]['MONEDA_SIMBOLO']}} - {{CABECERA[0]['MONEDA']}}</td>
+                    <td>Tipo de cambio:</td>
+                    <td>{{CABECERA[0]['MONEDA_CAMBIO']}}</td>
+                </tr>
+                <tr>
+                    <td>Vendedor:</td>
+                    <td>{{CABECERA[0]['CONTACTO_NOMBRES']}}</td>
+                    <td>Telefono - Celular:</td>
+                    <td>{{CABECERA[0]['CONTACTO_TELE']}} - {{CABECERA[0]['CONTACTO_CELULAR']}}</td>
+
+                </tr>
+                <tr>
+                    <td>Representante:</td>
+                    <td>{{CABECERA[0]['REPRE_NOMBRES']}}</td>
+                    <td>Telefono - Celular:</td>
+                    <td>{{CABECERA[0]['REPRE_TELE']}} - {{CABECERA[0]['REPRE_CELULAR']}}</td>
+
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <table width="100%" class="table table-sm table-bordered ">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="width:5%">Nª</th>
+                                    <th style="width:8%">COD </th>
+                                    <th style="width:25%">DESCRIPCION</th>
+                                    <th style="width:12%">LAB.</th>
+                                    <th style="width:5%">CANT</th>
+                                    <th style="width:5%">U.M</th>
+                                    <th style="width:5%">PVF</th>
+                                    <th style="width:5%">D%1</th>
+                                    <th style="width:5%">D%2</th>
+                                    <th style="width:5%">D%3</th>
+                                    <th style="width:5%">BONI</th>
+                                    <th style="width:5%">COSTO</th>
+                                    <th style="width:5%">TOTAL</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodydetalle" v-html="detallehtml">  
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="height:120px;text-align:center" >
+                        <div style="padding-bottom:6px" class="mt-5">_______________________________</div>
+                        <div>   FIRMA COMPRADOR</div>
+                    </td>
+                    <td style="height:120px;text-align:center" >
+                        <div style="padding-bottom:6px"  class="mt-5">_______________________________</div>
+                        <div>   FIRMA DE REPRESENTANTE</div>
+                    </td>
+                    <td></td>
+                    <td>
+                        <table border="0" class="table table-sm tabla-detalle">
+                            <tr>
+                                <td style="text-align:right">SUB TOTAL: <label>{{CABECERA[0]['MONEDA_SIMBOLO']}}</label></td>
+                                <td><label id="lblsubtotal" style="text-align:right">{{subtotal.toFixed(2)}}</label>  </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">IMPUESTO: <label>{{CABECERA[0]['MONEDA_SIMBOLO']}}</label></td>
+                                <td id=""> <label id="lblimpuesto" style="text-align:left">{{totaligv.toFixed(2)}}</label> </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">TOTAL FACTURA: <label>{{CABECERA[0]['MONEDA_SIMBOLO']}}</label></td>
+                                <td id=""> <label id="lbltotalfactura" style="text-align:left">{{total.toFixed(2)}}</label> </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">TOTAL PRONT. PGO: <label>{{CABECERA[0]['MONEDA_SIMBOLO']}}</label></td>
+                                <td id=""><label id="lbltotal" style="text-align:left">{{total.toFixed(2)}}</label> </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    //window.onload = function () { window.print(); };
+</script>
+<script src="~/js/site.js"></script>
+<script src="~/js/areas/compras/cotizacion/Imprimir.js"></script>
+

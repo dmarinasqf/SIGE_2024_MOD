@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-xl-12">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    ANÁLISIS ORGANOLÉPTICO
+                </h1>
+                <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                    <a asp-action="Registrar" class="btn btn-primary ">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="col-xl-12">
+                <form method="post" autocomplete="off" id="form-busqueda">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                            <label>COD. ANÁLISIS</label>
+                            <div class="form-group">
+                                <input type="text" id="txtcodigo" class="form-control number" name="codigo" onkeyup="buscarAnalisisOrganoleptico();">
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                            <label>FACTURA</label>
+                            <div class="form-group">
+                                <input type="text" id="txtfactura" class="form-control number" name="factura" onkeyup="buscarAnalisisOrganoleptico();">
+                            </div>
+                        </div>
+                        <!--<div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                            <label>ESTADO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control show-tick" id="cmbestado" name="estado" required>-->
+                                            @*<option value="" selected>[SELECCIONE]</option>*@
+                                            <!--<option value="PENDIENTE">PENDIENTE</option>
+                                        <option value="TERMINADO" selected>TERMINADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>-->
+                        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                            <label>RANGO DE FECHA</label>
+                            <div class="form-group">
+                                <input type="text" id="txtfecharango" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <label></label>
+                            <button type="submit" class="btn btn-block btn-secondary" id="btnbusqueda"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xl-12">
+                <div class="card bcard h-auto mt-2">
+                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                        <table class="table table-bordered collapsed" width="100%" id="tbllista">
+                            <thead class="">
+                                <tr>
+                                    <th style="width:5%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                                    <th style="width:5%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ID</th>
+                                    <th style="width:8%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">CODIGO</th>
+                                    <th style="width:15%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">FACTURA</th>
+                                    <th style="width:25%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">RUC</th>
+                                    <th style="width:25%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">RAZÒN SOCIAL</th>
+                                    <th style="width:10%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                                    @*<th style="width:15%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>*@
+                                    <th style="width:15%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">QUÍMICO APRUEBA</th>
+                                </tr>
+                            </thead>
+                            <tbody class="pos-rel">
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</div>
+
+<partial name="~/Areas/Compras/Views/modales/_modalValidarUsuario.cshtml" />
+<script src="~/js/areas/preingreso/analisisorganoleptico/index.js"></script>
+<script src="~/js/controller/preingreso/AnalisisOrganolepticoController.js"></script>

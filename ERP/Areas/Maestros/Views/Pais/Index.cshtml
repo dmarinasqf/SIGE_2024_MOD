@@ -1,0 +1,119 @@
+﻿
+@model IEnumerable<ENTIDADES.Generales.Pais>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header bg-success text-center ">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h6 class="color-blanco">MANTENEDOR DE PAÍS</h6>
+
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalregistro">
+                            REGISTRAR
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-responsive-lg table-sm table-hover table-striped" width="100%" id="tbllista">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="width:10%">ID</th>
+                                    <th style="width:50%">NOMBRE</th>
+                                    <th style="width:20%">ESTADO</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.idpais)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.nombre)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.estado)
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-sm bg-warning waves-effect btn-pasar"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm bg-danger waves-effect text-white" onclick="mensajeeliminar(@item.idpais)"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRO DE PAÍS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="body">
+                        <form method="post" autocomplete="off" id="form-registro">
+                            <label>NOMBRE</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtdescripcion" class="form-control mayusculas" name="nombre" required>
+                                </div>
+                            </div>
+                            <label>ESTADO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                        <option value="HABILITADO" selected>HABILITADO</option>
+                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <input type="hidden" name="idpais" value="" id="txtcodigo" />
+                            <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                            <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                            <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="~/js/areas/maestros/pais/pais.js"></script>

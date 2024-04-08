@@ -1,0 +1,438 @@
+﻿
+#table-etiqueta-kiaro-grande {
+    border-collapse: collapse;
+    width: 18cm;
+    height: 7cm;
+    /*border-color: black;*/
+    font-size: 13px;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+    #table-etiqueta-kiaro-grande tr td {
+        border-collapse: collapse;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #table-etiqueta-kiaro-grande tr .cabecera {
+        color: white;
+        background: rgb(128, 128, 128);
+        font-size: 16px;
+        text-align: center;
+        width: 5cm;
+    }
+
+        #table-etiqueta-kiaro-grande tr .cabecera p {
+            color: white;
+            font-size: 12px;
+            padding: 0px;
+            margin: 0px;
+            text-align: left;
+            
+        }
+
+    #table-etiqueta-kiaro-grande .medico {
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    #table-etiqueta-kiaro-grande .composicion {
+        font-size: 13px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    #table-etiqueta-kiaro-grande .uso {
+        font-size: 13px;
+        text-align: right;
+    }
+
+    #table-etiqueta-kiaro-grande .fecha {
+        font-size: 13px;
+    }
+
+    #table-etiqueta-kiaro-grande .filaimagen {
+        width: 5.6cm;
+    }
+
+    #table-etiqueta-kiaro-grande tr {
+        width: 12.6cm;
+    }
+
+.logo-etiqueta {
+    width: 5.4cm;
+    display: block;
+    margin: auto;
+}
+
+/**************ETIQUETA MEDIANA*******************/
+#table-etiqueta-kiaro-mediana {
+    border-collapse: collapse;
+    width: 8.6cm;
+    height: 12cm;
+    /*border-color: black;*/
+    font-size: 11px;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+    #table-etiqueta-kiaro-mediana tr td {
+        border-collapse: collapse;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #table-etiqueta-kiaro-mediana tr .reg {
+        font-size: 10px;
+        text-align: right;
+    }
+
+    #table-etiqueta-kiaro-mediana tr .cabecera {
+        color: white;
+        background: rgb(128, 128, 128);
+        font-size: 9.5px;
+        text-align: center;
+        width: 5cm;
+    }
+
+        #table-etiqueta-kiaro-mediana tr .cabecera p {
+            color: white;
+            font-size: 9.5px;
+            padding: 0px;
+            margin: 0px;
+            text-align: left;
+        }
+
+    #table-etiqueta-kiaro-mediana .medico td {
+        font-size: 11px;
+        font-weight: 500;
+    }
+
+    #table-etiqueta-kiaro-mediana .composicion td {
+        font-size: 12px;
+        text-align: center;
+    }
+
+    #table-etiqueta-kiaro-mediana .formula td {
+        font-size: 12px;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    #table-etiqueta-kiaro-mediana .uso {
+        font-size: 11px;
+        text-align: right;
+    }
+
+    #table-etiqueta-kiaro-mediana .fecha {
+        font-size: 11px;
+    }
+
+    #table-etiqueta-kiaro-mediana .filaimagen {
+        width: 8cm;
+    }
+
+        #table-etiqueta-kiaro-mediana .filaimagen .logo-etiqueta {
+            width:50%;
+        }
+
+    #table-etiqueta-kiaro-mediana tr {
+        width: 8.6cm;
+    }
+
+
+    /***********ETIQUETA PEQUEÑA***************/
+
+
+#table-etiqueta-kiaro-pequeña {
+    border-collapse: collapse;
+    width: 15cm;
+    height: 5cm;
+    /*border-color: black;*/
+    font-size: 9px;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+    #table-etiqueta-kiaro-pequeña tr td {
+        border-collapse: collapse;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    #table-etiqueta-kiaro-pequeña tr .cabecera {
+        color: white;
+        background: rgb(128, 128, 128);
+        font-size: 9px;
+        text-align: center;
+        width: 5cm;
+    }
+
+        #table-etiqueta-kiaro-pequeña tr .cabecera p {
+            color: white;
+            font-size: 9px;
+            padding: 0px;
+            margin: 0px;
+            text-align: left;
+        }
+
+    #table-etiqueta-kiaro-pequeña .medico {
+        font-size: 9px;
+        font-weight: 500;
+    }
+
+    #table-etiqueta-kiaro-pequeña .composicion {
+        font-size: 10px;      
+        text-align: center;
+    }
+
+    #table-etiqueta-kiaro-pequeña .uso {
+        font-size: 9px;
+        text-align: right;
+    }
+
+    #table-etiqueta-kiaro-pequeña .fecha {
+        font-size: 9px;
+    }
+
+    #table-etiqueta-kiaro-pequeña .filaimagen {
+        width: 5cm;
+    }
+
+    #table-etiqueta-kiaro-pequeña tr {
+        width: 10cm;
+    }
+#table-etiqueta-kiaro-pequeña tr .reg {
+ 
+    text-align: right;
+}
+
+.logo-etiqueta {
+    width: 5.4cm;
+    display: block;
+    margin:auto;
+    /*width:auto;*/
+    height:auto;
+}
+
+@media print {
+    @page {
+        margin-top: 8px;
+        margin-right: 14px;
+        margin-left: 14px;
+        margin-bottom: 8px;
+    }
+
+    #table-etiqueta-kiaro-grande {
+        border-collapse: collapse;
+        width: 9cm;
+        height: 3.5cm;
+        /*border-color: black;*/
+        font-size: 7px;
+        text-align: left;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+    }
+
+        #table-etiqueta-kiaro-grande tr td {
+            border-collapse: collapse;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #table-etiqueta-kiaro-grande tr .cabecera {
+            color: white;
+            background: rgb(128, 128, 128);
+            font-size: 8.5px;
+            text-align: center;
+            width: 2.5cm;
+        }
+
+            #table-etiqueta-kiaro-grande tr .cabecera p {
+                color: white;
+                font-size: 6.5px;
+                padding: 0px;
+                margin: 0px;
+                text-align: left;
+            }
+
+        #table-etiqueta-kiaro-grande .medico {
+            font-size: 7px;
+            font-weight: bold;
+        }
+
+        #table-etiqueta-kiaro-grande .composicion {
+            font-size: 7px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #table-etiqueta-kiaro-grande .uso {
+            font-size: 7px;
+            text-align: right;
+        }
+
+        #table-etiqueta-kiaro-grande .fecha {
+            font-size: 7px;
+        }
+
+        #table-etiqueta-kiaro-grande .filaimagen {
+            width: 2.8cm;
+        }
+
+        #table-etiqueta-kiaro-grande tr {
+            width: 6.3cm;
+        }
+
+    .logo-etiqueta {
+        width: 2.7cm;
+    }
+
+    /************************ETIQUETA MEDIANA *****************************+*/
+    #table-etiqueta-kiaro-mediana {
+        border-collapse: collapse;
+        width: 4.3cm;
+        height: 6cm;
+        border-color: black;
+        font-size: 5.5px;
+        text-align: left;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+    }
+
+        #table-etiqueta-kiaro-mediana tr td {
+            border-collapse: collapse;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #table-etiqueta-kiaro-mediana tr .reg {
+            font-size: 5px;
+            text-align:right;
+        }
+
+        #table-etiqueta-kiaro-mediana tr .cabecera {
+            color: white;
+            background: rgb(128, 128, 128);
+            font-size: 4.5px;
+            text-align: center;
+            width: 2.5cm;
+        }
+            #table-etiqueta-kiaro-mediana tr .cabecera p {
+                color: white;
+                font-size: 4.5px;
+                padding: 0px;
+                margin: 0px;
+                text-align: left;
+            }
+
+        #table-etiqueta-kiaro-mediana .medico td {
+            font-size: 5.5px;
+            font-weight: 500;
+        }
+        #table-etiqueta-kiaro-mediana .composicion td {
+            font-size: 6px;
+          
+            text-align: center;
+        }
+        #table-etiqueta-kiaro-mediana .formula td {
+            font-size: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        #table-etiqueta-kiaro-mediana .uso {
+            font-size: 5.5px;
+            text-align: right;
+        }
+
+        #table-etiqueta-kiaro-mediana .fecha {
+            font-size: 5.5px;
+        }
+
+        #table-etiqueta-kiaro-mediana .filaimagen {
+            width: 4cm;
+        }
+
+        #table-etiqueta-kiaro-mediana tr {
+            width: 4.3cm;
+        }
+
+
+    /***********ETIQUETA PEQUEÑA***************/
+
+
+    #table-etiqueta-kiaro-pequeña {
+        border-collapse: collapse;
+        width: 7.5cm;
+        height: 2.5cm;
+        /*border-color: black;*/
+        font-size: 4.5px;
+        text-align: left;
+        margin: 0px;
+        padding: 0px;
+        border: none;
+    }
+
+        #table-etiqueta-kiaro-pequeña tr td {
+            border-collapse: collapse;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #table-etiqueta-kiaro-pequeña tr .cabecera {
+            color: white;
+            background: rgb(128, 128, 128);
+            font-size: 4.5px;
+            text-align: center;
+            width: 2.5cm;
+        }
+
+            #table-etiqueta-kiaro-pequeña tr .cabecera p {
+                color: white;
+                font-size: 4.5px;
+                padding: 0px;
+                margin: 0px;
+                text-align: left;
+            }
+
+        #table-etiqueta-kiaro-pequeña .medico {
+            font-size: 4.5px;
+            font-weight: 500;
+        }
+
+        #table-etiqueta-kiaro-pequeña .composicion {
+            font-size: 5px;
+            text-align: center;
+        }
+
+        #table-etiqueta-kiaro-pequeña .uso {
+            font-size: 4.5px;
+            text-align: right;
+        }
+
+        #table-etiqueta-kiaro-pequeña .fecha {
+            font-size: 4.5px;
+        }
+
+        #table-etiqueta-kiaro-pequeña .filaimagen {
+            width: 2.5cm;
+        }
+
+        #table-etiqueta-kiaro-pequeña tr {
+            width: 5cm;
+        }
+
+            #table-etiqueta-kiaro-pequeña tr .reg {
+                text-align: right;
+            }
+
+}

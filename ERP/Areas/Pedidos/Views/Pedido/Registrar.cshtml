@@ -1,0 +1,578 @@
+﻿@model ENTIDADES.pedidos.Pedido
+@{ ViewData["Title"] = "Reg. Pedido";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+@if (ViewBag.verificarcaja.mensaje == "ok")//EARTCOD1011//
+{//EARTCOD1011//
+
+    <script>
+    var cmbidtipoformulacion = document.getElementById('cmbidtipoformulacion');
+    var cmbsucursalfactura = document.getElementById('cmbsucursalfactura');
+    var cmblaboratorio = document.getElementById('cmblaboratorio');
+    var IGV =@Html.Raw(Json.Serialize(ViewBag.IGV));
+    var _TIPOPAGO =@Html.Raw(Json.Serialize(ViewBag.Tipopagos));
+    var _IDEMPRESA=@Html.Raw(Json.Serialize(ViewBag.IDEMPRESA));
+    const option = document.createElement('option');
+    IGV = parseFloat(IGV);
+    if (IGV >= 1)
+        IGV = IGV / 100;
+
+    var idsucursal_registra =@Html.Raw(Json.Serialize(ViewBag.IDSUCURSAL));
+    </script>
+    <form id="formregistro" autocomplete="off">
+        <meta http-equiv='cache-control' content='no-cache'>
+        <meta http-equiv='expires' content='0'>
+        <meta http-equiv='pragma' content='no-cache'>
+
+        <div id="contenedormensajepedidoModal"></div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-xl-12 text-center">
+                <h4>REGISTRO DE PEDIDO</h4>
+            </div>
+            <div class="col-xl-12 border">
+                <div class="row justify-content-end mt-1 mb-1">
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <input type="text" class="form-control form-control-sm" id="txtnumproforma" placeholder="Cod de proforma" />
+                    </div>
+                    <div class="col-xl-2 col-md-4 col-sm-6">
+                        <button class="btn btn-info btn-sm btn-block" id="btnhistorial" type="button">Ver Historial</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-md-5 col-sm-12 border">
+                <div class="row">
+                    @*<div class="col-xl-6 col-md-6 col-sm-6">
+            <div class="form-group">
+                <label>TIPO DE FORMULACIÓN</label>
+                <select class="form-control form-control-sm" asp-for="idtipoformulacion" id="cmbidtipoformulacion" required>
+                    <option value="">[SELECCIONE]</option>
+                    @foreach (var item in ViewBag.tipoformulacion)
+                    {
+                        <option value="@item.idtipoformulacion">@item.descripcion</option>
+                    }
+                </select>
+            </div>
+        </div>*@
+                    <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>TIPO DE REGISTRO</label>
+                            <select class="form-control form-control-sm" asp-for="tiporegistro" id="cmbtiporegistro" required>
+                                <option value="SUCURSAL">SUCURSAL</option>
+                                <option value="DELIVERY">DELIVERY</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-6" hidden>
+                        <div class="form-group">
+                            <label>TIPO DE PEDIDO</label>
+                            <select class="form-control form-control-sm" asp-for="idtipopedido" id="cmbidtipopedido" required>
+                                @foreach (var item in ViewBag.tipopedido)
+                                {
+                                    <option value="@item.idtipopedido">@item.descripcion</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>CANAL DE VENTAS</label>
+                            <select class="form-control form-control-sm" asp-for="idcanalventas" id="cmbcanalventas" required>
+                                <option value="">[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.canalventa)
+                                {
+                                    <option value="@item.idcanalventa">@item.descripcion</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>SUCURSAL FACTURA</label>
+                            <select class="form-control form-control-sm" asp-for="sucursalfactura" id="cmbsucursalfactura" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                @if (ViewBag.IDEMPRESA == "2000")
+                                {
+                                    <optgroup label="Corporación FS" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 2000)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+                                }
+                                @if (ViewBag.IDEMPRESA == "1000" || ViewBag.IDEMPRESA == "1001" || ViewBag.IDEMPRESA == "1002")
+                                {
+                                    <optgroup label="Corporación QF" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 1000)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+
+                                    <optgroup label="Medicos Solidarios" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 1002)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+                                    <optgroup label="Amazonia" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 1001)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+                                }
+                                @if (ViewBag.IDEMPRESA == "3000")
+                                {
+                                    <optgroup label="AREZ COMPANY" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 3000)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+                                }
+                                <optgroup label="Sin asignar" class="text-primary">
+                                    @foreach (var item in ViewBag.sucursales)
+                                    {
+                                        if (item.idempresa == null)
+                                        {
+                                            <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                        }
+                                    }
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>LABORATORIO</label>
+                            <select class="form-control form-control-sm" asp-for="laboratorio" id="cmblaboratorio">
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @*<div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>SUCURSAL FACTURA</label>
+                            <select class="form-control form-control-sm" asp-for="sucursalfactura" id="cmbsucursalfactura" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                @if (ViewBag.IDEMPRESA == "2000")
+                                {
+                                    <optgroup label="Corporación FS" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 2000)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+                                }
+                                @if (ViewBag.IDEMPRESA == "1000" || ViewBag.IDEMPRESA == "1001" || ViewBag.IDEMPRESA == "1002")
+                                {
+                                    <optgroup label="Corporación QF" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 1000)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+
+                                    <optgroup label="Medicos Solidarios" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 1002)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+                                    <optgroup label="Amazonia" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 1001)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+                                }
+                                @if (ViewBag.IDEMPRESA == "3000")
+                                {
+                                    <optgroup label="AREZ COMPANY" class="text-primary">
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            if (item.idempresa == 3000)
+                                            {
+                                                <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                            }
+                                        }
+                                    </optgroup>
+                                }
+                                <optgroup label="Sin asignar" class="text-primary">
+                                    @foreach (var item in ViewBag.sucursales)
+                                    {
+                                        if (item.idempresa == null)
+                                        {
+                                            <option value="@item.suc_codigo" class="text-dark">@item.descripcion</option>
+                                        }
+                                    }
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>*@
+                    
+                    <div class="col-xl-12 col-md-12 col-sm-6">
+                        <div class="form-group">
+                            <label>TIPO PACIENTE</label>
+                            <select class="form-control form-control-sm" asp-for="idtipopaciente" id="cmbtipopaciente">
+                                <option value="">[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.tipopaciente)
+                                {
+                                    <option value="@item.idtipopaciente">@item.descripcion</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label>DIAGNÓSTICO / PATOLOGÍA</label>
+                            <select class="form-control form-control-sm" asp-for="iddiagnostico" id="cmbdiagnostico">
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>LINEA DE ATENCIÓN</label>
+                            <select class="form-control form-control-sm" asp-for="IdLineaAtencion" id="cmbIdLineaAtencion">
+                                <option value="">[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.LineaAtencion)
+                                {
+                                    <option value="@item.IdLineaAtencion">@item.Nombre</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6 col-sm-6">
+                        <div class="form-group">
+                            <label>TIPO VENTA</label>
+                            <select class="form-control form-control-sm" asp-for="idtipoventa" id="cbmtipoventa" required>
+                                <option value="">[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.tipoventa)
+                                {
+                                    <option value="@item.idtipoventa">@item.descripcion</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row border ocultar" id="divdelivery">
+
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-7 col-sm-12 border">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="row border">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="form-group ">
+                                    <label>DOCUMENTO CLIENTE</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control form-control-sm" id="txtdoccliente" maxlength="11">
+                                        <input type="hidden" asp-for="idcliente" id="txtidcliente">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" id="btnbuscarcliente" type="button"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12  ">
+                                <div class="form-group ">
+                                    <label>NOMBRES/RAZÓN SOCIAL DE CLIENTE</label>
+                                    <input id="txtnombrescliente" type="text" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="row border">
+                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                <div class="form-group ">
+                                    <label>DOCUMENTO PACIENTE</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control form-control-sm" id="txtdocpaciente" maxlength="11">
+                                        <input type="hidden" asp-for="idpaciente" id="txtidpaciente">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button" id="btnbuscarpaciente"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12  ">
+                                <div class="form-group ">
+                                    <label id="lblnameclientecon">NOMBRES DE PACIENTE</label>
+                                    <input id="txtnombrepaciente" type="text" class="form-control form-control-sm" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label>ORIGEN RECETA</label>
+                            <div class="input-group mb-3">
+                                <input type="hidden" id="txtidorigenreceta" asp-for="idorigenreceta">
+                                <input type="text" class="form-control form-control-sm" id="txtorigenreceta" disabled>
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="btnbuscarorigenreceta"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="row border">
+                            <div class="col-xl-2 col-md-2 col-xs-12">
+                                <div class=" form-group">
+                                    <label>Tipo doc</label>
+                                    <select class="form-control form-control-sm" id="cmbtipodocmedico"></select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                                <div class="form-group">
+                                    <label>COLEGIATURA DE MÉDICO</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control form-control-sm" id="txtnumcolegiatura" onkeypress="buscarMedico(event)" autocomplete="off">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button" id="btnbuscarmedico"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-6 col-sm-8 col-xs-12">
+                                <div class="form-group ">
+                                    <label>NOMBRES DE MÉDICO</label>
+                                    <input type="hidden" asp-for="idmedico" id="txtidmedico">
+                                    <input id="txtnombremedico" type="text" class="form-control  form-control-sm" value="" disabled>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xl-2 col-md-6 col-sm-12 border">
+                <div class="row">
+                    <div class="col-xl-12 col-sm-6">
+                        <label>DATOS DE DELIVERY</label>
+                        <button id="btndelivery" class="btn btn-dark btn-block btn-sm" type="button" disabled><i class="fas fa-truck"></i></button>
+                    </div>
+                    <div class="col-xl-12 col-sm-6">
+                        <label>SUBIR IMAGEN</label>
+                        <button id="btnimagen" class="btn btn-dark btn-block btn-sm" type="button"><i class="fas fa-upload"></i></button>
+                    </div>
+                    <div class="col-xl-12 col-sm-6">
+                        <label>DATOS PAGO</label>
+                        <button id="btndatospago" class="btn btn-dark btn-block btn-sm" type="button" disabled><i class="fas fa-money-bill"></i></button>
+                    </div>
+                    <div class="col-xl-12 col-sm-6">
+                        <label>OBSERVACIÓN</label>
+                        <textarea class="form-control" rows="4" id="txtobservacion" asp-for="observacion"></textarea>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center mt-1">
+            <div class="col-xl-9 com-md-12 table-scroll-400">
+                <div class="row text-right mt-2 mb-2">
+                    <div class="col-xl-12">
+                        <div class="btn-group btn-group-sm">
+                            <button class="btn btn-sm btn-outline-secondary" type="button" id="btnlistacliente">Lista de cliente</button>
+                            <button class="btn btn-sm btn-secondary" type="button" id="btnlistasucursal">Lista de sucursal</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12">
+                        <table class="table table-sm table-bordered" width="100%" id="tbldetalle">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="header-sticky"></th>
+                                    <th class="header-sticky"></th>
+                                    <th style="width:40%" class="header-sticky">DETALLE</th>
+                                    <th>TIPO</th>
+                                    <th class="header-sticky text-right">PRECIO</th>
+                                    <th class="header-sticky text-center">CANTIDAD</th>
+                                    <th class="header-sticky">F</th>
+                                    <th class="header-sticky">D%</th>
+                                    <th class="header-sticky text-right">SUBTOTAL</th>
+                                    <th class="header-sticky">USO</th>
+                                    <th class="header-sticky">T.F.</th>
+                                    <th class="header-sticky">T.P.</th>
+                                    <th class="header-sticky"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodydetalle"></tbody>
+                            <tfoot>
+                                <!-- //EARTCOD1009 -->
+                                <tr>
+                                    <th class="text-right" colspan="11">SUBTOTAL</th>
+                                    <th class="text-right"><label id="lblsubtotal" class="font-15 py-0 my-0"></label></th>
+                                </tr>
+                                <tr>
+                                    <th class="text-right" colspan="11">DESCUENTO</th>
+                                    <th class="text-right"><label id="lblpkdescuento" name="pkdescuento" class="font-15 py-0 my-0"></label></th>
+                                </tr>
+                                <tr style="height:20px;">
+                                    <th class="text-right" colspan="11">TOTAL</th>
+                                    <th class="text-right"><label id="lbltotal" class="font-15 py-0 my-0"></label></th>
+                                </tr>
+                                <!-- //-EARTCOD1009 -->
+                                @*<tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th class="text-right" colspan="5">TOTAL</th>
+                                        <th class="text-right"><label id="lbltotal" class="font-15"></label></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>*@
+                            </tfoot>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="col-xl-3 col-sm-6" id="cardreport">
+                <div class="form-group">
+                    <label>TIPO DE PAGO</label>
+                    <select class="form-control form-control-sm" id="cmbtipopago" name="idtipopago">
+                        <option value="">[SELECCIONE]</option>
+                    </select>
+                </div>
+                <div class="col-xl-12 col-sm-12 ocultar" id="divtarjeta">
+                    <div class="row border">
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="form-group">
+                                <label>TIPO TARJETA</label>
+                                <select class="form-control " id="cmbtipotarjeta" name="pago.idtipotarjeta">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-6 ">
+                            <div class="form-group">
+                                <label>N° TARJETA </label>
+                                <input type="number" class="form-control" id="txtnumtarjeta" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="divadelanto" class="ocultar">
+                    <div class="form-group">
+                        <label>MONTO PAGADO(ADELANTO)</label>
+                        <input type="number" step="any" name="adelanto" class="form-control form-control-sm" id="txtadelanto" min="0" />
+                    </div>
+                    <div class="form-group">
+                        <label>SALDO</label>
+                        <input type="number" step="any" name="saldo" class="form-control form-control-sm" id="txtsaldo" disabled />
+                    </div>
+                </div>
+                <button class="btn btn-success btn-sm btn-block mt-4" id="btnguardar" type="submit">Guardar pedido</button>
+                <button class="btn btn-outline-secondary btn-sm btn-block" id="btnguardarproforma" type="button">Guardar proforma</button>
+                <button class="btn btn-outline-info btn-sm btn-block" id="btnlimpiar" type="button">Limpiar</button>
+                <button class="btn btn-outline-info btn-sm btn-block" onclick="fnGetHistorial()" id="" type="button">BOTON MASIVO</button>
+            </div>
+        </div>
+    </form>
+
+    <partial name="~/Areas/Maestros/Views/OrigenReceta/modal/_modalbuscarorigenreceta.cshtml" />
+    <partial name="~/Areas/Maestros/Views/Cliente/modal/modalbusquedayregistrocliente.cshtml" />
+    <partial name="~/Areas/Maestros/Views/Paciente/modal/modalbusquedayregistropaciente.cshtml" />
+    <partial name="~/Areas/Maestros/Views/Medico/modal/_modalbuscarmedicos.cshtml" />
+    <partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalsubirimagen.cshtml" />
+    <partial name="~/Areas/Pedidos/Views/Pedido/modal/_modallistasucursal.cshtml" />
+    <partial name="~/Areas/Pedidos/Views/Pedido/modal/_modallistacliente.cshtml" />
+    <partial name="~/Areas/Pedidos/Views/Pedido/modal/_modaldatosdelivery.cshtml" />
+    <partial name="~/Areas/Pedidos/Views/Pedido/modal/_modaldatospago.cshtml" />
+    <partial name="~/Areas/Ventas/Views/Venta/modal/_modalstockitemsucursales.cshtml" />
+    <partial name="~/Views/Modales/Imprimir.cshtml" />
+    <partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalhistorialpedido.cshtml" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />//EARTCOD1021
+    <partial name="~/Areas/Comercial/Views/Descuento/modal/_modalpromoproductoobsequiobuscarpedido.cshtml" />//EARTCOD1021
+    <partial name="~/Areas/Comercial/Views/Descuento/modal/_modalpromocionpackdetalle.cshtml" />//EARTCOD1009
+    <script src="~/js/areas/comercial/descuentos/modal/modalpackpromociones.js"></script>//EARTCOD1009
+    <script src="~/js/controller/comercial/DescuentoController.js"></script>//EARTCOD1009
+
+    <script src="~/js/areas/pedidos/pedidos/registrar/registrar.js"></script>
+    <script src="~/js/areas/pedidos/pedidos/registrar/complementos/logicamodales.js"></script>
+    <script src="~/js/areas/ventas/ventas/complementoss/calculodescuento.js"></script>
+    <script src="~/js/areas/ventas/ventas/complementoss/calculobonificacion.js"></script>
+
+
+    <script src="~/js/controller/maestros/DiagnosticoController.js"></script>
+    <script src="~/js/controller/maestros/PacienteController.js"></script>
+    <script src="~/js/controller/maestros/ColegioController.js"></script>
+    @*<script src="~/js/controller/maestros/MedicoController.js"></script>*@
+    <script src="~/js/controller/comercial/ListaPreciosController.js"></script>
+    <script src="~/js/controller/pedidos/PedidoController.js"></script>
+    @*<script src="~/js/controller/finanzas/TipoPagoController.js"></script>*@
+    <script src="~/js/controller/maestros/AgenciaEncomiendaController.js"></script>
+    <script src="~/js/controller/comercial/ListaPreciosClienteController.js"></script>
+    <script src="~/js/controller/ventas/ProformaController.js"></script>
+
+    <script src="~/js/modelos/pedidos/PagosPedido.js"></script>
+    <script src="~/js/modelos/pedidos/Pedido.js"></script>
+    <script src="~/js/modelos/venta/Proforma.js"></script>
+
+    <!--//EARTCOD1011 SCRIPT PARA VALIDAR LA APERTURA DE CAJA ANTES DE CREAR PEDIDOS//-->
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="body">
+                <div class="alert-warning" style="color:black; padding:50px;margin:50px; font-size:1.2rem" role="alert">
+                    <h4 class="alert-heading">ADVERTENCIA</h4>
+                    @ViewBag.verificarcaja.mensaje .
+                    <div class="row">
+                        <div class="col-xl-2">
+                            <a asp-area="Ventas" asp-controller="Caja" asp-action="CerrarCaja">Cerrar caja</a>
+
+                        </div>
+                        <div class="col-xl-2">
+                            <a asp-area="Ventas" asp-controller="Caja" asp-action="AperturarCaja">Aperturar caja</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!--//--EARTCOD1011//-->

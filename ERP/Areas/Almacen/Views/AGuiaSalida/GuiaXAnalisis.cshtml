@@ -1,0 +1,64 @@
+﻿@{ ViewData["Title"] = "GuiaXAnalisis";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<link href="~/lib/multi-select/css/multi-select.css" rel="stylesheet" />
+<link href="~/lib/jquery-steps/steps.css" rel="stylesheet" />
+<script src="~/lib/jquery-steps/steps.js"></script>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                ALMACEN
+            </h1>
+        </div>
+        <div class="card">
+            <div class="body">
+                <div class="col-lg-12">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-12 mx-0">
+                                <div id="msform">
+                                    @*progressbar*@
+                                    <ul id="progressbar" class="text-center">
+                                        <li id="page1" class="active fas fa-home"><strong>FILTROS</strong></li>
+                                        <li id="page2"><strong> ANALISIS DE STOCK</strong></li>
+                                        <li id="page3"><strong>PREVIA</strong></li>
+                                    </ul>
+                                    @*fieldsets*@
+                                    <fieldset>
+                                        <partial name="complemento/_comopciones" />
+                                        <input type="button" name="next" class="next action-button btn btn-primary ocultar" id="btnnextview" value="SIGUIENTE" />
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row" id="panelregistro">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                <partial name="complemento/_comreporte" />
+                                            </div>
+                                        </div>
+                                        <input type="button" name="previous" class="previous action-button btn btn-primary btn-block ocultar" id="btnpreview" value="NUEVO" />
+                                        <input type="button" name="next" class="next action-button btn btn-primary ocultar" id="btnnextviewdistribucion" value="SIGUIENTE" />
+                                    </fieldset>
+                                    <fieldset>
+                                        <div class="row" id="panelreporte">
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                <partial name="complemento/_comgenerarxanalisis" />
+                                            </div>
+                                        </div>
+                                        <input type="button" class="previous action-button btn btn-primary btn-block ocultar" id="btnpreviewdistribucion" value="VOLVER" />
+                                    </fieldset>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="~/Areas/Almacen/Views/ALaboratorio/modal/_modalLaboratorio.cshtml" />
+<script src="~/js/modelos/almacen/AGuiaSalida.js"></script>
+<script src="~/lib/otros/moment-with-locales.js"></script>
+<script src="~/lib/multi-select/js/jquery.multi-select.js"></script>

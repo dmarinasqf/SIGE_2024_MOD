@@ -1,0 +1,222 @@
+﻿<script>
+    var lListaSubClases = @Html.Raw(Json.Serialize(@ViewBag.subclases));
+    var lListaClases = @Html.Raw(Json.Serialize(@ViewBag.clases));
+
+                                           
+
+</script>
+
+
+<div class="row">
+    <div class="col-xl-12 col-xs-12">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-xl-12 col-xs-12">
+                        <div class="col-12">
+                            <form method="post" autocomplete="off" id="CD_form-panel-busqueda-producto">
+                                <div class="row">
+                                    <div class="col-xl-2 col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xl-12 col-xs-12">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" id="CD_sugerido" checked>
+                                                    <label class="form-check-label" for="CD_sugerido">
+                                                        Sugeridos
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-12 col-xs-12">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="CD_ChkProductosNuevos">
+                                                    <label class="form-check-label" for="CD_ChkProductosNuevos">
+                                                        Productos Nuevos
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-8 col-xs-12">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-xs-6">
+                                                <label>LABORATORIO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="hidden" class="form-control form-control-sm" id="CD_txtidlaboratorio" />
+                                                        <input type="text" class="form-control form-control-sm" id="CD_txtlaboratorio" readonly />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-5 col-xs-5">
+                                                <label>CLASE</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        @*<select class="form-control form-control-sm" id="CD_cmbclase" name="idclase" multiple>
+                                                <option value="">[SELECCIONE]</option>
+                                                @foreach (var item in ViewBag.clases)
+                                                {
+                                                    <option value="@item.idclase">@item.descripcion</option>
+                                                }
+                                            </select>*@
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-block btn-outline-light dropdown-toggle"
+                                                                    type="button" id="dropdownMenuClase" data-toggle="dropdown"
+                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                Seleccionar Clases
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuClase" id="CD_cmbclase" style="height: 180px; overflow-y: scroll">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-xs-6" hidden>
+                                                <label>SUB CLASE</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <!--<select class="form-control form-control-sm" id="CD_cmbsubclase" name="idsubclase">-->
+                                                        @*<option value="">[SELECCIONE]</option>
+                                            @foreach (var item in ViewBag.subclases)
+                                            {
+                                                <option value="@item.idsubclase">@item.descripcion</option>
+                                            }*@
+                                                        <!--</select>-->
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-block btn-outline-light dropdown-toggle"
+                                                                    type="button" id="dropdownMenu2" data-toggle="dropdown"
+                                                                    aria-haspopup="true" aria-expanded="false">
+                                                                <span>Seleccionar Subclases</span>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenu2" id="CD_cmbsubclase" style="height: 180px; overflow-y: scroll">
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-xs-6">
+                                                <label>PRODUCTO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control form-control-sm" id="CD_txtproducto" name="producto" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-xs-12">
+                                        <div class="btn-group ml-2 mt-3">
+                                            <button type="button" class="btn btn-bgc-tp btn-lighter-grey btn-h-primary btn-a-primary" onclick="validarbusqueda()">
+                                                <i class="fa fa-search w-3"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-bgc-tp btn-lighter-grey btn-h-orange btn-a-orange" onclick="CD_limpiarpanelbusqueda()">
+                                                <i class="fa fa-trash w-3"></i>
+                                            </button>
+                                            <div class="col-xl-1 col-md-6">
+                                                <a class="btn btn-primary" id="btnabrimodalsugeridoenviar" data-toggle="modal" data-target="#myModalsugeridoenviar"><i class="fas fa-plus"></i></a>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div class="table-responsive border-t-3 brc-blue-m2 " id="contenedortblproductos">
+                                <div class="contenedor-sticky-300">
+                                    <table class="table table-sm table-bordered font-10" width="100%" id="CD_tblproductos">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th class="header-sticky">ID</th>
+                                                <th class="header-sticky">CODIGO</th>
+                                                <th class="header-sticky">PRODUCO</th>
+                                                <th class="header-sticky">LABORATORIO</th>
+                                                <th class="header-sticky">STOCK ACTUAL(C)</th>
+                                                <th class="header-sticky">STOCK ACTUAL(F)</th>
+                                                <th class="header-sticky">VENTAS</th>
+                                                <th class="header-sticky"></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <style>
+                        .arrow-button {
+                            font-size: 16px; /* Tamaño más grande */
+                            cursor: pointer;
+                            border: none;
+                            background-color: transparent;
+                            color: #fff; /* Color de texto blanco */
+                            padding: 10px; /* Espaciado interno */
+                        }
+
+                            .arrow-button.back {
+                                background-color: green; /* Color verde para el botón de retroceso */
+                            }
+
+                            .arrow-button.forward {
+                                background-color: blue; /* Color azul para el botón de avance */
+                            }
+                    </style>
+                    <div class="col-xl-12 col-xs-12" id="contenedordistribucion">
+                        <div class="text-center" style="color:red">
+                            <input type="hidden" id="CD_txtidproducto" />
+                            <input type="hidden" id="CD_txtidalmacensucursal" />
+                            <label class="form-control-lg" id="CD_lblproducto"></label> - <label>LABORATORIO: </label> <label id="CD_lbllaboratorio"></label> - <label>Stock Actual:</label> <label class="form-control-lg" id="CD_lblstockactual"></label>
+                            <button type="button" class="btn btn-primary">
+                                N° PRODUCTOS SELECCIONABLES <span class="badge badge-light" id="numRegistros">0</span>
+                            </button>
+
+                            <div class="btn-group">
+                                <!-- Botón con flecha hacia atrás -->
+                                <button style="margin-left: 30px; margin-right: 5px;" type="button" class="btn btn-success" data-toggle="tooltip" title="Elegir la fila anterior" onclick="elegirProdAnt()">
+                                    <i class="fa fa-arrow-up"></i>
+                                </button>
+
+                                <!-- Botón con flecha hacia adelante -->
+                                <button type="button" class="btn btn-primary" data-toggle="tooltip" title="Elegir la fila siguiente" onclick="elegirProdSig()">
+                                    <i class="fa fa-arrow-down"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="table-responsive contenedor-sticky-400" id="CD_tabla-distribucion" style="min-height: 700px; max-height: 700px; overflow-y: auto;">
+                            <table class="table tabla-sticky font-11 table-sm table-hover table-striped" width="100%" id="CD_tbldistribucion">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center font-10">
+                                </tbody>
+
+                            </table>
+                            
+                        </div>
+                    
+                    </div>
+                  
+                </div>
+
+                <div class="row justify-content-center mt-2">
+                    <div class="col-xl-4 col-xs-12">
+                        @*<button type="button" class="btn btn-success waves-effect btn-block" id="cdbtn_generar"> GRABAR Y GENERAR</button>*@
+                        <button type="button" class="btn btn-success waves-effect btn-block" id="cdbtn_validar"> VALIDAR </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-secondary" id="btnnuevoregistro"> <i class="fa fa-arrow-left"> </i> NUEVO </button>
+    <div class="col-xl-6 col-xs-12">
+    </div>
+</div>
+
+
+<script src="~/js/areas/almacen/guiasalida/complemento/comdistribucion.js"></script>
+<script src="~/js/modelos/almacen/AGuiaSalida.js"></script>
+

@@ -1,0 +1,156 @@
+﻿@model ENTIDADES.Almacen.AAlmacenTransferencia
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var MODELO =@Html.Raw(Json.Serialize(Model));
+    var IDSUCURSAL = @Html.Raw(Json.Serialize(ViewBag.IDSUCURSAL));
+    var SUCURSAL = @Html.Raw(Json.Serialize(ViewBag.SUCURSAL));
+    var IDEMPRESA = @Html.Raw(Json.Serialize(ViewBag.IDEMPRESA));
+    var EMPRESA = @Html.Raw(Json.Serialize(ViewBag.EMPRESA));
+</script>
+<div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+    <h1 class="page-title text-primary-d2 text-140">
+        <a class="" asp-action="Index"><i class="fa fa-arrow-left"></i> </a>
+        REGISTRO DE TRANSFERENCIA ENTRE ALMACEN
+    </h1>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <form method="post" autocomplete="off" id="form-registro">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-xs-12">
+                                            <label>CODIGO GUÍA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="hidden" asp-for="idalmacentransferencia" required />
+                                                    <input asp-for="codigo" class="form-control form-control-sm" placeholder="AUTOGENERADO" readonly/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-xs-12">
+                                            <label>FECHA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" asp-for="fechatraslado" class="form-control form-control-sm" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-xs-12">
+                                            <label>EMPRESA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="hidden" asp-for="idempresa" />
+                                                    <input id="txtempresa" class="form-control form-control-sm" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-xs-12">
+                                            <label>SUCURSAL</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="hidden" asp-for="idsucursal" />
+                                                    <input id="txtsucursal" class="form-control form-control-sm" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-xs-12">
+                                            <label>ALMACÉN ORIGEN</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select asp-for="idalmacensucursalorigen" class="form-control form-control-sm" required>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-xs-12">
+                                            <label>ALMACÉN DESTINO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select asp-for="idalmacensucursaldestino" class="form-control form-control-sm" required>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4 col-xs-12">
+                                            <label>ESTADO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select asp-for="estado" class="form-control form-control-sm" required>
+                                                    <option value="">SELECCIONAR</option>
+                                                    <option value="HABILITADO">HABILITADO</option>
+                                                    <option value="APROBADO">APROBADO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 col-xs-12">
+                                            <label>OBSERVACIÓN</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <textarea asp-for="observacion" class="form-control form-control-sm" rows="4"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-xl-3 offset-9">
+                            <button type="button" class="btn btn-primary btn-block" id="btnagregaritem"><i class="fa fa-plus"></i> AGREGAR ITEM</button>
+                        </div>
+                        <div class="col-xl-12 mt-2">
+                            <div class="table-responsive border-t-3 brc-blue-m2 ">
+                                <div class="contenedor-sticky-500">
+                                    <table class="table table-sm table-bordered " width="100%" id="tbldetalletransferencias">
+                                        <thead class="text-center thead-dark">
+                                            <tr>
+                                                <th class="header-sticky" style="width:6%">ID</th>
+                                                <th class="header-sticky" style="width:10%">CODIGO</th>
+                                                <th class="header-sticky" style="width:35%">ARTICULO</th>
+                                                <th class="header-sticky" style="width:10%">FVENC.</th>
+                                                <th class="header-sticky" style="width:10%">LOTE</th>
+                                                <th class="header-sticky" style="width:10%">REG. SANITARIO</th>
+                                                <th class="header-sticky">CANT. DISPONIBLE</th>
+                                                <th class="header-sticky">CANTIDAD TRANSFERIR</th>
+                                                <th class="header-sticky" style="width:2%"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="text-center font-11">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                        <div class="col-xl-3 col-xs-12">
+                            <button type="submit" class="btn btn-success waves-effect btn-block" id="btnguardar"><i class="fa fa-save"></i> GUARDAR</button>
+                        </div>
+                        <div class="col-xl-3 col-xs-12">
+                            <button type="button" class="btn btn-dark waves-effect btn-block" id="btnnuevo"><i class="fa fa-file"></i> NUEVO</button>
+                        </div>
+                        <div class="col-xl-3 col-xs-12">
+                            <button type="button" class="btn btn-primary waves-effect btn-block" id="btnlimpiar"><i class="fa fa-eraser"></i> LIMPIAR</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Almacen/Views/AAlmacenTransferencia/modal/modalBuscarStockLoteProductoPorAlmacenSucursal.cshtml" />
+
+<script src="~/js/areas/almacen/almacentransferencia/registrareditar.js"></script>
+<script src="~/js/controller/almacen/AlmacenTransferenciaController.js"></script>

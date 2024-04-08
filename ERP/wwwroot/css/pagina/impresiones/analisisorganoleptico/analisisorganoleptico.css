@@ -1,0 +1,68 @@
+﻿* {
+    padding: 0px;
+    margin: 0px;
+}
+
+th {
+    font-size: 10px;
+    font-family: Calibri;
+    font-weight: bold;
+    letter-spacing: -0.3px
+}
+
+td {
+    font-size: 9px;
+    font-family: Calibri;
+    font-weight: 500;
+    letter-spacing: -0.3px
+}
+
+table {
+    border-collapse: collapse;
+}
+/*table, th, td {
+            border: 1px solid black;
+        } */
+
+table, th, td {
+    border: 0.5px solid black;
+    text-align: center;
+}
+
+html, body {
+    height: 100%;
+}
+
+.text-left {
+    text-align: left;
+}
+.text-center {
+    text-align: center;
+}
+.no-border {
+border:0px;
+}
+
+.BorderBottom {
+    border: 0px solid black;
+    border-bottom: 1px solid black;
+    /*     border: 0;
+            border-bottom: 1px solid #000*/
+}
+.BorderTop {
+    border: 0px solid black;
+    border-top: 1px solid black;
+    /*     border: 0;
+            border-bottom: 1px solid #000*/
+}
+.Without-Border {
+    border: 0px solid black;
+   
+    /*     border: 0;
+            border-bottom: 1px solid #000*/
+}
+ul {
+    margin-left:5px;
+    list-style: none;
+    text-align:left;
+}

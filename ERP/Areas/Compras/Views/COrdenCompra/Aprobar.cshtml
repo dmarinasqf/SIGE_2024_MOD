@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewData["Title"] = "AprobarView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+
+
+            <h1 class="page-title text-primary-d2 text-140">
+                <a asp-action="Index"><i class="fas fa-long-arrow-alt-left font-22"></i></a>
+                ORDEN DE COMPRA
+                <small class="page-info text-dark-m3">
+                    <i class="fa fa-angle-double-right text-80"></i>
+                    APROBACIÓN
+                </small>
+            </h1>
+
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-sm-12 col-xs-12">
+
+        <label>FECHA APROBACIÓN: <b>@ViewBag.fecha</b> </label>
+        <i class="fas fa-calendar-alt"></i>
+
+    </div>
+    <div class="col-lg-5  col-sm-6 ">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">ORDEN DE COMPRA</span>                
+            </div>
+            <input id="txtnumerooc" class="form-control" onkeypress="buscarporcodigo(event)" />
+        </div>
+        
+    </div>
+    <div class="col-xl-12 col-sm-12">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2  table-responsive">
+                <table class="table table-hover table-bordered" width="100%" id="tbllista">
+                    <thead class="border-0  bgc-h-yellow-l3 shadow-sm">
+                        <tr>
+                            <th>ID OC</th>
+                            <th></th>
+                            <th>Nº OC</th>
+                            <th>SUCURSAL DESTINO</th>
+                            <th>FECHA EMISIÓN</th>
+                            <th>FECHA VENCIMIENTO</th>
+                            <th>PROVEEDOR</th>
+                            <th>TOTAL</th>
+                            <th>   <button class="btn btn-sm btn-success" id="btn_validar" onclick="btnmostrarmodal_validar()" disabled><i class="fas fa-save"></i></button></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Areas/Compras/Views/modales/_modalValidarUsuario.cshtml" />
+
+<script src="~/js/areas/compras/ordencompra/aprobaroc.js"></script>

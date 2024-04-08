@@ -1,0 +1,97 @@
+﻿@model ENTIDADES.compras.CRequerimiento
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var MODELO = @Html.Raw(Json.Serialize(Model));
+</script>
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-md-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                <a asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-3"></i></a> REGISTRAR REQUERIMIENTO
+            </h1>
+        </div>
+    </div>
+
+</div>
+<form autocomplete="off" id="formregistro">
+    <input type="hidden" asp-for="idrequerimiento" id="txtidrequerimiento" />
+    <div class="row pt-2">
+        <div class="col-xl-3 col-sm-12 border pt-2">
+            <div class="form-group ">
+                <label>USUARIO</label>
+                <input type="text" id="txtusuario" class="form-control form-control-sm" value="@User.Identity.Name" disabled />
+            </div>
+            <div class="form-group ">
+                <label>EMPRESA</label>
+                <input type="text" id="txtnombreempresa" class="form-control form-control-sm" value="@ViewBag.EMPRESA" disabled />
+            </div>
+
+            <div class="form-group ">
+                <label>SUCURSAL</label>
+                <select class="form-control form-control-sm" asp-for="suc_codigo" id="txtidsucursal"></select>
+            </div>
+            <div class="form-group ">
+                <label>AREA</label>
+                <select class="form-control form-control-sm" asp-for="idgrupo" id="cmbgrupo" required></select>
+            </div>
+            <div class="form-group ">
+                <label>DESCRIPCION</label>
+                <textarea type="text" id="txtdescripcion" asp-for="descripcion" rows="3" class="text-uppercase form-control form-control-sm"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-xl-6 col-sm-3 mt-3">
+                        <button class="btn btn-success btn-block" type="submit" id="btnguardar"><i class="fas fa-save  mr-2 mb-1"></i>GUARDAR</button>
+                    </div>
+
+                <div class="col-xl-6 col-sm-3 mt-3">
+                    <button class="btn btn-info btn-block" type="button" id="btnnuevo"><i class="fas fa-redo mr-2 mb-1"></i> NUEVO</button>
+                </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-xl-9 col-sm-12 border">
+            <div class="row justify-content-end mt-4">
+                <div class="col-xl-3 col-sm-4">
+                    <button class="btn btn-sm btn-primary btn-block waves-effect p-2" id="btnagregarproducto" type="button"><i class="fas fa-plus mr-2"></i>AGREGAR PRODUCTO</button>
+                </div>
+                @*<div class="col-xl-2 col-sm-4  ">
+                    <button class="btn btn-sm btn-primary btn-block waves-effect" id="btnactualizarstock" type="button"><i class="fas fa-plus mr-2"></i>STOCK EXISTENTE</button>
+                </div>*@
+
+            </div>
+            <div class="card bcard h-auto mt-2">
+                <div class="border-t-3 brc-blue-m2 table-responsive">
+                    <table class="table table-sm table-bordered collapsed" id="tbldetalle" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:2%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">#</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">CODIGO</th>
+                                <th style="width:30%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">PRODUCTO</th>
+                                <th style="width:5%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">CANTIDAD</th>
+                                <th style="width:5%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
+
+
+<script src="~/js/controller/compras/RequerimientoController.js"></script>
+@*<script src="~/js/modelos/almacen/AIngresoManual.js"></script>*@
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+@*<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductosconstock.cshtml" />*@
+<script src="~/js/areas/compras/requerimiento/registrar.js"></script>

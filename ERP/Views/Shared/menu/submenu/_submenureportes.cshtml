@@ -1,0 +1,116 @@
+﻿@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU REPORTES"))
+{
+<li class="nav-item">
+    <a href="#" class="nav-link dropdown-toggle collapsed">
+        <i class="nav-icon fa fa-cube"></i>
+        <span class="nav-text fadeable">
+            <span>Reportes</span>
+        </span>
+        <b class="caret fa fa-angle-left rt-n90"></b>
+    </a>
+    <div class="submenu collapse">
+        <ul class="submenu-inner">
+            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REPORTE DE INCENTIVOS")) {
+                <li class="nav-item">
+                    <a class="nav-link" asp-area="Ventas" asp-controller="Reporte" asp-action="ReporteIncentivos">Incentivos</a>
+                </li>
+            }
+            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REPORTE DE PEDIDOS")) {
+                <li class="nav-item">
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Pedidos</span>
+                        </span>
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="General">General</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="GeneralxPedido">General por Pedido</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="Recepcion_Validacion">Recepcion y Validacion</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="Delivery">Delivery</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="FormulasMagistrales">Fórmulas Magistrales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="PedidosConAdelanto">Pedidos con Adelanto</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="XdiayHora">X Día y Hora</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="Rendimiento">Rendimiento</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="FmComlejidadFormulacion">FM Complejidad y Formulador</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="HoraOpTerminado">Hora OP Terminado</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Pedidos" asp-controller="Reporte" asp-action="ProduccionPorLaboratorio">Produccion Por Laboratorio</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <b class="sub-arrow"></b>
+                </li>
+            }
+            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REPORTE DE VINALI")) {
+                <li class="nav-item">
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Vinali</span>
+                        </span>
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="Vinali" asp-controller="Vinali" asp-action="ReporteVentas">Ventas</a>
+                            </li>
+                            @*@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("SUPERVISOR") || User.IsInRole("VENTAS") || User.IsInRole("VENTASSM"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="VisitadorMedico" asp-controller="Reporte" asp-action="Consultar">Horarios de médicos</a>
+                            </li>
+                        }*@
+                        </ul>
+                    </div>
+                    <b class="sub-arrow"></b>
+                </li>
+                }
+                @if (User.IsInRole("ADMINISTRADOR")) {
+                    <li class="nav-item">
+                        <a href="#" class="nav-link dropdown-toggle collapsed">
+                            <span class="nav-text">
+                                <span>Ventas</span>
+                            </span>
+
+                            <b class="caret fa fa-angle-left rt-n90"></b>
+                        </a>
+                        <div class=" submenu collapse">
+                            <ul class="submenu-inner">
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Ventas" asp-controller="Caja" asp-action="ReporteCajacerradas">Cajas Cerradas</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <b class="sub-arrow"></b>
+                    </li>
+                }
+            </ul>
+        </div>
+
+
+        <b class="sub-arrow"></b>
+
+    </li>
+}

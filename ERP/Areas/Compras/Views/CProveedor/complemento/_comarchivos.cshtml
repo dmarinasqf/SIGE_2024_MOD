@@ -1,0 +1,44 @@
+﻿
+
+<div class="row justify-content-center">
+    <div class="col-xl-5 col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <label>SUBIR ARCHIVOS</label>
+            </div>
+            <div class="card-body">
+                <form autocomplete="off" id="formarchivos">
+                    <input type="hidden" id="txtCAidarchivo" />
+                    <div class="form-group">
+                        <label>Nombre archivo</label>
+                        <input type="text" class="form-control form-control-sm" id="txtCAnombrearchivo" required/>
+                    </div>
+                    <div class="form-group">
+                        <label>Seleccionar archivo</label>
+                        <input type="file" class="form-control form-control-sm" id="txtCAfile" required />
+                    </div>
+                    <div class="form-group mt-2">
+                        <button class="btn btn-success btn-block"  id="btnCAguardar" type="submit">GUARDAR</button>
+                    </div>
+                </form>
+               
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-7">
+        <table class="table table-sm table-bordered" width="100%" id="tblCAarchivos">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>File</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="tblCAtbodyarchivo">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="~/js/areas/compras/distribuidor/complemento/comarchivos.js"></script>

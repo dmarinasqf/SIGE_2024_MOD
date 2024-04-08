@@ -1,0 +1,161 @@
+﻿
+@model IEnumerable<ENTIDADES.compras.CContactosProveedor>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                CONTACTOS DEL PROVEEDOR : <spam id="lblproveedor">@ViewBag.proveedor</spam>
+                <input type="hidden" name="name" value="@ViewBag.idproveedor" id="hdidproveedor" />
+            </h1>
+
+        </div>
+    </div>
+</div>
+<div class="body">
+    <div class="row">
+        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header  font-14">
+                    <h6>DATOS</h6>
+                </div>
+                <div class="card-body">
+                    <form method="post" autocomplete="off" id="form-registro">
+                        <input type="hidden" name="idproveedor" value="@ViewBag.idproveedor" id="txtidproveedor" />
+                        <input type="hidden" name="idcontacto" id="txtcodigo" />
+                        <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+
+
+
+                        <div class="col-md-12">
+                            <label>DOCUMENTO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtdocumento" class="form-control" name="documento" onkeypress="return justNumbers(event);" maxlength="12">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>NOMBRES</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtnombres" class="form-control mayusculas" name="nombres" maxlength="100" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label>TELEFONO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txttelefono" class="form-control " name="telefono" onkeypress="return justNumbers(event);" maxlength="12">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>CELULAR</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtcelular" class="form-control" name="celular" onkeypress="return justNumbers(event);" maxlength="12">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <label>EMAIL</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtemail" class="form-control" name="correo" maxlength="200">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label>ESTADO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                        <option value="HABILITADO" selected>HABILITADO</option>
+                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                        <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="card-header text-center font-14">
+                    <h6>LISTA</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table  table-hover table-bordered" width="100%" id="tbllista">
+                            <thead class="">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>NOMBRES</th>
+                                    <th>TELEFONO</th>
+                                    <th>CELULAR</th>
+                                    <th>EMAIL</th>
+                                    <th>ESTADO</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.idcontacto)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.documento)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.nombres)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.telefono)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.celular)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.correo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.estado)
+                                        </td>
+                                        <td>
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-sm bg-warning waves-effect btn-pasar"><i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-sm bg-danger waves-effect text-white" onclick="mensajeeliminar(@item.idcontacto)"><i class="fas fa-trash-alt"></i></button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<script src="~/js/areas/compras/distribuidor/contactos.js"></script>

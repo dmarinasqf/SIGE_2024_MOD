@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-xl-3 col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Fecha inicio</span>
+                            </div>
+                            <input type="date" name="fechainicio" id="txtfechainicio" class="form-control" />
+                        </div>                       
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Fecha fin</span>
+                            </div>
+                            <input type="date" name="fechafin" id="txtfechafin" class="form-control" />
+                        </div>                       
+                    </div>
+                    <div class="col-xl-3 col-md-6">
+                        <div class="input-group ">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1">Sucursal</span>
+                            </div>
+                            @if (User.IsInRole("ADMINISTRADOR"))
+                            {
+                                <select type="date" name="sucursal" id="cmbsucursal" class="form-control" tipo="combo"></select>
+                            }
+                            else
+                            {
+                                <input type="text"  id="cmbsucursal" class="form-control" tipo="input" value="@ViewBag.NOMBRESUCURSAL" />
+                            }
+                        </div>                       
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="btn-group btn-group-lg" role="group" >
+                            <button type="button" class="btn btn-lg btn-secondary" id="btndiario">Diario</button>
+                            <button type="button" class="btn btn-lg btn-secondary" id="btnmensual">Mensual</button>
+                            <button type="button" class="btn btn-lg btn-secondary" id="btnanual">Anual</button>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-6">
+                        <button class=" btn btn-block btn-dark" id="btnconsultar"><i class="fas fa-search mr-2"></i>Consultar</button>               
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="~/lib/chartjs/dist/Chart.bundle.js"></script>
+<script src="~/lib/chartjs/dist/Chart.min.js"></script>
+
+<script src="~/js/areas/ventas/ventas/dashboard1.js"></script>

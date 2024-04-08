@@ -1,0 +1,297 @@
+﻿#tabla-etiqueta-argox-grande {
+    border-collapse: collapse;
+    width: 200mm;
+    height: 70mm;
+    border-color: black;
+    font-size: 12px;
+    text-align: left;
+    margin: 0px;
+    margin-left: 5px;
+    padding-left: 5px;
+    font-family: Tahoma;
+    font-weight: 600;
+    font-style: italic;
+    border: solid;
+    text-transform: capitalize;
+}
+.tabla-etiqueta tr td {
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+}
+tr .reg
+{
+    text-align:right;
+    font-size:13px;
+}
+tr .uso
+{
+    text-align:right;
+}
+.elaboracion {
+    text-align:center;
+}
+tr .formula{
+    text-align:center;
+}
+
+#tabla-etiqueta-argox-mediana {
+    border-collapse: collapse;
+    width: 80mm;
+    height: 116mm;
+    border-color: black;
+    font-size: 12px;
+    text-align: left;
+    margin: 0px;
+    margin-left: 5px;
+    padding-left: 5px;
+    font-family: Tahoma;
+    font-weight: 600;
+    font-style: italic;
+    border: solid;
+    text-transform: capitalize;
+}
+#tabla-etiqueta-argox-pequeña {
+    border-collapse: collapse;
+    width: 150mm;
+    height: 40mm;
+    /*border-color: black;*/
+    font-size: 12px;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    font-family: Tahoma;
+    font-weight: 600;
+    font-style: italic;
+    text-transform: capitalize;
+    /*border: solid;*/
+}
+
+#tabla-etiqueta-argox-1950 {
+    border-collapse: collapse;
+    width: 150mm;
+    height: 40mm;
+    /*border-color: black;*/
+    font-size: 12px;
+    text-align: left;
+    margin: 0px;
+    padding: 0px;
+    font-family: Tahoma;
+    font-weight: 600;
+    font-style: italic;
+    text-transform: capitalize;
+    /*border: solid;*/
+}
+
+.tablecontenido{
+    vertical-align:top;
+
+}
+    .tablecontenido tr td{
+        padding:5px;
+    }
+
+    #tabla-etiqueta-argox-pequeña tr .composicion {
+        text-align: center;
+        font-weight:600;
+    }
+    #tabla-etiqueta-argox-1950 tr .composicion {
+    text-align: center;
+    font-weight: 600;
+    }
+#tabla-etiqueta-argox-mediana tr .formula {
+    text-align: center;
+}
+#tabla-etiqueta-argox-mediana tr .composicion {
+    text-align: center;
+    font-size: 12px;
+    vertical-align: central;
+    /*height: 2.3cm;*/
+}
+
+ #tabla-etiqueta-argox-grande tr .formula {
+        text-align: center;
+    }
+
+#tabla-etiqueta-argox-pequeña tr .reg {
+    text-align: right;
+    font-size: 10px;
+    font-weight:800;
+}
+#tabla-etiqueta-argox-1950 tr .reg {
+    text-align: right;
+    font-size: 10px;
+    font-weight: 800;
+}
+@media print {
+    @page {
+        margin-top: 2px;
+        margin-right: 4px;
+        margin-left: 4px;
+        margin-bottom: 8px;        
+    }
+    #tabla-etiqueta-argox-grande {
+        border-collapse: collapse;
+        width: 90mm;
+        height: 35mm;
+        font-size: 8px;
+        text-align: left;
+        margin-left: 5px;
+        padding-left: 5px;
+        padding-top: 10px;
+        margin-top: 10px;
+        font-family: Tahoma;
+        font-weight: 500;
+        text-transform: capitalize;
+        font-style: italic;
+        border: none;
+    }
+    #tabla-etiqueta-argox-mediana {
+        border-collapse: collapse;
+        width: 42mm;
+        height: 58mm;
+        border-color: black;
+        font-size: 5.8px;
+        text-align: left;
+        margin-left: 4px;
+       /* padding-top: 3px;
+        margin-top: 3px;*/
+       margin-top:0.35cm;
+        padding-left: 1px;
+        font-family: Tahoma;
+        font-weight: 600;
+        font-style: italic;
+        border: none;
+        text-transform:capitalize;
+    }
+
+    #tabla-etiqueta-argox-pequeña {
+        border-collapse: collapse;
+        width: 75mm;
+        height: 20mm;
+        border-color: black;
+        font-size: 6px;
+        text-align: left;
+        margin-left: 0px;
+        padding-left: 0px;
+        margin-top: 5px;
+        padding-top: 0px;
+        font-family: Tahoma;
+        font-weight: 500;
+        font-style: italic;
+        border: none;
+        text-transform: capitalize;
+    }
+        #tabla-etiqueta-argox-pequeña tr .reg {
+            text-align: right;
+            font-size: 7px;
+        }#tabla-etiqueta-argox-mediana tr .reg {
+            text-align: right;
+            font-size: 7px;
+        }#tabla-etiqueta-argox-grande tr .reg {
+            text-align: right;
+            font-size: 7px;
+        }
+
+        #tabla-etiqueta-argox-pequeña tr .formula {
+            text-align: center;
+        }
+
+    #tabla-etiqueta-argox-1950 {
+        border-collapse: collapse;
+        width: 75mm;
+        height: 20mm;
+        border-color: black;
+        font-size: 6px;
+        text-align: left;
+        margin-left: 0px;
+        padding-left: 0px;
+        margin-top: 5px;
+        padding-top: 0px;
+        font-family: Tahoma;
+        font-weight: 500;
+        font-style: italic;
+        border: none;
+        text-transform: capitalize;
+    }
+
+        #tabla-etiqueta-argox-1950 tr .reg {
+            text-align: right;
+            font-size: 7px;
+        }
+
+
+    #tabla-etiqueta-argox-1950 tr .formula {
+        text-align: center;
+    }
+
+    #tabla-etiqueta-argox-mediana tr .composicion {
+        text-align: center;
+        font-size: 8px;
+        height: 1.4cm;
+        padding-top:13px;
+        vertical-align: central;
+    }
+    #tabla-etiqueta-argox-mediana tr td {
+        padding: 2px 2px 2px 2px;
+        margin: 2px 2px 2px 2px;
+    }
+ 
+    /*ETIQUETA GRANDE*/
+    #tabla-etiqueta-argox-grande tr td {
+        padding-left: 5px;
+        margin-left: 5px;
+    }
+    #tabla-etiqueta-argox-grande tr .formula {
+        text-align: center;
+        font-size:7px;
+    }
+
+    #tabla-etiqueta-argox-grande tr .titulomodouso {
+        padding: 2px 2px 2px 2px;
+        margin: 2px 2px 2px 2px;
+    }
+    #tabla-etiqueta-argox-grande tr .tituloprecauciones {
+        padding: 2px 2px 2px 2px;
+        margin: 2px 2px 2px 2px;
+    }
+    #tabla-etiqueta-argox-grande tr .composicion {
+        padding: 2px 2px 2px 2px;
+        margin: 2px 2px 2px 2px;
+        font-weight:500;
+    }
+
+    
+    #tabla-etiqueta-argox-grande tr .fecha {
+       /* padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;*/
+        font-weight:500;
+    }
+    #tabla-etiqueta-argox-grande tr .paciente {
+      /*  padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;*/
+    } #tabla-etiqueta-argox-grande tr .cliente {
+/*        padding: 5px 5px 5px 5px;
+        margin: 5px 5px 5px 5px;*/
+    }
+
+  
+    #tabla-etiqueta-argox-mediana tr td {
+        margin-left: 5px;
+        padding-left: 5px;
+    
+    }
+
+    #tabla-etiqueta-argox-pequeña tr .composicion {
+        text-align: center;
+        font-weight: 600;
+        font-size: 7px;
+        padding-top: 5px;
+    }
+    #tabla-etiqueta-argox-pequeña tr .uso {
+        text-align: center;
+        font-weight: 500;
+        font-size: 5px;
+       
+    }
+}

@@ -1,0 +1,215 @@
+﻿
+<script src="~/lib/vue/vue.min.js"></script>
+<link href="~/css/pagina/impresiones/cotizacion-orden-compra.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jspdf/jspdf.min.js"></script>
+<script src="~/lib/jspdf/jspdf.debug.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/pagina/colores.css" rel="stylesheet" />
+
+@model List<string>
+
+<script>
+    var DATA =@Html.Raw(Json.Serialize(Model)) ;
+    var CABECERA = JSON.parse(DATA[0]);
+    var DETALLE = JSON.parse(DATA[1]);
+    var EMPRESA = JSON.parse(DATA[2]);
+    var NOME = JSON.parse(DATA[3]);
+
+    $('document').ready(function () {
+        var contenedorfirma = document.getElementById('firmaOC');
+        contenedorfirma.setAttribute("src", "/imagenes/firmas/compras/" + CABECERA[0]['EMPLEADO NOMBRES'].split(' ')[0] + ".png");
+    });
+    //v-bind:src="'/imagenes/firmas/compras/LAGP.jpeg'"
+    console.log(CABECERA, DETALLE, EMPRESA);
+</script>
+
+
+<style>
+    body {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .table tbody tr td, table tr td, .table thead tr th {
+        font-size: 10px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    h5, h6 {
+        font-size: 0.7rem;
+    }
+</style>
+<body>
+    <div class="row">
+        <div class="col-xl-12" id="aplicacion">
+            <div class="row">
+                <div class="col-xl-12">
+                    <table width="100%" class="table table-sm ">
+                        <tr>
+                            <td style="width:50px"><img v-bind:src="'/imagenes/empresas/' + empresa.imagen" style="width:150px;height:100px" /></td>
+                            <td colspan="2" class="text-center">
+                                <h5>{{empresa.descripcion}}</h5>
+                                <h6>{{empresa.direccion}}</h6>
+                                <h6>RUC: {{empresa.ruc}}</h6>
+                                <h6>TELEFONO:{{empresa.telefono}} &emsp;-&emsp; CELULAR: {{empresa.celular}}</h6>
+                            </td>
+                            <td>
+                                <h6 class="bg-blue-grey">ORDEN DE COMPRA N°</h6>
+                                <h6>{{cabecera[0]['CODIGO']}}</h6>
+                                <h6 class="bg-blue-grey">ESTADO</h6>
+                                <h6>{{cabecera[0]['ESTADO']}}</h6>
+                                <h6 class="bg-blue-grey">FECHA - FECHA VCTO.</h6>
+                                <h6>{{cabecera[0]['FECHA']}} -  {{cabecera[0]['FECHA VENCIMIENTO']}}</h6>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+
+                    <table class="table table-sm">
+                        <tr>
+                            <td>Proveedor:</td>
+                            <td>{{cabecera[0]['PRO_RAZONSOCIAL']}}</td>
+                            <td>RUC:</td>
+                            <td>{{cabecera[0]['PRO_RUC']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Laboratorio:</td>
+                            <td>{{laboratorio}}</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Comprador:</td>
+                            <td>{{cabecera[0]['EMPLEADO NOMBRES']}}</td>
+                            <td>Celular - Email</td>
+                            <td>{{cabecera[0]['EMPLEADO EMAIL']}} - {{cabecera[0]['EMPLEADO CELULAR']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Moneda:</td>
+                            <td>{{cabecera[0]['MONEDA']}}</td>
+                            <td>Tipo de cambio:</td>
+                            <td> {{cabecera[0]['MONEDA CAMBIO']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Vendedor:</td>
+                            <td>{{cabecera[0]['CONTACTO NOMBRES']}}</td>
+                            <td>Telefono - Celular - Email:</td>
+                            <td>{{cabecera[0]['CONTACTO TELE']}} - {{cabecera[0]['CONTACTO CELULAR']}} - {{cabecera[0]['CONTACTO EMAIL']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Representante:</td>
+                            <td>{{cabecera[0]['REPRE NOMBRES']}}</td>
+                            <td>Telefono - Celular - Email:</td>
+                            <td>{{cabecera[0]['REPRE TELE']}} - {{cabecera[0]['REPRE CELULAR']}} - {{cabecera[0]['REPRE EMAIL']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tipo de pago:</td>
+                            <td>{{cabecera[0]['TIPO PAGO']}}</td>
+                            <td>Condición de pago:</td>
+                            <td>{{cabecera[0]['CONDICION PAGO']}}</td>
+                        </tr>
+                        <tr>
+                            <td>Dirección de entrega </td>
+                            <td colspan="3">
+                                {{cabecera[0]['DIRECCION ENTREGA']}}
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>Observacion</td>
+                            <td colspan="3">
+                                {{cabecera[0]['OBSERVACION']}}
+                            </td>
+
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <table width="100%" class="table table-sm table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th style="width:5%">Nª</th>
+                                <th style="width:8%">COD </th>
+                                <th style="width:25%">DESCRIPCION</th>
+                                <th style="width:12%">LAB.</th>
+                                <th style="width:5%">CANT</th>
+                                <th style="width:5%">U.M</th>
+                                <th style="width:5%">PVF</th>
+                                <th style="width:5%">D%1</th>
+                                <th style="width:5%">D%2</th>
+                                <th style="width:5%">D%3</th>
+                                <th style="width:5%">BONI</th>
+                                <th style="width:5%">COSTO</th>
+                                <th style="width:5%">TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodydetalle" v-html="detallehtml">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xl-12">
+                    <table width="100%">
+
+                        <tr class="text-right">
+                            <td style="width:80%">SUB TOTAL: <label>{{cabecera[0]['MONEDASIMBOLO']}}</label></td>
+                            <td><label id="lblsubtotal" style="text-align:right">{{subtotal}}</label>  </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td style="width:80%">IMPUESTO: <label>{{cabecera[0]['MONEDASIMBOLO']}}</label></td>
+                            <td id=""> <label id="lblimpuesto" style="text-align:left">{{totaligv}}</label> </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td style="width:80%">PERCEPCION: <label>{{cabecera[0]['MONEDASIMBOLO']}}</label></td>
+                            <td id=""> <label id="lblpercepcion" style="text-align:left">{{percepcion}}</label> </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td style="width:80%">TOTAL FACTURA: <label>{{cabecera[0]['MONEDASIMBOLO']}}</label></td>
+                            <td id=""> <label id="lbltotalfactura" style="text-align:left">{{total}}</label> </td>
+                        </tr>
+                        <tr class="text-right">
+                            <td style="width:80%">TOTAL PRONT. PGO: <label>{{cabecera[0]['MONEDASIMBOLO']}}</label></td>
+                            <td id=""><label id="lbltotal" style="text-align:left">{{total}}</label> </td>
+                        </tr>
+
+                    </table>
+                </div>
+                <div class="col-xl-12">
+                    <table width="100%">
+                        <tr>
+                            <td style="height:120px;text-align:center">
+                                <div id="firmas">
+                                    <img style="width: 250px; height: 155px; position: absolute; right: 620px; top: -50px;z-index:-1;" id="firmaOC" />
+                                </div>
+                                <div style="padding-bottom:6px;z-index:2;" class="mt-5">_______________________________</div>
+                                <div style="z-index:1;">   FIRMA COMPRADOR</div>
+                            </td>
+                            <td style="height:120px;text-align:center">
+                                <div style="padding-bottom:6px" class="mt-5">_______________________________</div>
+                                <div>   FIRMA DE REPRESENTANTE</div>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+<script src="~/js/site.js"></script>
+<script src="~/js/areas/compras/ordencompra/Imprimir.js"></script>
+
+<!--v-bind:src="'/imagenes/firmas/compras/AVH.jpeg'"-->

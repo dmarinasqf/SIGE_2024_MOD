@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "HistorialVentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/plantilla/modulos/bootstrap-duallistbox/dist/bootstrap-duallistbox.css" rel="stylesheet" />
+<script src="~/plantilla/modulos/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.js"></script>
+<script src="~/lib/sheetjs/dist/xlsx.full.min.js"></script>
+<div class="card acard" id="cardlista">
+    <div class="card-header">
+        <div class="card-title">
+            <a asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-3"></i></a>SUBIR PRECIOS
+        </div>
+    </div>
+    <div class=" card-body">
+        <div class="row mt-2 justify-content-center">
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <select id='cmbsucursales'size="10" name="cmbsucursales[]" multiple='multiple'>
+                        </select>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-xl-4">
+                <div class="form-group">
+                    <label>SELECCIONAR ARCHIVO (.xlsx)</label>
+                    <input type="file" class="form-control form-control-sm" id="txtfile" />
+
+                </div>
+                <div class="form-group mt-3 text-center">
+                    <button class="btn btn-success mt-2" id="btnguardar"><i class="fas fa-save ml-2 mr-2"></i>Guardar</button>
+
+                </div>
+
+            </div>
+            <div class="col-xl-8 text-center">
+                <span class="text-danger">Nota: Formato de fecha (MM/DD/YYYY) y tipo de dato (Texto en excel)</span>
+            </div>
+
+        </div>
+        <div class="row justify-content-center mt-4">
+
+            <div class="col-xl-7 col-sm-12 ">
+                <div class="card bcard h-auto">
+                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                        <table class="table  table-bordered" id="tbllista" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">codigoproducto</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">nombre</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">incentivo</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">incentivoreceta</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">fechainicio</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">fechafin</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/comercial/incentivos/subirincentivos.js"></script>
+<script src="~/js/modelos/comercial/Incentivo.js"></script>
+<script src="~/js/controller/comercial/IncentivoController.js"></script>

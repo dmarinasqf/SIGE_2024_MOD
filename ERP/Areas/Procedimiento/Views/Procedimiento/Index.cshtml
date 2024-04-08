@@ -1,0 +1,244 @@
+﻿
+@{ 
+    ViewData["Title"] = "Procedimientos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="body">
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    PROCEDIMIENTOS
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+            <label>RANGO DE FECHA</label>
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="text" id="txtfecharango" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-1 col-sm-4 mt-4">
+            <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="col-xl-1 col-sm-4 mt-4">
+            <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel"></i></button>
+        </div>
+        <div class="col-xl-1 col-sm-4 mt-4">
+            <button id="btnregistrar" class="btn btn-success btn-block"><i class="fas fa-plus"></i>Registrar</button>
+        </div>
+        <div class="col-xl-12">
+            <div class="card bcard h-auto mt-2">
+                <div class="border-t-3 brc-blue-m2 table-responsive">
+                    <table class="table table-bordered collapsed" width="100%" id="tbllista">
+                        <thead class="">
+                            <tr>
+                                <th>CODIGO</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">DOCUMENTO</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">TOTAL</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">SUCURSAL</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">PACIENTE</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">MEDICO</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodydetalle">
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modalregistrarprocedimiento" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">PROCEDIMIENTOS</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span style="display:none" id="viewbaggrupo">@ViewBag.GRUPO</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" value="NUEVO" id="TIPOOPERACION" />
+                    <input type="hidden" id="txtcodigo" />
+                    <input id="txtidsucursal" type="hidden">
+                    <input id="txtidusuario" type="hidden">
+                    <div class="row">
+                        <div class="col-lg-6  col-sm-12 col-md-12">
+                            <div class="form-group  ">
+                                <label>NÚMERO DE DOCUMENTO</label>
+                                <input id="txtnumdocumento" type="text" class="form-control " onKeyUp="this.value=this.value.toUpperCase();" maxlength="20">
+                            </div>
+                        </div>
+                        <div class="col-lg-2  col-sm-12 col-md-12">
+                        </div>
+                        <div class="col-lg-4  col-sm-12 col-md-12">
+                            <div class="form-group  ">
+                                <label>FECHA</label>
+                                <input id="txtfecha" type="text" class="form-control " value="@DateTime.Now.ToShortDateString()" disabled>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="row border">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <div class="form-group ">
+                                        <label>DOCUMENTO PACIENTE</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control form-control-sm" id="txtdocpaciente" maxlength="11">
+                                            <input type="hidden" id="txtidpaciente">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button" id="btnbuscarpaciente"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12  ">
+                                    <div class="form-group ">
+                                        <label id="lblnameclientecon">NOMBRES DE PACIENTE</label>
+                                        <input id="txtnombrepaciente" type="text" class="form-control form-control-sm" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-12 col-md-4">
+                            <div class="form-group  ">
+                                <label>CMP</label>
+                                <div class="input-group mb-3">
+                                    <input type="hidden" name="name" id="txtidmedico" value="" />
+                                    <input id="txtcmpmedico" type="text" class="form-control " onkeypress="buscarMedico(event)" />
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button" id="btnBuscarMedico"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12 col-md-8">
+                            <div class="form-group  ">
+                                <label>NOMBRE DEL MÉDICO</label>
+                                <input id="txtnommedico" type="text" class="form-control input-border-bottom" style="font-size:13px" onKeyUp="this.value=this.value.toUpperCase();" disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>OBSERVACIÓN</label>
+                        <textarea class="form-control" rows="2" id="txtobservacion" onKeyUp="this.value=this.value.toUpperCase();"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8 col-sm-12 col-md-8">
+                            <div class="form-group  ">
+                                <label>TIPO DE PROCEDIMIENTO</label>
+                                <select id="cmbtipoprocedimiento" class="form-control" style="font-size:13px"></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-12 col-md-2">
+                            <div class="form-group  ">
+                                <label>COSTO</label>
+                                <input id="txtcostoprocedimiento" type="text" class="form-control " onkeypress="return isNumberKey(event);" disabled>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-sm-12 col-md-2">
+                            <div class="form-group  ">
+                                <button class="btn btn-sm btn-success " id="btnagregarprocedimiento" style="margin:20px">AGREGAR</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group  ">
+                        <table class=" table table-bordered" id="tblprocedimientosregistro" width="100%">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <td>INDEX</td>
+                                    <td>IDDETALLE</td>
+                                    <td>IDPROC</td>
+                                    <td style="width:80%">PROCEDIMIENTO</td>
+                                    <td>COSTO</td>
+                                    <td>ESTADODP</td>
+                                    <td></td>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:12px"></tbody>
+                        </table>
+                    </div>
+
+                    <div id="divAddArticulo">
+                        <div class="form-group text-center">
+                            <label> MATERIALES USADOS EN EL PROCEDIMIENTO</label>
+                        </div>
+                        <div class="form-group text-center">
+                            <label style="font-size:13px" id="lblnombreprocedimiento"></label>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group ">
+                                    <label>MATERIAL</label>
+                                    <input type="hidden" id="txtidarticulo" value="" />
+                                    <input id="txtmaterial" type="text" class="form-control" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group ">
+                                    <input type="hidden" id="txtUnidadMedida" />
+                                    <label>CANTIDAD</label>
+                                    <input id="txtunidades" type="number" class="form-control" onkeypress="return justNumbers(event)" min="1">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+                                <div class="form-group ">
+                                    <button class="btn btn-sm btn-success " id="btnagregarmaterial" style="margin:20px">AGREGAR</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group  center ">
+                            <table class=" table table-bordered" id="tblmaterialesregistro" width="100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th>INDEX_DPA</th>
+                                        <th>INDEX_DP</th>
+                                        <th>IDARTICULO</th>
+                                        <th>ITEM</th>
+                                        <th>UNIDAD MEDIDA</th>
+                                        <th>CANTIDAD</th>
+                                        <th>EstadoRE</th>
+                                        <th style="width:20px;text-align:center"></th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                            <button class="btn btn-outline-success btn-block" id="btnguardarcambios">OCULTAR DETALLE</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal" onclick="MODPROCEDIMIENTO_cerrarmodal()">Cerrar</button>
+                    <button type="button" class="btn btn-success btn-sm" id="btnGuardar" onclick="registrarProcedimiento()">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Areas/Maestros/Views/Cliente/modal/modalbusquedayregistrocliente.cshtml" />
+<partial name="~/Areas/Maestros/Views/Medico/modal/_modalbuscarmedicos.cshtml" />
+
+<script src="~/js/controller/maestros/ColegioController.js"></script>
+<script src="~/js/areas/procedimiento/procedimiento.js"></script>
+<script src="~/js/controller/procedimiento/ProcedimientoController.js"></script>

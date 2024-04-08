@@ -1,0 +1,206 @@
+﻿@*EARTCOD1008*@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+<partial name="~/Areas/Comercial/Views/Descuento/modal/_modalpromoproductoobsequioproovedor.cshtml" />
+<partial name="~/Areas/Comercial/Views/Descuento/modal/_modalpromoproductoobsequiolabproducto.cshtml" />
+<partial name="~/Areas/Comercial/Views/Descuento/modal/_modalpromoproductoobsequiosucursal.cshtml" />
+<partial name="~/Areas/Comercial/Views/Descuento/modal/_modalpromoproductoobsequioListar.cshtml" />
+
+
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                PROMOCION DE PRODUCTO OBSEQUIO
+            </h1>
+        </div>
+    </div>
+</div>
+<hr />
+
+
+<form autocomplete="off" id="MCPO_formregistro">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-9 col-sm-9">
+                    <div class="row">
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="form-group ">
+                                <input type="hidden" id="MCPO_txtidpromoobsequio" name="MCPO_txtidpromoobsequio" />
+                                <input type="hidden" id="MCPO_txtidproveedor" name="MCPO_txtidproveedor" />
+                                <div style="height: 30px; display: flex; align-items: center; ">
+                                    <button type="button" class="btn btn-link btn-sm  mb-2" id="MCPO_btnAgregarProveedor"><i class="bi bi-plus-square-fill h4"></i></button>
+                                    <label>AGREGUE UN PROVEEDOR</label>
+                                </div>
+                                <input id="MCPO_txtproveedor" type="text" class="form-control form-control-sm mayusculas" required name="descripcion">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="form-group ">
+                                @*<input type="hidden" id="MCPO_txtidlaboratorio" name="MCPO_txtidlaboratorio" />*@
+                                <div style="height: 30px; display: flex; align-items: center; ">
+                                    <label>SELECCIONE UN LABORATORIO</label>
+                                </div>
+                                <select id="MCPO_cmblaboratorio" class="form-control form-control-sm" onchange="check()">
+                                    <option value=""></option>
+                                </select>
+                                @*<button type="button" class="btn btn-link btn-sm mx-0 mb-1" id="MCPO_btnAgregarLaboratorio"><i class="bi bi-plus-circle-fill h4"></i></button>
+                <input id="MCPO_txtlaboratorio" type="text" class="form-control form-control-sm mayusculas" required name="descripcion">*@
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-4">
+                            <div class="form-group ">
+                                <label id="MCPO_lblmonto">MONTO</label>
+                                <input id="MCPO_txtmonto" type="text" class="form-control form-control-sm mayusculas" required name="descripcion" maxlength="5" pattern="[0-9]+$" onchange="check()">
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <div class="form-group">
+                                <label>FECHA INICIO</label>
+                                <input class="form-control form-control-sm date_fecha" id="MCPO_txtfechaInicio" name="date_fecha"
+                                       placeholder="DD/MM/YYYY" type="text" required readonly />
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <div class="form-group">
+                                <label>FECHA TERMINO</label>
+                                <input class="form-control form-control-sm date_fecha" id="MCPO_txtfechaTermino" name="date_fecha"
+                                       placeholder="DD/MM/YYYY" type="text" required readonly onchange="check()" />
+                            </div>
+                        </div>
+
+                        <div class="col-xl-9 col-sm-9">
+                            <div class="form-group ">
+                                <label id="MCPO_lblnombre">NOMBRE DE LA PROMOCIÓN</label>
+                                <input id="MCPO_txtNombrePromocion" type="text" class="form-control form-control-sm mayusculas" required name="descripcion" readonly>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-sm-3">
+                            <div class="form-group ">
+                                <label id="MCPO_lblnombre">ESTADO</label>
+                                <select id="MCPO_cmbestado" class="form-control form-control-sm" >
+                                    <option value="true">HABILITADO</option>
+                                    <option value="false">DESHABILITADO</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="col-xl-5 col-sm-5">
+                            <div class="form-group ">
+                                @*<input type="hidden" id="MCPO_txtidlaboratorio" name="MCPO_txtidlaboratorio" />*@
+                                <button type="button" class="btn btn-link btn-sm mx-0 mb-1" id="MCPO_btnAgregarProductoCompra"><i class="bi bi-plus-square-fill h4"></i></button>
+                                <label>AGREGUE LOS PRODUCTOS DE LA COMPRA</label>
+                                @*<input id="MCPO_txtlaboratorio" type="text" class="form-control form-control-sm mayusculas" required name="descripcion">*@
+                                <div style="overflow: scroll; height: 250px;">
+                                    <table class="table" id="tabla_productos_compra">
+                                        <thead class="table bg-danger text-light">
+                                            <tr>
+                                                <th class="my-0 py-0 align-middle">PRODUCTO</th>
+                                                <th class="my-0 py-0 align-middle text-right"><button class="btn text-white mx-0 px-0 py-1 productos-quitarfilas"><i class="bi bi-trash-fill h5"></i></button></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-7 col-sm-7">
+                            <div class="form-group ">
+                                @*<input type="hidden" id="MCPO_txtidlaboratorio" name="MCPO_txtidlaboratorio" />*@
+                                <button type="button" class="btn btn-link btn-sm mx-0 mb-1" id="MCPO_btnAgregarProductoObsequio"><i class="bi bi-plus-square-fill h4"></i></button>
+                                <label>AGREGUE LOS PRODUCTOS DE OBSEQUIO</label>
+                                @*<input id="MCPO_txtlaboratorio" type="text" class="form-control form-control-sm mayusculas" required name="descripcion">*@
+                                <table class="table" id="tabla_productos_obsequio">
+                                    <thead class="table bg-success text-light">
+                                        <tr>
+                                            <th class="my-0 py-2">PRODUCTO</th>
+                                            <th class="my-0 py-2">CANT</th>
+                                            <th class="my-0 py-2">FRAC</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                        @*<div class="col-xl-6 col-sm-6">
+            <div class="form-group ">
+                <input type="hidden" id="MCD_txtiddescuentocliente" name="iddescuentocliente" />
+                <label>SELECCIONE UN PROVEEDOR</label>
+                <select id="MCPO_cmbproveedor" class="form-control form-control-sm" required name="iddocumentos"></select>
+            </div>
+        </div>
+        <div class="col-xl-6 col-sm-6">
+            <div class="form-group ">
+                <label>SELECCIONE UN LABORATORIO</label>
+                <select id="MCPO_cmblaboratorio" class="form-control form-control-sm" required name="iddocumentos"></select>
+            </div>
+        </div>*@
+
+                    </div>
+                </div>
+
+                <div class="col-xl-3 col-sm-3">
+                    <div class="row">
+                        @*<div class="col-xl-6 col-sm-6">
+                                <div class="card">
+                                    <label class="mx-1 py-0 my-0 pt-1">TIPOS DE PRODUCTOS</label>
+                                    <div id="contenedor_DP_tabla_productos_tipos">
+
+                                    </div>
+                                </div>
+                            </div>*@
+                        <div class="col-xl-12 col-sm-12">
+                            <div class="card">
+                                <label class="mx-1 py-0 my-0 pt-1">CANALES DE VENTAS</label>
+                                <div id="contenedor_PO_tabla_canal_ventas">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-sm-3">
+                    <button type="button" class="btn btn-danger btn-block" id="MCPO_btnsucursales">SUCURSALES</button>
+                </div>
+                <div class="col-xl-3 col-sm-3">
+                    <button type="button" class="btn btn-warning btn-block" id="MCPO_btnhistorial">HISTORIAL</button>
+                </div>
+                <div class="col-xl-3 col-sm-3">
+                    <button type="button" class="btn btn-primary btn-block" id="MCPO_btnlimpiar">LIMPIAR</button>
+                </div>
+                <div class="col-xl-3 col-sm-3">
+                    <button type="submit" class="btn btn-success  btn-block" id="MCPO_btnguardar">GUARDAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<script src="~/js/areas/comercial/descuentos/promoproductoobsequio.js"></script>
+
+<script src="~/js/controller/Utils/ApiController.js"></script>
+<script src="~/js/controller/comercial/DescuentoController.js"></script>
+<script src="~/js/controller/comercial/ListaPreciosController.js"></script>

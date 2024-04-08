@@ -1,0 +1,116 @@
+﻿
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                ORDENES DE COMPRAS
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-1 col-sm-3 col-md-3 mb-2">
+        <a asp-action="RegistrarEditar" class="btn btn-success " data-toggle="tooltip" data-placement="bottom" title="NUEVA ORDEN DE COMPRA"> <i class="fas fa-plus"></i></a>
+    </div>
+    <div class="col-xl-1 col-sm-3 col-md-3 mb-2">
+        <a asp-action="Aprobar" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="APROBAR ORDEN DE COMPRA">  APROBAR ORDEN</a>
+    </div>
+
+</div>
+<hr />
+<form autocomplete="off" id="form-busqueda">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-lg-3 col-sm-12">
+                    <div class="form-group">
+                        <label>N° ORDEN</label>
+                        <input type="text" id="txtnumorden" class="form-control" name="id">
+                    </div>
+                </div>
+                <div class="col-lg-3  col-sm-12">
+                    <div class="form-group">
+                        <label>ESTADO</label>
+                        <select class="form-control" name="estado" id="cmbestado">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <div class="form-group">
+                        <label>FECHA INICIO</label>
+                        <input type="date" id="txtfechainicio" class="form-control" name="id">
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-12">
+                    <div class="form-group">
+                        <label>FECHA FIN</label>
+                        <input type="date" id="txtfechafin" class="form-control" name="id">
+                    </div>
+                </div>
+                <div class="col-lg-1 mt-4">
+                    <button type="submit" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<div class="row justify-content-end mt-2" id="cardreport">
+
+
+    <div class="col-xl-2 ">
+        <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+        </div>
+    </div>
+
+    <div class="col-xl-12 mt-2">
+
+        <div class="card bcard h-auto text-center">
+            <div class="row">
+                <div class="col ">
+                    <button type="button" class="btn btn-primary">
+                        N° REGISTROS <span class="badge badge-light" id="numRegistros">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="card bcard h-auto ">
+
+
+            <div class="border-t-3 brc-blue-m2  table-responsive">
+                <table class="table table-bordered  table-hover text-center" width="100%" id="tbllista">
+                    <thead>
+                        <tr>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">N° ORDEN</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">RUC</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">PROVEEDOR</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA VENCIMIENTO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">ESTADO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">TOTAL</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">DESTINO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">USUARIO</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+
+<partial name="~/Areas/Compras/Views/modales/modalcorreo.cshtml" />
+<script src="~/js/areas/compras/ordencompra/index.js"></script>

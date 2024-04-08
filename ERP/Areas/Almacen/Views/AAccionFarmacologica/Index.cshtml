@@ -1,0 +1,114 @@
+﻿@model IEnumerable<ENTIDADES.Almacen.AAccionFarmacologica>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-xl-12">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    MANTENEDOR DE ACCIÓN FARMACOLÓGICA
+                </h1>
+                <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">                   
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12">
+            <div class="card bcard h-auto">
+                <div class="border-t-3 brc-blue-m2 table-responsive">
+                    <table class="table table-sm table-bordered collapsed" width="100%" id="tbllista">
+                        <thead class="">
+                            <tr>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ID</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">DESCRIPCION</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ESTADO</th>                               
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="pos-rel">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.idaccionfarma)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.descripcion)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.estado)
+                                    </td>
+                                    <td>
+                                        @if (item.estado == "HABILITADO")
+                                        {
+                                            <div class="btn-group btn-group-sm">
+                                                <a class="btn btn-sm btn-outline-warning waves-effect btn-pasar font-10"><i class="fa fa-edit"></i></a>
+                                                <button class="btn btn-sm btn-outline-danger waves-effect  font-10" onclick="mensajeeliminar(@item.idaccionfarma)"><i class="fa fa-lock"></i></button>
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="btn-group btn-group-sm">
+                                                <button class="btn btn-sm btn-outline-success waves-effect font-10" onclick="habilitar(@item.idaccionfarma)"><i class="fa fa-unlock"></i></button>
+
+                                            </div>
+                                        }
+
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+     
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRO DE ACCIÓN FARMACOLÓGICA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+               
+                        <form method="post" autocomplete="off" id="form-registro">
+                            <input type="hidden" name="idaccionfarma" value="" id="txtcodigo" />
+                            <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                            <label>NOMBRE</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtdescripcion" class="form-control mayusculas" name="descripcion" required>
+                                </div>
+                            </div>
+                            <label>ESTADO</label>
+                            <div class="form-group">
+                                <div class="form-line ">
+                                    <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                        <option value="HABILITADO" selected>HABILITADO</option>
+                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                            <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                        </form>                 
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/almacen/accion_farmacologica.js"></script>

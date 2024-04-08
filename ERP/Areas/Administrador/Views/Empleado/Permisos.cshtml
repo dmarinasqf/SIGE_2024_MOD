@@ -1,0 +1,129 @@
+﻿@model INFRAESTRUCTURA.Areas.Administrador.ViewModels.EmpleadoPermisoModel
+
+@{
+    ViewData["Title"] = "Permisos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int con = 0;
+}
+<script>
+    var empleado= @Model.empleado.emp_codigo;
+</script>
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header bg-green text-center font-14">
+                <h5>DATOS DE USUARIO</h5>
+            </div>
+            <div class="body">
+                <div class="card">
+                    <img src="~/imagenes/user-role.png" class="card-img-top" alt="..." height="200">
+                    <div class="card-body">
+                        <dl class="row">
+                            <dt class="col-sm-5">
+                                <label>SUCURSAL</label>  
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.empleado.local)
+                            </dd>
+                            <dt class="col-sm-5">
+                                <label>DOCUMENTO</label>    
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.empleado.documento)
+                            </dd>
+                            <dt class="col-sm-5">
+                                <label>NOMBRES</label>  
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.empleado.nombres)
+                            </dd>
+                            <dt class="col-sm-5">
+                                <label>A. PATERNO</label>   
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.empleado.apePaterno)
+                            </dd>
+                            <dt class="col-sm-5">
+                                <label>A. MATERNO</label>   
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.empleado.apeMaterno)
+                            </dd>
+
+                            <dt class="col-sm-5">
+                                <label>USUARIO</label>  
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.empleado.userName)
+                            </dd>
+                            <dt class="col-sm-5">
+                                <label>CLAVE</label>   
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.empleado.clave)
+                            </dd>
+                            <dt class="col-sm-5">
+                                <label>GRUPO</label>  
+                            </dt>
+                            <dd class="col-sm-7">
+                                @Html.DisplayFor(model => model.empleado.grupo)
+                            </dd>                          
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header bg-green text-center font-14">
+                <h5>PERMISOS</h5>
+            </div>
+            <div class="body">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            @foreach (var item in Model.areas)
+                            {
+                                if (item.grupo.idgrupo == Model.empleado.idgrupo)
+                                {<a class="nav-link active" data-toggle="pill" href="#@item.grupo.descripcion" role="tab">@item.grupo.descripcion</a>}
+                                else
+                                {<a class="nav-link" data-toggle="pill" href="#@item.grupo.descripcion" role="tab">@item.grupo.descripcion</a>}
+                                con++;
+                             }
+                        </div>
+                    </div>
+                    <div class="col-8">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            @foreach (var item in Model.areas)
+                            {                                
+                            <div class="tab-pane fade" id="@item.grupo.descripcion" role="tabpanel">
+                                @foreach (var roles in item.roles)
+                                {
+                                    <div class="demo-switch-title">@roles.Name</div>
+                                    <div class="switch">
+                                        @if (roles.tiene)
+                                        {                                            
+                                            <label><input idrol="@roles.Id" type="checkbox" class="check-rol" checked><span class="lever switch-col-teal"></span></label>
+                                        }
+                                        else
+                                        {
+                                            <label><input idrol="@roles.Id" type="checkbox" class="check-rol"><span class="lever switch-col-teal"></span></label>
+                                        }
+                                    </div>
+                                }
+                            </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Regresar</a>
+</div>
+<script src="~/js/areas/administrador/empleados/permisosEmpleado.js"></script>

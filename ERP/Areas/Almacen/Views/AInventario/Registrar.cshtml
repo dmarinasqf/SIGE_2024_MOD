@@ -1,0 +1,141 @@
+﻿@{ ViewData["Title"] = "Inventario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var IDSUCURSAL = @Html.Raw(Json.Serialize(ViewBag.IDSUCURSAL));
+
+</script>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="col-md-12">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    REGISTRAR INVENTARIO
+                </h1>
+            </div>
+        </div>
+        <div class="body">
+            <div class="col-xl-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                INICIO INVENTARIO
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <input type="hidden" class="form-control form-control-sm" id="idinventario" />
+                                            <div class="col-xl-3">
+                                                <label>SUCURSAL INVENTARIO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm" id="idsucursal">
+                                                            <option value="" selected>[SELECCIONE]</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <label>ALMACEN</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm" id="idalmacensucursal">
+                                                            <option value="" selected>[SELECCIONE]</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3">
+                                                <label>LABORATORIO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm" id="idlaboratorio">
+                                                            <option value="" selected>[SELECCIONE]</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-2 offset-1">
+                                                <button type="button" class="btn btn-block btn-success btn-sm mt-4" id="btnIniciarInventario"><i class="fa fa-save mr-2"></i>Iniciar Inventario</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mt-3">
+                                <div class="card">
+                                    <div class="card-body" id="contenedorDetalle">
+                                        <div class="row">
+                                            <div class="col-xl-8">
+                                                <label>CODIGO PRODUCTO O CODIGO BARRA:</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control form-control-sm" id="producto" disabled />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2">
+                                                <button type="button" class="btn btn-block btn-info btn-sm mt-4" id="btnListarProductos" disabled><i class="fa fa-eye mr-2"></i>Listar Productos</button>
+                                            </div>
+                                            <div class="col-xl-2">
+                                                <button type="button" class="btn btn-block btn-info btn-sm mt-4" id="btnAgregarLote" disabled><i class="fa fa-plus mr-2"></i>Agregar Lote</button>
+                                            </div>
+                                            <div class="col-xl-12">
+                                                <div class="card bcard h-auto mt-2">
+                                                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                                                        <table class="table table-hover tabla-sticky table-bordered" width="100%" id="tbllistalote">
+                                                            <thead class="text-center thead-dark">
+                                                                <tr>
+                                                                    <th class="header-sticky" width="5%">ID</th>
+                                                                    <th class="header-sticky" width="10%">CODIGO BARRA</th>
+                                                                    <th class="header-sticky" width="10%">CODIGO PRODUCTO</th>
+                                                                    <th class="header-sticky" width="40%">PRODUCTO</th>
+                                                                    <th class="header-sticky" width="10%">LOTE</th>
+                                                                    <th class="header-sticky" width="12%">REG. SANITARIO</th>
+                                                                    <th class="header-sticky" width="5%">FECHA VENCIMIENTO</th>
+                                                                    <th class="header-sticky" width="5%">CAJAS</th>
+                                                                    <th class="header-sticky" width="5%">UNIDAD</th>
+                                                                    <th class="header-sticky" width="3%"></th>
+                                                                    <th class="header-sticky" width="3%"></th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody class="font-11">
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 offset-1 mt-3">
+                                                <button type="button" class="btn btn-block btn-success btn-sm" id="btnFinalizarInventario" disabled><i class="fa fa-save mr-2"></i>Finalizar Inventario</button>
+                                            </div>
+                                            <div class="col-xl-3 mt-3">
+                                                <button type="button" class="btn btn-block btn-info btn-sm" id="btnVisualizarStock" disabled><i class="fa fa-eye mr-2"></i>Visualizar Lista de Stock</button>
+                                            </div>
+                                            <div class="col-xl-3 mt-3">
+                                                <button type="button" class="btn btn-block btn-info btn-sm" id="btnNuevoRegistro" disabled><i class="fa fa-redo mr-2"></i>Nuevo</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Compras/Views/modales/_modalValidarUsuario.cshtml" />
+<partial name="~/Areas/Almacen/Views/AInventario/modal/_modalListaStock.cshtml" />
+<partial name="~/Areas/Almacen/Views/AInventario/modal/_modalAgregarLote.cshtml" />
+<script src="~/js/areas/almacen/inventario/registrar.js"></script>
+<script src="~/js/controller/almacen/InventarioController.js"></script>
+<script src="~/js/modelos/almacen/AInventario.js"></script>

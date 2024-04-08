@@ -1,0 +1,62 @@
+﻿<div class="modal fade" id="modalRequerimiento" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1500">
+        <div class="modal-content">
+            <div class="modal-header bg-blue-grey">
+                <h5 class="modal-title" id="exampleModalLabel">PROFORMA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body font-11">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>SUCURSAL</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        @*<input type="text" id="txtsucursal" class="form-control form-control-sm" name="suc_codigo">*@
+                                        <select class="form-control form-control-sm" id="txtsucursal" name="suc_codigo"></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>GRUPO</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        @*<input type="text" id="txtgrupo" class="form-control form-control-sm" name="idgrupo">*@
+                                        <select class="form-control form-control-sm" id="cmbgrupo" name="idgrupo" required></select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-2">
+                                <button type="submit" class="btn btn-lg btn-secondary btn-md" id="btnbusqueda"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12 table-responsive">
+                                <table class="table table-bordered" id="tblrequerimiento" width="100%">
+                                    <thead class="thead-dark shadow-sm">
+                                        <tr class="thead-dark">
+                                            <th>CODIGO</th>
+                                            <th>GRUPO</th>
+                                            <th>USUARIO</th>
+                                            <th>FECHA SOLICITUD</th>
+                                            <th>ESTADO</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="font-12">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/controller/compras/RequerimientoController.js"></script>
+<script src="~/js/areas/compras/modales/requerimiento/_modalBuscarRequerimiento.js"></script>

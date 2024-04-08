@@ -1,0 +1,278 @@
+﻿<style>
+    .holder {
+        height: 262px;
+        width: 224px;
+    }
+
+    #imgPreview {
+        max-width: 222px;
+        max-height: 260px;
+        min-width: 222px;
+        min-height: 260px;
+    }
+
+    input[type="file"] {
+        margin-top: 5px;
+    }
+
+    .heading {
+        font-family: Montserrat;
+        font-size: 45px;
+        color: green;
+    }
+</style>
+
+
+<script>
+    $(document).ready(function () {
+        var idSucursal = $("#idsucursal").val();
+
+        var centros = {
+            "154": [
+                { id: "050101", nombre: "GASTOS DE VENTAS(IZAGUIRRE)" },
+                { id: "050102", nombre: "GASTOS DE LABORATORIO(LOS OLIVOS)" }
+            ],
+            "134": [
+                { id: "050107", nombre: "PIURA" },
+                { id: "060107", nombre: "SISOL SULLANA" },
+                { id: "060108", nombre: "SISOL TUMBES" }
+            ]
+
+        };
+
+        function llenarCombo(idSucursal) {
+            var opciones = centros[idSucursal] || [];
+
+
+            $("#centro_costos_dos").empty();
+
+            if (opciones.length > 0) {
+
+                $("#centro_costos_dos").prop("disabled", false);
+
+
+                $.each(opciones, function (index, centro) {
+                    $("#centro_costos_dos").append('<option value="' + centro.id + '">' + centro.nombre + '</option>');
+                });
+            } else {
+
+                $("#centro_costos_dos").append('<option value="-">-</option>');
+                $("#centro_costos_dos").prop("disabled", true);
+
+            }
+        }
+
+
+        llenarCombo(idSucursal);
+
+
+        $("#idsucursal").on("change", function () {
+            var nuevoIdSucursal = $(this).val();
+            llenarCombo(nuevoIdSucursal);
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+
+        $("#tipoDoc").on("change", function () {
+            var selectedValue = $(this).val();
+            var numRucLabel = $("#numRucLabel");
+
+
+            if (selectedValue === "3") {
+
+                numRucLabel.text("DOC DE IDENTIDAD");
+            } else {
+
+                numRucLabel.text("NUM RUC");
+            }
+            var maxLength = (numRucLabel.text() === "NUM RUC") ? 11 : 12;
+            $("#numRuc").attr("maxlength", maxLength);
+        });
+    });
+
+
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        // Ocultar el combo si el valor inicial es "-"
+        if ($("#centro_costos_dos").val() === "-") {
+            $("#centro_costos_dos").parent().hide();
+        }
+
+        // Evento change para detectar cambios en el valor del combo
+        $("#centro_costos_dos").on("change", function () {
+            var selectedValue = $(this).val();
+
+            // Mostrar u ocultar el combo según el valor seleccionado
+            if (selectedValue === "-") {
+                $(this).parent().hide(); // Hide the parent container
+            } else {
+                $(this).parent().show(); // Show the parent container
+            }
+        });
+    });
+</script>
+
+
+<script>
+    $(document).ready(function () {
+        // Inicialmente, ocultar el combo IGV
+        $("#tp_igv").prop("disabled", true);
+
+        $("#tipoDoc").on("change", function () {
+            var selectedValue = $(this).val();
+            var igvCombo = $("#tp_igv");
+
+            // Habilitar o deshabilitar el combo IGV según el tipo de documento seleccionado
+            if (selectedValue === "1") {  // BOLETA
+                igvCombo.val("0");  // Establecer NO APLICA por defecto
+                igvCombo.prop("disabled", true);
+            } else if (selectedValue === "2") {  // FACTURA
+                // Habilitar el combo IGV y mostrar las opciones
+                igvCombo.prop("disabled", false);
+                igvCombo.html('<option value="1.18">18%</option><option value="1.10">10%</option>');
+            } else {
+                // Otros documentos, deshabilitar y resetear el combo IGV
+                igvCombo.val("0");
+                igvCombo.prop("disabled", true);
+            }
+        });
+    });
+</script>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalRendicionCaja" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">AGREGAR RENDICIÓN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="notificacion"></div>
+
+                <form id="form_rendicion_caja" enctype="multipart/form-data">
+                    <input type="hidden" name="idSucursalResp" id="idSucursalResp" value="@ViewBag.idSucursalResp" />
+                    <input type="hidden" name="idCajaChica" id="idCajaChica" value="@ViewBag.idCajaChica" />
+                    <input type="hidden" name="idsucursal" id="idsucursal" value="@ViewBag.idsucursal" />
+                    <div class="col-xl-12 col-sm-12 py-0 my-0">
+                        <div class="form-group">
+                            <label>SELECCIONAR CENTRO</label>
+                            <select name="centro_costos_dos" id="centro_costos_dos" class="form-control form-control-sm">
+                                <option value="">---SELECCIONE---</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <div class="form-group">
+                                <label>FECHA DOCUMENTO</label>
+                                <input class="form-control form-control-sm date_fecha" id="fecha" name="fecha"
+                                       placeholder="DD/MM/YYYY" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-sm-2 py-0 my-0">
+                            <div class="form-group">
+                                <label>TOTAL</label>
+                                <input type="text" name="total" id="total" class="form-control form-control-sm validanumeros" maxlength="5" />
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-2 py-0 my-0">
+                            <div class="form-group">
+                                <label>IGV</label>
+                                <select name="tp_igv" id="tp_igv" class="form-control form-control-sm">
+                                    <option value="1.18">18%</option>
+                                    <option value="1.10">10%</option>
+                                    <option value="0">NO APLICA</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <label>TIPO DOC.</label>
+                            <select name="tipoDoc" id="tipoDoc" class="form-control form-control-sm">
+                                <option value="">---SELECCIONE---</option>
+                                <option value="1">BOLETA</option>
+                                <option value="2">FACTURA</option>
+                                <option value="3">PLANILLA DE MOVILIDAD</option>
+                                <option value="4">COMPROBANTE DE EGRESO</option>
+                                <option value="5">RECIBO POR HONORARIOS</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="row">
+                                <div class="col-xl-12 col-sm-12 py-0 my-0">
+                                    <div class="form-group">
+                                        <label for="numRuc" id="numRucLabel">NUM RUC</label>
+
+                                        <input type="text" name="numRuc" id="numRuc" class="form-control form-control-sm validanumeros" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-sm-12 py-0 my-0">
+                                    <div class="form-group">
+                                        <label>NUM SERIE</label>
+                                        <input type="text" name="numSerie" id="numSerie" class="form-control form-control-sm" onkeyup="mayus(this)" maxlength="4" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-sm-12 py-0 my-0">
+                                    <div class="form-group">
+                                        <label>NUM DOCUMENTO</label>
+                                        <input type="text" name="numDoc" id="numDoc" class="form-control form-control-sm validanumeros" maxlength="8" onblur="autocompletarConCeros(this)" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-sm-12 py-0 my-0">
+                                    <label>TIPO GASTOS.</label>
+                                    <select name="tipoGastos" id="tipoGastos" class="form-control form-control-sm">
+                                        <option value="">---SELECCIONE---</option>
+                                        @foreach (var m in ViewBag.conceptos)
+                                        {
+                                            <option value="@m.IdCajaChicaConcepto">@m.Descripcion</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-xl-12 col-sm-12 py-0 my-0">
+                                    <div class="form-group">
+                                        <label>COMENTARIOS</label>
+                                        <input type="text" name="comentarios" id="comentarios" class="form-control form-control-sm" onkeyup="mayus(this)" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="row">
+                                <div class="col-xl-12 col-sm-12 mt-3">
+                                    <div class="holder card">
+                                        <img id="imgPreview" src="" alt=" " class="rounded" />
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="imgFile" lang="es" accept=".jpg,.jpeg,.png,.pdf">
+                                        <label class="custom-file-label" for="photo">Adjuntar una imagen</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal">CERRRAR</button>
+                <button id="btnGuardar" type="button" class="btn btn-success" onclick="RendicionAgregarDetalleItem()">GUARDAR CAMBIOS</button>
+            </div>
+        </div>
+    </div>
+</div>

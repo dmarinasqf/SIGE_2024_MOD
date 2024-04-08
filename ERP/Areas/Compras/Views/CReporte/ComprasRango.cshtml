@@ -1,0 +1,47 @@
+﻿
+@{ ViewData["Title"] = "Rango de Compras";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                RANGO DE COMPRAS
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <h5 id="idimportetotal" style="float:right;">IMPORTE TOTAL S/ 00.00</h5>
+    </div>
+</div>
+<div class="row justify-content-center">
+    
+
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <label>RANGO DE FECHA</label>
+        <div class="form-group">
+            <div class="form-line">
+                <input type="text" id="txtfecharango" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel"></i></button>
+    </div>
+    <div class="col-xl-12">
+        <div class=" table-responsive mt-2" id="contenedor">
+            <table class="table" id="tblreporte">
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/js/controller/compras/OrdenCompraController.js"></script>
+<script src="~/js/areas/compras/reporte/comprasrango.js"></script>
+

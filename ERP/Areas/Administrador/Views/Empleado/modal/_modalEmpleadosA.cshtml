@@ -1,0 +1,32 @@
+﻿<div class="modal fade" id="modalListaUsuarioA" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Seleccionar médico</h5>
+                <button type="button" class="close" onclick="cerrarModal_Empleados()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <table class="table table-sm table-hover table-responsive-sm table-responsive-md table-responsive-xl" id="tblUsuariosAutorizantes" width="100%" style="font-size:15px">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>DOCUMENTO</th>
+                            <th>USUARIO</th>
+                            <th>PERFIL</th>
+                            <th>SUCURSAL</th>
+                            <th>OPCION</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/ajax/controlAsistencias/modal/modalEmpleadosA.js"></script>

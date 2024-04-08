@@ -1,0 +1,163 @@
+﻿@model System.Data.DataTable
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>  </title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    @* <script src="~/js/site.js"></script>*@
+
+    <link href="~/css/pagina/impresiones/analisisorganoleptico/analisisorganoleptico.css" rel="stylesheet" />
+</head>
+<body>
+    <script>
+        var data = @Html.Raw(JsonConvert.SerializeObject(Model));
+        console.log(data);
+        var cabecera = JSON.parse(data[0]['CABECERA']);
+        var detalle = JSON.parse(data[0]['DETALLE']);
+        var categoria = JSON.parse(data[0]['CATEGORIA']);
+        var caracteristica = JSON.parse(data[0]['CARACTERISTICAS']);
+        var condicionembalaje = JSON.parse(data[0]['CONDICIONEMBALAJE']);
+
+    </script>
+    <div id="aplicacion" class="table-box">
+        <div class="row" style="margin-top:10px;margin-left:10px;margin-right:10px;">
+            <table width="100%">
+                <thead class="">
+                    <tr>
+                        <th colspan="6" rowspan="3">
+                            <div>
+                                <img src="~/imagenes/empresas/logo_d.png" height="30" width="180" id="imglogo" />
+                            </div>
+                        </th>
+                        <th colspan="20">FORMATO DE RECEPCION Y EVALUACION DE PRODUCTOS</th>
+                        <th colspan="4">CODIGO</th>
+                        <th colspan="4">F.QF.DR.039</th>
+                    </tr>
+                    <tr>
+                        <th colspan="20">TIPO DE DOCUMENTO:Formato</th>
+                        <th colspan="4">VERSION</th>
+                        <th colspan="4">00</th>
+                    </tr>
+                    <tr>
+                        <th colspan="20">AREA:Drogeria</th>
+                        <th colspan="4">PAGINA</th>
+                        <th colspan="4">1 de 1</th>
+                    </tr>
+                    <tr>
+                        <th colspan="6" style="text-align:left;">N° DE ANALISIS :{{cabecera[0]['CODIGO']}}</th>
+                        <th colspan="26">EVALUACION ORGANOLEPTICA</th>
+                        <th colspan="2" rowspan="8">RESULTADO</th>
+                    </tr>
+                    <tr>
+                        <th colspan="13" style="text-align:left;">N° DE OC :{{cabecera[0]['CORDEN']}}</th>
+                        <th colspan="7" rowspan="5">CARACTERÍSTICAS DE ENVASES INMEDIATOS(vidrio,plástico,blister, termosellado y otros materiales)</th>
+                        <th colspan="6" rowspan="5">CARACTERÍSTICAS DE ENVASES MEDIATOS(*)</th>
+                        <th colspan="5" rowspan="5">CARACTERÍSTICAS FÍSICAS DEL PRODUCTO</th>
+                    </tr>
+                    <tr>
+                        <th colspan="13" style="text-align:left;">PROVEEDOR :{{cabecera[0]['PNOMBRE']}}</th>
+                    </tr>
+                    <tr>
+                        <th colspan="13" style="text-align:left;">N° DE DOCUMENTO :{{cabecera[0]['PRUC']}}</th>
+                    </tr>
+                    <tr>
+                        <th colspan="13" style="text-align:left;">FECHA DE ANALISIS :{{cabecera[0]['FECHA']}}</th>
+                    </tr>
+                    <tr></tr>
+                    <tr>
+                        <th colspan="1" rowspan="2">Nº</th>
+                        <th colspan="3" rowspan="2">PRODUCTO</th>
+                        <th colspan="2" rowspan="2">LABORATORIO</th>
+                        <th colspan="2" rowspan="2">LOTE</th>
+                        <th colspan="2" rowspan="2">FVENCE</th>
+                        @*<th colspan="1" rowspan="2" v-for="index in condicionembalaje.length">{{condicionembalaje[index-1]['iditem']}}</th>*@
+                        <th colspan="2" rowspan="2">CANT</th>
+                        <th colspan="2" rowspan="2">MUESTRA</th>
+
+                    </tr>
+                    <tr>
+                        <th colspan="1" v-for="index in caracteristica.length">{{caracteristica[index-1]['nombreabreviado'] }}</th>
+                    </tr>
+
+                </thead>
+                <tbody v-html="tbldetalleao">
+                </tbody>
+            </table>
+        </div>
+        <div style="margin-left:10px;margin-right:10px;margin-top:30px;">
+            <table style="border: 0px solid black; border-bottom: 1px solid black;" width="100%">
+                <thead>
+                    <tr>
+                        <th colspan="34" class="text-left BorderBottom">OBSERVACIONES:  {{cabecera[0]['OBSERVACION']}}</th>
+                    </tr>
+                    <tr style="height: 20px">
+                        <th colspan="34" class="BorderBottom" />
+                    </tr>
+                    <tr style="height:50px"></tr>
+                    <!--//EARTCOD1017//-->
+                    <tr>
+                        <th colspan="12" class="text-center" style="border:0">
+                            <img src="~/imagenes/firmas/almacen/JIE.png" height="80" width="150" id="imglogo" />
+                        </th>
+                    </tr>
+                    <!--FIN EARTCOD1017-->
+                    <tr>
+                        <th colspan="12" class="text-center BorderTop">RESPONSABLE DE LA EVALUACIÓN </th>
+                    </tr>
+                    <tr style="height:50px"></tr>
+
+                    <tr>
+                        <th colspan="34">LEYENDA</th>
+
+                    </tr>
+                    <tr>
+                        <th colspan="9" class="text-left">
+                            Registro de conformidad:
+                            <ul class="text-left">
+                                <li>(✓) Conforme</li>
+                                <li>(X) No Conforme</li>
+                                <li></li>
+                            </ul>
+                            @*Registro de temperatura almacenamiento
+                <ul class="text-left">
+                    <li>T.A. : Temperatura Ambiente(16ºC a 30ºC)</li>
+                    <li>T.C. : Temperatura Controlada(15ºC a 26ºC)</li>
+                </ul>*@
+
+                        </th>
+                        <th colspan="9" class="text-left">
+                            RESULTADO:
+                            <ul class="text-left">
+                                <li>LB: Liberado</li>
+                                <li>RE: Rechazado</li>
+                            </ul>
+                        </th>
+                        @*<th colspan="9" class="text-left">
+                CONDICIÓN DE EMBALAJE:
+                <ul class="text-left">
+                    <li v-for="index in condicionembalaje.length">{{condicionembalaje[index-1]['iditem']}} : {{condicionembalaje[index-1]['descripcion']}} </li>
+                </ul>
+            </th>*@
+                        <th colspan="7" class="text-left">
+                            CARACTERÍSTICAS A EVALUAR
+                            <ul class="text-left">
+                                <li v-for="index in 6">{{caracteristica[index-1]['nombreabreviado']}} : {{caracteristica[index-1]['descripcion']}} </li>
+                            </ul>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>
+<script src="~/js/areas/preingreso/analisisorganoleptico/imprimir.js"></script>

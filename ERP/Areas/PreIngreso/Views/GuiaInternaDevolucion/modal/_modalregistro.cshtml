@@ -1,0 +1,153 @@
+﻿
+<div class="modal fade " data-backdrop="static" id="modalguiainternadevolucion" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-xl-1400 modal-dialog-scrollable">
+        <div class="modal-content  ">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="exampleModalLabel">GUÍA INTERNA DE DEVOLUCIÓN <bold id="lblidguiainterna"></bold>   </label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" id="formguias" autocomplete="off">
+                <input type="hidden" id="txtRDGidpreingreso" name="idpreingreso" />
+                <input type="hidden" id="txtRDGidfactura" name="idfactura" />
+                <input type="hidden" id="txtRDGidguia" name="idguia"/>
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row justify-content-end">
+                                <div class="col-xl-4 col-sm-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">DOCUMENTO</span>
+
+                                        </div>
+                                        <select class="form-control" id="cmbRDGdocumento" name="iddocumento" required></select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">GUÍA N°</span>
+                                            
+                                        </div>
+                                        <input type="text" id="txtRDGnumguia" class="form-control" name="" readonly>
+                                    </div>                                   
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-2 col-lg-2 col-md-6">
+                                    <label>FECHA EMISIÓN</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="txtRDGfecha" class="form-control form-control-sm" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-6">
+                                    <label>PREINGRESO N°</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="txtRDGnumpreingreso" class="form-control form-control-sm" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-6">
+                                    <label>ORDEN N°</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="txtRDGnumorden" class="form-control form-control-sm" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-lg-2 col-md-6">
+                                    <label>RUC</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="txtRDGruc" class="form-control form-control-sm" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-4 col-lg-4 col-md-6">
+                                    <label>RAZON SOCIAL</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="txtRDGrazonsocial" class="form-control form-control-sm" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-2 col-md-6">
+                                    <label>TIPO DE DOCUMENTO</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtRDGtipodocumento" readonly />
+                                </div>
+                                <div class="col-xl-2 col-md-6">
+                                    <label>FECHA DOCUMENTO</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtRDGfechadocumento" readonly />
+                                </div>
+                                <div class="col-xl-3  col-md-6">
+
+                                    <div class="form-group">
+                                        <label>N° DOCUMENTO</label>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                                <input type="text" id="txtRGDserie" class="form-control form-control-sm" placeholder="serie" />
+                                            </div>
+                                            <div class="col-lg-8 col-md-6 col-sm-6">
+                                                <input type="text" id="txtRGDnumdoc" class="form-control form-control-sm" placeholder="numero" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5 col-md-5">
+                                    <label>OBSERVACIONES</label>
+                                    <textarea class="form-control" id="txtRGDobservaciones" name="observacion"></textarea>
+                                </div>
+
+                            </div>
+                            <div class="row mt-2" onpaste="return false">
+                                <div class="col-xl-12 col-lg-12 col-md-12 ">
+                                    <div class="card bcard h-auto">
+                                        <div class="border-t-3 brc-blue-m2 table-responsive  contenedor-sticky-300">
+                                            <table class="table table-bordered" width="100%" id="tblRDGguiadedevolucion">
+                                                <thead class="">
+                                                    <tr>
+                                                        <th style="width:5%">ITEM</th>
+                                                        <th style="width:10%">COD PROD</th>
+                                                        <th style="width:30%">DESCRIPCION</th>
+                                                        <th style="width:10%">LABORATORIO</th>
+                                                        <th style="width:5%">CANTIDAD</th>
+                                                        <th style="width:20%">MOTIVO DE DEVOLUCIÓN</th>
+                                                        <th style="width:5%">LOTE</th>
+                                                        <th style="width:5%">F. VENCIMIENTO</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="tblRDGtbodydetalle">
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end mt-2">
+                                <div class="col-xl-4 col-md-6">
+                                    <div class="btn-group">
+                                        <button class="btn btn-success" id="btnRDGguardarguia" type="submit"><i class="fas fa-save ml-2"></i> Guardar</button>
+                                        <button class="btn btn-outline-dark" id="btnRDGimprimirguia" type="button" disabled><i class="fas fa-print ml-2"></i> Imprimir</button>
+                                        <button class="btn btn-outline-danger " type="button" id="btnRDgsalirguia" data-dismiss="modal" aria-label="Close"><i class="fas fa-times-circle ml-2"></i> Salir</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<script src="~/js/areas/preingreso/guiadevolucion/modal/modalregistro.js"></script>

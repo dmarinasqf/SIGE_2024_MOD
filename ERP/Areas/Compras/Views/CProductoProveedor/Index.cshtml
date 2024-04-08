@@ -1,0 +1,102 @@
+﻿
+@model INFRAESTRUCTURA.Areas.Compras.ViewModels.ProveedorProductoModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                INSUMOS DEL PROVEEDOR: <strong id="lblproveedor">@Model.proveedor.razonsocial</strong>
+                <input type="hidden" value="@Model.proveedor.idproveedor" id="txtproveedor" />
+            </h1>
+
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-3 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-header text-center font-14 ">
+                <h6>DATOS</h6>
+            </div>
+            <div class="card-body">
+                <form method="post" autocomplete="off" id="form-registro">
+                    <input type="hidden" value="@Model.proveedor.idproveedor" id="txtidproveedor" name="idproveedor" />
+                    <input type="hidden" id="txtidproductoproveedor" name="idproductoproveedor" />
+                    <label>CODIGO PRODUCTO PROVEEDOR</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtcodproductoproveedor" class="form-control form-control-sm mayusculas" name="codproductoproveedor">
+                        </div>
+                    </div>
+                    <label>NOMBRE</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <textarea type="text" id="txtdescripcion" class="form-control form-control-sm mayusculas" name="descripcion" required rows="2"></textarea>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h7>PRODUCTO PROVEEDOR</h7>
+                        </div>
+                        <div class="card-body">
+
+
+
+                            <div class="form-group">
+                                <label>COD PRODUCTO</label>
+                                <input type="hidden" id="txtidproducto" class="form-control form-control-sm mayusculas" name="idproducto" required>
+
+                                <input type="text" id="txtcodproducto" class="form-control form-control-sm mayusculas" required>
+
+                            </div>
+                            <label>DESCRIPCION</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea type="text" class="form-control form-control-sm " id="txtdescripconqf" disabled rows="2"></textarea>
+                                </div>
+                            </div>
+                            <label>ABREVIATURA</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" class="form-control form-control-sm " id="txtabreviaturaqf" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" value="nuevo" id="txtoperacion" />
+                    <button class="btn btn-success btn-block" id="btnguardar" type="submit">GUARDAR DATOS</button>
+                    <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-9 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="card-header text-center font-14 ">
+                <h6>LISTA</h6>
+            </div>
+            <div class="card-body">
+                <table class="table   table-hover table-bordered" width="100%" id="tbllista">
+                    <thead class="">
+                        <tr>
+                            <th style="width:15%">CODIGO</th>
+                            <th style="width:75%">DESCRIPCION</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+
+<script src="~/js/areas/compras/distribuidor/productoproveedor.js"></script>

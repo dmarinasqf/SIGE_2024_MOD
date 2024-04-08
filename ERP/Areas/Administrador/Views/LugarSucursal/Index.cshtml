@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ENTIDADES.Generales.LugarSucursal>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE LUGAR DE SUCURSAL
+            </h1>
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                <!-- dataTables search box will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-hover table-bordered" width="100%" id="tbllista">
+                    <thead class="">
+                        <tr>
+                            <th style="width:10%">ID</th>
+                            <th style="width:60%">DESCRIPCION</th>
+                            <th style="width:20%">ESTADO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idlugar)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.estado)
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="btn btn-sm bg-warning waves-effect btn-pasar"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm bg-danger waves-effect text-white" onclick="mensajeeliminar(@item.idlugar)"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE LUGAR DE SUCURSAL</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="body">
+                        <form method="post" autocomplete="off" id="form-registro">
+                            <input type="hidden" value="nuevo" id="txtoperacion" name="operacion" />
+                            <input type="hidden" id="txtcodigo" name="idlugar" />
+                            <div class="row">
+                                <div class="form-group  col">
+                                    <label>DESCRIPCION</label>
+                                    <input type="text" name="descripcion" id="txtdescripcion" class="form-control" min="3" maxlength="50" onKeyUp="this.value=this.value.toUpperCase();" required />
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group  col">
+                                    <label>ESTADO</label>
+                                    <select class="form-control" name="estado" id="cmbestado" required>
+                                        <option value="HABILITADO">HABILITADO</option>
+                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                            <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer"> </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/administrador/sucursal/lugarsucursal.js"></script>

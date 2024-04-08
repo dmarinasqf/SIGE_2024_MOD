@@ -1,0 +1,87 @@
+﻿<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="MDAO_modaldetalleao" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="MDAO_lbltitulomodal">A.O. DEL LOTE :  </h5>&nbsp; <h5 class="modal-title" style="color:white" id="MDAO_lote"></h5> &nbsp; <h5 class="modal-title" style="color:white" id="MDAO_producto"></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" autocomplete="off" id="MDAO_form-registro">
+                <div class="modal-body">
+                    <div class="body">
+
+                        <div class="card">
+                            <div class="card-header">
+                                <h6 class="font-black">DATOS DE PRODUCTO</h6>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <input type="hidden" id="MDAO_txtiddetallepreingreso" name="iddetallepreingreso" />
+                                    <input type="hidden" id="MDAO_txtidanalisisorgdetalle" name="idanalisisorgdetalle" />
+                                    <input type="hidden" id="MDAO_txtidproducto" name="idproducto" />
+                                    <input type="hidden" id="MDAO_txtidstock" name="idstock" />
+                                    <input type="hidden" id="MDAO_txtidlote" name="idlote" />
+
+                                    <div class="col-xl-2 col-md-3 col-xs-6">
+                                        <label>C.INGRESADA</label>
+                                        <div class="form-group">
+                                            <input type="text" id="MDAO_txtcingreso" class="form-control form-control-sm" name="cantidadaprobada" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-md-3 col-xs-6">
+                                        <label>C.MUESTRA</label>
+                                        <div class="form-group">
+                                            <input type="text" id="MDAO_txtcmuestra" class="form-control form-control-sm" name="cantidadmuestra" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-md-3 col-xs-6">
+                                        <label>C.RECHAZADA</label>
+                                        <div class="form-group">
+                                            <input type="text" id="MDAO_txtrechazada" value="0" class="form-control form-control-sm" name="cantidadrechazada" readonly />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-xs-6">
+                                        <label>RESULTADO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control form-control-sm show-tick" id="MDAO_cmbresultado" name="resultado" required>
+
+                                                    <option value="LB" selected>LIBERADO</option>
+                                                    <option value="RE">RECHAZADO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-xs-12">
+                                        <label>OBSERVACIÓN</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea rows="2" class="form-control form-control-sm" id="MDAO_txtobservacion" name="observacion"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="MDAO_tabpanefill"> </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success waves-effect">GUARDAR</button>
+                    <button type="button" class="btn btn-danger waves-effect" data-dismiss="modal">CERRAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@*FUNCIONES JS*@
+<script src="~/js/areas/preingreso/analisisorganoleptico/modal/modaldetalleao.js"></script>
+@*MODELOS JS*@
+<script src="~/js/controller/preingreso/CaracteristicaAOController.js"></script>
+<script src="~/js/controller/preingreso/CategoriaAOController.js"></script>
+@*MODELOS JS*@
+<script src="~/js/modelos/preingreso/PIAnalisisOrgDetalle.js"></script>
+<script src="~/js/modelos/preingreso/PICaracteristicaDetalleAO.js"></script>

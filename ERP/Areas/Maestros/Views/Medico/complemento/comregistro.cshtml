@@ -1,0 +1,443 @@
+﻿
+<div class="row">
+
+    <form autocomplete="off" id="formregistro" method="post">
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-2">
+                    <div class="col-xl-6 col-sm-6">
+                        <div class="row">
+                            <input type="hidden" id="txtcodigo" name="idmedico" />
+                            <div class="col-xl-12 col-sm-6">
+                                <div class="form-group ">
+                                    <label>NOMBRES</label>
+                                    <input id="txtnombres" type="text" onkeypress="" class="form-control form-control-sm" name="nombres" required>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>APELLIDO PATERNO</label>
+                                    <input id="txtapepaterno" type="text" class="form-control form-control-sm mayusculas" name="apepaterno" required>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>APELLIDO MATERNO</label>
+                                    <input id="txtapematerno" type="text" class="form-control form-control-sm mayusculas" name="apematerno" required>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>COLEGIO</label>
+                                    <select id="cmbcolegio" type="text" class="form-control form-control-sm" name="idcolegio" required></select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+
+                                <div class="form-group ">
+                                    <label>CÓDIGO</label>
+                                    <input id="txtNroColegiaturo" type="number" maxlength="11" class="form-control form-control-sm" name="nroColegiatura">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>ESPECIALIDAD </label>
+                                    <select class="form-control form-control-sm cmbespecialidad" id="cmbespecialidad" name="idespecialidad">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-4">
+                                <div class="form-group ">
+                                    <label>FECHA NACIMIENTO </label>
+                                    @*<span type="date" class="form-control text-center " name="fecha" id="lblfecha"></span>*@
+                                    <input type="date" class="form-control text-center " name="fechaNacimiento" id="txtfechanacimiento">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-4">
+                                <div class="form-group ">
+                                    <label>TELEFONO </label>
+                                    <input id="txttelefono" type="number" maxlength="11" class="form-control form-control-sm" name="telefono">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-8 col-sm-12">
+                                <div class="form-group ">
+                                    <label>EMAIL</label>
+                                    <input id="txtemail" type="text" class="form-control form-control-sm" name="email">
+                                </div>
+                            </div>
+
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>DEPARTAMENTO </label>
+                                    <select class="form-control form-control-sm cmbdepartamento" id="cmbdepartamento" name="iddepartamento">
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>PROVINCIA </label>
+                                    <select class="form-control form-control-sm" id="cmbprovincia" name="idprovincia">
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>DISTRITO </label>
+                                    <select class="form-control form-control-sm" id="cmbdistrito" name="iddistrito">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>FRECUENCIA</label>
+                                    <input type="number" class="form-control form-control-sm" id="txtfrecuencia" name="frecuencia" required/>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>CATEGORIA</label>
+                                    <input type="text" class="form-control form-control-sm" id="txtcategoria" name="categoria" required/>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>LINEA ATENCION</label>
+                                    @*<input type="text" class="form-control form-control-sm" id="txtlineaatencion" name="txtlineaatencion" />*@
+                                    <select class="form-control form-control-sm" id="cmblineaatencion" name="idlineaatencion" required>
+                                    </select>                                
+                                </div>
+                            </div>
+
+                            @*<div class="col-xl-4 col-sm-6">
+                    <div class="form-group ">
+                        <label>BANCO</label>
+                        <select class="form-control form-control-sm" id="cmbbanco1" name="idbanco1">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-sm-6">
+                    <div class="form-group ">
+                        <label>CUENTA 1</label>
+                        <input id="txtcuenta1" type="text" class="form-control form-control-sm" name="cuenta1">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6">
+                    <div class="form-group ">
+                        <label>BANCO</label>
+                        <select class="form-control form-control-sm" id="cmbbanco2" name="idbanco2">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-sm-6">
+                    <div class="form-group ">
+                        <label>CUENTA 2</label>
+                        <input id="txtcuenta2" type="text" class="form-control form-control-sm" name="cuenta2">
+                    </div>
+                </div>
+                <div class="col-xl-4 col-sm-6">
+                    <div class="form-group ">
+                        <label>BANCO</label>
+                        <select class="form-control form-control-sm" id="cmbbanco3" name="idbanco3">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-sm-6">
+                    <div class="form-group ">
+                        <label>CUENTA 3</label>
+                        <input id="txtcuenta3" type="text" class="form-control form-control-sm" name="cuenta3">
+                    </div>
+                </div>*@
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-sm-6">
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-6">
+                                <div class="form-group ">
+                                    <label>DIRECCIÓN DOMICILIO</label>
+                                    <textarea id="txtdireccion" type="text" class="form-control form-control-sm mayusculas" rows="2" name="direccion"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-sm-6">
+                                <div class="form-group ">
+                                    <label>DIRECCIÓN CONSULTORIO</label>
+                                    <textarea id="txtdireccionconsultorio" type="text" class="form-control form-control-sm mayusculas" rows="2" name="direccionconsultorio"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-12 col-sm-6">
+                                <div class="form-group ">
+                                    <label>ORIGEN RECETA 1</label>
+                                    <input id="txtorigenreceta1" type="text" class="form-control form-control-sm" name="idorigen1">
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-sm-6">
+                                <div class="form-group ">
+                                    <label>ORIGEN RECETA 2</label>
+                                    <input id="txtorigenreceta2" type="text" class="form-control form-control-sm" name="origen2">
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-sm-6">
+                                <div class="form-group ">
+                                    <label>ORIGEN RECETA 3</label>
+                                    <input id="txtorigenreceta3" type="text" class="form-control form-control-sm" name="origen3">
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-sm-6">
+                                <div class="form-group ">
+                                    <label>ESPECIALIZADO EN:</label>
+                                    <textarea id="txtespecializado" type="text" class="form-control form-control-sm mayusculas" rows="2" name="especializado"></textarea>
+
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-sm-6">
+                                <div class="form-group ">
+                                    <label>OBSERVACIONES:</label>
+                                    <textarea id="txtobservaciones" type="text" class="form-control form-control-sm mayusculas" rows="2" name="observacion"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row" style=" ">
+                                    <div class="col-lg-12">
+                                        <div class="form-inline">
+                                            <label style="margin-right:20px">ASOCIADO A VINALI</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <label style="margin-top:20px;  margin-left:20px;">COSTO DE TURNO</label>
+                                <div style="margin-right:20px;margin-left:20px">
+                                    <div class="row border border-dark">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group  col" style="font-size:13px">
+                                                <label>LIMA METROPOLITANA</label>
+                                                <input type="text" id="txtcostolimametropolitana" class="form-control form-control-sm" name="costoLima" onkeypress="return isNumberKey(event);">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group  col" style="font-size:13px">
+                                                <label>PROVINCIA</label>
+                                                <input type="text" id="txtcostoprovincia" class="form-control form-control-sm" name="costoProvincia" onkeypress="return isNumberKey(event);">
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row" style="margin-top:15px">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-inline">
+                                            <label style="margin-right:20px;margin-top:20px">TELECONSULTA</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group" style="font-size:13px">
+                                            <label>COSTO TELECONSULTA</label>
+                                            <input type="number" id="txtcostoteleconsulta" step="0.1" class="form-control form-control-sm" name="costoteleconsulta" onkeypress="return isNumberKey(event);">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-inline">
+                                            <label style="margin-right:20px;margin-top:20px">CONSULTA PRESENCIAL</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group" style="font-size:13px">
+                                            <label>COSTO CONSULTA PRESENCIAL</label>
+                                            <input type="number" id="txtcostoconsultapresencial" step="0.1" class="form-control form-control-sm" name="costoconsultapresencial" onkeypress="return isNumberKey(event);">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group ">
+                                            <label>USUARIO GDP</label>
+                                            <input type="text" id="txtusuario" class="form-control form-control-sm" name="usuario"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group ">
+                                            <label>CLAVE GDP</label>
+                                            <input type="text" id="txtclave" class="form-control form-control-sm" name="clave" onKeyUp="this.value=this.value.toUpperCase();" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group ">
+                                            <label>USUARIO ZOOM</label>
+                                            <input type="text" id="txtusuariozoom" class="form-control form-control-sm" name="usuariozoom"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group ">
+                                            <label>CLAVE ZOOM</label>
+                                            <input type="text" id="txtclavezoom" class="form-control form-control-sm" name="clavezoom"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group ">
+                                            <label>API Key</label>
+                                            <textarea rows="2" id="txtzoomapikey" class="form-control form-control-sm" name="zoomapikey"></textarea>
+                                            @*<input type="text" id="txtusuario" name="zoomapikey" class="form-control form-control-sm" />*@
+                                        </div>
+
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="form-group ">
+                                            <label>API Secret</label>
+                                            <textarea rows="2" id="txtzoomapisecret" class="form-control form-control-sm" name="zoomapisecret"></textarea>
+                                            @*<input type="text" id="txtclave" name="zoomapisecret" class="form-control form-control-sm" onKeyUp="this.value=this.value.toUpperCase();" />*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row" style=" ">
+                                    <div class="col-lg-4 col-sm-12">
+                                        <div class="form-inline">
+                                            <label style="margin-right:20px">CONVENIO</label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <label style="margin-top: 20px; margin-left: 20px; margin-right: 20px;" for="checkcomisionfm">COMISIÓN DE FM</label>
+                                <input type="checkbox" name="checkcomisionfm" class="form-check-input" id="checkcomisionfm" onClick="CambioEstadoCheckFM(this);"/>
+                                <div style="margin-right:20px;margin-left:20px">
+                                    <div class="row border border-dark">
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group  col" style="font-size:13px">
+                                                <label>S/.VENTAS < 50</label>
+                                                <input type="number" name="comisionfm1" id="txtcomisionfm1" class="form-control form-control-sm" onkeypress="return isNumberKey(event);" >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                            <div class="form-group  col" style="font-size:13px">
+                                                <label>S/.VENTAS > 50</label>
+                                                <input type="number" name="comisionfm2" id="txtcomisionfm2" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xl-6 col-xs-12">
+                                        <label style="margin-top: 20px; margin-left: 20px; margin-right: 20px;" for="checkcomisionpt">COMISIÓN DE PT</label>
+                                        <input type="checkbox" name="checkcomisionpt" class="form-check-input" id="checkcomisionpt" onClick="CambioEstadoCheckPT(this);"/>
+                                        <div style="margin-right:20px;margin-left:20px">
+                                            <div class="row border border-dark">
+                                                <div class="col-xl-10 col-xs-12">
+                                                    <label>TOTAL VENTAS</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number" name="comisionpt1" id="txtcomisionpt1" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                                                        <div class="input-group-append">
+                                                            <span style="background-color: #e9ecef;" class="form-control form-control-sm">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-xs-12">
+                                        <label style="margin-top:20px;  margin-left:20px;">COMISIÓN DE PROCEDIMIENTOS</label>
+                                        <div style="margin-right:20px;margin-left:20px">
+                                            <div class="row border border-dark">
+                                                <div class="col-xl-10 col-xs-12">
+                                                    <label>TOTAL VENTAS</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number" id="txtcomisionprocedimiento" name="comisionprocedimiento" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                                                        <div class="input-group-append">
+                                                            <span style="background-color: #e9ecef;" class="form-control form-control-sm">%</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row" style="margin-top:20px;">
+                                    <div class="col-xl-12 col-sm-12">
+                                        <table width="100" class="table table-sm table-bordered">
+                                            <tr>
+                                                <td>TERCERO</td>
+                                                <td>MS</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>CONOCE CANNABIS</td>
+                                                <td>CONOCE DE FM</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td>CUANTITATIVO</td>
+                                                <td>
+                                                    <select id="cmbrangocuantitativo" disabled>
+                                                        <option>-</option>
+                                                        <option value="A">A</option>
+                                                        <option value="B">B</option>
+                                                        <option value="C">C</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    @*<div class="col-lg-6 col-sm-12">
+                <div class="form-inline">
+                    <label style="margin-right:20px">MS</label>
+                    <input type="checkbox" id="checktercero" class="form-group " style="width:18px;height:18px" />
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12">
+                <div class="form-inline">
+                    <label style="margin-right:20px">MS</label>
+                    <input type="checkbox" id="checkms" class="form-group " style="width:18px;height:18px" />
+                </div>
+            </div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="row justify-content-center">
+                    <div class="col-xl-3 col-sm-3">
+                        <button type="reset" class="btn btn-primary btn-block" id="btnlimpiar">LIMPIAR</button>
+                    </div>
+                    <div class="col-xl-3 col-sm-3">
+                        <button type="submit" class="btn btn-success  btn-block" id="btnguardar">GUARDAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </form>
+
+
+</div>
+
+@*<script src="~/js/controller/Utils/ApiController.js"></script>
+    <script src="~/js/areas/maestros/medico/complemento/comregistro.js"></script>*@
+

@@ -1,0 +1,81 @@
+﻿
+@{ ViewData["Title"] = "Horario - Asignar Medicos";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<link href="~/lib/datetimepicker/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+<script src="~/lib/datetimepicker/tempusdominus-bootstrap-4.min.js"></script>
+<link href="~/lib/fullCalendar/fullcalendar.min.css" rel="stylesheet" />
+<div class="card card-success main-card card">
+    <div class="card-body card-body" style="font-size:11px">
+        <div class="row">
+            <div class="col-xl-12">
+                <h3 class="text-center">ASIGNAR HORARIO</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="row justify-content-center" id="cardacciones">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group mb-1 mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form-control-sm" style="height:30px;width:120px">CÓDIGO</span>
+                    </div>
+                    <input type="hidden" id="txtidSucursal" />
+                    <input type="text" class="form-control form-control-sm" id="txtSerieSucursal" tipo="ADMINISTRADOR" disabled>
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="btnBuscarSucursal"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group mb-1 mt-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text form-control-sm" style="height:30px;width:120px">SUCURSAL</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" id="cmbsucursal" disabled>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <label>Consultorio</label>
+                <select class="form-control" id="cboConsultorio"></select>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div id="calender"></div>
+    </div>
+</div>
+<style>
+    table.dataTable.dataTable_width_auto {
+        width: auto;
+    }
+</style>
+<div class="card card-success main-card card mt-2" id="cardreport">
+    <div class="card-body card-body text-center">
+        <div class="row">
+            <div class="col-xl-12 col-sm-12">
+                <div class=" table-responsive" id="tabla">
+                    <table class="table table-responsive-sm  table-sm table-striped" id="tblReportes">
+                        <thead class="thead-dark" style="font-size:10px">
+                        </thead>
+                        <tbody style="font-size:10px"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Maestros/Views/Medico/modal/_modalMedicosDisponibles.cshtml" />
+<partial name="~/Areas/Administrador/Views/Sucursal/modal/_modalSucursalAsignarHorario.cshtml" />
+<partial name="~/Areas/VisitadorMedico/Views/turno/_modalRegistrarTurno.cshtml" />
+<partial name="~/Areas/VisitadorMedico/Views/Horarios/modal/_modalHxdiaxMedico.cshtml" />
+
+
+
+<script src="~/js/areas/visitadormedico/horarios/AsignarMedicos.js"></script>
+<script src="~/lib/fullCalendar/moment.min.js"></script>
+<script src="~/lib/fullCalendar/fullcalendar.js"></script>

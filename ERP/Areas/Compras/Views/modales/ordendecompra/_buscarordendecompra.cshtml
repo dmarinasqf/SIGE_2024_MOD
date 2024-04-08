@@ -1,0 +1,82 @@
+﻿
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalordencompra" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1200 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="exampleModalLabel">BUSCAR ORDEN DE COMPRA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-3 col-md-12">
+                                <div class="form-group text-left">
+                                    <label>N° ORDEN COMPRA</label>
+                                    <input type="text" class="form-control form-control-sm" id="MBOC_txtordencompra" placeholder="Buscar orden de compra" autocomplete="off" />
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="form-group text-left">
+                                    <label>PROVEEDOR</label>
+                                    <input type="text" class="form-control form-control-sm" id="MBOC_txtproveedor" name="proveedor" placeholder="Nombre o RUC">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-12">
+                                <div class="form-group text-left">
+                                    <label>ESTADO</label>
+                                    <select class="form-control form-control-sm" id="MBOC_cmbestado" name="estado">
+                                        <option value=""> [TODOS]</option>
+                                        <option value="PENDIENTE"> PENDIENTE</option>
+                                        <option value="APROBADO"> APROBADO</option>
+                                        <option value="PREINGRESO PARCIAL"> PREINGRESO PARCIAL</option>
+                                        <option value="TERMINADO"> TERMINADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-12">
+                                <div class="form-group text-left">
+                                    <label>FECHA INICIO</label>
+                                    <input type="date" class="form-control form-control-sm" id="MBOC_txtfechainicio" />
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-md-12">
+                                <div class="form-group text-left">
+                                    <label>FECHA FIN</label>
+                                    <input type="date" class="form-control form-control-sm" id="MBOC_txtfechafin" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card bcard h-auto">
+                            <div class="table-responsive">
+                                <table class="table font-12 table-hover table-bordered" id="tblorcompras" width="100%">
+                                    <thead class="">
+                                        <tr>
+                                            <th>N° orden</th>
+                                            <th>Ruc</th>
+                                            <th>Proveedor</th>
+                                            <th>Fecha</th>
+                                            <th>F. Venc</th>
+                                            <th>Estado</th>
+                                            <th>Total</th>
+                                            <th>Destino</th>
+                                            <th>Usuario</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/compras/modales/ordencompra/buscarordencompra.js"></script>

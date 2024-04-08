@@ -1,0 +1,107 @@
+﻿@{
+    ViewData["Title"] = "ReporteVentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/plantilla/modulos/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css" rel="stylesheet" />
+<script src="~/plantilla/modulos/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js"></script>
+
+<div class="card">
+
+    <div class="card-body">
+        <div class="row justify-content-center">
+            <div class="col-xl-11 col-md-6">
+
+                <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                    <h1 class="page-title text-primary-d2 text-140">
+                        REGISTRO DE NOTAS DE CRÉDITO
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row justify-content-center">
+
+            <div class="col-xl-6 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <select id='cmbsucursal' size="10" name="cmbsucursales[]" multiple='multiple'>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-6">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-md-6">
+                        <div class="form-group">
+                            <label>N°NC</label>
+                            <input type="text" id="txtnundocnota" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <div class="form-group">
+                            <label>DOC. DE REFERENCIA</label>
+                            <input type="text" id="txtnumdocventa" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <div class="form-group">
+                            <label>FECHA INICIO</label>
+                            <input type="date" id="txtfechainicio" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <div class="form-group">
+                            <label>FECHA FIN</label>
+                            <input type="date" id="txtfechafin" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-xl-12 col-md-12">
+                        <div class="form-group">
+                            <label>CLIENTE</label>
+                            <input type="text" id="txtcliente" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-xl-2 mt-4 text-center">
+                        <button type="button" class="btn  btn-secondary" id="btnbusqueda"><i class="fas fa-search ml-2 mr-2"></i> Consultar</button>
+                    </div>
+                    <div class="col-xl-2 mt-4 text-center">
+                        <button type="button" class="btn  btn-success" id="btndescargar"><i class="fas fa-file-excel ml-2 mr-2"></i> Exportar</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-2">
+            <div class="col-xl-12 col-sm-12 ">
+                <div class="card bcard h-auto">
+                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                        <table class="table table-sm table-bordered" id="tbllista" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">SUCURSAL</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">TIPO DOCUMENTO</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">NUM NOTA CD</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">FACTURA/BOLETA</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">CLIENTE</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">IMPORTE</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">ESTADO</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">USUARIO</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Maestros/Views/Cliente/modal/modalbusquedayregistrocliente.cshtml" />
+<script src="~/js/controller/ventas/NotaCDController.js"></script>
+
+<script src="~/js/areas/ventas/reporte/reportenotas.js"></script>

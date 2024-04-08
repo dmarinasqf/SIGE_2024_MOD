@@ -1,0 +1,197 @@
+﻿@{ ViewData["Title"] = "ListarPedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<script>
+    var IsAdmin = false;
+
+</script>
+@if (User.IsInRole("ADMINISTRADOR"))
+{
+    <script>
+        IsAdmin = true;
+    </script>
+}
+<div class="row justify-content-center">
+
+    <div class="col-xl-12 text-center">
+        <h4>LISTA DE PEDIDOS</h4>
+    </div>
+</div>
+<div class="card mb-1">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-xl-12">
+                        @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("ACCESO A TODAS LAS SUCURSALES"))
+                        {
+                            <div class="form-group">
+                                <label>LABORATORIO</label>
+                                <select class="form-control form-control-sm" id="txtlaboratorio" tipo="select">
+                                    <option value="" selected>[SELECCIONE]</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>SUCURSAL</label>
+
+                                <select class="form-control form-control-sm" id="txtsucursal" style="width:285px" tipo="select">
+                                    <option value="" selected>[SELECCIONE]</option>
+
+                                </select>
+                            </div> }
+                        else
+                        {
+                            <input type="hidden" id="txtlaboratorio" tipo="input" />
+                            <input type="hidden" id="txtsucursal" tipo="input" />}
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">ESTADO</label>
+                            </div>
+                            <select class="custom-select" id="cmbestado" style="width:285px">
+                                <option value="" selected>[TODOS]</option>
+                                @foreach (var item in ViewBag.estadopedido)
+                                {
+                                    <option value="@item.idestado">@item.descripcion</option>
+}
+                            </select>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-xl-6 col-md-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">FECHA INICIO</label>
+                            </div>
+                            <input type="date" class="form-control" id="txtfechainicio" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">FECHA FIN</label>
+                            </div>
+                            <input type="date" class="form-control" id="txtfechafin" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">HORA INICIO</label>
+                            </div>
+                            <input type="time" class="form-control" value="01:00" id="txthorainicio" style="width:150px" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">HORA FIN</label>
+                            </div>
+                            <input type="time" class="form-control" id="txthorafin" value="23:00" style="width:150px" />
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <a class="btn btn-success btn-block" asp-area="Pedidos" asp-controller="Pedido" asp-action="Registrar"><i class="fas fa-plus ml-2 mr-2"></i> Registrar</a>
+                    <button class="btn btn-info btn-block" id="btnconsultar"><i class="fas fa-search ml2- mr-2"></i> Consultar</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<p></p>
+<partial name="~/Areas/Pedidos/Views/Pedido/complemento/_cometiquetapedido.cshtml" />
+<p></p>
+<div class="row">
+
+    <div class="col-xl-4 col-sm-12 mb-2">
+        <label>
+            <i class="fa fa-search pos-abs mt-2 pt-3px ml-25 text-blue-m2"></i>
+            <input type="text" id="txtfiltrotabladetalle" class="form-control form-control-sm input-datatable-search" placeholder=" Buscar registros" autocomplete="nope" />
+        </label>
+    </div>
+    <div class="col-xl-2 offset-4 mb-2">
+        <button class="btn btn-dark btn-block" id="btnModalRecepcionados">RECEPCIONAR: </button>
+    </div>
+    <div class="col-xl-2 mb-2">
+        <button class="btn btn-dark btn-block" id="btnModalAsignados">ASIGNADOS:</button>
+    </div>
+</div>
+
+<div class="card mt-1" id="carddetalle">
+    <div class="row" onpaste="return false">
+        <div class="col-xl-12 table-responsive" style="min-height:500px">
+            <table class="table   table-sm  table-bordered" width="100%" id="tblpedidos" style="font-size:10.5px;min-height:100px">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="width:3%"></th>
+                        <th></th>
+                        <th></th>
+                        <th>COD</th>
+                        <th>SUCURSAL</th>
+                        @*<th>LABORATORIO</th>*@
+                        <th>FECHA</th>
+                        <th>CLIENTE</th>
+                        <th>DOC</th>
+                        <th>PACIENTE</th>
+                        <th>CMP</th>
+                        <th>MÉDICO</th>
+                        <th>TOTAL</th>
+                        <th>ADEL.</th>
+                        <th>SALDO</th>
+                        <th>USUARIO</th>
+                        <th data-toggle="tooltip" data-placement="top" title="Fecha de entrega de delivery">F.ENT</th>
+                        <th>ESTADO</th>
+                        <th style="width:5%">N°DOC</th>
+                        <th style="width:5%">O. PROD.</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbodydetalle"></tbody>
+            </table>
+        </div>
+        <div class=col-xl-12>
+            <div id="paginacion">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Areas/Pedidos/Views/Pedido/complemento/_modalverpedido.cshtml" />
+<partial name="~/Views/Modales/_modalValidarUsuario.cshtml" />
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modaltransferirpedido.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modaldificultadpedido.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalverdificultadpedidos.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalterminarpedido.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modaleditarpedido.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalEdicionEtiquetas.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modaldatosadicionalesprecioproducto.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalListaPrecioClientes.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalDetalleLaboratorioAsignado.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalDetalleLaboratorioRecepcionado.cshtml" />
+
+<script src="~/js/areas/pedidos/pedidos/laboratorio/laboratorio.js"></script>
+
+
+<script src="~/js/controller/librorecetas/LibroRecetasController.js"></script>
+<script src="~/js/controller/pedidos/EtiquetasController.js"></script>
+<script src="~/js/controller/maestros/PacienteController.js"></script>
+<script src="~/js/controller/pedidos/LaboratorioController.js"></script>
+<script src="~/js/controller/pedidos/PedidoController.js"></script>>
+<script src="~/js/controller/pedidos/EstadoPedidoController.js"></script>
+<script src="~/js/controller/maestros/MedicoController.js"></script>

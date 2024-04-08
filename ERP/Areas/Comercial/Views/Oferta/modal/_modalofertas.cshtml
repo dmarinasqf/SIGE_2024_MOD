@@ -1,0 +1,47 @@
+﻿
+<div class="modal fade" id="modalofertas" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">BUSCAR OFERTAS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 mb-4">
+                                <input type="text"  id="MO_txtfiltro" class="form-control form-control-sm text-uppercase" placeholder="Ingrese nombre de oferta"/>
+                            </div>
+                            <div class="col-xl-12 col-sm-12 table-responsive contenedor-sticky-500">
+                                <table class="table table-sm table-bordered" width="100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="width:5%">Cod</th>
+                                            <th style="width:45%">Nombre</th>
+                                            <th  style="width:15%">Tipo</th>
+                                            <th  style="width:10%">Fecha inicio</th>
+                                            <th  style="width:10%">Fecha fin</th>
+                                            <th  style="width:10%">Estado</th>
+                                            <th ></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="MO_tbodyofertas"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/comercial/ofertas/modal/modalofertas.js"></script>

@@ -1,0 +1,192 @@
+﻿@model System.Data.DataTable
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ImprimirTicket</title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <link href="~/css/pagina/impresiones/venta/ticket.css" rel="stylesheet" />
+    <script src="~/lib/qfcode/qrcode.min.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        td {
+            font-size: 12px;
+            font-family: Calibri;
+            font-weight: 500;
+            letter-spacing: -0.3px
+        }
+
+        #tbltbodydetalleimprecion tr td {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        #tbldetalleimprecion thead tr th {
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var data =@Html.Raw(JsonConvert.SerializeObject(Model));
+        var cabecera = JSON.parse(data[0]['CABECERA'])[0];
+        var detalle = JSON.parse(data[0]['DETALLE']);
+        var empresa = JSON.parse(data[0]['EMPRESA'])[0];
+        var pago = JSON.parse(data[0]['PAGO'])[0];
+    </script>
+    <div id="aplicacion" class="table-box">
+        <div class="row">
+            <table width="100%">
+                <tr style="text-align:center">
+                    <td><img v-bind:src="'/imagenes/empresas/' + empresa.imagen" height="60px" width="150px" /></td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td colspan="4" style="font-size:10px">{{ empresa.descripcion }}</td>
+                </tr>
+                <tr style="text-align:center;margin-top:15px;">
+                    <td colspan="4" style="font-weight: 700">{{ empresa.nombrecomercial }}</td>
+                </tr>
+                <tr style="text-align:center;margin-top:15px">
+                    <td colspan="4">RUC {{ empresa.ruc }}</td>
+
+                </tr>
+                <tr style="text-align:center;margin-top:15px">
+                    <td colspan="4" style="font-size:9px">
+                        {{ empresa.direccion }}
+                    </td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td colspan="2" style="font-size:9px" v-if="empresa.celular!=''">CEL {{ empresa.celular }}</td>
+                    <td colspan="2" style="font-size:9px" v-if="empresa.telefono!=''">TEL {{ empresa.telefono }}</td>
+                </tr>
+                <tr style="text-align:center">
+                    <td colspan="4" style="font-weight: 700">{{ cabecera.doctribnota}} ELECTRONICA </td>
+
+                </tr>
+                <tr style="text-align:center;margin-top:15px;font-weight:700">
+                    <td colspan="4">{{ cabecera.serienota }}{{ cabecera.numdocnota}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <table width="100%">
+                <tr>
+                    <td><label>Sucursal: </label></td>
+                    <td>{{cabecera.sucursal}}</td>
+                </tr>
+                <tr>
+                    <td><label>Dirección: </label></td>
+                    <td style="font-size:9px">{{cabecera.direccionsucursal}}</td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de Emisión:</label></td>
+                    <td>{{cabecera.fechanota}}</td>
+                </tr>
+                <tr>
+                    <td><label>{{cabecera.doctribventa}}:</label></td>
+                    <td>{{cabecera.serieventa}}{{cabecera.numdocventa}}</td>
+                </tr>
+                <tr>
+                    <td><label>Tipo de {{ cabecera.doctribnota}}:</label></td>
+                    <td>{{cabecera.tipodocumento}}</td>
+                </tr>
+                <tr>
+                    <td><label>Motivo:</label></td>
+                    <td>{{cabecera.motivodevolucion}}</td>
+                </tr>
+
+
+                <tr>
+                    <td><label>Cliente:</label></td>
+                    <td>{{cabecera.numdoccliente}}-{{cabecera.nombrecliente}}</td>
+                </tr>
+                <tr>
+                    <td><label>Vendedor:</label></td>
+                    <td>{{cabecera.empleado}}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="row" style="margin-top:10px">
+            <table width="100%" id="tbldetalleimprecion">
+                <thead style="font-size:12px">
+                    <tr>
+                        <th>PRODUCTO</th>
+                        <th>CANT.</th>
+                        <th>P.UNIT</th>
+                        <th>IMP.</th>
+                    </tr>
+                </thead>
+                <tbody v-html="detallehtml">
+                </tbody>
+            </table>
+        </div>
+        <hr style="margin-top:10px" />
+        <table width="100%">
+            <tr>
+                <td colspan="3">OP GRAVADA</td>
+                <td style="text-align:right">{{pago.simbolomoneda}}</td>
+                <td style="text-align:right">{{subtotal}}</td>
+            </tr>
+            <!--//EARTCOD1009-->
+            <tr>
+                <td colspan="3">DESCUENTOS</td>
+                <td style="text-align:right">{{pago.simbolomoneda}}</td>
+                <td style="text-align:right">{{pkdescuento}}</td>
+            </tr>
+            <!--//-EARTCOD1009-->
+            <tr>
+                <td colspan="3">IGV</td>
+                <td style="text-align: right">{{pago.simbolomoneda}}</td>
+                <td style="text-align: right">{{igv}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">IMPORTE ICBPER</td>
+                <td style="text-align: right">{{pago.simbolomoneda}}</td>
+                <td style="text-align: right">0.00</td>
+            </tr>
+            <tr>
+                <td colspan="3">IMPORTE TOTAL</td>
+                <td style="text-align: right">{{pago.simbolomoneda}}</td>
+                <td style="text-align: right">{{total}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">TOTAL REDONDEADO</td>
+                <td style="text-align: right">{{pago.simbolomoneda}}</td>
+                <td style="text-align: right">{{totalredondeo}}</td>
+            </tr>
+        </table>
+        <hr style="margin-top:10px" />
+
+        <div id="qrcode" style="text-align:center;margin-top:20px"></div>
+        <table width="100%">
+            <tr>
+                <td id="lblmensajeurl" class="text-center">
+                    Guarda tu voucher. Es el sustento para validar tu compra. Representación impresa de la {{ cabecera.documentotributario}} ELECTRONICA,
+                    puede ser consultada en : {{ url }} @*https://sistemaenlinea.qf.com.pe:8049/*@
+                </td>
+            </tr>
+            <tr>
+                <td id="lblmensajedevolucion" class="text-center">
+                    NO HAY DEVOLUCION DE DINERO. TODO CAMBIO DE MERCADERIA SE HARA DENTRO DE LAS 48 HORAS PREVIA PRESENTACION DEL
+                    COMPROBANTE Y VERIFICACION POR PARTE DEL QUIMICO FARMACEUTICO
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</body>
+</html>
+
+<script src="~/js/areas/ventas/notacd/imprimirticket.js"></script>
+
+

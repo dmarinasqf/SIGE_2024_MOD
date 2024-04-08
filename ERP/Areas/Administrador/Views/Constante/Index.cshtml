@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ENTIDADES.Generales.Constante>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE CONSTANTES
+            </h1>
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                <!-- dataTables search box will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-hover table-bordered" width="100%" id="tbllista">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>CATEGORIA</th>
+                            <th>NOMBRE</th>
+                            <th>VALOR</th>
+                            <th>DESCRIPCIÓN</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>               
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE CONTSNATES</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <form method="post" autocomplete="off" id="form-registro">
+                        <div class="card-body">
+
+                            <input type="hidden" name="idconstante" class="form-control form-control-sm" id="txtcodigo" required />
+                            <div class="form-group">
+                                <label>NOMBRE</label>
+                                <input type="text" name="nombre" class="form-control form-control-sm" id="txtnombre" disabled />
+                            </div>
+                            <div class="form-group">
+                                <label>CATEGORIA</label>
+                                <input type="text" name="categoria" class="form-control form-control-sm" id="txtcategoria" disabled />
+                            </div>
+                            <div class="form-group">
+                                <label>DESCRIPCIÓN</label>
+                                <textarea rows="3" name="descripcion" class="form-control form-control-sm" id="txtdescripcion" disabled></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>VALOR</label>
+                                <input type="text" name="valor" class="form-control form-control-sm" id="txtvalor" />
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+            <div class="modal-footer"> </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/administrador/constante.js"></script>

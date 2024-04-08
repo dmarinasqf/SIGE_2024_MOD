@@ -1,0 +1,214 @@
+﻿
+<div class="row">
+    <div class="col-lg-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" style=" ">
+                    <div class="col-lg-12">
+                        <div class="form-inline">
+                            <label style="margin-right:20px">ASOCIADO A VINALI</label>
+                        </div>
+                    </div>
+                </div>
+
+                <label style="margin-top:20px;  margin-left:20px;">COSTO DE TURNO</label>
+                <div style="margin-right:20px;margin-left:20px">
+                    <div class="row border border-dark">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group  col" style="font-size:13px">
+                                <label>LIMA METROPOLITANA</label>
+                                <input type="text" id="txtcostolimametropolitana" name="costoLima" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group  col" style="font-size:13px">
+                                <label>PROVINCIA</label>
+                                <input type="text" id="txtcostoprovincia" name="costoProvincia" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top:15px">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-inline">
+                            <label style="margin-right:20px;margin-top:20px">TELECONSULTA</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group" style="font-size:13px">
+                            <label>COSTO TELECONSULTA</label>
+                            <input type="number" id="txtcostoteleconsulta" step="0.1" name="costoteleconsulta" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-inline">
+                            <label style="margin-right:20px;margin-top:20px">CONSULTA PRESENCIAL</label>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <div class="form-group" style="font-size:13px">
+                            <label>COSTO CONSULTA PRESENCIAL</label>
+                            <input type="number" id="txtcostoconsultapresencial" step="0.1" name="costoconsultapresencial" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group ">
+                            <label>USUARIO GDP</label>
+                            <input type="text" id="txtusuario" name="usuario" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group ">
+                            <label>CLAVE GDP</label>
+                            <input type="text" id="txtclave" name="clave" class="form-control form-control-sm" onKeyUp="this.value=this.value.toUpperCase();" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group ">
+                            <label>USUARIO ZOOM</label>
+                            <input type="text" id="txtusuariozoom" name="usuariozoom" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group ">
+                            <label>CLAVE ZOOM</label>
+                            <input type="text" id="txtclavezoom" name="clavezoom" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group ">
+                            <label>API Key</label>
+                            <textarea rows="2" id="txtzoomapikey" name="zoomapikey" class="form-control form-control-sm"></textarea>
+                            @*<input type="text" id="txtusuario" name="zoomapikey" class="form-control form-control-sm" />*@
+                        </div>
+
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group ">
+                            <label>API Secret</label>
+                            <textarea rows="2" id="txtzoomapisecret" name="zoomapisecret" class="form-control form-control-sm"></textarea>
+                            @*<input type="text" id="txtclave" name="zoomapisecret" class="form-control form-control-sm" onKeyUp="this.value=this.value.toUpperCase();" />*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row" style=" ">
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="form-inline">
+                            <label style="margin-right:20px">CONVENIO</label>
+                        </div>
+                    </div>
+                </div>
+
+                <label style="margin-top:20px;  margin-left:20px;">COMISIÓN DE FM</label>
+                <div style="margin-right:20px;margin-left:20px">
+                    <div class="row border border-dark">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group  col" style="font-size:13px">
+                                <label>S/.VENTAS < 50</label>
+                                <input type="number" id="txtcomisionfm1" name="comisionfm1" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group  col" style="font-size:13px">
+                                <label>S/.VENTAS > 50</label>
+                                <input type="number" id="txtcomisionfm2" name="comisionfm2" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-xs-12">
+                        <label style="margin-top:20px;  margin-left:20px;">COMISIÓN DE PT</label>
+                        <div style="margin-right:20px;margin-left:20px">
+                            <div class="row border border-dark">
+                                <div class="col-xl-10 col-xs-12">
+                                    <label>TOTAL VENTAS</label>
+                                    <div class="input-group mb-3">
+                                        <input type="number" id="txtcomisionpt1" name="comisionpt1" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                                        <div class="input-group-append">
+                                            <span style="background-color: #e9ecef;" class="form-control form-control-sm">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-xs-12">
+                        <label style="margin-top:20px;  margin-left:20px;">COMISIÓN DE PROCEDIMIENTOS</label>
+                        <div style="margin-right:20px;margin-left:20px">
+                            <div class="row border border-dark">
+                                <div class="col-xl-10 col-xs-12">
+                                    <label>TOTAL VENTAS</label>
+                                    <div class="input-group mb-3">
+                                        <input type="number" id="txtcomisionprocedimiento" name="comisionprocedimiento" class="form-control form-control-sm" onkeypress="return isNumberKey(event);">
+                                        <div class="input-group-append">
+                                            <span style="background-color: #e9ecef;" class="form-control form-control-sm">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row" style="margin-top:20px;">
+                    <div class="col-xl-12 col-sm-12">
+                        <table width="100" class="table table-sm table-bordered">
+                            <tr>
+                                <td>TERCERO</td>
+                                <td>MS</td>
+                            </tr>
+
+                            <tr>
+                                <td>CONOCE CANNABIS</td>
+                                <td>CONOCE DE FM</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                <td>CUANTITATIVO</td>
+                                <td>
+                                    <select id="cmbrangocuantitativo" disabled>
+                                        <option>-</option>
+                                        <option value="A">A</option>
+                                        <option value="B">B</option>
+                                        <option value="C">C</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    @*<div class="col-lg-6 col-sm-12">
+                            <div class="form-inline">
+                                <label style="margin-right:20px">MS</label>
+                                <input type="checkbox" id="checktercero" class="form-group " style="width:18px;height:18px" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <div class="form-inline">
+                                <label style="margin-right:20px">MS</label>
+                                <input type="checkbox" id="checkms" class="form-group " style="width:18px;height:18px" />
+                            </div>
+                        </div>*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

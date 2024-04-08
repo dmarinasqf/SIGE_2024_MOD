@@ -1,0 +1,94 @@
+﻿@{
+    ViewData["Title"] = "Requerimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-md-6">
+        <div class="page-header pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE REQUERIMIENTOS
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-6 pt-1">
+        <a asp-action="RegistrarEditar" class="btn btn-primary btn-block">Registrar<i class="fas fa-check ml-2"></i></a>
+    </div>
+</div>
+
+<div class="body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card p-2">
+                <div class="header bg-blue-grey">
+                    <h7>PANEL DE BÚSQUEDA</h7>
+                </div>
+                <div class="body">
+                    <form autocomplete="off" id="form-busqueda">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label>SUCURSAL</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @*<input type="text" id="txtsucursal" class="form-control" name="suc_codigo">*@
+                                                <select class="form-control form-control-sm" id="txtsucursal" name="suc_codigo"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label>GRUPO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @*<input type="text" id="txtgrupo" class="form-control" name="idgrupo">*@
+                                                <select class="form-control form-control-sm" id="cmbgrupo" name="idgrupo" required></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label>ESTADO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control" id="cmbestado" name="estado">
+                                                    <option value=""> [TODO]</option>
+                                                    <option value="HABILITADO"> HABILITADO</option>
+                                                    <option value="DESHABILITADO"> DESHABILITADO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-3">
+                                <button type="submit" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-detalle table-sm table-hover  text-center" width="100%" id="tbllista">
+            <thead>
+                <tr class="thead-dark">
+                    <th></th>
+                    <th>CODIGO</th>
+                    <th>GRUPO</th>
+                    <th>USUARIO</th>
+                    <th>FECHA SOLICITUD</th>
+                    <th>ESTADO</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+
+<script src="~/js/areas/compras/requerimiento/index.js"></script>
+<script src="~/js/controller/compras/RequerimientoController.js"></script>
+@*<script src="~/js/controller/compras/AprobarFacturaController.js"></script>*@

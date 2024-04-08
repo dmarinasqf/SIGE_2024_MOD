@@ -1,0 +1,134 @@
+﻿<div class="modal fade" id="MRV_modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2 modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRO DE VEHICULO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                        <form method="post" autocomplete="off" id="MRV_form_vehiculo">
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <input type="hidden" name="idvehiculo" value="" id="MRV_txtcodigo" />
+                                        <input type="hidden" value="nuevo" id="MRV_txtoperacion" disabled />
+
+                                        <div class="col-xl-6 col-xs-12">
+                                            <label>MARCA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="MRV_txtmarca" class="form-control form-control-sm mayusculas" onblur="fnmayusculas(this);" name="marca" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-xs-12">
+                                            <label>MODELO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="MRV_txtmodelo" class="form-control form-control-sm mayusculas" onblur="fnmayusculas(this);" name="modelocarro" required>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-xs-12">
+                                            <label>Nº MATRÍCULA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="MRV_txtmatricula" class="form-control form-control-sm mayusculas" maxlength="6" name="matricula">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-xs-12">
+                                            <label>ESTADO</label>
+                                            <div class="form-group">
+                                                <div class="form-line ">
+                                                    <select class="form-control form-control-sm show-tick" id="MRV_cmbestado" name="estado" required>
+                                                        <option value="HABILITADO" selected>HABILITADO</option>
+                                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header bg-blue-grey">
+                                    <h6>DATOS CONDUCTOR</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-xl-6 col-xs-12">
+                                            <label>DOCUMENTO IDENTIDAD</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="MRV_txtdocumentoidentidad" class="form-control form-control-sm" maxlength="12" name="documentoidentidad">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-xs-12">
+                                            <label>Nº LICENCIA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="MRV_txtlicencia" class="form-control form-control-sm mayusculas" name="licencia" maxlength="9">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>NOMBRE Y APELLIDOS</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="MRV_txtnombrechofer" class="form-control form-control-sm mayusculas" onblur="fnmayusculas(this);" name="nombres">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 col-xs-12">
+                                            <label>TIPO LICENCIA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select id="MRV_cmbtipolicencia" class="form-control form-control-sm mayusculas" name="tipolicencia">
+                                                        <option value="A-I" selected>A-I</option>
+                                                        <option value="A-IIa">A-IIa</option>
+                                                        <option value="A-IIb">A-IIb</option>
+                                                        <option value="A-IIIa">A-IIIa</option>
+                                                        <option value="A-IIIb">A-IIIb</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-xs-12">
+                                            <label>TELEFONO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="tel" id="MRV_txttelefono" class="form-control form-control-sm mayusculas" name="telefono" maxlength="10">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <label>DIRECCIÓN</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="MRV_txtdireccion" class="form-control form-control-sm mayusculas" onblur="fnmayusculas(this);" name="direccion">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                    <button class="btn btn-success btn-block" id="MRV_btnguardar" type="submit">GUARDAR DATOS</button>
+                    <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/transporte/registroempresa/modal/modalregistrovehiculo.js"></script>

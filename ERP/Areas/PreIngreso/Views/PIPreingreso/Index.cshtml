@@ -1,0 +1,107 @@
+﻿
+
+@{
+    ViewData["Title"] = "Listar PreIngresos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.verificar == "ok")
+{
+    <div class="row">
+        <div class="col-xl-10">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    PRE INGRESOS
+                </h1>
+
+            </div>
+        </div>
+        <div class="col-xl-2 col-sm-12">
+            <a asp-action="Registrar" class="btn btn-primary "> <I class="fas fa-plus"></I> </a>
+        </div>
+    </div>
+    <hr />
+    <form autocomplete="off" id="form-busqueda">
+        <div class="row">
+            <div class="col-xl-3 col-md-12">
+                <div class="form-group">
+                    <label>N° PRE INGRESO</label>
+                    <input type="text" id="txtcodpreingreso" class="form-control" name="preingreso">
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-12">
+                <div class="form-group">
+                    <label>N° DE ORDEN</label>
+                    <input type="text" id="txtcodigororden" class="form-control" name="orden">
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-12">
+                <div class="form-group">
+                    <label>N° DE FACTURA</label>
+                    <input type="text" id="txtcodigofactura" class="form-control" name="factura">
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-12">
+                <label>ESTADO</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        <select class="form-control" name="estado">
+                            <option value=""> </option>
+                            <option value="ANULADO"> ANULADO</option>
+                            <option value="PENDIENTE"> PENDIENTE</option>
+                            <option value="TERMINADO"> TERMINADO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-1 mt-4">
+                <button type="submit" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-2">
+        <div class="col-xl-12">
+            <div class="card bcard h-auto">
+                <div class="border-t-3 brc-blue-m2 table-responsive  " id=" paneltabla ">
+                    <table class="table   table-hover  table-bordered " width="100%" id="tbllista">
+                        <thead class="">
+                            <tr>
+                                <th></th>
+                                <th>PREINGRESO</th>
+                                <th>NUM ORDEN</th>
+                                <th>FACTURAS</th>
+                                <th>FECHA</th>
+                                <th>PROVEEDOR</th>
+                                <th>USUARIO</th>
+                                <th>ESTADO</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class=" font-10">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="alert-warning" style="color:black; padding:50px;margin:50px; font-size:1.2rem" role="alert">
+                <h4 class="alert-heading">ADVERTENCIA</h4>
+                @ViewBag.verificar
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="modal/_modalfacturaspreingreso.cshtml" />
+<script src="~/js/areas/preingreso/preingreso/index.js"></script>
+<script src="~/js/controller/preingreso/PreingresoController.js"></script>

@@ -1,0 +1,73 @@
+﻿@if (User.IsInRole("MOTORIZADO") || User.IsInRole("JEFE_MOTORIZADO") || User.IsInRole("MENU MOTORIZADO")
+|| User.IsInRole("ADMINISTRADOR"))
+{
+    <li class="nav-item">
+        <a href="#" class="nav-link dropdown-toggle collapsed">
+            <i class="nav-icon fa fa-cube"></i>
+            <span class="nav-text fadeable">
+                <span>Motorizado</span>
+            </span>
+            <b class="caret fa fa-angle-left rt-n90"></b>
+        </a>
+        <div class=" submenu collapse">
+            <ul class="submenu-inner">
+
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("JEFE_MOTORIZADO"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Pedidos" asp-controller="Delivery" asp-action="AsignarPedidos"> Asignar Pedidos</a>
+                    </li>
+                }
+
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("JEFE_MOTORIZADO") || User.IsInRole("MOTORIZADO"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Pedidos" asp-controller="Motorizado" asp-action="RecepcionarPedidos"> Recepcionar Pedido</a>
+                    </li>
+                }
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("JEFE_MOTORIZADO") || User.IsInRole("MOTORIZADO"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Pedidos" asp-controller="Motorizado" asp-action="EnRutaPedidos"> En Ruta Pedido</a>
+                    </li>
+                }
+
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("JEFE_MOTORIZADO") || User.IsInRole("MOTORIZADO"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Pedidos" asp-controller="Motorizado" asp-action="PedidosPorEntregar"> Pedidos Por Entregar</a>
+                    </li>
+                }
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("JEFE_MOTORIZADO") || User.IsInRole("MOTORIZADO"))
+                {
+                    <li class="nav-item">
+                        <a href="#" class="nav-link dropdown-toggle collapsed">
+                            <span class="nav-text fadeable">
+                                <span>Reportes</span>
+                            </span>
+                            <b class="caret fa fa-angle-left rt-n90"></b>
+                        </a>
+
+                        <div class="hideable submenu collapse">
+                            <ul class="submenu-inner">
+                                <li class="nav-item">
+                                    <ul class="submenu-inner">
+                                        <li class="nav-item">
+                                            <a class="nav-link"
+                                               asp-area="Pedidos"
+                                               asp-controller="Motorizado"
+                                               asp-action="ReporteGeneral">
+                                                Reporte General
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+
+
+    </li>}

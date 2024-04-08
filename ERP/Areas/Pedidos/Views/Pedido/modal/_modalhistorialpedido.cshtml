@@ -1,0 +1,66 @@
+﻿
+<div class="modal fade" id="modalhistorialpedido" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1500 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="form-inline">
+                    <label class="mr-4">HISTORIAL DE PEDIDOS DEL - <span id="MHPlbltipo"></span> - <span id="MHPlblnombre_cli_pac"></span> </label>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="MHPtxtidpaccli" value="" />
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-5 col-sm-6">
+                                <div class="input-group input-group-sm mb-1">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text">RANGO DE FECHA</label>
+                                    </div>
+                                    <input type="text" class="form-control" id="MHPtxtrango" style="width:300px" >
+                                    <button class="btn btn-outline-dark btn-sm form-control" id="MHPbtnbuscar" type="button" style="width:50px"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 min-vh-50">
+                                <table class="table table-bordered table-sm table-hover" id="MHPtbdata">
+                                    <thead class="thead-dark">
+                                        <tr>         
+                                            <th></th>
+                                            <th>COD</th>
+                                            <th>SUCURSAL</th>
+                                            <th>FECHA</th>
+                                            <th style="width:15%">CLIENTE</th>
+                                            <th style="width:15%">PACIENTE</th>
+                                            <th style="width:15%">MEDICO</th>
+                                            <th>N DOC.</th>
+                                            <th>ORDEN</th>
+                                            <th>TOTAL</th>
+                                            
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="MHPtbody"></tbody>
+                                </table>
+                            </div>
+                            <div class="col-xl-12">
+                                <div id="MHPpaginacion">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/areas/pedidos/pedidos/modal/modalhistorialpedido.js"></script>

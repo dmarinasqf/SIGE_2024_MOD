@@ -1,0 +1,107 @@
+﻿@model System.Data.DataTable
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>  </title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <link href="~/css/pagina/impresiones/analisisorganoleptico/analisisorganoleptico.css" rel="stylesheet" />
+<style>
+
+table,tfoot, tr{
+        border: 0px;
+        text-align: center;
+}
+</style>
+</head>
+
+<body class="font-roboto">
+    <script>
+        var data =@Html.Raw(JsonConvert.SerializeObject(Model));
+    </script>
+    <div id="aplicacion" class="table-box">
+        <div class="row" style="margin-top:10px;margin-left:10px;margin-right:10px;">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th colspan="6" rowspan="3">
+                            <div style="text-align:center">
+                                <img src="~/imagenes/empresas/QF.png" height="30" width="180" id="imglogo" />
+                            </div>
+                        </th>
+                        <th colspan="22" rowspan="1" style="padding: 2px;">REGISTRO DE RECEPCIÓN Y VALIDACIÓN DE LA RECETA MÉDICA</th>
+                        <th colspan="2" rowspan="3" style="padding: 2px;">
+                            <table width="100%">
+                                <tr>
+                                    <td style="font-weight: bold; border: none;">Código:</td>
+                                    <td style="font-weight: normal; border: none;">F.QF.GF.001</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: none;">Versión:</td>
+                                    <td style="font-weight: normal; border: none; ">00</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: none;">Páginas:</td>
+                                    <td style="font-weight: normal; border: none;">#</td>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="22" rowspan="1" style="padding: 2px;"><div class="text-left">Tipo de documento: <label style="font-weight: normal;">Formato</label></div></th>
+                    </tr>
+                    <tr>
+                        <th colspan="22" rowspan="1" style="padding: 2px;"><div class="text-left">Proceso: <label style="font-weight: normal;">Gestión Farmaceútica</label></div></th>
+                    </tr>
+                    <tr>
+                        <th colspan="10" rowspan="1" style="padding: 2px;"><div class="text-left">Elaborador por: </div><label style="font-weight: normal;">Director Técnico</label></th>
+                        <th colspan="10" rowspan="1" style="padding: 2px;"><div class="text-left">Revisado por: </div><label style="font-weight: normal;">Representante legal</label></th>
+                        <th colspan="10" rowspan="1" style="padding: 2px;"><div class="text-left">Aprobado por: </div><label style="font-weight: normal;">Representante legal</label></th>
+                    </tr>
+                    <tr>
+                        <th colspan="10" rowspan="1" style="padding: 2px; font-weight: normal;"><div class="text-left">Fecha: 17/08/2023</div></th>
+                        <th colspan="10" rowspan="1" style="padding: 2px; font-weight: normal;"><div class="text-left">Fecha: 21/08/2023</div></th>
+                        <th colspan="10" rowspan="1" style="padding: 2px; font-weight: normal;"><div class="text-left">Fecha: 21/08/2023</div></th>
+                    </tr>
+                    <tr>
+                        <th colspan="1" rowspan="1">ID</th>
+                        <th colspan="2" rowspan="1">Fecha</th>
+                        <th colspan="3" rowspan="1">Paciente</th>
+                        <th colspan="2" rowspan="1">Codigo</th>
+                        <th colspan="4" rowspan="1">Descripcion de receta medica</th>
+                        <th colspan="2" rowspan="1">Medico</th>
+                        <th colspan="1" rowspan="1">CMP</th>
+
+                        <th colspan="2" rowspan="1">(a) Nombre y número de colegiatura del profesional prescriptor, así como nombre y dirección del establecimiento de salud (en forma impresa o sellada)</th>
+                        <th colspan="2" rowspan="1">(b) Nombre, apellido y edad del paciente</th>
+                        <th colspan="2" rowspan="1">(c) Nombre del producto con su denominación común internacional</th>
+                        <th colspan="2" rowspan="1">(d) Concentracion y Forma Farmaceutica</th>
+                        <th colspan="2" rowspan="1">(e) Posología, indicando número de unidades por toma y día, así como la duración de tratamiento e indicaciones.</th>
+                        <th colspan="2" rowspan="1">(f) Lugar y fecha de expedición y expiración de la receta.</th>
+                        <th colspan="2" rowspan="1">(g) Sello y firma del prescriptor que la extiende.</th>
+                        <th colspan="2" rowspan="1">¿Se verifica en la receta adiciones, tachaduras, enmendaduras, borrones y sustituciones?</th>
+
+                    </tr>
+                </thead>
+                <tbody v-html="tbldetalleao">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="30" class="Without-Border">
+                            (a) Nombre, dirección y número de colegiatura del profesional que la extiende y nombre de establecimiento de salud cuando se trate de recetas
+                            estandarizadas. (b) Identificación del paciente: Nombre, apellidos y edad del paciente. (c) Nombre del producto farmacéutico objeto de la prescripción
+                            en su denominación común internacional (DCI).(d) Concentración y forma farmacéutica.(e) Posología, número de unidades por toma y día, así como la duración
+                            del tratamiento. (f) Lugar y fecha de expedición y expiración de la receta. (g) Sello y firma del prescriptor que la extiende.
+                        </th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="~/js/areas/pedidos/pedidos/reportes/imprimir.js"></script>

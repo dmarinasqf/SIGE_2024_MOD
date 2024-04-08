@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewData["Title"] = "AsignarLineaCredito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="box box-success">
+    <div class="box-header">
+        <h3 class="text-center">VALIDAR PAGOS</h3>
+    </div>
+
+    <div class="box-body">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">RANGO DE FECHA</label>
+                            </div>
+                            <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="form-group text-center">
+                            <button class="btn btn-outline-info " style="width:150px;margin-bottom:3px" id="btnConsultar" onclick="listarDepositos()">CONSULTAR</button>
+
+                        </div>
+                        <div class="text-center mostrar" id="spinners">
+                            <div class="spinner-grow text-primary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-secondary" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-success" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-danger" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <div class="spinner-grow text-warning" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+
+                    <div class="col-xl-12 col-sm-12 table-responsive">
+                        <table class="table table-sm table-bordered" width="100%" id="tbllista">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>IMAGEN</th>
+                                    <th>SUC REGISTRO</th>
+                                    <th>FECHA</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="FECHA DE DEPOSITO">F. DEP</th>
+                                    <th>BANCO</th>
+                                    <th>CUENTA</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="NUMERO DE OPERACIÓN">N. OPERAC.</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="ES INTERBANCARIO">INT.</th>
+                                    <th>MONTO</th>
+
+                                    <th>TABLA</th>
+                                    <th>OBS</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="USUARIO QUE REGISTRA">U. REGISTRA</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="USUARIO QUE VALIDA">U. VALIDA</th>
+                                    <th><i class="fas fa-check"></i></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size:11px"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<partial name="~/Areas/Finanzas/Views/FPagos/modal/_modaleditarpago.cshtml" />
+
+
+
+
+<script src="~/js/controller/finanzas/PagoController.js"></script>
+<script src="~/js/areas/finanzas/pagos/ValidarPagos.js"></script>

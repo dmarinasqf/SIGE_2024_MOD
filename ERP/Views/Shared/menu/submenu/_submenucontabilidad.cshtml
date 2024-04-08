@@ -1,0 +1,46 @@
+﻿@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU CONTABILIDAD"))
+{
+<li class="nav-item">
+    <a href="#" class="nav-link dropdown-toggle collapsed">
+        <i class="nav-icon fa fa-cube"></i>
+        <span class="nav-text fadeable">
+            <span>Contabilidad</span>
+        </span>
+        <b class="caret fa fa-angle-left rt-n90"></b>
+    </a>
+    <div class="submenu collapse">
+        <ul class="submenu-inner">
+            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VER ASIGNAR CAJA CHICA"))
+            {
+                <li class="nav-item">
+                    @*<a class="nav-link" asp-area="Contabilidad" asp-controller="CajaChica" asp-action="Index">Rendición Caja Chica</a>*@
+                    <a class="nav-link" href="/Contabilidad/AsignarCajaChica">Asignar Caja Chica</a>
+                </li>
+            }
+            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VER VALIDAR RENDICION"))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/Contabilidad/AsignarCajaChica/ValidarRendicionCajaChica">Validar Rendición</a>
+                </li>
+            }
+            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VER RENDICION CAJA CHICA"))
+            {
+                <li class="nav-item">
+                    @*<a class="nav-link" asp-area="Contabilidad" asp-controller="CajaChica" asp-action="Index">Rendición Caja Chica</a>*@
+                    <a class="nav-link" href="/Contabilidad/RendicionCajaChica">Rendición Caja Chica</a>
+                </li>
+            }
+
+            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VER REPORTE GENERAL CAJA CHICA"))
+            {
+                <li class="nav-item">
+                    @*<a class="nav-link" asp-area="Contabilidad" asp-controller="CajaChica" asp-action="Index">Rendición Caja Chica</a>*@
+                    <a class="nav-link" href="/Contabilidad/ReporteCajaChica">Reporte Caja chica</a>
+                </li>
+            }
+
+
+        </ul>
+    </div>
+    <b class="sub-arrow"></b>
+</li>}

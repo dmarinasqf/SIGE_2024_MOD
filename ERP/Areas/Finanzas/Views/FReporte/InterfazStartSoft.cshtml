@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "InterfazStartSoft";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-8">
+        <div class="card">
+            <div class="card-header">
+                REPORTE DE STARTSOFT 
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-md-6">
+                        <div class="form-group">
+                            <label>FECHA INICIO</label>
+                            <input type="date" id="txtfechainico" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-md-6">
+                        <div class="form-group">
+                            <label>FECHA FIN</label>
+                            <input type="date" id="txtfechafin" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="col-xl-8 text-center">
+                        <button class="btn btn-success" id="btndescargar">DESCARGAR</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/finanzas/reporte/interfazstartsoft.js"></script>
+
+<script src="~/js/controller/finanzas/ReporteFinanzasController.js"></script>
+

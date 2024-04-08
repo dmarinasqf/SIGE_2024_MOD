@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Delivery\command\**" />
+    <EmbeddedResource Remove="Delivery\command\**" />
+    <None Remove="Delivery\command\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Erp.Persistencia\Erp.Persistencia.csproj" />
+    <ProjectReference Include="..\Erp.SeedWork\Erp.SeedWork.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Delivery\command\" />
+    <Folder Include="Maestros\colegiomedico\NewFolder1\" />
+    <Folder Include="Maestros\colegiomedico\NewFolder2\" />
+  </ItemGroup>
+
+</Project>

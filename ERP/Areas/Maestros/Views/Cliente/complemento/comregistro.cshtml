@@ -1,0 +1,185 @@
+﻿
+<script>
+    //let IDEMPRESA = @Html.Raw(Json.Serialize(ViewBag.idempresa));
+</script>
+<div class="row">
+    <div class="col-xl-3">
+        <div class="form-group">
+            <label>IMAGEN</label>
+            <input type="file" id="txtfileimagen" accept="image/*" class="form-group" />
+        </div>
+        <div class="form-group">
+            <img alt="No tiene imagen" width="300" height="400" class="img-thumbnail" id="txtimagen">
+
+        </div>
+    </div>
+    <div class="col-xl-9">
+
+        <form autocomplete="off" id="formregistro">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <input type="hidden" id="txtcodigo" name="idcliente" />
+                        @*<div class="col-xl-2 col-sm-6">
+            <div class="form-group ">
+                <label>TIPO </label>
+                <select id="cmbtipocliente" class="form-control form-control-sm" required name="tipocliente">
+                    <option value="PACIENTE">PACIENTE</option>
+                    <option value="CLIENTE">CLIENTE</option>
+                </select>
+            </div>
+        </div>*@
+                        <div class="col-xl-2 col-sm-6">
+                            <div class="form-group ">
+                                <label>TIPO DE DOCUMENTO</label>
+                                <select id="cmbtipodoc" class="form-control form-control-sm" required name="iddocumento"></select>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6">
+                            <div class="form-group ">
+                                <label>N°DOCUMENTO</label>
+                                <input id="txtnumdocumento" type="text" onkeypress="return justNumbers(event);" class="form-control form-control-sm" name="nrodocumento" required maxlength="8">
+                                <span class="text-info font-9">[ENTER] para buscar en SUNAT O RENIEC</span>
+                            </div>
+                        </div>
+                        <div class="col-xl-7 col-sm-12">
+                            <div class="form-group ">
+                                <label id="lblnombre">NOMBRES/RAZON SOCIAL</label>
+                                <input id="txtnombres" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" name="descripcion" required>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 divpaciente">
+                            <div class="form-group ">
+                                <label>APELLIDO PATERNO</label>
+                                <input id="txtapepaterno" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" name="apepaterno" required>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6 divpaciente">
+                            <div class="form-group ">
+                                <label>APELLIDO MATERNO</label>
+                                <input id="txtapematerno" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" name="apematerno" required>
+                            </div>
+                        </div>
+                        @*<div class="col-xl-3 col-sm-6 divpaciente">
+            <div class="form-group ">
+                <label>SEXO</label>
+                <select class="form-control form-control-sm" id="cmbsexo" name="sexo">
+                    <option value=""></option>
+                    <option value="M">MASCULINO</option>
+                    <option value="F">FEMENINO</option>
+                </select>
+            </div>
+        </div>*@
+                        <div class="col-xl-3 col-sm-6 ">
+                            <div class="form-group ">
+                                <label>FECHA NACIMIENTO</label>
+                                <input id="txtfechanacimiento" type="date" class="form-control form-control-sm" name="fechanacimiento" />
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-6">
+                            <div class="form-group ">
+                                <label>EMAIL</label>
+                                <input id="txtemail" type="text" class="form-control form-control-sm" name="email">
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-4">
+                            <div class="form-group ">
+                                <label>TELÉFONO</label>
+                                <input id="txttelefono" type="number" maxlength="8" class="form-control form-control-sm" name="telefono">
+
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-4">
+
+                            <div class="form-group ">
+                                <label>CELULAR 1</label>
+                                <input id="txtcelular" type="number" maxlength="11" class="form-control form-control-sm" name="celular">
+                            </div>
+
+                        </div>
+                        @*<div class="col-xl-3 col-sm-4">
+
+            <div class="form-group ">
+                <label>CELULAR 2</label>
+                <input id="txtcelular2" type="number" maxlength="11" class="form-control form-control-sm" name="celular2">
+            </div>
+
+        </div>*@
+                        <div class="col-xl-3 col-sm-4">
+                            <div class="form-group ">
+                                <label>DEPARTAMENTO </label>
+                                <select class="form-control form-control-sm cmbdepartamento" id="cmbdepartamento" name="iddepartamento">
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-4">
+                            <div class="form-group ">
+                                <label>PROVINCIA </label>
+                                <select class="form-control form-control-sm" id="cmbprovincia" name="idprovincia">
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-4">
+                            <div class="form-group ">
+                                <label>DISTRITO </label>
+                                <select class="form-control form-control-sm" id="cmbdistrito" name="iddistrito">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-9 col-sm-8"></div>
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-group ">
+                                <label>DIRECCIÓN</label>
+                                <textarea id="txtdireccion" type="text" class="form-control form-control-sm mayusculas" rows="2" name="direccion"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-group ">
+                                <label>DIRECCION ENTREGA</label>
+                                <textarea id="txtreferencia" type="text" class="form-control form-control-sm mayusculas" rows="2" name="direccionentrega"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-sm-4">
+                            <div class="form-group ">
+                                <label>ESTADO</label>
+                                <select name="estado" id="cmbestado" class="form-control form-control-sm">
+                                    <option value="HABILITADO">HABILITADO</option>
+                                    <option value="DESHABILITADO">DESHABILITADO</option>
+                                </select>
+                            </div>
+                        </div>
+                        @if (Convert.ToInt32(ViewBag.IDEMPRESA) > 1999 && Convert.ToInt32(ViewBag.IDEMPRESA) < 3000)
+                        {
+                            <div class="col-xl-3 col-sm-4">
+                                <div class="form-group ">
+                                    <label>TIPO CLIENTE</label>
+                                    <select name="idtipocliente" id="cmbtipocliente" class="form-control form-control-sm">
+                                    </select>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-3 col-sm-3">
+                            <button type="reset" class="btn btn-primary btn-block" id="btnlimpiar">LIMPIAR</button>
+                        </div>
+                        <div class="col-xl-3 col-sm-3">
+                            <button type="submit" class="btn btn-success  btn-block" id="btnguardar">GUARDAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </form>
+    </div>
+
+</div>
+<script src="~/js/controller/Utils/ApiController.js"></script>
+<script src="~/js/controller/maestros/TipoClienteController.js"></script>
+<script src="~/js/areas/maestros/cliente/complemento/comregistro.js"></script>

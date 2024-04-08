@@ -1,0 +1,79 @@
+﻿
+@{
+    ViewData["Title"] = "ReporteStock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE DE STOCK
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+
+    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("ACCESO A TODAS LAS SUCURSALES"))
+    {
+        <div class="col-xl-3 col-md-4">
+            <div class="form-group">
+                <label>SUCURSAL</label>
+
+                <select class="form-control form-control-sm" id="txtsucursal" tipo="select"></select>
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <input type="hidden" id="c" tipo="input" />
+    }
+    <div class="col-xl-3 col-md-4">
+       
+    </div>
+    
+    <div class="col-xl-2 col-md-4 text-center mt-4">
+        <button type="button" class="btn btn-secondary" id="btnconsultar"><i class="fas fa-search ml-2 mr-2"></i>Buscar</button>
+    </div>
+    <div class="col-xl-2  col-md-4 text-center  mt-4">
+        <asp.Panel button type="button" class="btn  btn-success" runat="server" id="btnexportar"><i class="fas fa-file-excel ml-2 mr-2"></i>Exportar</button>
+    </div>
+</div>
+
+<div class="row mt-2 " id="cardreport">
+    <div class="col-xl-12 col-sm-12 ">
+        <div class="card bcard h-auto text-center">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary">
+                        N° REGISTROS <span class="badge badge-light" id="numRegistros">0</span>
+                    </button>
+                </div>
+            </div>
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-bordered" id="tbllista" width="100%">
+                    <thead>
+                        <tr>
+                            
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">SUCURSAL</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">CODIGO PRODUCTO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">PRODUCTO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">CLASE</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">SUB CLASE </th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">STOCK ACTUAL </th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">PRECIO COMPRA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">PRECIO VENTA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">LOTE</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-uppercase"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+<script src="~/js/areas/almacen/reportes/stockValorizado.js"></script>

@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewData["Title"] = "HistorialVentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var isadmin = false;
+</script>
+@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("GENERAR TXT VENTAS"))
+{
+    <script>
+        isadmin = true;
+    </script>
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-11 col-md-10">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                HISTORIAL DE VENTAS
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-1 col-md-2">
+        <a asp-action="VentaDirecta" class="btn btn-primary"> <i class="fas fa-plus"></i></a>
+    </div>
+
+</div>
+<hr />
+<div class="row justify-content-center">
+
+    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("ACCESO A TODAS LAS SUCURSALES"))
+    {
+        <div class="col-xl-3 col-md-4">
+            <div class="form-group">
+                <label>SUCURSAL</label>
+
+                <select class="form-control form-control-sm" id="txtsucursal" tipo="select"></select>
+
+            </div>
+        </div>
+    }
+    else
+    {
+        <input type="hidden" id="c" tipo="input" />
+    }
+    <div class="col-xl-3 col-md-4">
+        <div class="form-group">
+            <label>N°  DOCUMENTO</label>
+            <input type="text" id="txtnumdocumento" class="form-control form-control-sm" />
+        </div>
+    </div>
+    <div class="col-xl-6 col-md-12">
+        <label>CLIENTE</label>
+        <div class="form-group">
+
+            <select class="form-group" id="cmbbuscarcliente"></select>
+        </div>
+    </div>
+
+    <div class="col-xl-2 col-md-3">
+        <div class="form-group">
+            <label>FECHA INICIO</label>
+            <input type="date" id="txtfechainicio" class="form-control form-control-sm" />
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-3">
+        <div class="form-group">
+            <label>FECHA FIN</label>
+            <input type="date" id="txtfechafin" class="form-control form-control-sm" />
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-4 text-center mt-4">
+        <button type="button" class="btn btn-secondary" id="btnbusqueda"><i class="fas fa-search ml-2 mr-2"></i>Buscar</button>
+    </div>
+    <div class="col-xl-2  col-md-4 text-center  mt-4">
+        <asp.Panel button type="button" class="btn  btn-success" runat="server" id="btnexportar"><i class="fas fa-file-excel ml-2 mr-2"></i>Exportar</button>
+    </div>
+</div>
+<div class="row mt-2 " id="cardreport">
+    <div class="col-xl-12 col-sm-12 ">
+        <div class="card bcard h-auto text-center">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary">
+                        N° REGISTROS <span class="badge badge-light" id="numRegistros">0</span>
+                    </button>
+                </div>
+            </div>
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-bordered" id="tbllista" width="100%">
+                    <thead>
+                        <tr>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">DOCUMENTO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">SUCURSAL</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">DOC CLIENTE</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">CLIENTE</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">Nº COLEGIATURA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">MEDICO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">IMPORTE</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">EFECTIVO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">TARJETA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">EFECTIVO(A)</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">TARJETA(A)</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">ESTADO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">USUARIO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-uppercase"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="~/Areas/Ventas/Views/Venta/modal/_modalSeleccionarSerieParaGuia.cshtml" />
+<script src="~/js/controller/ventas/VentasController.js"></script>
+<script src="~/js/areas/ventas/ventas/historialventas.js"></script>
+

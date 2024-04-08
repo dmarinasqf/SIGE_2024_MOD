@@ -1,0 +1,68 @@
+﻿
+<div class="modal fade" id="modalhistorialcliente" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">HISTORIAL DEL CLIENTE  <span id="lblMHCnombrescliente"></span></label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-4 col-sm-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Fecha inicio</span>
+                                    </div>
+                                    <input type="date" class="form-control " min="2020-11-01" max="@DateTime.Now.ToString("yyyy-MM-DD")" id="txtMHCfechainicio">
+                                </div>
+                            </div>
+                            <div class="col-xl-4  col-sm-12">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Fecha fin</span>
+                                    </div>
+                                    <input type="date" class="form-control " max="@DateTime.Now.ToString("yyyy-MM-DD")" id="txtMHCfechafin">
+                                </div>
+                            </div>
+                            <div class="col-xl-3">
+                                <button class="btn btn-dark" id="btnMHCbuscarhistorial"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="card bcard h-auto">
+                                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                                        <table class="table table-bordered" width="100%" id="tblMHCtablahistorial">
+                                            <thead >
+                                                <tr>
+                                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>
+                                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">Sucursal</th>
+                                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">Fecha</th>
+                                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">Documento</th>
+                                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">Importe</th>
+                                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">Usuario</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/ventas/ventas/modal/modalhistorialclientes.js"></script>

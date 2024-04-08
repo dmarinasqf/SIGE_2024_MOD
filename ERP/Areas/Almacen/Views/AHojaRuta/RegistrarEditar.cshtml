@@ -1,0 +1,171 @@
+﻿@model ENTIDADES.Almacen.AHojaRuta
+@{
+    ViewData["Title"] = "RegistrarEditar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var MODELO =@Html.Raw(Json.Serialize(Model)) ;
+    console.log(MODELO);
+</script>
+@if (ViewBag.mensajebusqueda == "ok" || ViewBag.mensajebusqueda == "nuevo")
+{
+    <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+        <h1 class="page-title text-primary-d2 text-140">
+            <a class="" asp-action="Index"><i class="fa fa-arrow-left"></i> </a>
+            REGISTRO DE HOJA DE RUTA
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">                
+                <div class="body">
+                    <form method="post" autocomplete="off" id="form-registro">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="header bg-blue-grey text-center">
+                                        <h7>DATOS </h7>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+
+                                            <div class="col-xl-9 col-xs-12">
+                                                <div class="row">
+
+                                                    <div class="col-xl-4 col-xs-12">
+                                                        <label>USUARIO ENCARGADO</label>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input class="form-control form-control-sm"disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-xs-12">
+                                                        <label>EMPRESA</label>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <select class="form-control form-control-sm"  required>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-4 col-xs-12">
+                                                        <label>UNIDAD TRANSP.</label>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <select class="form-control form-control-sm" required>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-xs-12">
+                                                        <label>PLACA</label>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control form-control-sm" id="txtmatricula" disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-xs-12">
+                                                        <label>CONDUCTOR</label>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control form-control-sm" id="txtconductor" disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-xs-12">
+                                                        <label>Nº LICENCIA</label>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control form-control-sm" id="txtlicencia" disabled />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-2 col-xs-12">
+                                                        <label>AYUDANTE</label>
+                                                        <div class="form-group">
+                                                            <div class="form-line">
+                                                                <input type="text" class="form-control form-control-sm" id="txtayudante"/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row justify-content-end mt-4">
+
+                            <div class="col-xl-3 col-sm-6  ">
+                                <button class="btn btn-primary btn-block waves-effect" id="btnnuevoproducto" type="button"><i class="fas fa-plus mr-2"></i>AGREGAR GUIA</button>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="card bcard h-auto">
+                                <div class="table-responsive border-t-3 brc-blue-m2 ">
+                                    <div class="contenedor-sticky-500">
+                                        <table class="table table-sm table-hover tabla-sticky table-striped table-bordered " width="100%" id="tbldetalleguia">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th class="header-sticky" style="width:15%">FEC. GUIA</th>
+                                                    <th class="header-sticky" style="width:10%">NUM. GUIA</th>
+                                                    <th class="header-sticky" style="width:15%">BULTOS</th>
+                                                    <th class="header-sticky" style="width:30%">SUCURSAL</th>
+                                                    <th class="header-sticky" style="width:15%">FECHA ENVIO</th>
+                                                    <th class="header-sticky" style="width:20%">HORA ENVIO</th>
+                                                    <th class="header-sticky" style="width:5%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-center font-11">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                      
+                        <div class="row justify-content-center">
+                            <div class="col-xl-3 col-xs-12">
+                                <button type="submit" class="btn btn-success waves-effect btn-block" id="btn-guardar"><i class="fa fa-save"></i> GUARDAR</button>
+                            </div>
+                            <div class="col-xl-3 col-xs-12">
+                                <button type="button" class="btn btn-light waves-effect btn-block" id="btnimprimir"><i class="fa fa-print"></i> IMPRIMIR</button>
+                            </div>
+                            <div class="col-xl-3 col-xs-12">
+                                <button type="button" class="btn btn-danger waves-effect btn-block" id="btn-anular"><i class="fa fa-ban"></i> ANULAR</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <partial name="~/Views/Modales/Imprimir.cshtml" />
+    <partial name="~/Areas/Almacen/Views/AGuiaSalida/modal/_modallistarguiasalida.cshtml" />
+    <script src="~/js/areas/almacen/hojaderuta/registrareditar.js"></script>
+    <script src="~/js/modelos/almacen/AHojaRuta.js"></script>
+    <script src="~/js/controller/transporte/TEmpresaController.js"></script>
+    <script src="~/js/controller/transporte/TVehiculoController.js"></script>
+    <script src="~/js/controller/almacen/SalidaTransferenciaController.js"></script>
+
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="body">
+                <div class="alert-warning" style="color:black; padding:50px;margin:50px; font-size:1.2rem" role="alert">
+                    <h4 class="alert-heading">ADVERTENCIA</h4>
+                    @ViewBag.mensajebusqueda .
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+

@@ -1,0 +1,53 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net5.0</TargetFramework>
+		<UserSecretsId>aspnet-ERP-F49A6118-8AF2-4A45-A817-57E7C8FA1A39</UserSecretsId>
+		<Nullable>annotations</Nullable>
+		<OutputType>WinExe</OutputType>
+		<NoWin32Manifest>true</NoWin32Manifest>
+		<StartupObject>ERP.Program</StartupObject>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<PlatformTarget>x64</PlatformTarget>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Remove="bundleconfig.json" />
+		<Content Remove="wwwroot\js\controller\visitadormedico\VisitaMedicaController.min.js" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<_ContentIncludedByDefault Remove="wwwroot\js\controller\visitadormedico\VisitaMedicaController.min.js" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="DinkToPdf" Version="1.0.8" />
+		<PackageReference Include="DotNetCorePdf" Version="1.0.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+		<PackageReference Include="Rotativa.AspNetCore" Version="1.1.1" />
+		<PackageReference Include="Wkhtmltopdf.NetCore" Version="3.0.2" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Erp.Persistencia\Erp.Persistencia.csproj" />
+	  <ProjectReference Include="..\INFRAESTRUCTURA\Erp.Infraestructura.csproj" />
+	</ItemGroup>
+
+
+
+	<ProjectExtensions>
+		<VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio>
+	</ProjectExtensions>
+
+</Project>

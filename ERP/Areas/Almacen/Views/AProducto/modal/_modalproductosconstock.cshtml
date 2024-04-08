@@ -1,0 +1,53 @@
+﻿
+<div class="modal fade " data-backdrop="static" id="modalproductosstock" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1200 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <div class="form-inline">
+                    <label >BUSCAR STOCK DE PRODUCTOS</label>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+               
+                        <div class="row mb-2 text-center">
+                            <div class="col-xl-6 col-sm-12">
+                                <label>BUSCAR</label>
+                                <input type="text" id="MPS_txtfiltro" class="form-control" placeholder="PRODUCTO" value="" autocomplete="off" />
+                            </div>
+                            <div class="col-xl-6 col-sm-12">
+                                <label>TIPO DE PRODUCTO</label>
+                                <select id="MPS_cmbtipoproducto" class="form-control form-control-sm"></select>
+                            </div>
+                        </div>
+                        <div class="border-t-3 brc-blue-m2 table-responsive contenedor-sticky-500">
+                            <table class="table table-bordered collapsed" id="tbl_MPStabla" width="100%">
+                                <thead class=" text-center">
+                                    <tr>                                      
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky">CODIGO</th>
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky">NOMBRE</th>                                        
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky">LABORATORIO</th>
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky">STOCK</th>
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky">LOTE</th>
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky">FV</th>
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky">REG</th>
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky">ALMACEN</th>
+                                        <th  class="border-0  bgc-white  bgc-h-yellow-l3 shadow-sm  header-sticky"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbl_MPStablatbody" class="text-center">
+                                </tbody>
+                            </table>
+                        </div>
+
+                   
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/almacen/producto/modal/modalproductosconstock.js"></script>

@@ -1,0 +1,397 @@
+﻿@model IEnumerable<ENTIDADES.Generales.SUCURSAL>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE SUCURSALES
+            </h1>
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                <!-- dataTables search box will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12 ">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-sm table-hover table-striped" width="100%" id="tbllista">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>SERIE</th>
+                            @* <th >COD ESTABLECIMIENTO</th>*@
+                            <th>NOMBRE</th>
+                            <th>EMPRESA</th>
+                            <th> DIRECCION</th>
+                            <th> CIUDAD</th>
+                            <th> TIPO SUCURSAL</th>
+                            <th> ESTADO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            var badge = item.estado == "HABILITADO" ? "badge-info" : "badge-warning";
+
+                            <tr>
+                                <td>@item.suc_codigo </td>
+                                <td>@item.serie </td>
+                                @*<td>@item.codigoestablecimiento </td>*@
+                                <td>@item.descripcion</td>
+                                <td>@item.empresa</td>
+                                <td> @item.direccion </td>
+                                <td> @item.ciudad</td>
+                                <td>@item.tipoSucursal</td>
+                                <td>
+                                    <span class="badge @badge">@item.estado</span>
+                                </td>
+                                <td class="text-right">
+                                    <div class="btn-group btn-group-sm">
+                                        @*<a class="btn  btn-outline-primary btn-xs" data-toggle="tooltip" data-placement="top" title="Correlativos de sus documentos" asp-area="Administrador" asp-controller="CorrelativoDocumento" asp-action="Index" asp-route-codigo=@item.suc_codigo target="_blank"><i class="fas fa-book-medical"></i></a>*@
+                                        <button class="btn  btn-outline-warning btn-xs" onclick="mostrarSucursal(@item.suc_codigo)"><i class="fas fa-edit fa-1x"></i></button>
+                                        @*<button class="btn  btn-outline-dark btn-xs" data-toggle="tooltip" data-placement="top" title="Agregar Consultorios"><i class="fas fa-hospital fa-1x"></i></button>*@
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1400  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE SUCURSAL</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-7 col-sm-12">
+                                <form method="post" autocomplete="off" id="form-registro">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <div class="card-title">
+                                                DATOS DE SUCURSAL
+                                            </div>
+                                            <div class="card-toolbar">
+                                                <button id="btn-guardar" type="submit" class="card-toolbar-btn btn btn-sm radius-1 btn-success btn-brc-tp mx-2px">
+                                                    <i class="fas fa-save w-2 mx-1px"></i>
+                                                </button>
+                                                <button onclick="limpiar()" type="reset" class="card-toolbar-btn btn btn-sm radius-1 btn-info btn-brc-tp mx-2px">
+                                                    <i class="fa fa-eraser"></i>
+                                                </button>                                                
+                                            </div>                                            
+                                        </div>
+                                        <div class="card-body">
+                                            <input type="hidden" value="nuevo" id="TIPOOPERACION" />
+                                            <div class="row">
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <label>CODIGO</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input id="txtcodigo" name="suc_codigo" type="text" class="form-control form-control-sm mayusculas" readonly>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <label>ESTB. SUNAT</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input id="txtcodigoestablecimiento" name="codigoestablecimiento" type="text" class="form-control form-control-sm">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <label>COD DIGEMID</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input id="txtcoddigemid" name="coddigemid" type="text" class="form-control form-control-sm">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-sm-6">
+                                                    <div class="form-group ">
+                                                        <label>SERIE</label>
+                                                        <input id="txtserie" name="serie" type="text" class="form-control form-control-sm " placeholder="AUTOGENERADO" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-12">
+                                                    <label>CENTRO COSTO</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input id="txtcentrocosto" name="centrocosto" type="text" class="form-control form-control-sm mayusculas" >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-12">
+                                                    <label>NOMBRE</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <input id="txtsucursal" name="descripcion" type="text" class="form-control form-control-sm mayusculas" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>LUGAR</label>
+                                                        <select class="form-control form-control-sm" name="idlugar" id="cmblugar">
+                                                            <option value="" selected>[SELECCIONE]</option>
+                                                            @foreach (var item in ViewBag.Lugares)
+                                                            {
+                                                                <option value="@item.idlugar">@item.descripcion</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>EMPRESA</label>
+                                                        <select class="form-control form-control-sm" name="idempresa" id="cmbempresa">
+                                                            <option value="" selected>[SELECCIONE]</option>
+                                                            @foreach (var item in ViewBag.Empresas)
+                                                            {
+                                                                <option value="@item.idempresa">@item.descripcion</option>
+
+                                                            }
+                                                        </select>
+
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-md-4">
+                                                    <div class="form-group">
+                                                        <label>TELEFONO</label>
+                                                        <input type="text" id="txttelefono" name="telefono" class="form-control form-control-sm" maxlength="12" onkeypress="return justNumbers(event);" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-md-4">
+                                                    <div class="form-group">
+                                                        <label>CELULAR</label>
+                                                        <input type="text" id="txtcelular" name="celular" class="form-control form-control-sm" maxlength="12" onkeypress="return justNumbers(event);" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <label>DIRECCIÓN</label>
+                                                        <textarea id="txtdireccion" name="direccion" type="text" class="form-control form-control-sm mayusculas " rows="2"></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>DEPARTAMENTO</label>
+                                                        <select class="form-control form-control-sm" id="cmbdepartamento" name="iddepartamento"></select>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-lg-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>PROVINCIA</label>
+                                                        <select class="form-control form-control-sm" id="cmbprovincia" name="idprovincia"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-4 col-sm-6">
+                                                    <div class="form-group">
+                                                        <label>DISTRITO</label>
+                                                        <select class="form-control form-control-sm" id="cmbdistrito" name="iddistrito"></select>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-lg-4">
+                                                    <label>CQFP</label>
+                                                    <div class="form-group ">
+                                                        <div class="form-line">
+                                                            <input id="txtcmp" name="CQFP" type="text" class="form-control form-control-sm" onkeypress="return justNumbers(event);" maxlength="10">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-8">
+
+                                                    <label>DIRECTOR TÉCNICO</label>
+                                                    <div class="form-group ">
+                                                        <div class="form-line">
+                                                            <input id="txtgerenteSucursal" name="gerenteSucursal" type="text" class="form-control form-control-sm mayusculas" maxlength="100">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-6 col-sm-6">
+                                                    <label>TIPO DE SUCURSAL</label>
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <select class="form-control form-control-sm" name="tipoSucursal" id="cmbtiposucursal" required>
+                                                                <option value="" selected>[SELECCIONE]</option>
+                                                                <option value="LOCAL">LOCAL</option>
+                                                                <option value="PRODUCCIÓN">PRODUCCIÓN</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-lg-6 col-sm-6">
+                                                    <label>ESTADO</label>
+
+                                                    <div class="form-group">
+                                                        <div class="form-line">
+                                                            <select class="form-control form-control-sm" id="cmbestado" name="estado" required>
+                                                                <option value="HABILITADO" selected>HABILITADO</option>
+                                                                <option value="DESHABILITADO">DESHABILITADO</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr />
+                                            <div class="row">
+                                                <div class="col-xl-12">
+                                                    <table width="100%" class="table table-sm table-bordered">
+                                                        <thead>
+                                                            <tr>
+                                                                <th colspan="2" class="text-center bg-blue-grey ">OTROS DATOS</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>ES DELIVERY</td>
+                                                                <td> <input id="checkesdelivery" name="issucursalentrega" type="checkbox" class="form-control" value="false" /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>ES PRIMARIO</td>
+                                                                <td> <input id="checkisprimario" name="isprimario" type="checkbox" class="form-control" value="false" /></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>GENERA GUIA</td>
+                                                                <td> <input id="checkgeneraguia" name="generaguia" type="checkbox" class="form-control" value="false" /></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="col-lg-5 col-sm-12">
+                                <ul class="nav nav-tabs" id="tabopciones" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="laboratorio-tab" data-toggle="tab" href="#laboratorios" role="tab" aria-controls="home" aria-selected="true">Laboratorios</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="cajas-tab" data-toggle="tab" href="#cajas" role="tab" aria-controls="profile" aria-selected="false">Cajas</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="correlativos-tab" data-toggle="tab" href="#documentos" role="tab" aria-controls="contact" aria-selected="false">Correlativos</a>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link" id="listaprecios-tab" data-toggle="tab" href="#listaprecios" role="tab" aria-controls="contact" aria-selected="false">Lista de precios</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="laboratorios" role="tabpanel" aria-labelledby="home-tab">
+                                        <div class="card">
+                                            <div class="card-body table-responsive">
+                                                <table class="table table-sm table-striped " width="100%" id="tbllaboratorios">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>LABORATORIO</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="cajas" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="card">
+                                            <div class="card-body table-responsive">
+                                                <table class="table table-sm table-striped table-bordered" id="tblcajas">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>CAJA</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="documentos" role="tabpanel" aria-labelledby="contact-tab">
+                                        <div class="card">
+                                            <div class="card-body table-responsive">
+                                                <table class="table table-sm table-striped table-bordered" id="tblcajasucursal">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th>CAJA</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="listaprecios" role="tabpanel" aria-labelledby="profile-tab">
+                                        <div class="card">
+                                            <div class="card-body table-responsive">
+                                                <table class="table table-sm table-striped table-bordered" id="tbllistaprecios">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                            <th>ID</th>
+                                                            <th>LISTA</th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tbltbodylistaprecios"></tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<partial name="~/Areas/Administrador/Views/Sucursal/modal/_modalconfigcaja.cshtml" />
+<script src="~/js/areas/administrador/sucursal/sucursal.js"></script>
+<script src="~/js/controller/comercial/ListaPreciosController.js"></script>

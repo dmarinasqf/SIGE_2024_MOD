@@ -1,0 +1,77 @@
+﻿<div class="card">
+    <div class="card-body">
+        <div class="row justify-content-center">
+            <div class="col-xl-4 col-md-4 border" id="cardformpago">
+                <form name="formpagos" id="formpagos">
+                    <input type="hidden" name="name" value="" id="RP_txtiddelivery">
+                    <input type="hidden" name="name" value="" id="RP_txtidpedido">
+                    <div class="form-group">
+                        <label>Imagen pago</label>
+                        <input type="file" name="file" class="form-control " accept=".png,.jpg,.jpge" id="RP_txtfile" required="">
+                    </div>
+                    <div class="form-group">
+                        <img src="" alt="Sin Imagen" id="RP_txtimagen" width="100px" height="100px" name="imagen">
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha</label>
+                        <input type="date" id="MP_txtfecha" name="fecha" class="form-control form-control-sm" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>BANCO</label>
+                        <select class="form-control form-control-sm" id="MP_cmbbanco" name="idbanco" required=""></select>
+                    </div>
+                    <div class="form-group">
+                        <label>CUENTA</label>
+                        <select class="form-control form-control-sm" id="MP_cmbcuenta" name="idcuenta" required="">
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>N° operación</label>
+                        <input type="text" id="MP_txtnumoperacion" name="numoperacion" class="form-control form-control-sm" onkeypress="return isNumberKey(event);" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Monto</label>
+                        <input type="number" id="MP_txtmonto" step="any" class="form-control form-control-sm" name="monto" required="">
+                    </div>
+                    <div class="form-group">
+                        <label>Interbancario</label>
+                        <input type="checkbox" id="MP_checkinterbancario" name="isinterbancario" value="false">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block" type="submit" id="MP_btnagregar">AGREGAR</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-xl-8 col-md-8 border">
+                <table class="table table-bordered table-sm" width="100%" id="MP_tblpagos">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Imagen</th>
+                            <th>N° operación</th>
+                            <th>Fecha</th>
+                            <th>Cuenta</th>
+                            <th>Interban.</th>
+                            <th class="text-right">Monto</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody id="MP_tbodypagos">
+                    </tbody>
+                    <tfoot id="MP_tfooterpagos">
+                        <tr>
+                            <th colspan="5" class="text-right"><label class="font-15 font-weight-bold">TOTAL</label> </th>
+                            <th class="text-right"><label class="font-15 font-weight-bold" id="MPlbltotal"></label> </th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<script src="~/js/controller/finanzas/BancoController.js"></script>
+<script src="~/js/modelos/finanzas/FPagos.js"></script>
+<script src="~/js/areas/pedidos/pedidos/complemento/comdatospago.js"></script>

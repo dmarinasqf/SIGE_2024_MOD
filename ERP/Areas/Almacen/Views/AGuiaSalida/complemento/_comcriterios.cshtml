@@ -1,0 +1,158 @@
+﻿<script>
+    SUCURSALES = @Html.Raw(Json.Serialize(@ViewBag.sucursales));
+    IDEMPRESA = @Html.Raw(int.Parse(@ViewBag.IDEMPRESA));
+    IDSUCURSAL = @Html.Raw(int.Parse(@ViewBag.IDSUCURSAL));
+</script>
+<div class="card">
+    <div class="card-body">
+        <form method="post" autocomplete="off" id="CC_form-registro">
+            <div class="row">
+                <div class="col-xl-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-xs-12">
+                            <label>SUCURSAL</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="CD_cmbsucursal" name="idsucursal" disabled>
+                                        <option value="0">[SELECCIONE]</option>
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            <option value="@item.suc_codigo">@item.descripcion</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>ALMACÉN</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @*<select class="form-control form-control-sm" id="CD_cmbsucursalalmacen" name="idalmacensucursalorigen" required multiple>
+                    </select>*@
+                                    <div class="dropdown">
+                                        <button class="btn btn-block btn-outline-light dropdown-toggle"
+                                                type="button" id="dropdownMenuAlmacen" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            Seleccionar Almacenes
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1" id="CD_cmbsucursalalmacen" style="height: 280px; overflow-y: scroll; width: 100%">
+                                            @*<a class="dropdown-item" href="#!">
+                                <input class="form-check-input" type="checkbox" id="Checkme1" />
+                                <label class="form-check-label" for="Checkme1">APROBADO PT</label>
+                            </a>
+                            <a class="dropdown-item" href="#!">
+                                <input class="form-check-input" type="checkbox" id="Checkme2" />
+                                <label class="form-check-label" for="Checkme2">APROBADO EC</label>
+                            </a>*@
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>RANGO DE VENTAS PASADAS</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="CC_cmbrango" required>
+                                        <option value="">[SELECCIONE]</option>
+                                        <option value="BIMESTRE">BIMESTRE</option>
+                                        <option value="TRIMESTRE" >TRIMESTRE</option>
+                                        <option value="CUATRIMESTRE">CUATRIMESTRE</option>
+                                        <option value="SEMESTRE" selected>SEMESTRE</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>SERIE GUIA</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="CC_cmbserie" name="seriedoc" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>FECHA TRASLADO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="date" class="form-control form-control-sm" id="CC_fechatraslado" name="fechatraslado" required />
+                                </div>
+                            </div>
+                        </div>
+                        @if (int.Parse(ViewBag.IDSUCURSAL) == 100)
+                        {
+                            <div class="col-xl-6 col-xs-12">
+                                <label>EMPRESA</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select class="form-control form-control-sm" id="CC_cmbempresa" name="empresa">
+                                            @foreach (var item in ViewBag.empresas)
+                                            {
+                                                @if (@item.idempresa == int.Parse(ViewBag.IDEMPRESA))
+                                                {
+                                                    <option value="@item.idempresa" selected>@item.descripcion</option>
+                                                }
+                                                else
+                                                {
+                                                    <option value="@item.idempresa">@item.descripcion</option>
+                                                }
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        <div class="col-xl-12">
+                            <button class="btn btn-secondary btn-block mt-5" id="btnaprobarcriterios">SIGUIENTE <i class="fa fa-arrow-right"> </i></button>
+
+                        </div>
+                        @*<div class="col-xl-12">
+            <button class="btn btn-secondary btn-block mt-5" id="btnConsumirTxt">CONSUMIR TXT<i class="fa fa-arrow-right"> </i></button>
+        </div>*@
+                    </div>
+                </div>
+
+                <div class="col-xl-5 col-sm-12 ">
+                    <div class="card bcard h-auto mt-2">
+                        <div class="border-t-3 brc-blue-m2 table-responsive">
+                            <table class="table table-bordered collapsed" width="100%" id="tbllista">
+                                <thead class="">
+                                    <tr>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ID</th>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">DESCRIPCIONCRITERIO</th>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> <input type="checkbox" id="CC_chk_todosucursal" onclick="CC_seleccionarTodo()" class="chk-col-red checkbox" /></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="pos-rel">
+                                    @*@foreach (var item in ViewBag.sucursales)
+                                    {
+                                        @if (@item.suc_codigo != int.Parse(ViewBag.IDSUCURSAL) && @item.idempresa == int.Parse(ViewBag.IDEMPRESA))
+                                        {
+                                            <tr style="height:10px;">
+                                                <td>
+                                                    @item.suc_codigo
+                                                </td>
+                                                <td>
+                                                    @item.descripcion
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" id="@item.suc_codigo" class="chk-col-red checkbox" />
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    }*@
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script src="~/js/areas/almacen/guiasalida/complemento/comcriterios.js"></script>

@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Consumo Economato";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-11 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                CONSUMO ECONOMATO E INSUMOS
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-1 col-md-6">
+        <a class="btn btn-primary" asp-action="Registrar"><i class="fas fa-plus"></i></a>
+    </div>
+
+</div>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-xl-3 col-md-12">
+        <div class="form-group">
+            <label>NÚMERO DE DOCUMENTO</label>
+            <input type="text" id="txtnumdocumento" class="form-control" />
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-12">
+        <div class="form-group">
+            <label>FECHA INICIO</label>
+            <input type="date" id="txtfechainicio" class="form-control" />
+        </div>
+    </div>
+    <div class="col-xl-3 col-md-12">
+        <div class="form-group">
+            <label>FECHA FIN</label>
+            <input type="date" id="txtfechafin" class="form-control" />
+        </div>
+    </div>
+    <div class="col-xl-1 mt-4">
+        <button type="button" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-xl-12 col-sm-12 ">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-bordered collapsed" id="tbllista" width="100%">
+                    <thead class="">
+                        <tr>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>
+                            @*<th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>*@
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">NUM. DOCUMENTO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">MOTIVO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">USUARIO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">ESTADO</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<partial name="~/Views/Modales/Imprimir.cshtml" />*@
+<script src="~/js/controller/almacen/ConsumoEconomatoController.js"></script>
+
+<script src="~/js/modelos/almacen/AConsumoEconomato.js"></script>
+<script src="~/js/areas/almacen/consumoeconomato/index.js"></script>

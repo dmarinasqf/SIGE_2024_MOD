@@ -1,0 +1,53 @@
+﻿<div class="modal fade" id="modalbuscarventas" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">BUSCAR VENTAS</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                  
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-4">
+                                <label>FECHA</label>
+                                <input type="date" class="form-control" id="MBV_txtfecha" min="@DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd")" max="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" />
+                            </div>
+                            <div class="col-xl-4">
+                                <label>NUMERO DE COMPROBANTE</label>
+                                <input type="text" class="form-control text-uppercase" id="MBV_txtfiltro"  />
+                            </div>
+                            <div class="col-xl-12 table-responsive contenedor-sticky-500 mt-3">
+                                <table class="table table-sm table-bordered" id="MBV_tblventas">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="header-sticky">SUCURSAL</th>
+                                            <th class="header-sticky"> DOCUMENTO</th>
+                                            <th class="header-sticky">FECHA</th>
+                                            <th class="header-sticky">CLIENTE</th>
+                                            <th class="header-sticky">IMPORTE</th>
+                                            <th class="header-sticky">USUARIO</th>
+                                            <th class="header-sticky">ESTADO</th>
+                                            <th class="header-sticky"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="MBV_tbodyventas"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/ventas/ventas/modal/modalbuscarventas.js"></script>
+

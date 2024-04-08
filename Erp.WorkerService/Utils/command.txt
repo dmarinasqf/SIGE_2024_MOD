@@ -1,0 +1,6 @@
+﻿sc.exe create SISQFSERVICE binpath= C:\inetpub\wwwroot\worker\Erp.WorkerService.exe
+sc.exe create SISQFSERVICE binpath= G:\Publicaciones\worker\Erp.WorkerService.exe
+sc.exe start SISQFSERVICE 
+sc.exe delete SISQFSERVICE 
+
+

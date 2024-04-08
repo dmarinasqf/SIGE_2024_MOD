@@ -1,0 +1,105 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .linkregistro:hover {
+        color: #f63014;
+        /*outline-style: double;*/
+        text-decoration:underline;
+        cursor: pointer;
+    }
+</style>
+<div class="row justify-content-center">
+    <div class="col-xl-8">
+        <div class="card " id="card-12">
+            <div class="card-header">
+                <div class="card-title">
+                    ALERTAS DIGEMID
+                </div>
+                <div class="card-toolbar">
+                    <button id="btnnuevo" type="submit" class="card-toolbar-btn btn btn-sm radius-1 btn-info btn-brc-tp mx-2px">
+                        <i class="fas fa-plus w-2 mx-1px"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="card-body bgc-white p-0">
+                <div class="p-3 ace-scroll ace-scroll-grey is-always-on" style="max-height: 550px;" id="divdatos">
+                  
+                </div>
+            </div>
+            <div class="card-footer">
+                <div id="paginacion">
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE ALERTA</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <form method="post" autocomplete="off" id="formregistro">
+                            <input type="hidden" name="idalerta" value="" id="txtcodigo" />
+
+                            <div class="form-group">
+                                <label>NOMBRE</label>
+                                <input type="text" id="txtdescripcion" class="form-control mayusculas" name="nombre" required>
+                            </div>
+                            <div class="form-group">
+                                <label>DESCRIPCION</label>
+                                <textarea class="form-control" id="txtdescripcion" name="descripcion" rows="3" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>FECHA</label>
+                                <input type="date" id="txtfecha" class="form-control " name="fecha" required>
+
+                            </div>
+                            <div class="form-group">
+                                <label>ARCHIVO</label>
+                                <input type="file" id="txtarchivo" class="form-control " name="archivo" accept=".pdf" >
+
+                            </div>
+
+                            <button class="btn btn-success btn-block mt-3" id="btnguardar" type="submit">GUARDAR DATOS</button>
+                            <button class="btn btn-info btn-block " id="btnlimpiar" type="reset">LIMPIAR</button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="~/js/areas/digemid/alerta/index.js"></script>
+<script src="~/js/controller/digemid/AlertaController.js"></script>

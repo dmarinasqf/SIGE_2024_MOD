@@ -1,0 +1,97 @@
+﻿@model Erp.Entidades.Contabilidad.ResponsableSede
+<script src="~/js/areas/contabilidad/AsignarCajaChica/funciones_interaccion.js"></script>
+
+<!-- Modal -->
+<div class="modal fade" id="modalAsignar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modal_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ASIGNAR CAJA CHICA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal_body">
+                <div id="notificacion"></div>
+
+                <form id="form_asignar_caja">
+
+                    <div class="row">
+                        <div class="col-xl-12 col-sm-12 py-0 my-0" id="contenedor_txtResponsable">
+                            <div class="form-group">
+                                <label>RESPONSABLE CAJA CHICA (APELLIDOS Y NOMBRES)</label>
+                                <input type="hidden" name="usuario_op" id="usuario_op" value="@ViewBag.IDEMPLEADO" />
+                                <input type="hidden" name="emp_codigo" id="emp_codigo" class="form-control form-control-sm" />
+                                <input type="text" name="responsableCaja" id="responsableCaja" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-6 py-0 my-0">
+                            <label>SUCURSAL</label>
+                            <input type="hidden" name="idSucursal" id="idSucursal" asp-for="idSucursal" class="idSucursal" />
+                            <input type="text" name="suc_descripcion" id="suc_descripcion" class="form-control form-control-sm" disabled />
+                        </div>
+
+                        <div class="col-xl-6 col-sm-6 py-0 my-0">
+                            <label>EMPRESA</label>
+                            <input type="hidden" name="idEmpresa" id="idEmpresa" asp-for="idEmpresa" class="idEmpresa" />
+                            <input type="text" name="emp_descripcion" id="emp_descripcion" class="form-control form-control-sm emp_descripcion" disabled />
+                        </div>
+
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <label>PERIODO</label>
+                            <select name="periodo" id="periodo" asp-for="periodo" class="form-control form-control-sm periodo">
+                                <option value="">---SELECCIONE---</option>
+                                <option value="ENE">ENERO</option>
+                                <option value="FEB">FEBRERO</option>
+                                <option value="MAR">MARZO</option>
+                                <option value="ABR">ABRIL</option>
+                                <option value="MAY">MAYO</option>
+                                <option value="JUN">JUNIO</option>
+                                <option value="JUL">JULIO</option>
+                                <option value="AGO">AGOSTO</option>
+                                <option value="SEP">SEPTIEMBRE</option>
+                                <option value="OCT">OCTUBRE</option>
+                                <option value="NOV">NOVIEMBRE</option>
+                                <option value="DIC">DICIEMBRE</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <div class="form-group">
+                                <label>AREA</label>
+                                <input type="text" name="areaTrabajo" id="areaTrabajo" class="form-control form-control-sm" onkeyup="mayus(this)" maxlength="20"/>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <div class="form-group">
+                                <label>MONTO CAJA CHICA</label>
+                                <input type="text" name="montoCaja" id="montoCaja" class="form-control form-control-sm validanumeros" maxlength="5"/>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-6 py-0 my-0">
+                            <div class="form-group">
+                                <label>ENT. BANCARIA</label>
+                                <input type="text" name="entidadBancaria" id="entidadBancaria" class="form-control form-control-sm" onkeyup="mayus(this)" maxlength="20"/>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-6 py-0 my-0">
+                            <div class="form-group">
+                                <label>N° CUENTA</label>
+                                <input type="text" name="numeroCuenta" id="numeroCuenta" class="form-control form-control-sm" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal">CERRRAR</button>
+                <button id="btnGuardar" type="button" class="btn btn-success" onclick="CajaAsignacionAgregar()">GUARDAR CAMBIOS</button>
+            </div>
+        </div>
+    </div>
+</div>
+

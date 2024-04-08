@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "AperturarCaja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-xl-4 col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="aperturar-tab" data-toggle="tab" href="#tab1" role="tab">Aperturar</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="descargar-tab" data-toggle="tab" href="#tab2" role="tab">Consultar</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header bg-green text-center">
+                                <span>APERTURAR CAJA</span>
+                            </div>
+                            <form autocomplete="off" id="form-registro">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label>CAJA</label>
+                                        <select class="form-control form-control-sm" id="cmbcaja" required>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>MONTO INICIAL</label>
+                                        <input type="number" class="form-control form-control-sm" id="txtmontoinicial" step="any" />
+                                    </div>
+
+                                </div>
+                                <div class="card-footer">
+                                    <div class="row">
+                                        <div class="col-xl-12 col-sm-12">
+                                            <button class="btn btn-sm btn-block btn-success" type="submit">APERTURAR CAJA</button>
+
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12 mt-3 text-right">
+                                            <a asp-area="Ventas" asp-controller="Venta" asp-action="VentaDirecta" class="text-secondary">Realizar ventas</a>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12 mt-3 text-left">
+                                            <a asp-area="Ventas" asp-controller="Caja" asp-action="CerrarCaja" class="text-secondary">Cerrar caja</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab2" role="tabpanel">
+                        <div class="card">
+                            <div class="card-header bg-green text-center">
+                                <span>CONSULTAR CAJA</span>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>FECHA</label>
+                                    <input type="date" class="form-control" id="txtfechaconsulta" />
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="tblcajas">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th></th>
+                                                <th>Sucursal</th>
+                                                <th>Caja</th>
+                                                <th>Fecha</th>                                                
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodycajas">
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+      
+      
+    </div>
+</div>
+<script src="~/js/areas/ventas/caja/aperturarcaja.js"></script>

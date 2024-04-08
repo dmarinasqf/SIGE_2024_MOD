@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewData["Title"] = "Objetivos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-8 col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h6><bold> MANTENEDOR DE OBJETIVOS</bold>   </h6>
+                <div class="card-toolbar">
+                    <button id="btnnuevoregistro" type="submit" class="card-toolbar-btn btn btn-sm radius-1 btn-info btn-brc-tp mx-2px">
+                        <i class="fas fa-plus w-2 mx-1px"></i>
+                    </button>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-md-10 text-left">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">FECHA</span>
+                            </div>
+                            <input type="text" id="txtfecharango"  class="form-control text-center" autocomplete="off">
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-md-2 text-left">
+                        <button class="btn  btn-dark btn-sm" id="btnconsultar"><i class="fas fa-search ml-2 mr-2"></i>  Consultar</button>
+
+                    </div>
+                    <div class="col-xl-12 table-responsive">
+                        <table class="table table-sm table-bordered" id="tbllista">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="width:50%">OBJETIVO</th>
+                                    <th style="width:10%">F. INICIO</th>
+                                    <th style="width:10%">F. FIN</th>
+                                    <th style="width:15%">F. CREACION</th>
+                                    <th style="width:10%"></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE CLASE</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">                    
+                    <div class="card-body">
+                        <form method="post" autocomplete="off" id="formregistro">
+                            <input type="hidden" name="idobjetivo" value="" id="txtcodigo" />
+
+                            <div class="form-group">
+                                <label>FECHA OBJETIVO</label>
+                                <input type="month" name="fechainicio"  class="form-control" required />
+                            </div>
+                            <div class="form-group">
+                                <label>NOMBRE</label>
+                                <textarea class="form-control" id="txtobjetivo" name="descripcion" required></textarea>
+                            </div>
+
+
+                            <button class="btn btn-success btn-block" id="btnguardar" type="submit">GUARDAR</button>
+                            <button class="btn btn-info btn-block " id="btnlimpiar" type="reset">LIMPIAR</button>
+                        </form>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/visitadormedico/objetivos/maestroobjetivos.js"></script>
+<script src="~/js/controller/visitadormedico/ObjetivoController.js"></script>

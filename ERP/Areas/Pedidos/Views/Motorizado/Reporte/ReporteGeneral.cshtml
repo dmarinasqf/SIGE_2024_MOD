@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "ReporteGeneral";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE GENERAL
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("JEFE_MOTORIZADO") || User.IsInRole("MOTORIZADO"))
+    {
+        <div class="col-xl-4 col-md-4">
+            <div class="input-group input-group-sm mb-1">
+                <div class="input-group-prepend">
+                    <label class="input-group-text">SUCURSAL</label>
+                </div>
+                <select class="form-control" id="cmbSucursal" tipo="select"></select>
+            </div>
+        </div>
+    }
+
+    <div class="col-xl-4 col-md-4">
+        <div class="input-group input-group-sm mb-1">
+            <div class="input-group-prepend">
+                <label class="input-group-text">RANGO DE FECHA</label>
+            </div>
+            <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+        </div>
+    </div>
+</div>
+<br />
+<div class="row justify-content-center">
+    <div class="col-xl-2 col-md-4 text-center">
+        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search ml-2 mr-2"></i>Consultar</button>
+    </div>
+    <div class="col-xl-2 col-md-4  text-center">
+        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel ml-2 mr-2"></i>Exportar</button>
+    </div>
+    <div class="col-xl-2 col-md-4  text-center">
+        <button class="btn btn-danger" id="btnimprimir" title="Reporte Stock"><i class="fas fa-file-pdf ml-2 mr-2"></i>PDF</button>
+    </div>
+</div>
+<div class="col-xl-12 table-responsive mt-2" id="contenedor">
+    <table class="table">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+
+<script src="~/js/areas/pedidos/motorizado/reporte/reportegeneral.js"></script>
+<script src="~/js/controller/pedidos/MotorizadoController.js"></script>

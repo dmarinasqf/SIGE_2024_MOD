@@ -1,0 +1,204 @@
+﻿
+
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalbonificacion" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content ">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="exampleModalLabel">AGREGAR BONIFICACION</h5>
+                <button type="button" class="close btncerralmodalbonificacion" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <input type="hidden" name="name" value="" id="txtindexbonificacion" />
+                <input type="hidden" name="name" value="" id="txtiddetallebonificacion" />
+
+            </div>
+            <div class="modal-body ">
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="form-inline">
+                                    <label>BONIFICACIÓN A:</label>
+                                    <select class="form-control form-control-sm form-control form-control-sm-sm" id="cmbtipobonificacion">
+                                        <option value="AFECTO" selected>AFECTO</option>
+                                        <option value="INAFECTO">INAFECTO</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6 col-sm-12">
+                                <div class="demo-radio-button">
+                                    <input name="group2" type="radio" class="with-gap" id="rdbonimismo" />
+                                    <label for="rdbonimismo">MISMO PRODUCTO</label>
+                                    <input name="group2" type="radio" id="rdboniotro" class="with-gap" />
+                                    <label for="rdboniotro">OTRO PRODUCTO</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                ARTICULO CON BONIFICACÍON
+                            </div>
+                            <div class="card-body">
+                                <form id="form-bonificacion">
+
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <label>COD</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="hidden" class="form-control form-control-sm" value="" id="txtidproductoboni" name="id" readonly />
+                                                    <input type="text" class="form-control form-control-sm" value="" id="txtcodproductoboni" readonly required />
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>ARTICULO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" name="articulo" value="" class=" form-control form-control-sm" id="txtproboni" readonly />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>PRECIO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="number" name="precio" value="" class=" form-control form-control-sm" id="txtprecioboni" step="any" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label>CANTIDAD</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="number" name="cantidad" value="1" min="1" class=" form-control form-control-sm" id="txtcanboni" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*   --CUADRO X CUADRO. COMENTADO: 07/10/2022
+                                        <div class="row justify-content-center ocultar" id="divpromocion">
+                                        <div class="col-xl-3 col-sm-3">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <input type="number" class="form-control form-control-sm" id="txtpromo1" min="1" />
+                                                    <span class="input-group-text input-group-text-sm">X</span>
+                                                    <input type="number" class="form-control form-control-sm" id="txtpromo2" min="1" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <button class="btn btn-success" type="submit">AÑADIR</button>
+                                        </div>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                BONIFICACIÓN
+                            </div>
+                            <div class="card-body">
+                                <table class="table  table-bordered" id="tblproductosbonificacion" width="100%">
+                                    <thead class="thead-dark text-center">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>IDPRO</th>
+                                            <th>ARTICULO</th>
+                                            <th>CANTIDAD</th>
+                                            <th>COSTO</th>
+                                            <th>S.TOTAL</th>
+                                            <th>PARA</th>
+                                            <th>PROMOCION</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center" id="tblproductosbonificacion-body">
+                                    </tbody>
+                                </table>
+                                <table width="100%" border="0">
+                                    <tr>
+                                        <td style="width:70%"></td>
+                                        <td></td>
+                                        <td class="text-right" style="color:black">TOTAL:</td>
+                                        <td class="text-right"><input type="number" class="text-right font-bold font-12 form-control" id="txttotalbonificacion" value="" disabled /></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<div class="modal fade bd-example-modal-sm" @*data-backdrop="static"*@ id="modalproductosbonificacion" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-blue-grey">
+                <h5 class="modal-title" id="exampleModalLabel">BUSCAR ARTICULOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body font-11">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <input type="text" placeholder="BUSCAR PRODUCTOS" class="form-control" id="txtfiltroproductosbonificacion" />
+                                <table class="table table-sm table-bordered mt-2" id="tblproductosbonificacionbuscar" width="100%">
+                                    <thead class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm text-center">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th style="width:15%">COD</th>
+                                            <th style="width:40%">ARTICULO</th>
+                                            <th style="width:10%">LABORATORIO</th>
+                                            <th>VVF</th>
+                                            <th>PVF</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/compras/modales/cotizacion/bonificacion.js"></script>

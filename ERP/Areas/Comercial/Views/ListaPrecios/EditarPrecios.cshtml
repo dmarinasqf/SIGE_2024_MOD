@@ -1,0 +1,91 @@
+﻿@model ENTIDADES.comercial.ListaPrecios
+@{
+    ViewData["Title"] = "EditarPrecios";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="card acard">
+        <div class="card-header">
+            <div class="card-title">
+               
+                    <h6 class="page-title text-primary-d2 text-120"><a asp-action="Index"><i class="fas fa-long-arrow-alt-left"></i></a> EDITAR PRECIOS <span id="lblnombrelista">@Model.descripcion</span>(<span id="lblidlista">@Model.idlistaprecio</span>)</h6>
+            
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-center">
+                <div class="col-xl-4 col-sm-6 m-3">
+                    <input type="text" class="form-control" id="txtfiltro" placeholder="BUSCAR PRODUCTOS DE @Model.descripcion" />
+                </div>
+                <div class="col-xl-4 col-sm-4">
+                    <label>LABORATORIO <button class="mr-2 fas fa-redo" id="imglimpiarlab"></button></label>
+
+                    <div class="form-group">
+                        <select class="form-control form-control-lg" id="cmblaboratorio">
+                            <option value="" selected>TODOS</option>
+                        </select>
+
+                    </div>
+
+                </div>
+                <div class="col-xl-2 col-sm-2 mt-4">
+                    <button class="btn btn-sm btn-success" id="btndescargar"> <i class="fas fa-file-excel "></i> </button>                    
+                </div>
+                <div class="col-xl-2 col-sm-2 mb-2">
+                    <button class="btn btn-sm btn-primary" id="btnverificarcambios"> <i class="fas fa-check mr-3"></i> VERIFICAR CAMBIOS</button>
+                    <button class="btn btn-sm btn-success ocultar" id="btnguardarcambios"> <i class="fas fa-save mr-3"></i> GUARDAR </button>
+                    <button class="btn btn-sm btn-danger ocultar mt-1" id="btncancelar"> <i class="fas fa-times mr-3"></i> CANCELAR</button>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-xl-116 col-md-12">
+                    <div class="contenedor-sticky-600">
+                        <table class="table table-sm table-bordered table-bordered " width="100%" id="tblprecios">
+                            <thead class="thead-dark text-center ">
+                                <tr>
+                                    <th rowspan="2" class="header-sticky align-middle">ID</th>
+                                    <th rowspan="2" class="header-sticky align-middle">COD</th>
+                                    <th rowspan="2" class="header-sticky align-middle" style="">PRODUCTO</th>
+                                    <th rowspan="2" class="header-sticky align-middle">LAB</th>
+                                    <th rowspan="2" class="header-sticky align-middle">CLASE</th>
+                                    <th rowspan="2" class="header-sticky align-middle">SCLASE</th>
+                                    <th rowspan="2" class="header-sticky align-middle" data-toggle="tooltip" title="Multiplo de fracción">F</th>
+                                    @*<th rowspan="2" class="header-sticky align-middle" data-toggle="tooltip" title="Multiplo de blister">B</th>*@
+                                    <th rowspan="2" class="header-sticky align-middle">LISTA</th>
+                                    <th rowspan="2" class="header-sticky align-middle">PRECIO</th>
+                                    <th rowspan="2" class="header-sticky align-middle">PRECIO X UNIDAD</th>
+                                    @*<th rowspan="2" class="header-sticky align-middle">PRECIO X BLISTER</th>*@
+                                    @*  <th colspan="2" class="header-sticky align-middle position-sticky">INCENTIVO</th>*@
+
+                                </tr>
+                                <tr>
+                                    @*<th class="header-sticky align-middle">XCAJA</th>
+                        <th class="header-sticky align-middle">XFRACCION</th>*@
+                                </tr>
+                            </thead>
+                            <tbody id="tblitemdetalle"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-xl-9">
+                    <div id="paged">
+
+                    </div>
+                </div>
+            </div>
+               
+        </div>
+    </div>
+<script>
+    var tableHeaderTop = document.querySelector('.table thead').getBoundingClientRect().top;
+    var ths = document.querySelectorAll('.table thead th')
+
+    for (var i = 0; i < ths.length; i++) {
+        var th = ths[i];
+        th.style.top = th.getBoundingClientRect().top - tableHeaderTop-1 + "px";
+    }
+</script>
+
+    <script src="~/js/areas/comercial/listaprecios/editarprecios.js"></script>
+    <script src="~/js/controller/comercial/ListaPreciosController.js"></script>
+    <script src="~/js/modelos/comercial/PreciosProducto.js"></script>
+

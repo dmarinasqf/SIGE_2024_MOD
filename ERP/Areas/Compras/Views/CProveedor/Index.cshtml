@@ -1,0 +1,116 @@
+﻿@*@model IEnumerable<ENTIDADES.compras.CProveedor>*@
+@using System.Data
+@model DataTable
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12 col-md-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE PROVEEDORES
+            </h1>
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+            </div>
+        </div>
+      
+    </div>
+   
+</div>
+<hr />
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-hover table-bordered " width="100%" id="tbllista">
+                    <thead class="">
+                        <tr>
+                            @foreach (DataColumn column in Model.Columns)
+                            {
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">@column.ColumnName</th>
+                            }
+                            <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-uppercase">
+                        @foreach (DataRow row in Model.Rows)
+                        {
+                            <tr>
+                                @for (int i = 0; i < row.Table.Columns.Count; i++)
+                                {
+                                    <td>@row[i].ToString()</td>
+                                }
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <a class="btn btn-sm btn-outline-info waves-effect  font-10" data-toggle="tooltip" data-placement="top" title="Agregar insumos" asp-area="Compras" asp-controller="CProductoProveedor" asp-action="Index" asp-route-idproveedor="@row["ID"].ToString()" target="_blank"><i class="fas fa-pills"></i></a>
+                                        <a class="btn btn-sm btn-outline-success waves-effect  font-10" data-toggle="tooltip" data-placement="top" title="Agregar laboratorio" onclick="DPL_abrirmodal(@row["ID"].ToString())"><i class="fas fa-bong"></i></a>
+                                        <a class="btn btn-sm btn-outline-secondary waves-effect  font-10" data-toggle="tooltip" data-placement="top" title="Agregar contacto" asp-area="Compras" asp-controller="CProveedor" asp-action="IndexContactos" asp-route-id="@row["ID"].ToString()" target="_blank"><i class="fas fa-user"></i></a>
+                                        <a class="btn btn-sm btn-outline-warning waves-effect btn-pasar font-10" data-toggle="tooltip" data-placement="top" title="Editar Registro" onclick="buscar(@row["ID"].ToString())" href="#panelregistro"><i class="fas fa-edit"></i></a>
+                                        <button class="btn btn-sm btn-outline-danger waves-effect font-10" data-toggle="tooltip" data-placement="top" title="Eliminar Registro" onclick="mensajeeliminar(@row["ID"].ToString())"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE PROVEEDOR</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" data-toggle="tab" id="nav-maestro-tab" href="#nav-maestro" role="tab">Maestro</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-toggle="tab" id="nav-cuentas-tab" href="#nav-cuentas" role="tab"> Cuentas</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" data-toggle="tab" id="nav-archivos-tab" href="#nav-archivos" role="tab"> Subir archivos</a>
+                    </li>                  
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="nav-maestro" role="tabpanel">
+                        <partial name="complemento/_comregistro" />
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-cuentas" role="tabpanel">
+                        <partial name="complemento/_comcuentas" />
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-archivos" role="tabpanel">
+                        <partial name="complemento/_comarchivos" />
+
+                    </div>                
+                </div>               
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="modal/modalDetalleProveedorLab" />
+<script src="~/js/areas/compras/distribuidor/proveedor.js"></script>
+<script src="~/js/controller/Utils/ApiController.js"></script>

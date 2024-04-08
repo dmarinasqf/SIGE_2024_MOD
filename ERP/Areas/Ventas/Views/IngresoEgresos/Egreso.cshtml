@@ -1,0 +1,95 @@
+﻿@model ENTIDADES.ventas.EgresoCaja
+@{
+    ViewData["Title"] = "Egreso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (ViewBag.verificarcaja.mensaje == "ok")
+{
+    <script>       
+        var _DATOSCAJA =@Html.Raw(Json.Serialize(ViewBag.verificarcaja));      
+        _DATOSCAJA = _DATOSCAJA.objeto;
+        console.log(_DATOSCAJA);
+    </script>
+    <div class="row justify-content-center">
+        <div class="col-xl-5">
+            <div class="card mt-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xl-12 text-center">
+                            <h4>REGISTRO DE EGRESOS</h4>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="post" autocomplete="off" id="formregistro">
+                                @*<input type="hidden" asp-for="idaperturacaja" />*@
+                                <div class="form-group  col">
+                                    <label>FECHA DOCUMENTO</label>
+                                    <input id="txtfecha" asp-for="fechadocumento" type="date" class="form-control form-control-sm">
+                                </div>
+                                <div class="form-group  col">
+                                    <label>SERIE</label>
+                                    <input id="txtserie" asp-for="serie" type="text" class="form-control form-control-sm" maxlength="4">
+                                </div>
+                                <div class="form-group  col">
+                                    <label>Nª DOCUMENTO</label>
+                                    <input id="txtnumdocumento" asp-for="numdocumento" type="text" class="form-control form-control-sm" maxlength="8">
+                                </div>
+                                <div class="form-group  col">
+                                    <label>TIPO EGRESO</label>
+                                    <select class="form-control form-control-sm" asp-for="tipoegreso_codigo" id="cmbtipoegreso" required>
+                                    </select>
+                                </div>
+                                <div class="form-group  col">
+                                    <label>MONTO</label>
+                                    <input id="txtmonto" type="number" step="any" asp-for="monto" class="form-control form-control-sm" required>
+                                </div>
+                                <div class="form-group  col">
+                                    <label>DETALLE GASTO</label>
+                                    <textarea id="txtdetallegasto" asp-for="detallegastos" type="text" class="form-control form-control-sm" rows="6"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="GUARDAR DATOS" class="btn btn-success btn-block" id="btnguardar">
+                                    <input type="reset"  value="LIMPIAR" class="btn btn-info btn-block" id="btnlimpiar">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="body">
+                <div class="alert-warning" style="color:black; padding:50px;margin:50px; font-size:1.2rem" role="alert">
+                    <h4 class="alert-heading">ADVERTENCIA</h4>
+                    @ViewBag.verificarcaja.mensaje .
+                    <div class="row">
+                        <div class="col-xl-2">
+                            <a asp-area="Ventas" asp-controller="Caja" asp-action="CerrarCaja">Cerrar caja</a>
+
+                        </div>
+                        <div class="col-xl-2">
+                            <a asp-area="Ventas" asp-controller="Caja" asp-action="AperturarCaja">Aperturar caja</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+
+<script src="~/js/controller/ventas/IngresoEgresoController.js"></script>
+<script src="~/js/areas/ventas/ingresoegresos/egreso.js"></script>

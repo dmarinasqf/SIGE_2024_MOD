@@ -1,0 +1,107 @@
+﻿
+<div class="modal fade" id="modalbuscarproducto" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1500  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">BUSCAR PRODUCTOS</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        @*<div class="row">
+                            <div class="col-xl-12 col-sm-12">*@
+                                @*<ul class="nav nav-tabs">
+                                    <li class="nav-item" role="presentation">
+                                        <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#tab-productos" role="tab">Buscar Productos</a>
+
+                                    <li />
+                                    <li>
+                                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#tab-genericos" role="tab">Genericos</a>
+
+                                    </li>
+                                </ul>*@
+                                @*<div class="tab-content" id="pills-tabContent">*@
+                                @*  <div class="tab-pane fade show active" id="tab-productos" role="tabpanel">*@
+                                <div class="row">
+                                    <div class="col-xl-8 ">
+                                        <input type="text" class="form-control mb-2 mt-4 text-uppercase" placeholder="BUSCAR PRODUCTO" id="MBP_txtbuscarproducto" autocomplete="off" />
+                                    </div>
+                                    <div class="col-xl-4">
+                                        <label>LISTA DE PRECIOS</label>
+                                        <select class="form-control" id="MBP_cmblistaprecios"></select>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div class="table-responsive contenedor-sticky-500">
+                                            <table class="table table-sm table-bordered " width="100%" id="MBP_tblproductos">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th class="header-sticky">COD</th>
+                                                        <th class="header-sticky">PRODUCTO</th>
+                                                        <th class="header-sticky">LAB</th>
+                                                        <th class="header-sticky">PRESENTACIÓN</th>
+                                                        <th class="header-sticky text-right" data-toggle="tooltip" title="Incentivo">I</th>
+                                                        <th class="header-sticky text-right">STOCK</th>
+                                                        <th class="header-sticky text-right">PRECIO</th>
+                                                        <th class="header-sticky text-right" data-toggle="tooltip" data-placement="top" title="Precio por unidad">P X U</th>
+                                                        <th class="header-sticky"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="MBPtbodyproductos"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12">
+                                        <div id="MBPpaginacionproducto"></div>
+                                    </div>
+                                </div>
+
+
+                                @* </div> *@
+                                @*<div class="tab-pane fade" id="tab-genericos" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-xl-12">
+                                                GENERICOS DE <label id="MBP_lblnombretablagenerico"></label>
+                                            </div>
+                                            <div class="col-xl-12">
+                                                <div class="table-responsive contenedor-sticky-500">
+                                                    <table class="table table-sm tabla-sticky table-bordered" width="100%" id="MBP_tblgenericos">
+                                                        <thead class="thead-dark ">
+                                                            <tr>
+                                                                <th class="header-sticky">COD</th>
+                                                                <th class="header-sticky">GENERICO</th>
+                                                                <th class="header-sticky">DESCRIPCION</th>
+                                                                <th class="header-sticky">PRECIO</th>
+                                                                <th class="header-sticky">P X U</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="font-11 " id="MBP_tbodytblgenericos">
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>*@
+                                @*</div>*@
+
+
+                            @*</div>
+
+                        </div>*@
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="~/Areas/Ventas/Views/Venta/modal/_modalloteproducto.cshtml" />
+<script src="~/js/areas/ventas/ventas/modal/modalbuscarproductos.js"></script>

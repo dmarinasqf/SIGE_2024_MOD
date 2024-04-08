@@ -1,0 +1,340 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<link href="~/lib/summernote/summernote-lite.min.css" rel="stylesheet" />
+<script src="~/lib/summernote/summernote-lite.min.js"></script>
+
+<link href="~/css/otros/etiquetaargox.css" rel="stylesheet" />
+<link href="~/css/otros/etiquetaKiaro.css" rel="stylesheet" />
+
+<div class="modal fade " id="modalEdicionEtiquetas" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title  text-center" id="exampleModalLabel">IMPRESIÓN  DE ETIQUETAS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="font-size:13px">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div>
+                            <label style="margin-left:10px">TIPO DE USO :</label>
+                            <select class="form-control form-control-sm" id="cmbusoetiqueta">
+                                <option value="ORAL" selected>USO ORAL</option>
+                                <option value="EXTERNO">USO EXTERNO</option>
+                                <option value="INTERNO">USO INTERNO</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>REG :</label>
+                            <input type="text" id="txtreg" class="form-control form-control-sm" />
+                        </div>
+                        <div>
+                            <label>INDICACIONES :</label>
+                            <input type="text" id="txtindicaciones" class="form-control form-control-sm" />
+                        </div>
+                        <div>
+                            <label>FECHA FABRICACIÓN :</label>
+                            <input type="date" id="txtfechafabricacion" class="form-control form-control-sm" onchange="fnactualizafab(this);" />
+                        </div>
+                        <div>
+                            <label>FECHA VENCIMIENTO:</label>
+                            <input type="date" id="txtfechavencimiento" class="form-control form-control-sm" onchange="fnactualizaven(this);" />
+                        </div>
+                        <div>
+                            <label>CODIGO A.N:</label>
+                            <input type="text" id="txtcodigoan" class="form-control form-control-sm" />
+                        </div>
+                        <div>
+                            <label>COMPOSICIÓN PROD:</label>
+                            <input type="text" id="txtcomposicionproducto" class="form-control form-control-sm" />
+                        </div>
+                        <div>
+                            <label>DSCRIPCIÓN PROD:</label>
+                            <input type="text" id="txtdescripcionproducto" class="form-control form-control-sm" />
+                        </div>
+                        <div>
+                            <label style="margin-left:10px">TIPO DE USO :</label>
+                            <select class="form-control form-control-sm" id="cmbcomplejo">
+                                <option value="Complejo H. Alberto Barton" selected>Alberto Barton</option>
+                                <option value="Complejo H. Guillermo Kaelin">Guillermo Kaelin</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                            <li class="nav-item" role="presentation">
+                                 <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#ARGOX" role="tab">ARGOX</a>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#TERCERO" role="tab">TERCEROS</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="ARGOX" role="tabpanel">
+                                <ul class="nav nav-pills mb-3 text-center" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="pill" href="#etiquetapequena" role="tab" aria-selected="true">PEQUEÑA</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="pill" href="#etiquetamediana" role="tab">MEDIANA</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="pill" href="#etiquetagrande" role="tab">GRANDE</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="pill" href="#etiqueta1950" role="tab">19 * 50</a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">LINEA</a>
+                                        <div class="dropdown-menu" style="height: 200px; overflow-y: scroll;">
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('125x56LineaProtectorSolar')">Protector Solar Luxe FPS 50 125x56</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('72x32LineaProtectorSolar')">Protector Solar Sytil - Melasensi FPS 50 72x32</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('98x57LineaSerumLiquidoFluido')">Hyalu10 - Melasensi - Vyti C - Lyfting - Hylage - Eyes 101x57</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('76x28EyesSerumFluido10ml')">Sérum Liquido Fluido Eyes 10ml 76x28</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('94x47LineaSerumTexturaSeda')">Sérum Textura Seda Hyalus10 - Vytac 5 - Lyfting S - Mazza - Nami - Eyes 30g 94x47</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('77x44LineaSerumTexturaSeda')">Sérum Textura Seda Eyes 10g 77x44</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('160x32LineaSkinCareFacialHylageRevis')">Hylage-Revis 160x32</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">SKINCARE</a>
+                                        <div class="dropdown-menu" style="height: 200px; overflow-y: scroll;">
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('90x50SkinCareFacialGrasyHylasSsenzyMelas')">Facial Grasenzi Hylas Senzi Melas 90x50</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('65x45SkinCareFacialHyato')">Facial Hyato 65x45</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('78x48SkinCareFacial')">Facial Lecare 78x48</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('90x50SkinCareFacialMouli')">Facial Mouli 90x50</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('65x45SkinCareFacialAquame')">Facial Aquame 65x45</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('65x45SkinCarePodologíaBivenaUrea')">Podología Bivena Urea 65x45</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('84x35SkinCarePodologíaLekatFeet')">Podología Lekat 84x35</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('65x45SkinCarePodologíaBivenaFeet')">Podología Bivena Feet 65x45</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('90x50SkinCarePodologíaSyndetUrea')">Podología Syndet 90x50</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('90x50SkinCarePodologíaSyndetPantenol')">Podología Syndet Pantenol 90x50</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('65x45SkinCareBivena')">Bivena 65x45</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('90x50SkinCareVulvar')">Moufer - Moupas 90x50</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaLineaSkinCare" onclick="darValortipoEtiqueta('125x42SkinCareVulvar')">Vulvar Hylafem 125x42</a>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">BARTON</a>
+                                        <div class="dropdown-menu" style="height: 200px; overflow-y: scroll;">
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaBarton" onclick="darValortipoEtiqueta('60x40Barton')">Barton 60 x 40</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaBarton" onclick="darValortipoEtiqueta('28x45Barton')">Barton 28 x 45</a>
+                                            <a class="dropdown-item" data-toggle="pill" href="#etiquetaBarton" onclick="darValortipoEtiqueta('25x76Barton')">Barton 25.4 x 76</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <p class="line" style="margin:3px"></p>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active bg-light" id="etiquetapequena" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div id="txteditor-argox-pequeña" class="txteditor"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta('pequeña/ARGOX')"><i class="fa fa-print"></i> IMPRIMIR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="etiquetamediana" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <text id="txteditor-argox-mediana" class="txteditor"></text>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta('mediana/ARGOX')">IMPRIMIR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="etiquetagrande" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div id="txteditor-argox-grande" class="txteditor"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta('grande/ARGOX')">IMPRIMIR</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="etiqueta1950" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <text id="txteditor-argox-1950" class="txteditor"></text>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta('1950/ARGOX')">IMPRIMIR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="etiquetaLineaSkinCare" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <text id="txteditor-argox-LineaSkinCare" class="txteditor"></text>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta_V2()">IMPRIMIR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="etiquetaBarton" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <text id="txteditor-argox-Barton" class="txteditor"></text>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta_V3()">IMPRIMIR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="TERCERO" role="tabpanel">
+                                <ul class="nav nav-pills mb-3 text-center" id="pills-tab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="pill" href="#etiquetapequenat" role="tab" aria-selected="true">PEQUEÑA</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="pill" href="#etiquetamedianat" role="tab">MEDIANA</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="pill" href="#etiquetagrandet" role="tab">GRANDE</a>
+                                    </li>
+                                </ul>
+                                <p class="line" style="margin:3px"></p>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active bg-light" id="etiquetapequenat" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div id="txteditor-pequeña-tercero" class="txteditor"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta('pequeña/TERCERO')"><i class="fa fa-print"></i> IMPRIMIR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="etiquetamedianat" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <text id="txteditor-mediana-tercero" class="txteditor"></text>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta('mediana/TERCERO')">IMPRIMIR</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="etiquetagrandet" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div id="txteditor-grande-tercero" class="txteditor"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <div class="col text-center">
+                                                <div class="btn-group">
+                                                    <button class="btn btn-primary btn-sm" onclick="imprimirEtiqueta('grande/TERCERO')">IMPRIMIR</button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+
+                        </div>
+                    <div class="col-md-2">
+                        <ul class="list-group list-group">
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Datos médico
+                                <input type="checkbox" class="check-datos" id="checkmedico" style="margin-left:10px; height:15px; width:15px;" checked />
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Datos QF
+                                <input type="checkbox" class="check-datos" id="checkqf" style="margin-left:10px; height:15px; width:15px;" checked />
+
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Datos paciente
+                                <input type="checkbox" class="check-datos" id="checkpaciente" style="margin-left:10px; height:15px; width:15px;" checked />
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                Datos cliente
+                                <input type="checkbox" class="check-datos" id="checkcliente" style="margin-left:10px; height:15px; width:15px;" checked />
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col" style="margin:20px">
+                        <table class="table table-bordered" id="tbldetallepedidoetiqueta">
+                            <thead style="color:white" class="thead-dark">
+                                <tr>
+                                    <th>COD. PRECIO</th>
+                                    <th style="width:40%">DETALLE</th>
+                                    <th>PRECIO</th>
+                                    <th>UNIDADES</th>
+                                    <th>SUB TOTAL</th>
+                                    <th>SELLECIONAR</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/js/areas/pedidos/pedidos/modal/modaleditarEtiqueta.js"></script>

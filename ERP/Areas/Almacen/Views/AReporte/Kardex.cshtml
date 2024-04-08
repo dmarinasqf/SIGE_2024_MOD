@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "Kardex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE DE KARDEX
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-xl-2  col-md-4 col-sm-6 ">
+        <label>Sucursal</label>
+        <select id="cmbsucursal" class="form-control form-control-sm"><option>[SELECCIONE]</option></select>
+    </div>
+    <div class="col-xl-2  col-md-4 col-sm-6">
+
+        <label>Almacen</label>
+        <select id="cmbalmacen" class="form-control form-control-sm"></select>
+    </div>
+    <div class="col-xl-6 col-sm-12 mr-1 ml-1">
+
+        <label>Producto</label>
+        <input type="hidden" id="txtidproducto" />
+        <input type="text" class="form-control form-control-sm" id="txtproducto" autocomplete="off" />
+    </div>
+    <div class="col-xl-2  col-md-4 col-sm-6">
+
+        <label>Fecha inicio</label>
+        <input class="form-control form-control-sm" type="date" id="txtfechainicio" />
+    </div>
+    <div class="col-xl-2 col-md-4 col-sm-6">
+
+        <label>Fecha fin</label>
+        <input class="form-control form-control-sm" type="date" id="txtfechafin" />
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel"></i></button>
+    </div>
+    
+</div>
+<div class="row justify-content-center">
+    <div class="col-xl-2 col-md-3">
+        <div class="form-group">
+            <label>STOCK INICIAL</label>
+            <input type="text" class="form-control" id="txtstockinicial" />
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-3">
+        <div class="form-group">
+            <label>STOCK FINAL</label>
+            <input type="text" class="form-control" id="txtstockfinal" />
+        </div>
+    </div>
+    <div class="col-xl-12">
+        <div class=" table-responsive mt-2" id="contenedor">
+            <table class="table">
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+<script src="~/js/controller/almacen/ReporteController.js"></script>
+<script src="~/js/areas/almacen/reportes/kardex.js"></script>

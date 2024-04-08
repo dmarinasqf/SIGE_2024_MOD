@@ -1,0 +1,67 @@
+﻿@model ENTIDADES.Generales.Medico
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script>
+    var _idmedico=@Html.Raw(Json.Serialize(ViewBag.idmedico));
+</script>
+<div class="row justify-content-center">
+    <div class="col-xl-11 col-sm-12">
+
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                @if (ViewBag.idmedico is null)
+                {
+                    <a asp-action="Index"><i class="fas fa-long-arrow-alt-left font-22"></i></a><span>REGISTRAR MEDICO</span>
+                }
+                else
+                {
+                    <a asp-action="Index"><i class="fas fa-long-arrow-alt-left font-22"></i></a> <span>EDITAR MEDICO</span>
+                }
+            </h1>
+        </div>
+
+    </div>
+    <div class="col-xl-11 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="maestro-tab" data-toggle="tab" href="#tab1" role="tab">Datos Generales</a>
+                    </li>
+                    @*<li class="nav-item" role="presentation">
+                        <a class="nav-link" id="asociado-tab" data-toggle="tab" href="#tab2" role="tab">Otros datos</a>
+                    </li>*@
+                    <li class="nav-item" role="presentation"  id="idLi3">
+                        <a class="nav-link" id="asociado-tab" data-toggle="tab" href="#tab3" role="tab">Imágenes</a>
+                    </li>
+                    <li class="nav-item" role="presentation" id="idLi4">
+                        <a class="nav-link" id="asociado-tab" data-toggle="tab" href="#tab4" role="tab">Bancos</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                        <partial name="~/Areas/Maestros/Views/Medico/complemento/comregistro.cshtml" />
+                    </div>
+                    @*<div class="tab-pane fade" id="tab2" role="tabpanel">
+                        <partial name="~/Areas/Maestros/Views/Medico/complemento/comotrosdatos.cshtml" />
+                    </div>*@
+                    <div class="tab-pane fade" id="tab3" role="tabpanel">
+                        <partial name="~/Areas/Maestros/Views/Medico/complemento/comimagenes.cshtml" />
+                    </div>
+                    <div class="tab-pane fade" id="tab4" role="tabpanel">
+                        <partial name="~/Areas/Maestros/Views/Medico/complemento/combancos.cshtml" />
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/maestros/medico/comregistro.js"></script>
+<script src="~/js/controller/pedidos/PedidoController.js"></script>
+<script src="~/js/controller/maestros/ColegioController.js"></script>
+<script src="~/js/controller/administrador/EspecialidadController.js"></script>
+<script src="~/js/controller/finanzas/BancoController.js"></script>

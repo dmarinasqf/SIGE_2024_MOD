@@ -1,0 +1,212 @@
+﻿@model IEnumerable<ENTIDADES.Almacen.AAlmacenSucursal>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+
+
+            <div class="row">
+                <div class="col-xl-12 col-xs-12">
+                    <div class="row">
+
+                        <div class="col-xl-6 col-xs-12">
+                            <label>SUCURSAL</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control show-tick" id="cmbsucursal" name="suc_codigo" required>
+                                        <option value="" selected>[SELECCIONE]</option>
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            <option value="@item.suc_codigo">@item.descripcion</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-xs-12">
+                            <label>COLABORADOR</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control show-tick" id="cmbempleado" name="suc_codigo" required>
+                                        <option value="" selected>[SELECCIONE]</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+
+            </div>
+
+        </div>
+
+
+
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table table-sm table-bordered collapsed" width="100%" id="tbllista">
+                    <thead class="">
+                        <tr>
+                            <th> ID</th>
+                            <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> COLABORADOR</th>
+                            <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> SUCURSAL</th>
+                            <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> ALMACÉN</th>
+                            <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> AREA </th>
+                            <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> FECHA CREACION</th>
+                            <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> ESTADO</th>
+                            <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="pos-rel">
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRO EMPLEADO POR ALMACEN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+
+
+                <form method="post" autocomplete="off" id="form-registro-empeladoalmacen">
+                    <input type="hidden" name="idalmacen" value="" id="txtcodigo" />
+                    <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                    <label>COLABORADOR</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbempleadomod" name="idalmacen" required>
+                                <option value="" selected>[SELECCIONE]</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>ALMACÉN</label>
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbalmacenmod" name="idalmacen" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.almacen)
+                                {
+                                    <option value="@item.idalmacen">@item.descripcion - @item.idtipoproducto.ToString().Substring(0, 1)</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>AREA</label>
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbareaalmacen" name="idareaalmacen" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.areaalmacen)
+                                {
+                                    <option value="@item.idareaalmacen">@item.descripcion</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block" id="btn-guardar">GUARDAR DATOS</button>
+                    <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modaleditar" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">EDITAR EMPLEADO POR ALMACEN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+
+
+                <form method="post" autocomplete="off" id="form-registro-empeladoalmacen">
+                    <input type="hidden" name="idalmacen" value="" id="txtcodigo" />
+                    <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                    <label>COLABORADOR</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbempleadoedit" name="idalmacen" required>
+                                <option value="" selected>[SELECCIONE]</option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>ALMACÉN</label>
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbalmacenedit" name="idalmacen" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                <!-- Opciones de almacén se llenarán dinámicamente con jQuery -->
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>AREA</label>
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbareaalmacenedit" name="idareaalmacen" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                <!-- Opciones de área se llenarán dinámicamente con jQuery -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success btn-block" id="btneditarempleadoalmacen">EDITAR DATOS</button>                  
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/areas/almacen/colaboradoralmacen/colaboradoralmacen.js"></script>
+<script>
+    var datosAlmacen = @Html.Raw(JsonConvert.SerializeObject(ViewBag.almacen));
+    var datosareaAlmacen = @Html.Raw(JsonConvert.SerializeObject(ViewBag.areaalmacen));
+    manejarDatosAlmacen(datosAlmacen,datosareaAlmacen);
+</script>

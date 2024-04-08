@@ -1,0 +1,474 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>aspnet-ERP-F49A6118-8AF2-4A45-A817-57E7C8FA1A39</UserSecretsId>
+    <Nullable>annotations</Nullable>
+    <OutputType>WinExe</OutputType>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <StartupObject>ERP.Program</StartupObject>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="Areas\Contabilidad\Views\AsignarCajaChica\Index - Copia.cshtml" />
+    <Content Remove="bundleconfig.json" />
+    <Content Remove="wwwroot\js\controller\visitadormedico\VisitaMedicaController.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\js\controller\visitadormedico\VisitaMedicaController.min.js" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Aspose.HTML" Version="24.1.0" />
+    <PackageReference Include="ClosedXML" Version="0.96.0" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="DotNetCorePdf" Version="1.0.3" />
+    <PackageReference Include="EPPlus" Version="4.5.3.3" />
+    <PackageReference Include="IronPdf" Version="2024.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.8" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.8" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.8">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="5.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.1.1" />
+    <PackageReference Include="Wkhtmltopdf.NetCore" Version="3.0.2" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Areas\Administrador\Data\" />
+    <Folder Include="Areas\Almacen\Data\" />
+    <Folder Include="Areas\Almacen\Models\" />
+    <Folder Include="Areas\Asistencia\Data\" />
+    <Folder Include="Areas\Asistencia\Models\" />
+    <Folder Include="Areas\Comercial\Data\" />
+    <Folder Include="Areas\Comercial\Models\" />
+    <Folder Include="Areas\Almacen\Views\AAlmacen\" />
+    <Folder Include="Areas\Compras\Data\" />
+    <Folder Include="Areas\Compras\Models\" />
+    <Folder Include="Areas\Digemid\Data\" />
+    <Folder Include="Areas\Digemid\Models\" />
+    <Folder Include="Areas\Finanzas\Data\" />
+    <Folder Include="Areas\Finanzas\Models\" />
+    <Folder Include="Areas\Maestros\Data\" />
+    <Folder Include="Areas\Maestros\Models\" />
+    <Folder Include="Areas\Maestros\Views\Diagnostico\modal\" />
+    <Folder Include="Areas\Pedidos\Data\" />
+    <Folder Include="Areas\Pedidos\Models\" />
+    <Folder Include="Areas\PreIngreso\Models\" />
+    <Folder Include="Areas\PreIngreso\Views\GuiaInternaDevolucion\complemento\" />
+    <Folder Include="Areas\Transporte\Data\" />
+    <Folder Include="Areas\Transporte\Models\" />
+    <Folder Include="Areas\Ventas\Data\" />
+    <Folder Include="Areas\Ventas\Models\" />
+    <Folder Include="Areas\Veterinaria\Data\" />
+    <Folder Include="Areas\Veterinaria\Models\" />
+    <Folder Include="Areas\Veterinaria\Views\" />
+    <Folder Include="Areas\Vinali\Data\" />
+    <Folder Include="Areas\Vinali\Models\" />
+    <Folder Include="Areas\VisitadorMedico\Data\" />
+    <Folder Include="Areas\VisitadorMedico\Models\" />
+    <Folder Include="DS\" />
+    <Folder Include="wwwroot\archivos\pdf\ordenescompra\" />
+    <Folder Include="wwwroot\archivos\pdf\preingreso\" />
+    <Folder Include="wwwroot\archivos\pdf\proformas\" />
+    <Folder Include="wwwroot\archivos\proveedor\" />
+    <Folder Include="wwwroot\archivos\reportes\" />
+    <Folder Include="wwwroot\archivos\reportes\pedidos\" />
+    <Folder Include="wwwroot\imagenes\empleados\" />
+    <Folder Include="wwwroot\imagenes\pedido\" />
+    <Folder Include="wwwroot\js\areas\compras\maestros\" />
+    <Folder Include="wwwroot\js\areas\maestros\NewFolder1\" />
+    <Folder Include="wwwroot\js\areas\maestros\NewFolder\" />
+    <Folder Include="wwwroot\js\controller\identity\" />
+    <Folder Include="wwwroot\lib\jquery-tabledit-1.2.3\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Include="Areas\VisitadorMedico\Views\Horarios\modal\_modalHxdiaxMedico.cshtml" />
+    <None Include="bundleconfig.json" />
+    <None Include="wwwroot\js\controller\veterinaria\PatologiaController.js" />
+    <None Include="wwwroot\js\controller\veterinaria\RazaController.js" />
+    <None Include="wwwroot\js\controller\veterinaria\TipoMascotaController.js" />
+    <None Include="wwwroot\js\controller\visitadormedico\VisitaMedicaController.min.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.bootstrap.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.bootstrap.min.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.bootstrap4.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.foundation.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.foundation.min.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.jqueryui.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.jqueryui.min.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.semanticui.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\autoFill.semanticui.min.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\dataTables.autoFill.js" />
+    <None Include="wwwroot\lib\Datatable\AutoFill-2.3.4\js\dataTables.autoFill.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\css\common.scss" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\css\mixins.scss" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.bootstrap.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.bootstrap.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.bootstrap4.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.colVis.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.colVis.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.flash.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.flash.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.foundation.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.foundation.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.html5.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.html5.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.jqueryui.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.jqueryui.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.print.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.print.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.semanticui.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\buttons.semanticui.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\dataTables.buttons.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\js\dataTables.buttons.min.js" />
+    <None Include="wwwroot\lib\Datatable\Buttons-1.6.1\swf\flashExport.swf" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.bootstrap.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.bootstrap.min.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.bootstrap4.min.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.foundation.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.foundation.min.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.jqueryui.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.jqueryui.min.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.semanticui.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\dataTables.semanticui.min.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\jquery.dataTables.js" />
+    <None Include="wwwroot\lib\Datatable\DataTables-1.10.20\js\jquery.dataTables.min.js" />
+    <None Include="wwwroot\lib\Datatable\datatables.js" />
+    <None Include="wwwroot\lib\Datatable\datatables.min.js" />
+    <None Include="wwwroot\lib\Datatable\JSZip-2.5.0\jszip.js" />
+    <None Include="wwwroot\lib\Datatable\JSZip-2.5.0\jszip.min.js" />
+    <None Include="wwwroot\lib\Datatable\pdfmake-0.1.36\pdfmake.js" />
+    <None Include="wwwroot\lib\Datatable\pdfmake-0.1.36\pdfmake.min.js" />
+    <None Include="wwwroot\lib\Datatable\pdfmake-0.1.36\vfs_fonts.js" />
+    <None Include="wwwroot\lib\fullCalendar\fullcalendar.js" />
+    <None Include="wwwroot\lib\fullCalendar\fullcalendar.min.js" />
+    <None Include="wwwroot\lib\fullCalendar\moment.min.js" />
+    <None Include="wwwroot\lib\summernote\font\summernote.woff2" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ar-AR.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ar-AR.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-bg-BG.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-bg-BG.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ca-ES.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ca-ES.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-cs-CZ.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-cs-CZ.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-da-DK.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-da-DK.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-de-DE.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-de-DE.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-el-GR.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-el-GR.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-es-ES.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-es-ES.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-es-EU.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-es-EU.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-fa-IR.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-fa-IR.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-fi-FI.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-fi-FI.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-fr-FR.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-fr-FR.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-gl-ES.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-gl-ES.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-he-IL.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-he-IL.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-hr-HR.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-hr-HR.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-hu-HU.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-hu-HU.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-id-ID.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-id-ID.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-it-IT.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-it-IT.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ja-JP.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ja-JP.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ko-KR.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ko-KR.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-lt-LT.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-lt-LT.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-lt-LV.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-lt-LV.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-mn-MN.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-mn-MN.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-nb-NO.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-nb-NO.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-nl-NL.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-nl-NL.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-pl-PL.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-pl-PL.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-pt-BR.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-pt-BR.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-pt-PT.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-pt-PT.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ro-RO.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ro-RO.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ru-RU.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ru-RU.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sk-SK.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sk-SK.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sl-SI.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sl-SI.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sr-RS-Latin.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sr-RS-Latin.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sr-RS.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sr-RS.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sv-SE.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-sv-SE.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ta-IN.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-ta-IN.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-th-TH.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-th-TH.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-tr-TR.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-tr-TR.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-uk-UA.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-uk-UA.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-uz-UZ.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-uz-UZ.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-vi-VN.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-vi-VN.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-zh-CN.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-zh-CN.min.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-zh-TW.js" />
+    <None Include="wwwroot\lib\summernote\lang\summernote-zh-TW.min.js" />
+    <None Include="wwwroot\lib\summernote\summernote-bs4.js" />
+    <None Include="wwwroot\lib\summernote\summernote-bs4.js.map" />
+    <None Include="wwwroot\lib\summernote\summernote-bs4.min.js" />
+    <None Include="wwwroot\lib\summernote\summernote-bs4.min.js.map" />
+    <None Include="wwwroot\lib\summernote\summernote-lite.js" />
+    <None Include="wwwroot\lib\summernote\summernote-lite.js.map" />
+    <None Include="wwwroot\lib\summernote\summernote-lite.min.js" />
+    <None Include="wwwroot\lib\summernote\summernote-lite.min.js.map" />
+    <None Include="wwwroot\lib\summernote\summernote.js" />
+    <None Include="wwwroot\lib\summernote\summernote.js.map" />
+    <None Include="wwwroot\lib\summernote\summernote.min.js" />
+    <None Include="wwwroot\lib\summernote\summernote.min.js.map" />
+    <None Include="wwwroot\plantilla\modulos\%40fortawesome\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\plantilla\modulos\%40fortawesome\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\plantilla\modulos\%40fortawesome\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\plantilla\modulos\%40fortawesome\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\plantilla\modulos\%40fortawesome\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\plantilla\modulos\%40fortawesome\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\plantilla\modulos\%40jaames\iro\dist\iro.js" />
+    <None Include="wwwroot\plantilla\modulos\aos\dist\aos.js" />
+    <None Include="wwwroot\plantilla\modulos\autosize\dist\autosize.js" />
+    <None Include="wwwroot\plantilla\modulos\basictable\jquery.basictable.js" />
+    <None Include="wwwroot\plantilla\modulos\bootbox\bootbox.all.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-colorpicker\dist\js\bootstrap-colorpicker.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-duallistbox\dist\jquery.bootstrap-duallistbox.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-markdown\js\bootstrap-markdown.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-maxlength\dist\bootstrap-maxlength.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-select\dist\js\bootstrap-select.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-star-rating\js\star-rating.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-table\dist\bootstrap-table.min.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-table\dist\extensions\export\bootstrap-table-export.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-table\dist\extensions\mobile\bootstrap-table-mobile.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-table\dist\extensions\print\bootstrap-table-print.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-tagsinput\dist\bootstrap-tagsinput.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-touchspin\dist\jquery.bootstrap-touchspin.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap-wysiwyg\js\bootstrap-wysiwyg.min.js" />
+    <None Include="wwwroot\plantilla\modulos\bootstrap\dist\js\bootstrap.js" />
+    <None Include="wwwroot\plantilla\modulos\chart.js\dist\Chart.js" />
+    <None Include="wwwroot\plantilla\modulos\chartist\dist\chartist.js" />
+    <None Include="wwwroot\plantilla\modulos\chosen-js\chosen.jquery.js" />
+    <None Include="wwwroot\plantilla\modulos\code-prettify\src\run_prettify.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-bs4\js\page-script.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-bs4\js\dataTables.bootstrap4.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons-bs4\js\buttons.bootstrap4.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\buttons.colVis.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\buttons.flash.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\buttons.flash.min.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\buttons.html5.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\buttons.print.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\dataTables.buttons.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\pdfmake.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\pdfmake.min.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-buttons\js\vfs_fonts.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-colreorder\js\dataTables.colReorder.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-responsive\js\dataTables.responsive.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables.net-select\js\dataTables.select.js" />
+    <None Include="wwwroot\plantilla\modulos\datatables\media\js\jquery.dataTables.js" />
+    <None Include="wwwroot\plantilla\modulos\dropzone\dist\dropzone.js" />
+    <None Include="wwwroot\plantilla\modulos\eonasdan-bootstrap-datetimepicker\src\js\bootstrap-datetimepicker.js" />
+    <None Include="wwwroot\plantilla\modulos\es6-object-assign\dist\object-assign-auto.js" />
+    <None Include="wwwroot\plantilla\modulos\eva-icons\style\fonts\Eva-Icons.svg" />
+    <None Include="wwwroot\plantilla\modulos\eva-icons\style\fonts\Eva-Icons.woff2" />
+    <None Include="wwwroot\plantilla\modulos\flot\dist\es5\jquery.flot.js" />
+    <None Include="wwwroot\plantilla\modulos\free-jqgrid\js\jquery.jqgrid.src.js" />
+    <None Include="wwwroot\plantilla\modulos\fullcalendar\main.js" />
+    <None Include="wwwroot\plantilla\modulos\holderjs\holder.js" />
+    <None Include="wwwroot\plantilla\modulos\inputmask\dist\jquery.inputmask.js" />
+    <None Include="wwwroot\plantilla\modulos\interactjs\dist\interact.js" />
+    <None Include="wwwroot\plantilla\modulos\ion-rangeslider\js\ion.rangeSlider.js" />
+    <None Include="wwwroot\plantilla\modulos\jam-icons\fonts\jam-icons.svg" />
+    <None Include="wwwroot\plantilla\modulos\jqtree\tree.jquery.js" />
+    <None Include="wwwroot\plantilla\modulos\jquery-knob\dist\jquery.knob.min.js" />
+    <None Include="wwwroot\plantilla\modulos\jquery-validation\dist\jquery.validate.js" />
+    <None Include="wwwroot\plantilla\modulos\jquery.hotkeys\jquery.hotkeys.js" />
+    <None Include="wwwroot\plantilla\modulos\jquery\dist\jquery.js" />
+    <None Include="wwwroot\plantilla\modulos\lunr\lunr.js" />
+    <None Include="wwwroot\plantilla\modulos\mark.js\dist\jquery.mark.js" />
+    <None Include="wwwroot\plantilla\modulos\markdown\lib\markdown.js" />
+    <None Include="wwwroot\plantilla\modulos\moment\moment.js" />
+    <None Include="wwwroot\plantilla\modulos\node-waves\dist\waves.js" />
+    <None Include="wwwroot\plantilla\modulos\nouislider\distribute\nouislider.js" />
+    <None Include="wwwroot\plantilla\modulos\photoswipe\dist\default-skin\default-skin.svg" />
+    <None Include="wwwroot\plantilla\modulos\photoswipe\dist\photoswipe-ui-default.js" />
+    <None Include="wwwroot\plantilla\modulos\photoswipe\dist\photoswipe.js" />
+    <None Include="wwwroot\plantilla\modulos\popper.js\dist\umd\popper.js" />
+    <None Include="wwwroot\plantilla\modulos\prismjs\plugins\line-highlight\prism-line-highlight.js" />
+    <None Include="wwwroot\plantilla\modulos\prismjs\prism.js" />
+    <None Include="wwwroot\plantilla\modulos\select2\dist\js\select2.js" />
+    <None Include="wwwroot\plantilla\modulos\smartwizard\dist\js\jquery.smartWizard.js" />
+    <None Include="wwwroot\plantilla\modulos\sortablejs\dist\sortable.umd.js" />
+    <None Include="wwwroot\plantilla\modulos\summernote\dist\summernote-lite.js" />
+    <None Include="wwwroot\plantilla\modulos\sweetalert2\dist\sweetalert2.all.js" />
+    <None Include="wwwroot\plantilla\modulos\tableexport.jquery.plugin\libs\FileSaver\FileSaver.min.js" />
+    <None Include="wwwroot\plantilla\modulos\tableexport.jquery.plugin\tableExport.min.js" />
+    <None Include="wwwroot\plantilla\modulos\tiny-date-picker\dist\date-range-picker.js" />
+    <None Include="wwwroot\plantilla\modulos\typeahead.js\dist\typeahead.bundle.js" />
+    <None Include="wwwroot\plantilla\scss\ace-default-themes.scss" />
+    <None Include="wwwroot\plantilla\scss\ace-features.scss" />
+    <None Include="wwwroot\plantilla\scss\ace-slim-features.scss" />
+    <None Include="wwwroot\plantilla\scss\ace-slim.scss" />
+    <None Include="wwwroot\plantilla\scss\ace-themes.scss" />
+    <None Include="wwwroot\plantilla\scss\ace.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\bootstraptable.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\calendar.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\chosen.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\datatables.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\date.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\jqgrid.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\misc.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\select2.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\slider.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\spin.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\treeview.scss" />
+    <None Include="wwwroot\plantilla\scss\plugins\wizard.scss" />
+    <None Include="wwwroot\plantilla\scss\_accordion.scss" />
+    <None Include="wwwroot\plantilla\scss\_alert.scss" />
+    <None Include="wwwroot\plantilla\scss\_aside-modal.scss" />
+    <None Include="wwwroot\plantilla\scss\_badge.scss" />
+    <None Include="wwwroot\plantilla\scss\_base.scss" />
+    <None Include="wwwroot\plantilla\scss\_button-colors.scss" />
+    <None Include="wwwroot\plantilla\scss\_button.scss" />
+    <None Include="wwwroot\plantilla\scss\_card.scss" />
+    <None Include="wwwroot\plantilla\scss\_colors-background.scss" />
+    <None Include="wwwroot\plantilla\scss\_colors-text.scss" />
+    <None Include="wwwroot\plantilla\scss\_content-nav.scss" />
+    <None Include="wwwroot\plantilla\scss\_dropdown.scss" />
+    <None Include="wwwroot\plantilla\scss\_fixed.scss" />
+    <None Include="wwwroot\plantilla\scss\_font-size.scss" />
+    <None Include="wwwroot\plantilla\scss\_footer.scss" />
+    <None Include="wwwroot\plantilla\scss\_form-checkbox.scss" />
+    <None Include="wwwroot\plantilla\scss\_form-file.scss" />
+    <None Include="wwwroot\plantilla\scss\_form.scss" />
+    <None Include="wwwroot\plantilla\scss\_function-contrast.scss" />
+    <None Include="wwwroot\plantilla\scss\_functions.scss" />
+    <None Include="wwwroot\plantilla\scss\_icon-animation.scss" />
+    <None Include="wwwroot\plantilla\scss\_misc.scss" />
+    <None Include="wwwroot\plantilla\scss\_navbar-link.scss" />
+    <None Include="wwwroot\plantilla\scss\_navbar-mobile.scss" />
+    <None Include="wwwroot\plantilla\scss\_navbar-theme-maker.scss" />
+    <None Include="wwwroot\plantilla\scss\_navbar-themes-variables.scss" />
+    <None Include="wwwroot\plantilla\scss\_navbar-toggler.scss" />
+    <None Include="wwwroot\plantilla\scss\_navbar.scss" />
+    <None Include="wwwroot\plantilla\scss\_pagination.scss" />
+    <None Include="wwwroot\plantilla\scss\_scrollbar.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-active.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-expandable.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-hideable.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-horizontal.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-hoverable.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-liststyle.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-mobile.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-scrollbar.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-spaced.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-theme-maker.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-themes-extra.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar-themes-variables.scss" />
+    <None Include="wwwroot\plantilla\scss\_sidebar.scss" />
+    <None Include="wwwroot\plantilla\scss\_spacing.scss" />
+    <None Include="wwwroot\plantilla\scss\_sticky.scss" />
+    <None Include="wwwroot\plantilla\scss\_tab.scss" />
+    <None Include="wwwroot\plantilla\scss\_table.scss" />
+    <None Include="wwwroot\plantilla\scss\_tooltip.scss" />
+    <None Include="wwwroot\plantilla\scss\_typography.scss" />
+    <None Include="wwwroot\plantilla\scss\_variables-more.scss" />
+    <None Include="wwwroot\plantilla\scss\_variables.scss" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gdp.Infraestructura\Gdp.Infraestructura.csproj" />
+    <ProjectReference Include="..\INFRAESTRUCTURA\Erp.Infraestructura.csproj" />
+    <ProjectReference Include="..\Vinali.Infraestructura\Vinali.Infraestructura.csproj" />
+    <ProjectReference Include="..\VisitadorMedico.Infraestructura\VisitadorMedico.Infraestructura.csproj" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Update="Credentialjsondrive.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="wwwroot\imagenes\recursos\home\administrador.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\imagenes\recursos\home\almacen.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\imagenes\recursos\home\compras.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\imagenes\recursos\home\ventas.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="Reportes\Ventas\proforma4.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reportes\Ventas\proforma3.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reportes\Ventas\proforma2.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Reportes\Ventas\proforma1.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" wwwroot_4lib_4bootstrap_4dist_4css_4bootstrap-reboot_1css_1map__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
+</Project>

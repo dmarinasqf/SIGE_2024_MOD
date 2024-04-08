@@ -1,0 +1,48 @@
+﻿
+<div class="modal fade" data-backdrop="static" id="modalvalidarusuario" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-1">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="exampleModalLabel">VALIDAR CREDENCIALES</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              @*  <form method="post" autocomplete="off" id="formvalidarusuario">*@
+                <input type="hidden" id="MVUtxttipo"  value="" />
+                    <div class="card">
+                        <div class="card-body">                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>USUARIO</label>
+
+                                        <input type="text" name="usuario" class="form-control form-control-sm" id="MVUtxtusuario" placeholder=" USUARIO" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+
+                                    <div class="form-group">
+                                        <label>CONTRASEÑA</label>
+                                        <input type="password" name="clave" class="form-control form-control-sm" id="MVUtxtclave" placeholder=" CONTRASEÑA" required>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="btn btn-block btn-success" id="MVUbtnaceptar" type="button" >ACEPTAR</button>
+                        </div>
+                    </div>
+              @*  </form>*@
+            </div>
+            <div class="modal-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/main/modalvalidarcredenciales.js"></script>

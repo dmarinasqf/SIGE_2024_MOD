@@ -1,0 +1,65 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-11 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE PRODUCTOS PARECIDOS
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-1 col-md-6">
+        <a asp-action="Registrar" class="btn btn-primary btn-block"> <i class="fas fa-plus"></i></a>
+    </div>
+
+</div>
+<hr />
+<div class="row">
+    <div class="col-xl-2 col-md-2">
+        <label>CODIGO</label>
+        <div class="form-group">
+            <div class="form-line">
+                <input type="text" id="txtcodigoproducto" class="form-control form-control-sm">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-4">
+        <label>PRODUCTO</label>
+        <div class="form-group">
+            <div class="form-line">
+                <input type="text" id="txtnombreproducto" class="form-control form-control-sm">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4 col-md-4 mt-4">
+        <button type="submit" class="btn btn-sm btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+    </div>
+</div>
+
+<div class="row justify-content-end mt-2">
+    <div class="col-xl-12 mt-2">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2  table-responsive">
+                <table class="table table-bordered  table-hover text-center" width="100%" id="tbllista">
+                    <thead>
+                        <tr>
+                            <th class="border-0 bgc-h-yellow-l3 shadow-sm" style="width:3%"></th>
+                            <th class="border-0 bgc-h-yellow-l3 shadow-sm" style="width:3%">ID</th>
+                            <th class="border-0 bgc-h-yellow-l3 shadow-sm" style="width:10%">CODIGO</th>
+                            <th class="border-0 bgc-h-yellow-l3 shadow-sm" style="width:4%">TIPO</th>
+                            <th class="border-0 bgc-h-yellow-l3 shadow-sm" style="width:77%">PRODUCTO</th>
+                            <th class="border-0 bgc-h-yellow-l3 shadow-sm" style="width:3%"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodydetalle">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/controller/almacen/ProductoParecidoController.js"></script>
+<script src="~/js/areas/almacen/productoparecido/index.js"></script>

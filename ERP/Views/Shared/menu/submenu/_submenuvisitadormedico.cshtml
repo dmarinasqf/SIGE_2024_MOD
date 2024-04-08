@@ -1,0 +1,80 @@
+﻿@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU VISITADOR MEDICO"))
+{
+    <li class="nav-item">
+
+        <a href="#" class="nav-link dropdown-toggle collapsed">
+            <i class="nav-icon fa fa-cube"></i>
+            <span class="nav-text fadeable">
+                <span>Visitador Medico</span>
+            </span>
+            <b class="caret fa fa-angle-left rt-n90"></b>
+        </a>
+
+        <div class="submenu collapse">
+            <ul class="submenu-inner">
+                <li class="nav-item">
+
+                    <ul class="submenu-inner">
+
+                        @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REP.MEDICO"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="VisitadorMedico" asp-controller="Objetivo" asp-action="MaestroObjetivos"> Objetivos</a>
+                            </li>
+
+                        }
+                        @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REP.MEDICO"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="VisitadorMedico" asp-controller="MedicoRepresentante" asp-action="Asignacion">Asignar M -> RM</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="VisitadorMedico" asp-controller="MedicoRepresentante" asp-action="AsignacionCliente">Asignar C -> RM</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REP.MEDICO") || User.IsInRole("MANTENEDOR VISITA MEDICA"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-area="VisitadorMedico" asp-controller="VisitaMedica" asp-action="Mantenimiento"> Mantenedor de visitas</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REP.MEDICO"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link dropdown-toggle collapsed">
+
+                                    <span class="nav-text fadeable">
+                                        <span>Reportes</span>
+                                    </span>
+                                    <b class="caret fa fa-angle-left rt-n90"></b>
+                                </a>
+
+                                <div class="hideable submenu collapse">
+                                    <ul class="submenu-inner">
+                                        <li class="nav-item">
+
+                                            <ul class="submenu-inner">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" asp-area="VisitadorMedico" asp-controller="Reporte" asp-action="FormulasXMedico"> Formulas x Medico</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" asp-area="VisitadorMedico" asp-controller="Reporte" asp-action="HorariosVisitadores"> Horarios Visitadores</a>
+                                                </li>
+
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+        <b class="sub-arrow"></b>
+
+    </li>
+}

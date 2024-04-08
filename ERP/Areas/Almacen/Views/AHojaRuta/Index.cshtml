@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "Hoja de Ruta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="col-xl-12">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    HISTORIAL HOJAS DE RUTA
+                </h1>
+                <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                    <a asp-action="RegistrarEditar" class="btn btn-primary ">
+                        <i class="fas fa-plus"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="body">
+
+            <div class="col-xl-12">
+                <form autocomplete="off" id="form-busqueda">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row" >
+                                <div class="col-xl-3 col-xs-6">
+                                    <label>CÓDIGO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input class="form-control form-control-sm" id="txtcodigo" name="codigo" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                    <label>RANGO DE FECHA</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="txtfecharango" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <label></label>
+                                    <button type="submit" class="btn btn-block btn-secondary" id="btnbusqueda"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-xl-12">
+                <div class="card bcard h-auto mt-2">
+                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                        <table class="table table-bordered collapsed" width="100%" id="tbllista">
+                            <thead class="">
+                                <tr>
+                                    <th style="width:5%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                                    <th style="width:5%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                                    <th>IDGUIA</th>
+                                    <th style="width:15%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">NUM.DOC.</th>
+                                    <th style="width:25%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ORIGEN</th>
+                                    <th style="width:25%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">DESTINO</th>
+                                    <th style="width:10%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">FECHATRASLADO</th>
+                                    <th style="width:15%" class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ESTADO</th>
+                                </tr>
+                            </thead>
+                            <tbody class="pos-rel">
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/almacen/hojaderuta/index.js"></script>

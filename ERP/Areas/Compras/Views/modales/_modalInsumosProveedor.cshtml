@@ -1,0 +1,63 @@
+﻿
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalinsumosproveedores" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1000 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <div class="form-inline">
+                    <h5 class="modal-title" id="exampleModalLabel">PRODUCTOS DE PROVEEDORES</h5>
+
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-8 col-sm-12 mt-3">
+                                <input type="text" class="form-control form-control-sm text-uppercase" placeholder="BUSCAR PRODUCTOS" tipobusqueda="" id="MIP_txtbuscarproductos" />
+                            </div>
+
+                            <div class="col-xl-2 col-sm-4">
+                                <label>Tipo de producto</label>
+                                <select id="cmbtipoproductomodal" class="form-control form-control-sm"></select>
+
+                            </div>
+                            <div class="col-xl-2 col-sm-4 text-center mt-3">                              
+                                <button class="btn btn-sm btn-block btn-success" onclick="agregarItems('INSUMO')">[AGREGAR]</button>
+                            </div>
+
+                            <div class="col-xl-12 table-responsive contenedor-sticky-500 mt-2">
+                                <table class="table table-sm font-11 table-hover table-striped table-bordered" id="tblinsumosdeproveedor" style="width:100%">
+                                    <thead class="thead-dark ">
+                                        <tr>
+                                            <th></th>
+                                            <th class="header-sticky">COD</th>
+                                            <th class="header-sticky">DESCRIPCION</th>
+                                            <th class="header-sticky">UM</th>
+                                            <th class="header-sticky">EQUIVALENCIA</th>
+                                            <th class="header-sticky">VVF</th>
+                                            <th class="header-sticky">PVF</th>
+                                            <th class="header-sticky"><input type="checkbox" id="checktodosINSUMO"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/compras/modales/modalinsumoproveedor.js"></script>

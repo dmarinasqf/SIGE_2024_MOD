@@ -1,0 +1,129 @@
+﻿
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalconfigcaja" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="exampleModalLabel">CONFIGURACIÓN DE <span id="MC_lblnombrecaja"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <input type="hidden" name="idcajasucursal" id="MC_txtidcajasucursal" />
+                <div class="row">
+                    <div class="col-xl-8 col-sm-12">
+                        <div class="card">
+                            <div class="card-header bg-blue-grey">
+                                <h7 >CORRELATIVOS DE DOCUMENTOS</h7>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-xl-6 col-sm-6">
+                                        <div class="form-group">
+                                            <label>ASOCIAR CORRELATIVO A OTRA CAJA <input type="checkbox" id="MC_checkcorrelativoasociadoaotracaja" name="correlativoasociadoaotracaja" value="" /></label>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-6">
+                                        <div class="form-group deshabilitartodo" id="MC_seleccionarcajaasociada">
+                                            <label>SELECCIONAR CAJA ASOCIADA</label>
+                                            <select class="form-control form-control-sm" id="MC_cmbidcajacorrelativoasociado" name="idcajacorrelativoasociado"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                                <div id="MC_tabladocumentos">
+                                    <form autocomplete="off" id="formdocumentocorrelativo">
+                                        <div class="row ">
+                                            <input type="hidden" name="idcorrelativo" id="MC_txtidcorrelativo" value="" />
+                                            <div class="col-xl-3 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>DOCUMENTO</label>
+                                                    <select class="form-control form-control-sm" id="MC_cmbdoctributario" name="iddocumento" required></select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>SERIE</label>
+                                                    <input type="text" name="serie" id="MC_txtserie" class="form-control form-control-sm mayusculas" minlength="4" maxlength="4" required />
+
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>EMPIEZA</label>
+                                                    <input type="number" name="empieza" id="MC_txtempieza" class="form-control form-control-sm" required />
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-sm-6">
+                                                <div class="form-group">
+                                                    <label>ESTADO</label>
+                                                    <select class="form-control form-control-sm" id="MC_cmbestado" name="estado" required>
+                                                        <option value="HABILITADO" selected>HABILITADO</option>
+                                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-sm-6">
+                                                <div class="form-group mt-4">
+                                                    <button class="btn btn-sm btn-primary" type="submit">GUARDAR</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                    <div class="row">
+                                        <div class="col-xl-12 col-sm-12">
+                                            <table class="table table-sm table-striped table-bordered" id="MC_tbldocumentossucursal">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th>DOCUMENTO</th>
+                                                        <th>SERIE</th>
+                                                        <th>EMPIEZA</th>
+                                                        <th>ACTUAL</th>
+                                                        <th>ESTADO</th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="MC_tbldocumentossucursal_tbody"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-12">
+                        <div class="card">
+                            <div class="card-header bg-blue-grey">
+                                <h7>DATOS DE IMPRESORA</h7>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>NOMBRE</label>
+                                    <input type="text" name="nombreimpresora" id="MC_txtnombreimpresora" class="form-control form-control-sm" />
+                                </div>
+                                <div class="form-group">
+                                    <label>SERIE</label>
+                                    <input type="text" name="nombreimpresora" id="MC_txtserieimpresora" class="form-control form-control-sm" />
+                                </div>
+                                <div class="form-group">
+                                    <label>IP</label>
+                                    <input type="text" name="nombreimpresora" id="MC_txtipimpresora" class="form-control form-control-sm" />
+                                </div>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-success btn-block" id="MC_btnguardardatosimpresora">GUARDAR</button>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/administrador/sucursal/modalconfigcaja.js"></script>

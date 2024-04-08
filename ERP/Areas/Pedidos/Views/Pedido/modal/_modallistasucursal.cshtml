@@ -1,0 +1,66 @@
+﻿
+<div class="modal fade" id="modallistaprecios" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="form-inline">
+                    <label class="mr-4">SELECCIONE LISTA DE PRECIOS: </label>
+                    <select id="MLScmblistapreios" class="form-control form-control-sm"></select>
+                   
+                    <label class="ml-4">LABORATORIOS: </label>
+                    <div class="tag-input-style ml-2" id="select2-parent">
+                        <select id="MLScmblistalabs" class="select2 form-control" data-placeholder="Buscar" data-allow-clear="true">
+                        </select>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="MLStxtidsucursal" />
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <input type="text" class="form-control mb-2" id="MLStxtfiltro" placeholder="Ingresar nombre o código" />
+                            </div>
+                            <div class="col-xl-12 contenedor-sticky-450">
+                                <table class="table table-sm table-bordered" width="100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="header-sticky text-right"></th>
+
+                                            <th class="header-sticky" style="width:10%">COD</th>
+                                            <th class="header-sticky" style="width:30%">PRODUCTO</th>
+                                            <th class="header-sticky" style="width:20%">LABORATORIO</th>
+                                            @*<th class="header-sticky" style="width:20%">LISTA PRECIO</th>*@
+                                            <th class="header-sticky text-center" style="width:10%;">I</th>
+                                            <th class="header-sticky text-right" style="width:10%">PRECIO</th>
+                                            <th class="header-sticky text-right" style="width:10%">PRECIOXU</th>
+                                            <th class="header-sticky" style="width:5%">TIPO</th>
+                                            <th class="header-sticky text-right" style="width:5%">STOCK</th>
+                                            <th class="header-sticky text-right" style="width:5%">MULTIPLO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="MLStbodyplista"></tbody>
+                                </table>
+                            </div>
+                            <div class="col-xl-12">
+                                <div id="MLSpaginacion">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Ventas/Views/Venta/modal/_modalloteproducto.cshtml" />
+
+<script src="~/js/areas/pedidos/pedidos/modal/modallistasucursal.js"></script>

@@ -1,0 +1,96 @@
+﻿
+<div class="row justify-content-center">
+    <div class="col-xl-6">
+        <form id="formregistroasociado" autocomplete="off">
+            <div class="card">
+
+                <div class="card-body">
+                    <input type="hidden" id="txtidclienteasociado" name="idclienteasociado">
+                    <input type="hidden" id="txtidmedico" name="idmedico">
+                    <div class="row">
+                        @*<div class="col-xl-12">
+                                <div class="form-group">
+                                    <label>BUSCAR DIRECTOR TÉCNICO</label>
+                                    <select id="cmbbuscardirector">
+                                        <option value="value">text</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-sm-12">
+                                <div class="form-group">
+                                    <label>CMP</label>
+                                    <input type="text" class="form-control form-control-sm clear" id="txtcmp" name="cmp" maxlength="12">
+                                </div>
+                            </div>
+                            <div class="col-xl-8 col-sm-12">
+                                <div class="form-group">
+                                    <label>DIRECTOR TECNICO </label>
+                                    <input type="hidden" name="idmedico" value="" id="txtidmedico">
+                                    <input type="text" class="mayusculas form-control form-control-sm" id="txtdirectortecnico" name="directortecnico" disabled="">
+                                </div>
+                            </div>*@
+                        <div class="col-sm-12">
+                            <div class="row border">
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        <label>COLEGIATURA DE MÉDICO</label>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control form-control-sm" id="txtnumcolegiatura" onkeypress="buscarMedico(event)" autocomplete="off">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="button" id="btnbuscarmedico"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                                    <div class="form-group ">
+                                        <label>NOMBRES DE MÉDICO</label>
+                                        <input type="hidden" id="txtidmedico2" name="idmedico" value="11014">
+                                        <input id="txtnombremedico" type="text" class="form-control  form-control-sm" value="" disabled="">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-group">
+                                <label>CONDICION DE PAGO</label>
+                                <select class="form-control form-control-sm" name="idcondicionpago" id="cmbtipopago">
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-group">
+                                <label>CONTACTO</label>
+                                <input type="text" class="mayusculas form-control form-control-sm" id="txtcontacto" name="contacto">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-group">
+                                <label>CELULAR CONTACTO</label>
+                                <input type="text" class="form-control form-control-sm " id="txtcelularcontacto" name="celularcontacto" maxlength="12">
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-group">
+                                <label>HORA ATENCION</label>
+                                <input type="text" class="form-control form-control-sm" id="txthoraatencion" name="horaatencion">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-block btn-success btn-sm" id="btnguardarasociado">GUARDAR</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<partial name="~/Areas/Maestros/Views/Medico/modal/_modalbuscarmedicos.cshtml" />
+
+<script src="~/js/areas/maestros/cliente/complemento/comregistroasociado.js"></script>
+<script src="~/js/areas/maestros/medico/modal/modalbuscarmedicos.js"></script>
+<script src="~/js/controller/maestros/ColegioController.js"></script>
+<script src="~/js/controller/maestros/MedicoController.js"></script>

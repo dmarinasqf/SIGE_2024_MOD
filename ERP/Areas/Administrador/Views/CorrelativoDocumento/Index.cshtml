@@ -1,0 +1,183 @@
+﻿@*@model IEnumerable<ENTIDADES.Finanzas.FCorrelativoDocumentoSucursal>*@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+            <div class="header bg-success text-center ">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h6 class="color-blanco">CORRELATIVOS DE DOCUMENTOS TRIBUTARIOS DE LA SUCURSAL 
+                            <label id="nombreempresa" class="font-weight-bold" style="font-size: 15px; color:white">@ViewBag.sucursales.descripcion</label>
+                        </h6>
+
+                    </div>
+                    <div class="col-lg-2">
+                        <button type="button" class="btn btn-primary" id="btn-registrar" data-toggle="modal" data-target="#modalregistro">
+                            REGISTRAR
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="body ocultar">
+                <div class="card">
+                    <div class="header text-center font-14">
+                        <h7>DATOS DE SUCURSAL : </h7>
+                    </div>
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+                                <label>CODIGO : </label>
+                                <input type="hidden" id="codigo_sucursal" value="@ViewBag.sucursales.suc_codigo" />
+                                <label id="idempresa" class="font-weight-bold" style="font-size: 15px">@ViewBag.sucursales.serie</label>
+                            </div>
+                            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+                                <label >RAZÓN SOCIAL : </label>
+                                
+                            </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="card">
+                    <div class="body">
+                        <table class="table table-responsive-sm table-sm table-hover text-center" width="100%" id="tbllista">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th> ID</th>                                                                                                 
+                                    <th> DOCUMENTO</th>
+                                    <th> CORRELATIVO</th>                                    
+                                    <th> SERIE IMPRESORA</th>                                    
+                                    <th> INICIO</th>                                    
+                                    <th> ACTUAL</th>                                    
+                                    <th> FIN</th>                                    
+                                    <th> ESTADO</th>                                    
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @*@foreach (var item in Model)
+                                {
+                                    <tr id="@item.idcorrelativo">                                        
+                                        <td>@item.idcorrelativo</td>                                     
+                                        <td>@item.documento  </td>
+                                        <td>@item.seriedocumento</td>
+                                        <td>@item.serieimpresora</td>
+                                        <td>@item.inicio</td>
+                                        <td>@item.actual</td>
+                                        <td>@item.fin</td>
+                                        <td>@item.estado</td>
+                                        <td>
+                                            @if (item.estado == "HABILITADO")
+                                            {
+                                                <div class="btn-group btn-group-sm">
+                                                    <a class="btn btn-sm bg-warning waves-effect btn-pasar font-10"><i class="fa fa-edit"></i></a>
+                                                    <button class="btn btn-sm btn-danger waves-effect font-10" onclick="mensajeeliminar(@item.idcorrelativo)"><i class="fa fa-lock"></i></button>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="btn-group btn-group-sm">
+                                                    <button class="btn btn-sm btn-success waves-effect font-10" onclick="habilitar(@item.idcorrelativo)"><i class="fa fa-unlock"></i></button>
+                                                </div>
+                                            }
+                                        </td>
+                                    </tr>
+                                }*@
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRO CORRELATIVO DE SUCURSAL</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <form method="post" autocomplete="off" id="form-registro">
+                        <div class="card-body">
+                            <div class="row">
+
+                                <input type="hidden" name="idcorrelativo" value="" id="txtcodigo" />
+                                <input type="hidden" name="idsucursal" value="@ViewBag.sucursales.suc_codigo" required />
+                                <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>DOCUMENTO</label>
+                                        <select class="form-control show-tick" id="cmbdocumento" name="iddocumento" required>
+                                            <option value="" selected>[SELECCIONE]</option>
+                                            @foreach (var item in ViewBag.documentos)
+                                            {
+                                                <option value="@item.iddocumento" correlativo="@item.correlativo">@item.descripcion</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>SERIE DOCUMENTO</label>
+                                        <input type="text" id="txtseriedocumento" class="form-control" name="seriedocumento" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>INICIO</label>
+                                        <input type="number" id="txtinicio" class="form-control" name="inicio" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>ACTUAL</label>
+                                        <input type="number" id="txtactual" class="form-control" name="actual" readonly>
+                                    </div>
+                                </div>
+                              
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>SERIE IMPRESORA</label>
+                                        <input type="text" id="txtserieimpresora" class="form-control" name="serieimpresora" required>
+                                    </div>
+                                </div>
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="form-group">
+                                        <label>ESTADO</label>
+                                        <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                            <option value="HABILITADO" selected>HABILITADO</option>
+                                            <option value="DESHABILITADO">DESHABILITADO</option>
+                                        </select>
+                                    </div>
+                                </div>                                                                                            
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                            <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/administrador/correlativodocumento/correlativo_documento.js"></script>

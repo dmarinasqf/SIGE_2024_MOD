@@ -1,0 +1,132 @@
+﻿@{
+    ViewData["Title"] = "ReporteAsignacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-xl-12 col-sm-12">
+                <h5 class="text-center">LISTA DE PEDIDOS DELIVERY</h5>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div class="input-group input-group-sm mb-1">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text form-control-sm">SUCURSAL</label>
+                        </div>
+                        <select class="form-control form-control-sm" id="pb_sucursal">
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-sm mb-1">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text form-control-sm">TIPO ENTREGA</label>
+                        </div>
+                        <select class="custom-select" id="pb_cmbtipoentrega">
+                            <option value="">[SELECCIONE]</option>
+                            <option value="DELIVERY">DELIVERY</option>
+                            <option value="CONSULTORIO">CONSULTORIO</option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <div class="input-group input-group-sm mb-1">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text form-control-sm">HORA ENTREGA</label>
+                        </div>
+                        <select class="form-control  form-control-sm" id="pb_cmbhoraentrega" name="horaentrega">
+                            <option value="" selected>[SELECCIONE]</option>
+                            <option value="08-12">08 - 12(08- 16)</option>
+                            <option value="12-18">12 - 18(16 - 22)</option>
+                            <optgroup label="Terceros" class="text-primary">
+                                <option value="11-18" class="text-dark">11 - 18(07 - 16)</option>
+                                <option value="9-14" class="text-dark">9 - 14(7 - 16)</option>
+                                <option value="14-18" class="text-dark">14 - 18(16 - 21)</option>
+                            </optgroup>
+
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group input-group-sm mb-1">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">FECHA ENTREGA</label>
+                        </div>
+                        <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <button class="btn btn-primary" id="btnConsultar">CONSULTAR</button>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-secondary" style="margin-left:1px">
+                        PEDIDOS SIN ASIGNAR <span class="badge badge-light" id="lblpedidoasignar" style="font-size:13px">0</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" style="margin-left:1px">
+                        PEDIDOS ASIGNADOS <span class="badge badge-light" id="lblpedidoasignados" style="font-size:13px">0</span>
+                    </button>
+                    <button type="button" class="btn btn-secondary" style="margin-left:1px">
+                        TOTAL PEDIDOS DELIVERY <span class="badge badge-light" id="lblpedidototal" style="font-size:13px">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="cardacciones">
+            <div class="col-lg-12 table-responsive">
+                <table class="table table-sm table-bordered" width="100%" id="tbldelivery">
+                    <thead class="thead-dark font-10">
+                        <tr>
+
+                            <th>PEDIDO</th>
+                            <th>FECHA ENTREGA</th>                            
+                            <th>RECOGER EN</th>
+                            <th>DIRECCIÓN ENTREGA</th>
+                            <th>DISTRITO</th>
+                            <th>CLIENTE</th>
+                            <th>PACIENTE</th>
+                            <th>CANT. PROD.</th>
+                            <th>ESTADO ENTREGA</th>
+                            <th>FECHA ENTREGA</th>
+                            <th>ASIGNADO</th>
+                            <th>
+                                <div class="form-inline">
+                                    <input type="checkbox" aria-label="Checkbox" class="checkbox" data-toggle="tooltip" data-placement="top" title="SELECCIONAR TODOS" style="width:20px;height:20px;" id="checkTodo" onclick="seleccionarTodo()">
+                                    <button type="button" id="btnAsiganar" class="btn btn-sm btn-success">ASIGNAR</button>
+                                </div>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="font-10"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/js/controller/pedidos/DeliveryController.js"></script>
+
+
+<script src="~/js/areas/pedidos/delivery/asignarpedidos.js"></script>
+<partial name="~/Areas/Pedidos/Views/Delivery/modal/_modalAsignarPedidos.cshtml" />

@@ -1,0 +1,75 @@
+﻿
+@{ ViewData["Title"] = "GuiasTransferencias";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE DE GUIAS Y TRANSFERENCIAS
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-xl-2  col-md-4 col-sm-6 ">
+        <label>CODIGO</label>
+        <input type="text" class="form-control form-control-sm" id="txtcodigodocumento" />
+    </div>
+    <div class="col-xl-2  col-md-4 col-sm-6">
+        <label>ESTADO</label>
+        <select id="cmbestado" class="form-control form-control-sm">
+            <option value="">FILTRAR TODOS</option>
+            <option value="ENTREGADO">ENTREGADO</option>
+            <option value="ANULADO">ANULADO</option>
+            <option value="ATENDIDO">ATENDIDO</option>
+            <option value="PENDIENTE">PENDIENTE</option>
+            <option value="TRANSITO">TRANSITO</option>
+        </select>
+    </div>
+
+    <div class="col-xl-2  col-md-4 col-sm-6">
+        <label>TIPO</label>
+        <select id="cmbtipo" class="form-control form-control-sm">
+            <option value="">FILTRAR TODOS</option>
+            <option value="GUIA">GUIA</option>
+            <option value="TRANSFERENCIA">TRANSFERENCIA</option>
+        </select>
+    </div>
+
+    <div class="col-xl-2  col-md-4 col-sm-6">
+        <label>EMPRESA</label>
+        <select id="cmbempresa" class="form-control form-control-sm">
+            <option value="">FILTRAR TODOS</option>
+            @foreach (var item in ViewBag.empresas)
+            {
+                @*<option value="1000">CORPORACION QF SAC</option>
+            <option value="1001">QUIMSAFARM AMAZONIA EIRL</option>
+            <option value="1002">MEDICOS SOLIDARIOS SMG</option>*@
+                <option value="@item.idempresa">@item.descripcion</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel"></i></button>
+    </div>
+
+    <div class="col-xl-12">
+        <div class=" table-responsive mt-2" id="contenedor">
+            <table class="table" id="tblreporte">
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/js/controller/almacen/ReporteController.js"></script>
+<script src="~/js/areas/almacen/reportes/guiastransferencias.js"></script>
+<script src="~/js/site.js"></script>

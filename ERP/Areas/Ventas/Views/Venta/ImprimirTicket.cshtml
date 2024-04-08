@@ -1,0 +1,228 @@
+﻿@model System.Data.DataTable
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ImprimirTicket</title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <link href="~/css/pagina/impresiones/venta/ticket.css" rel="stylesheet" />
+    <script src="~/lib/qfcode/qrcode.min.js"></script>
+
+    <link href="~/css/font.css" rel="stylesheet" />
+
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        td {
+            font-size: 12px;
+            /*font-family: Calibri;*/
+            font-weight: 500;
+            letter-spacing: -0.3px
+        }
+
+        #tbltbodydetalleimprecion tr td {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        #tbldetalleimprecion thead tr th {
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body class="font-roboto">
+    <script>
+        var data =@Html.Raw(JsonConvert.SerializeObject(Model));
+        var cabecera = JSON.parse(data[0]['CABECERA'])[0];
+        var detalle = JSON.parse(data[0]['DETALLE']);
+        var empresa = JSON.parse(data[0]['EMPRESA'])[0];
+        var pago = JSON.parse(data[0]['PAGO']);      
+    </script>
+    <div id="aplicacion" class="table-box">
+        <div class="row">
+            <table width="100%">
+                <tr style="text-align:center">
+                    <td><img v-bind:src="'/imagenes/empresas/' + empresa.imagen" height="60px" width="150px" /></td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td colspan="4" style="font-size:10px">{{ empresa.descripcion }}</td>
+                </tr>
+                <tr style="text-align:center;margin-top:15px;">
+                    <td colspan="4" style="font-weight: 700">{{ empresa.nombrecomercial }}</td>
+                </tr>
+                <tr style="text-align:center;margin-top:15px">
+                    <td colspan="4">RUC {{ empresa.ruc }}</td>
+
+                </tr>
+                <tr style="text-align:center;margin-top:15px">
+                    <td colspan="4" style="font-size:9px">
+                        {{ empresa.direccion }}
+                    </td>
+                </tr>
+                <tr style="text-align:center;">
+                    <td colspan="2" style="font-size:9px" v-if="empresa.celular!=''">CEL {{ empresa.celular }}</td>
+                    <td colspan="2" style="font-size:9px" v-if="empresa.telefono!=''">TEL {{ empresa.telefono }}</td>
+                </tr>
+                <tr style="text-align:center" v-if="cabecera.ismanual">
+                    <td colspan="4">Comprobante de pago emitido en contingencia</td>
+                </tr>
+                <tr style="text-align:center">
+                    <td colspan="4" style="font-weight: 700">{{ cabecera.documentotributario}} ELECTRONICA </td>
+                </tr>
+                <tr style="text-align:center;margin-top:15px;font-weight:700">
+                    <td colspan="4">{{ cabecera.serie }}{{ cabecera.numdocumento}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row">
+            <table width="100%">
+
+                <tr>
+                    <td><label>Sucursal: </label></td>
+                    <td style="font-size:9px" colspan="3">{{cabecera.direccionsucursal}}</td>
+                </tr>
+                <tr>
+                    <td><label>Telefono: </label></td>
+                    <td>{{cabecera.telefonosucursal}}</td>
+                </tr>
+                <tr>
+                    <td><label>Fecha de Emisión:</label></td>
+                    <td colspan="3">{{cabecera.fecha}}</td>
+                </tr>
+
+
+                <tr>
+                    <td><label>Doc Cliente:</label></td>
+                    <td colspan="3"> {{cabecera.numdoccliente}}</td>
+                </tr>
+                <tr>
+                    <td><label>Cliente:</label></td>
+                    <td colspan="3">{{cabecera.nombrecliente}}</td>
+                </tr>
+                <tr v-if="cabecera.numdocpaciente!=''">
+                    <td><label>Doc Paciente:</label></td>
+                    <td colspan="3"> {{cabecera.numdocpaciente}}</td>
+                </tr>
+                <tr v-if="cabecera.paciente!=''">
+                    <td><label>Paciente:</label></td>
+                    <td colspan="3">{{cabecera.paciente}}</td>
+                </tr>
+
+            </table>
+        </div>
+
+        <div class="row" style="margin-top:10px">
+            <table width="100%" id="tbldetalleimprecion">
+                <thead style="font-size:12px">
+                    <tr>
+                        <th>COD</th>
+                        <th>PRODUCTO</th>
+                        <th style="text-align:right">U.</th>
+                        <th style="text-align:right">P.U</th>                      
+                        <th style="text-align:right">IMP.</th>
+                    </tr>
+                </thead>
+                <tbody v-html="detallehtml">
+                </tbody>
+            </table>
+        </div>
+        <hr style="margin-top:10px" />
+        <table width="100%">
+            <tbody v-html="cobrohtml">
+
+            </tbody>
+            <!--tr>
+                <td colspan="3">SUBTOTAL</td>
+                <td style="text-align:right">{{simbmoneda}}</td>
+                <td style="text-align:right">{{subtotal}}</td>
+            </!--tr>
+            <tr>
+                <td colspan="3">DESCUENTOS</td>
+                <td style="text-align:right">{{simbmoneda}}</td>
+                <td style="text-align:right">{{descuento}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">VALOR VENTA</td>
+                <td style="text-align:right">{{simbmoneda}}</td>
+                <td style="text-align:right">{{subtotaldescuentos}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">IGV</td>
+                <td style="text-align: right">{{simbmoneda}}</td>
+                <td style="text-align: right">{{igv}}</td>
+            </tr>
+
+            <tr>
+                <td colspan="3">IMPORTE ICBPER</td>
+                <td style="text-align: right">{{simbmoneda}}</td>
+                <td style="text-align: right">0.00</td>
+            </tr>
+            <tr>
+                <td colspan="3">IMPORTE TOTAL</td>
+                <td style="text-align: right">{{simbmoneda}}</td>
+                <td style="text-align: right">{{totaldescuentos}}</td>
+            </tr>
+            <tr>
+                <td colspan="3">TOTAL REDONDEADO</td>
+                <td style="text-align: right">{{simbmoneda}}</td>
+                <td style="text-align: right">{{totalredondeo}}</td>
+            </tr-->
+        </table>
+        <hr style="margin-top:10px" />
+        <table width="100%">
+            <tbody v-html="pagoshtml" >
+                
+            </tbody>
+          
+            <tfoot>
+                <tr style="margin-top:15px">
+                    <td>SON</td>
+                    <td colspan="4">{{cabecera.textomonto}}</td>
+                </tr>
+
+                <tr>
+                    <td><label>Vendedor:</label></td>
+                    <td>{{cabecera.empleado}}</td>
+                </tr>
+                <tr>
+                    <td><label>Caja:</label></td>
+                    <td>{{cabecera.caja}}</td>
+
+                </tr>
+            </tfoot>
+          
+        </table>
+        <div id="qrcode" style="text-align:center;margin-top:20px"></div>
+        <table width="100%">
+            <tr>
+                <td id="lblmensajeurl" class="text-center">
+                    Guarda tu voucher. Es el sustento para validar tu compra. Representación impresa de la {{ cabecera.documentotributario}} ELECTRONICA,
+                    puede ser consultada en : {{ url }} @*https://sistemaenlinea.qf.com.pe:8049/*@
+                </td>
+            </tr>
+            <tr>
+                <td id="lblmensajedevolucion" class="text-center" style="font-size:10px">
+                    TODO CAMBIO Y/O DEVOLUCIÓN SE REALIZARÁ DENTRO DE LOS 03 DÍAS SIGUIENTES A LA COMPRA,PREVIA VERIFICACION DEL COMPROBANTE 
+                    Y VERIFICACIÓN DEL QUÍMICO FARMACÉUTICO.
+                </td>
+               
+            </tr>
+            @*<tr>
+                <td id="menformula" class="text-center">
+                    El Plazo máximo para recojo de su formula es de 7 días hábiles
+                </td>
+            </tr>*@
+        </table>
+    </div>
+
+</body>
+</html>
+<script src="~/js/areas/ventas/ventas/imprimirticket.js"></script>

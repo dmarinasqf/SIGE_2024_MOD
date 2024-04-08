@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewData["Title"] = "LibroSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="card">
+    <div class="card-header">
+        <h4 class="card-title">LIBRO DE RECETAS</h4>
+    </div>
+    <div class="card-body">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">TIPO DE REPORTE</label>
+                    </div>
+                    <select class="custom-select" id="cmbtiporeporte" style="width:285px">                      
+                        <option value="SP">SP</option>
+                        <option value="LR">LR</option>
+                        <option value="CA">CA</option>
+                    </select>
+                </div>
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">TIPO DE LIBRO</label>
+                    </div>
+                    <select class="custom-select" id="cmbLibro" style="width:285px">
+                        <option value="" selected>[SELECCIONE]</option>
+                        <option value="LOCAL">LIBRO DE LOCAL</option>
+                        <option value="LABORATORIO">LIBRO DE LABORATORIO</option>
+                    </select>
+                </div>
+
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">RANGO DE FECHA</label>
+                    </div>
+                    <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">LABORATORIO</label>
+                    </div>
+                    <select class="custom-select" id="cmbLaboratorio" style="width:285px" disabled>
+                        <option value="" selected>[SELECCIONE]</option>
+                    </select>
+                    <input type="text" class="form-control form-control-sm" id="txtcodlaboratorioreceta" value="" readonly />
+                </div>
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">SUCURSAL</label>
+                    </div>
+                    <select class="custom-select" id="cmbSucursal" style="width:285px" disabled>
+                        <option value="" selected>[SELECCIONE]</option>
+                    </select>
+                    <input type="text" class="form-control form-control-sm" id="txtcodsucursalreceta" value="" readonly />
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6 text-center">
+
+                <button class="btn btn-outline-info " id="btnConsultar"><i class="fas fa-search ml-2 mr-2"></i> CONSULTAR</button>
+                <button class="btn btn-outline-success " id="btnExportar"><i class="fas fa-file-excel ml-2 mr-2"></i>EXPORTAR</button>
+
+            </div>
+        </div>
+        <br />
+        <div class="row">
+
+            <div class="col-xl-12  table-responsive mt-2" id="contenedor">
+                <table class="table">
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/pedidos/librorecetas/librosp.js"></script>
+<script src="~/js/controller/pedidos/LibroRecetasController.js"></script>
+<script src="~/js/controller/pedidos/PedidoController.js"></script>
+<partial name="~/Areas/Pedidos/Views/Pedido/complemento/_modalverpedido.cshtml" />

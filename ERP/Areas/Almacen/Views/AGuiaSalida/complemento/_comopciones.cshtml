@@ -1,0 +1,84 @@
+﻿<div class="card">
+    <div class="card-body">
+        <form method="post" autocomplete="off" id="CC_form-registro">
+            <div class="row">
+                <div class="col-xl-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-xs-12">
+                            <label>ALERTA</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="cmbalerta" name="cmbalerta" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>SERIE GUIA</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @*aca falta listar la serie*@
+                                    <select class="form-control form-control-sm" id="CC_cmbserie" name="seriedoc" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>FECHA TRASLADO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="date" class="form-control form-control-sm" id="CC_fechatraslado" name="fechatraslado" required />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <button class="btn btn-secondary btn-block mt-5" id="btnaprobarcriterios">SIGUIENTE <i class="fa fa-arrow-right"> </i></button>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-5 col-sm-12 ">
+                    <div class="card bcard h-auto mt-2">
+                        <div class="border-t-3 brc-blue-m2 table-responsive">
+                            <table class="table table-bordered collapsed" width="100%" id="tbllista">
+                                <thead class="">
+                                    <tr>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ID</th>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">DESCRIPCION</th>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> <input type="checkbox" id="CC_chk_todosucursal" onclick="CC_seleccionarTodo()" class="chk-col-red checkbox" /></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="pos-rel">
+                                    @foreach (var item in ViewBag.sucursales)
+                                    {
+                                         @if (@item.suc_codigo != int.Parse(ViewBag.IDSUCURSAL))
+                                          {
+                                           <tr style="height:10px;">
+                                           <td>
+                                            @item.suc_codigo
+                                           </td>
+                                           <td>
+                                           @item.descripcion
+                                           </td>
+                                           <td>
+                                           <input type="checkbox" id="@item.suc_codigo" class="chk-col-red checkbox" value="@item.suc_codigo"/>
+                                           </td>
+                                           </tr>
+                                          }
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script src="~/js/areas/almacen/guiasalida/analisis/analisis.js"></script>
+<script src="~/js/controller/almacen/ReporteController.js"></script>

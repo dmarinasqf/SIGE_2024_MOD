@@ -1,0 +1,438 @@
+﻿@model ENTIDADES.Almacen.AProducto
+<script>
+    var MODELO=@Html.Raw(Json.Serialize(Model)) ;
+</script>
+
+
+
+<form method="post" autocomplete="off" id="form-registro">
+    <input type="hidden" value="" id="txtidproducto" asp-for="idproducto" />
+    @*<input type="hidden" value="" id="txttipoproducto" name="idtipoproducto" />*@
+    <input type="hidden" value="HABILITADO" id="txtestado" asp-for="estado" />
+
+    <div class="row mt-2">
+        <div class=" col-md-12 col-xl-6">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h7>DATOS GENERALES</h7>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label>TIPO DE PRODUCTO</label>
+                                <select class="form-control form-control-md show-tick" id="cmbtipoproducto" asp-for="idtipoproducto" required>
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.tipoproducto)
+                                    {
+                                        <option value="@item.idtipoproducto">@item.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+
+                            <div class="form-group">
+                                <label>CODIGO</label>
+                                <input type="text" id="txtcodigo" placeholder="[AUTO]" class="form-control form-control-sm mayusculas text-center" asp-for="codigoproducto" readonly>
+                            </div>
+                        </div>
+                        <div id="div_codigobarra_auto" class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <div class="form-group">
+                                <label>CODIGO BARRAS</label>
+                                <input type="text" id="txtcodigobarra" asp-for="codigobarra" class="form-control form-control-sm text-center">
+                            </div>
+                        </div>
+                        <div id="div_codigobarra" class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+                            <label>CODIGO BARRAS</label>
+                            <div class="form-group">
+                                <div id="barcodeTarget" class="barcodeTarget"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+                                <label>NOMBRE</label>
+                                <input type="text" id="txtnombre" class="form-control form-control-sm mayusculas" asp-for="nombre" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+
+                            <div class="form-group">
+                                <label>NOMBRE ABREVIADO</label>
+                                <input type="text" id="txtnombreabre" class="form-control form-control-sm mayusculas" asp-for="nombreabreviado" required>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                            <div class="form-group">
+                                <label>CLASE</label>
+                                <select class="form-control form-control-sm show-tick" id="cmbclase" asp-for="idclase" required>
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.clase)
+                                    {
+                                        <option value="@item.idclase">@item.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                            <div class="form-group">
+                                <label>SUBCLASE</label>
+                                <select class="form-control form-control-sm show-tick" id="cmbsubclase" asp-for="idsubclase">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ocultar" id="div_multiplo">
+
+                            <div class="form-group">
+                                <label>MULTIPLO</label>
+                                <input type="text" id="txtmultiplo" class="form-control form-control-sm" asp-for="multiplo" onkeypress="return justNumbers(event);">
+                            </div>
+                        </div>
+                        @*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ocultar" id="div_multiploblister">
+            <label>MULTIPLO BLISTER</label>
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="text" id="txtmultiploblister" class="form-control form-control-sm " asp-for="multiploblister" onkeypress="return justNumbers(event);">
+                </div>
+            </div>
+        </div>*@
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+                            <div class="form-group">
+                                <label>UMA</label>
+
+                                <select class="form-control form-control-sm show-tick" id="cmbuma" asp-for="uma" required>
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.um)
+                                    {
+                                        <option value="@item.idunidadmedida">@item.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ocultar" id="div_umc">
+
+                            <div class="form-group">
+                                <label>UMC</label>
+                                <select class="form-control form-control-sm show-tick" id="cmbumc" asp-for="umc">
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.um)
+                                    {
+                                        <option value="@item.idunidadmedida">@item.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 ocultar" id="div_equivalencia">
+
+                            <div class="form-group">
+                                <label>EQUIVALENCIA</label>
+                                <select class="form-control form-control-sm show-tick" id="cmbequivalencia" asp-for="idequivalencia">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+
+                            <div class="form-group">
+                                <label>PRESENTACIÓN</label>
+                                <select class="form-control form-control-sm show-tick" id="cmbpresentacion" asp-for="idpresentacion">
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.productopresentacion)
+                                    {
+                                        <option value="@item.idpresentacion">@item.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" col-md-12  col-xl-6 ocultar" id="div_laboratorio">
+
+                            <div class="form-group">
+                                <label>LABORATORIO</label>
+                                <select class="form-control form-control-sm show-tick" id="cmblaboratorio" asp-for="idlaboratorio">
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.laboratorio)
+                                    {
+                                        <option value="@item.idlaboratorio">@item.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" col-md-12  col-xl-6" id="div_farmaceutica">
+                            <div class="form-group">
+                                <label>FORMA FARMACEUTICA</label>
+                                <select class="form-control form-control-sm show-tick" id="cmbformafarma" asp-for="idformafarma">
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.formafarmaceutica)
+                                    {
+                                        <option value="@item.idformafarma">@item.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" col-md-12  col-xl-6">
+                            <div class="form-group" id="div_temperatura">
+                                <label>TEMPERATURA</label>
+                                <select class="form-control form-control-sm show-tick" id="cmbtemperatura" asp-for="idtemperatura">
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.temperatura)
+                                    {
+                                        <option value="@item.idtemperatura">@item.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class=" col-md-12  col-xl-6">
+                            <div class="form-group">
+                                <label>CODIGO INTUICTIVE</label>
+                                <input type="text" id="txtcodintuictive" class="form-control form-control-sm mayusculas" asp-for="cod_intuictive">
+                            </div>
+                        </div>
+                        <div class=" col-md-12  col-xl-6">
+                            <div class="form-group">
+                                <label>CAS</label>
+                                <input type="text" id="txtcodigoCAS" class="form-control form-control-sm mayusculas" asp-for="cod_cas">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header text-center">
+                    <h7>COSTOS Y PRECIOS</h7>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-xs-12 col-xl-12">
+
+                            <div class="form-group">
+                                <label>TIPO DE TRIBUTO </label>
+                                <select class="form-control form-control-sm" asp-for="idtipotributo" required id="cmbtipotributo">
+                                    @foreach (var item in ViewBag.tipotributo)
+                                    {
+                                        if (@item.idtipotributo == "1000")
+                                        {
+                                            <option selected value="@item.idtipotributo">@item.descripcion - @item.nombre</option>
+
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.idtipotributo">@item.descripcion - @item.nombre</option>
+
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                            <label>PRECIO COMPRA </label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="number" id="txtvvf" class="form-control form-control-sm mayusculas text-center" asp-for="vvf" step="any">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                            <label>IGV %</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="number" id="txtporcentajeigv" class="form-control form-control-sm " asp-for="porcentajeigv" min="0" max="100" value="18" step="any">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+                            <label>IGV</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="number" id="txtigv" class="form-control form-control-sm " asp-for="igv" step="any" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3 col-xl-3">
+
+                            <div class="form-group">
+                                <label>PRECIO COMPRA + IGV </label>
+                                <input type="number" id="txtpvf" class="form-control form-control-sm mayusculas text-center" asp-for="pvf" step="any">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+
+                            <div class="form-group">
+                                <label>GANANCIA %</label>
+                                <input type="number" id="txtporcentajeganancia" class="form-control form-control-sm " min="0" max="100" asp-for="porcentajeganancia" step="any">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+
+                            <div class="form-group">
+                                <label>PRECIO VENTA</label>
+                                <input type="text" id="txtpvfp" class="form-control form-control-sm" asp-for="pvfp" step="any">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+
+                            <div class="form-group">
+                                <label>PX FRACCION</label>
+                                <input type="number" id="txtprecioxfraccion" class="form-control form-control-sm" asp-for="precioxfraccion" step="any">
+                            </div>
+                        </div>
+                        @*<div class="col-xs-12 col-sm-12 col-md-12 col-lg-3 col-xl-3">
+                                <div class="form-group">
+                                    <label>PX BLISTER</label>
+                                    <input type="number" id="txtprecioxblister" class="form-control form-control-sm" asp-for="precioxblister" step="any">
+                                </div>
+                            </div>*@
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-12 col-xl-6">
+            <div class="row">
+                @*<div class="col-xl-12">
+                    <div class="card">
+                        <div class="header bg-blue-grey text-center">
+                            <h7>OTROS DATOS</h7>
+                        </div>
+                        <div class="body">
+
+                            <div class="row">
+                                <div class="col-xl-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>PRINCIPIO ACTIVO</label>
+                                        <input type="text" class="form-control form-control-sm text-uppercase" asp-for="ingfarmaceutivoactivo" id="txtingfarmaceutivoactivo" />
+                                    </div>
+                                </div>
+                                <div class="col-xl-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>CONCENTRACIÓN</label>
+                                        <input type="text" class="form-control form-control-sm text-uppercase" asp-for="concentracion" id="txtconcentracion" />
+                                    </div>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+                <div class="col-xl-12 ocultar" id="divdigemid">
+                    <div class="card">
+                        <div class="card-header  text-center font-14">
+                            <h7 >DATOS DIGEMID</h7>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <!--div class="col-xl-6 col-sm-6">
+                                    <div class="form-group">
+                                        <label>COD DIGEMID GENERICO</label>
+                                        <input type="text" asp-for="codigodigemidgenerico" class="form-control form-control-sm" id="txtcodigodigemidgenerico" />
+                                    </div>
+                                </div-->
+                                <div class="col-xl col-sm">
+                                    <div class="form-group">
+                                        <label>COD DIGEMID</label>
+                                        <input type="text" asp-for="codigodigemid" class="form-control form-control-sm" id="txtcodigodigemid" />
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-12 col-sm-12">
+                                    <table class="table table-sm" width="100%">
+                                        <tr id="extras">
+                                            <td><label>ES COVID</label></td>
+                                            <td><input type="checkbox" id="checkescovid" name="iscovid" /></td>
+                                            <td><label>ESENCIAL</label></td>
+                                            <td><input type="checkbox" id="checkesesencial" name="isesencial" onchange="txtesencial()" /></td>
+                                            <td><label>UND</label></td>
+                                            <td><input type="number" class="form-control form-control-sm" id="txtunidades" name="stk_min_ese" disabled="disabled"
+                                                       step="any" data-val="true" min="0" 
+                                                       /></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header  text-center font-14">
+                            <div class="row">
+                                <div class="col-xl-8 ">
+                                    <h7>DATOS ADICIONALES</h7>
+                                </div>
+                                <div class="col-xl-4">
+                                    <div class="form-inline">
+                                        <label class="color-blanco">TODOS</label>
+                                        <input class="ml-2" type="checkbox" id="checktodosdatosadic">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <table class="table" width="100%">
+                                <tr>
+                                    <td> <label>PROTECCIÓN DE LUZ</label></td>
+                                    <td><input class="" type="checkbox" name="proteccionluz" id="checkproteccionluz"></td>
+                                    <td> <label>PROTECCIÓN DE HUMEDAD</label></td>
+                                    <td><input class="" type="checkbox" name="proteccionhumedad" id="checkproteccionhumedad"></td>
+                                </tr>
+                                <tr>
+                                    <td> <label>  MOSTRAR EN VENTAS</label></td>
+                                    <td> <input class="" type="checkbox" name="mostrarventas" id="checkmventas"></td>
+                                    <td> <label>ACEPTA LOTE</label></td>
+                                    <td> <input class="" type="checkbox" name="aceptalote" id="checklote"></td>
+                                </tr>
+                                <tr>
+                                    <td> <label> F.VENCE</label></td>
+                                    <td>  <input class="" type="checkbox" name="aceptafechavence" id="checkfvence"></td>
+                                    <td> <label> PEDIR RECETA</label></td>
+                                    <td><input class="" type="checkbox" name="pedirreceta" id="checkpreceta"></td>
+                                </tr>
+                                <tr>
+                                    <td> <label> ES GENERICO</label></td>
+                                    <td> <input class="" type="checkbox" name="isgenerico" id="checkisgenerico"></td>
+                                    <td> <label>REGISTRO SANITARIO</label></td>
+                                    <td> <input class="" type="checkbox" name="aceptaregsanitario" id="checkrsanitario" value="false"></td>
+                                </tr>
+                                <tr>
+                                    <td> <label> ES CONTROLADO</label></td>
+                                    <td> <input class="" type="checkbox" name="iscontrolado" id="checkiscontrolado"></td>
+                                    <td></td>
+                                    <td> </td>
+                                </tr>
+
+                                <!--EARTCOD1016-->
+                                <tr>
+                                    <td style="display:none;"><input type="hidden" id="idproductoenvase" name="idproductoenvase"/></td>
+                                    <td> <label> ENVASE INMEDIATO</label></td>
+                                    <td> <input class="" type="checkbox" name="isinmediato" id="checkisinmediato"></td>
+                                    <td> <label> ENVASE INMEDIATO / MEDIATO</label></td>
+                                    <td> <input class="" type="checkbox" name="isinmediatomediato" id="checkisinmediatomediato"></td>
+                                </tr>
+                                <!---->
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12 mt-4">
+                    <div class="row">
+                        <div class="col-xl-6">
+                            <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                        </div>
+                        <div class="col-xl-6">
+                            <button class="btn btn-info btn-block " id="btnnuevo" type="reset">NUEVO</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</form>
+
+

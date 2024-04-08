@@ -1,0 +1,258 @@
+﻿@{
+    ViewData["Title"] = "Asistencia I/S";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="card card-success main-card card">
+    <div class="card-body card-body" style="font-size:11px">
+        <div class="row">
+            <div class="col-10">
+                <h3 class="text-center">INGRESOS / SALIDAS</h3>
+            </div>
+            <div class="col-2">
+                <button type="button" id="btnCambiarUsuario" class="btn btn-primary btn-sm" onclick="refrescar()">CAMBIAR USUARIO</button>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-6">
+
+                <label style="font-family:'family-name|generic-family|initial|inherit;';font-size: 17px; font-weight:bold">FECHA :</label>
+                <label id="txtfechaDia" style="font-family:'family-name|generic-family|initial|inherit;';font-size: 17px; font-weight:bold"></label>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="row">
+                    <div class="col-3">
+                        <label style="font-family:'family-name|generic-family|initial|inherit;';font-size: 20px; font-weight:bold">BIENVENIDO :</label>
+                    </div>
+                    <div class="col-5">
+                        <label id="txtnombreEmpleado" style="font-family:'family-name|generic-family|initial|inherit;';font-size: 25px; font-weight:bold"></label>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-inline">
+                            <label id="txtsucursalusuario" style="font-family:'family-name|generic-family|initial|inherit;';font-size: 25px; font-weight:bold">SUCURSAL</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="box box-success" style="margin-top:10px;">
+            <div class="box-header">
+                <input type="hidden" id="txtidEmpleado" />
+
+                <div class="row">
+                    <div class="col-3">
+                        <button disabled class="btn btn-success btn-lg btn-block" id="btnIngreso" style="margin-bottom:20px" onclick=""><i class="fas fa-sign-in-alt fa-1x"></i> <br /> Entrada</button>
+                    </div>
+
+                    <div class="col-3">
+                        <button disabled class="btn btn-danger btn-lg btn-block" id="btnSalida" style="margin-bottom:20px" onclick=""><i class="fas fa-sign-in-alt fa-1x"></i> <br /> Salida</button>
+                    </div>
+                    <div class="col-3">
+                        <button disabled class="btn btn-outline-dark btn-lg btn-block" id="btnInicioHE" style="margin-bottom:20px" onclick=""><i class="fas fa-hourglass-start fa-1x"></i><br />Iniciar Hora Extra</i></button>
+
+                    </div>
+                    <div class="col-3">
+                        <button disabled class="btn btn-outline-danger btn-lg btn-block" id="btnFinHE" style="margin-bottom:20px" onclick=""><i class="fas fa-hourglass-end fa-1x"></i><br />Terminar Hora Extra </button>
+                    </div>
+
+                </div>
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="row">
+                                <div class="col-4">
+                                    <button disabled class="btn btn-outline-dark btn-lg btn-block" id="btnInicioAlmuerzo" style="margin-bottom:20px" onclick=""><i class="fas fa-utensils fa-1x"></i><br />Ir almuerzo </button>
+                                </div>
+
+                                <div class="col-4">
+                                    <button disabled class="btn btn-outline-danger btn-lg btn-block" id="btnFinAlmuerzo" style="margin-bottom:20px" onclick=""><i class="fas fa-utensils fa-1x"></i><br /> Regreso </button>
+                                </div>
+                                <div class="col-4">
+                                    <button disabled class="btn btn-outline-primary btn-lg btn-block" id="btnSalidaEmergencia" style="margin-bottom:20px" onclick=""><i class="fas  fa-stethoscope"></i><br /> Retiro por emergencia </button>
+                                </div>
+                            </div>
+                            <div class="box box-success" style="margin-top:10px">
+                                <div class="box-header">
+                                    <div class="col">
+                                        <table class="table table-sm table-hover table-responsive-sm table-responsive-md table-responsive-xl" id="tblReporteTemperatura" width="100%" style="font-size:15px">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th style="30%">TEMPERATURA</th>
+                                                    <th style="70%">SINTOMAS</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="box box-success" style="margin-top:10px">
+                                <div class="box-header">
+
+                                    <div class="col">
+                                        <table class="table table-sm table-hover table-responsive-sm table-responsive-md table-responsive-xl" id="tblReporteIngresoDia" width="100%" style="font-size:15px">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">MOVIMIENTO</th>
+                                                    <th scope="col">HORA</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+@* MODAL PARA REGISTRAR LA CLAVE *@
+<div class="modal fade" id="modalRegistroClave" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">REGISTRO DE INGRESO</h5>
+                @*<button type="button" class="close" onclick="cerrarModalRegistroIS()" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>*@
+            </div>
+            <div class="modal-body ">
+                <div class="row">
+                    <div class="col">
+                        <div class="form-group">
+                            <div style="text-align:left">
+                                <label>INGRESE SU DNI</label>
+                            </div>
+                            <input type="hidden" id="txtOperacion" />
+                            <input type="hidden" id="txtIdRegistro" />
+                            <input type="hidden" id="txtConceptoRegistro" />
+
+                            <input id="txtClave" type="text" onkeypress="accederEnter(event);return justNumbers(event);" value="0" class="form-control " style="text-align:center;font-size:larger;font-weight: bold;">
+
+                        </div>
+                    </div>
+                </div>
+                <button type="button" id="btnGuardadRegistro" class="btn btn-primary btn-sm" onclick="acceder()">ACCEDER</button>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@* MODAL PARA JUSTIFICAR Y PEDIR PERMISO *@
+<div class="modal fade" id="modalPermisos" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">DETALLE SU JUSTIFICACIÓN</h5>
+                <button type="button" class="close" onclick="cerrarModalPermisos()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="row" id="div_campoEmpleadoAutorizante">
+                    <div class="form-group col-12">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">AUTORIZADO POR: </label>
+                            </div>
+                            <select class="custom-select" id="cboPersonalA">
+                                <option value="">[SELECCIONE]</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" id="div_campoJustificacion">
+                    <div class="col">
+                        <div class="form-group">
+                            <div style="text-align:left">
+                                <label>JUSTIFIQUE</label>
+                            </div>
+                            <textarea rows="5" cols="50" style="border:groove" id="txtJustificacion" type="text" class="form-control input-border-bottom" onKeyUp="this.value=this.value.toUpperCase();"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cerrar</button>
+                <button type="button" id="btnGuardarJustificacion" class="btn btn-primary btn-sm" onclick="guardarRegistro()">Guardar</button>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* MODAL PARA REGISTRAR LA TEMPERATURA *@
+<div class="modal fade" id="modalRegistroTemperatura" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalTemperatura">REGISTRO DE TEMPERATURA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="/" method="post" autocomplete="off" id="form-registro-temp">
+                <div class="modal-body text-center">
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <div style="text-align:left">
+                                    <label>INGRESE SU TEMPERATURA</label>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input id="txttemperatura" type="number" step="0.1" value="37" name="temperatura" class="form-control" min="0" max="50" style="text-align:center;font-size:larger;font-weight:bold;" required>
+                                    <div class="input-group-append">
+                                        <span style="background-color: #e9ecef;" class="form-control">ºC</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div style="text-align:left">
+                                    <label>OBSERVACIÓN(SÍNTOMA RESPIRATORIO)</label>
+                                </div>
+                                <textarea rows="3" id="txtobservacion" name="observacion" class="form-control" onKeyUp="this.value=this.value.toUpperCase();"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" id="btnGuardaRegistroTemperatura" class="btn btn-primary btn-sm">GUARDAR</button>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@*<partial name="~/Areas/Asistencia/Views/modal/_modalTemperatura.cshtml" />*@
+<script src="~/js/controller/asistencia/AsistenciaController.js"></script>
+<script src="~/js/areas/asistencia/control/Index.js"></script>

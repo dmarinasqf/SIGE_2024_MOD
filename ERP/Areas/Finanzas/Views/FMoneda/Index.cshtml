@@ -1,0 +1,141 @@
+﻿@model IEnumerable<ENTIDADES.Finanzas.FMoneda>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                MANTENEDOR DE MONEDA
+
+            </h1>
+
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                <!-- dataTables search box will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-hover table-bordered" width="100%" id="tbllista">
+                    <thead >
+                        <tr>
+                            <th style="width:10%">ID</th>
+                            <th style="width: 20%">NOMBRE</th>
+                            <th style="width: 10%">COD SUNAT</th>
+                            <th style="width:20%">SIMBOLO</th>
+                            <th style="width:20%">TIPO DE CAMBIO</th>
+                            <th style="width:10%">ESTADO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.idmoneda)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.nombre)
+                                </td>
+                                <td>@item.codigosunat</td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.simbolo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tipodecambio)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.estado)
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="btn btn-sm bg-warning waves-effect btn-pasar"><i class="fas fa-edit"></i></button>
+                                        <button class="btn btn-sm bg-danger waves-effect text-white" onclick="mensajeeliminar(@item.idmoneda)"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE MONEDA</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+
+
+                <form method="post" autocomplete="off" id="form-registro">
+                    <label>NOMBRE</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtdescripcion" class="form-control mayusculas" name="nombre" required>
+                        </div>
+                    </div>
+                    <label>SIMBOLO</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtsimbolo" class="form-control mayusculas" name="simbolo" required>
+                        </div>
+                    </div>
+                    <label>CAMBIO</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txttipocambio" class="form-control mayusculas" name="tipodecambio" onkeypress="return isNumberKey(event);">
+                        </div>
+                    </div>
+                    <label>CODIGO SUNAT</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtcodigosunat" class="form-control mayusculas" name="codigosunat" >
+                        </div>
+                    </div>
+                    <label>ESTADO</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                <option value="HABILITADO" selected>HABILITADO</option>
+                                <option value="DESHABILITADO">DESHABILITADO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <input type="hidden" name="idmoneda" value="" id="txtcodigo" />
+                    <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                    <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                    <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<script src="~/js/areas/finanzas/mantenedores/moneda/moneda.js"></script>

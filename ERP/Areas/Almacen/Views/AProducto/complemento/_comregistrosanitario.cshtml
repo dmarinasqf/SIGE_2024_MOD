@@ -1,0 +1,73 @@
+﻿<div class="row justify-content-center">
+    <div class="col-xl-12 text-center mt-2">
+        <h6>REGISTROS SANITARIO</h6>
+    </div>
+    <div class="col-xl-4 col-md-6">
+        <form autocomplete="off" id="formregsanitario">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h7>DATOS DE REGISTRO</h7>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <input type="hidden" name="id"  id="txtRSid" />
+                        <div class="col-xl-12">
+                            <div class="form-group">
+                                <label>REGISTRO</label>
+                                <input type="text" class="form-control form-control" name="registro" id="txtRSreg" required/>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-group">
+                                <label>FECHA INICIO</label>
+                                <input type="date" class="form-control form-control" name="fechainicio" id="txtRSfechainicio"required />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-12">
+                            <div class="form-group">
+                                <label>FECHA FIN</label>
+                                <input type="date" class="form-control form-control" name="fechafin" id="txtRSfechafin" required/>
+                            </div>
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="form-group">
+                                <label>ESTADO</label>
+                                <select class="form-control form-control-sm" name="estado" id="cmbestado" required>
+                                    <option value="HABILITADO" selected>HABILITADO</option>
+                                    <option value="DESHABILITADO">DESHABILITADO</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 mt-1 text-center">
+                            <button class="btn btn-success" type="submit" id="btnguardar">GUARDAR</button>
+                        </div>
+                        <div class="col-xl-6 mt-1 text-center">
+                            <button class="btn btn-info" type="reset" id="btnlimpiar">LIMPIAR</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </form>
+       
+    </div>
+    <div class="col-xl-4 col-md-6 table-responsive ">
+        <table class="table table-sm table-bordered mt-3 font-14" width="100%">
+            <thead class="thead-dark">
+                <tr>
+                    <th></th>
+                    <th>N</th>
+                    <th>Reg</th>
+                    <th>FI</th>
+                    <th>FF</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="tbodyRSregsanitarios">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<script src="~/js/areas/almacen/producto/complemento/comregistrosanitario.js"></script>
+<script src="~/js/controller/almacen/RegistroSanitarioController.js"></script>

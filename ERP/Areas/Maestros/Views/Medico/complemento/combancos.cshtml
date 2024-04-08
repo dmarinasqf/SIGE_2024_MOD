@@ -1,0 +1,69 @@
+﻿<div class="row">
+
+    
+        <div class="card">
+            <div class="card-body">
+                <div class="row mt-2">
+                    <div class="col-xl-12 col-sm-12">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>BANCO</label>
+                                    <select class="form-control form-control-sm" id="cmbbanco" name="idbanco">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-6">
+                                <input type="hidden" name="iddetalle" id="txtiddetalle" />
+                                <div class="form-group ">
+                                    <label>CUENTA</label>
+                                    <input id="txtcuenta" onkeypress="return isNumberKey(event);" type="text" class="form-control form-control-sm" name="cuenta">
+                                </div>
+                            </div>
+                            <div class="col-xl-3 col-sm-6">
+                                <div class="form-group ">
+                                    <label>CCI</label>
+                                    <input id="txtcci" onkeypress="return isNumberKey(event);" type="text" class="form-control form-control-sm" name="cci">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <div class="form-group ">
+                                    <label>ESTADO</label>
+                                    <select class="form-control form-control-sm" name="estado" id="cmbestado">
+                                        <option value="">[SELECCIONE]</option>
+                                        <option value="HABILITADO">HABILITADO</option>
+                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-6">
+                                <button type="reset" class="btn btn-info btn-block" id="btnagregarBanco" onclick="fnSetBanco()">Agregar Banco</button>
+                                <button type="reset" class="btn btn-warning btn-block" id="btnLimpiarBanco" onclick="fnLimpiarBancos()">Limpiar</button>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="card bcard h-auto">
+                                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                                        <table class="table table-sm table-bordered collapsed" width="100%" id="tblbanco">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th style="text-align: center;">ID</th>
+                                                    <th style="text-align: center;">BANCO</th>
+                                                    <th style="text-align: center;">CUENTA</th>
+                                                    <th style="text-align: center;">CCI</th>
+                                                    <th style="text-align: center;">ESTADO</th>
+                                                    <th style="text-align: center;"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="pos-rel" id="tblbody">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>

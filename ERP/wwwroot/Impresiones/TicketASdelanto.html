@@ -1,0 +1,116 @@
+﻿
+<script src="../js/librerias/vue/vue.min.js"></script>
+<script src="../js/librerias/axios/axios.min.js"></script>
+<link href="../css/librerias/otros/impresion/impreciondeticket.css" rel="stylesheet" />
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body onunload="unloadPage()" >
+
+    <table border="0" id="aplicacion">
+        <tr style="text-align:center">
+            <td colspan="4">Corporación QF </td>
+        </tr>
+        <tr>
+            <td>N°Pedido </td>
+            <td colspan="3" v-model="pedido.idpedido">{{ pedido.idpedido }} </td>
+        </tr>
+        <tr>
+            <td>Local </td>
+            <td colspan="3">{{ pedido.local }}</td>
+        </tr>
+        <tr>
+            <td>Paciente </td>
+            <td colspan="3">{{pedido.paciente}} </td>
+        </tr>
+        <tr>
+            <td>DNI </td>
+            <td colspan="3">{{pedido.dni}} </td>
+        </tr>
+        <tr>
+            <td>Empleado </td>
+            <td colspan="3">{{pedido.empleado }}</td>
+        </tr>
+        <tr>
+            <td>Fecha </td>
+            <td>{{pedido.fecha}} </td>
+            <td>Hora </td>
+            <td>{{pedido.hora}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Total</td>
+            <td>S/. {{pedido.total}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Adelanto</td>
+            <td>S/.{{ pedido.adelanto}}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Saldo</td>
+            <td>S/. {{pedido.saldo}}</td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:center; font-size:10px">
+                {{pedido.direccion}}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:center;font-size:8px">
+                7 días como máximo para recoger su fórmula
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4" style="text-align:center; font-size:8px">
+                ESTE COMPROBANTE NO TIENE VALOR FISCAL
+            </td>
+        </tr>
+
+    </table>
+
+    <button class="oculto-impresion" onclick=" window.print()" style="height:100px;width:200px; font-size:20px;background:rgba(151, 232, 232, 0.61)" >Imprimir</button>   
+</body>
+
+</html>
+
+<script>
+    window.onload = function () {            
+        var idpedido = localStorage.getItem("pedido");
+        var direccion = location.origin + "/api/ImprecionAPI/TicketAdelanto/"+idpedido;        
+        this.console.log(direccion);     
+        var app = new Vue({
+            el: '#aplicacion',
+            data: {
+                pedido: {},                
+            },
+            created: function () {
+                this.recuperarPedido();
+                
+            },
+            methods: {
+                recuperarPedido: function () {
+                    axios.post(direccion).then(response => {
+                        this.pedido = response.data;
+                        this.pedido.total = parseFloat(this.pedido.total).toFixed(2);
+                        this.pedido.saldo = parseFloat(this.pedido.saldo).toFixed(2);
+                        this.pedido.adelanto = parseFloat(this.pedido.adelanto).toFixed(2);
+                        console.log(this.pedido);                         
+                    }).catch((error) => {
+                        console.warn('Not good man :(');                        
+                    });
+                }
+            }
+        });  
+    };
+           
+         
+   
+</script>

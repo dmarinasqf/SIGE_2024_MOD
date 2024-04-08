@@ -1,0 +1,75 @@
+﻿<!-- Modal //EARTCOD1009//  -->
+<div class="modal fade" id="modalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" id="modal_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">AGREGAR PRODUCTO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal_body">
+                <div id="notificacion" class="modal-notificacion"></div>
+
+                <form id="form_reasignar_resp_caja">
+
+                    <div class="row">
+
+                        <div class="col-xl-12 col-sm-12 py-0 my-0">
+                            <div class="form-group">
+                                <input type="hidden" id="mMCPP_idproducto" name="idproducto" />
+                                <label id="mMCPP_lblcodigoproducto">CODIGO Ó NOMBRE DEL PRODUCTO:</label>
+                                <input id="mMCPP_txtcodigoproducto" type="text" class="form-control form-control-sm" name="txtcodigoproducto" maxlength="12" required>
+                            </div>
+                        </div>
+
+                        @*<div class="col-xl-3 col-sm-3 py-0 my-0">
+                                <div class="form-group">
+                                    <label>CANTIDAD:</label>
+                                    <input type="hidden" id="mMCPP_idstock" class="form-control form-control-sm" required name="mMCPP_idstock">
+                                    <input id="mMCPP_txtcantidad" type="number" class="form-control form-control-sm" value="1" min="1" max="99" required>
+                                </div>
+                            </div>*@
+
+                        @*<div class="col-xl-3 col-sm-3 py-0 my-0">
+                                <div class="form-group">
+                                    <label>STOCK:</label>
+                                    <input id="mMCPP_txtstockproducto" type="text" class="form-control form-control-sm" required readonly>
+                                </div>
+                            </div>*@
+
+                        @*<div class="col-xl-12 col-sm-12 py-0 my-0">
+                                <div class="form-group">
+                                    <label>DESCRIPCIÓN:</label>
+                                    <input id="mMCPP_txtnombreproducto" type="text" class="form-control form-control-sm" required readonly>
+                                </div>
+                            </div>*@
+
+                        <div class="col-xl-12 col-md-12 col-sm-12">
+                            <div class="py-0 my-0" id="contenedor_productoslistar">
+                                <table class="table mt-2" id="tabla_productos">
+                                    <thead class="table bg-primary text-light">
+                                        <tr class="group-font-sm">
+                                            <th>CODIGO</th>
+                                            <th>NOMBRE</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div style="width:100%">
+                                <div id="pagination-container" style="float:right; margin-right:15px"></div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                @*<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal">CERRRAR</button>
+                    <button id="mMCPPbtnProductoAgregar" type="button" class="btn btn-success">AGREGAR PRODUCTO</button>*@
+            </div>
+        </div>
+    </div>
+</div>

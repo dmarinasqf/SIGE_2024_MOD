@@ -1,0 +1,136 @@
+﻿@{
+    ViewData["Title"] = "Origen Receta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                MANTENEDOR DE ORIGEN RECETA
+            </h1>
+
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+
+            </div>
+        </div>
+        <div class="card bcard h-auto">
+            <div class="card-header">
+                <div class="card-title">
+                    LISTA DE ORIGEN RECETA
+                </div>
+                <div class="card-toolbar">
+                    <a class="card-toolbar-btn btn btn-sm radius-1 btn-info btn-brc-tp mx-2px btn_RegistrarNuevo">
+                        <i class="fas fa-plus w-2 mx-1px"></i>
+                    </a>
+                    @*<button class="card-toolbar-btn btn btn-sm radius-1 btn-success btn-brc-tp mx-2px" id="btnexportar">
+                    <i class="fas fa-file-excel w-2 mx-1px"></i>
+                </button>*@
+                </div>
+            </div>
+            <div class="col-xl-12">
+                <input type="text" id="txtfiltro" placeholder="Ingrese documento o Razon Social/ Nombres" class="form-control mb-2 ">
+            </div>
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table table-sm table-bordered collapsed" width="100%" id="tbllista">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="header-sticky"> DESCRIPCIÓN</th>
+                            <th class="header-sticky"> TIPO ORIGEN</th>
+                            <th class="header-sticky"> DIRECCIÓN</th>
+                            <th class="header-sticky">ESTADO</th>
+                            <th class="header-sticky"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="pos-rel" id="tbody">
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-xl-12">
+                <div id="paginacion">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE AGENCIA ENCOMIENDA</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <form method="post" autocomplete="off" id="form-registro">
+                    <input type="hidden" name="idorigenreceta" value="" id="txtcodigo" />
+                    <label>DESCRIPCIÓN</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtdescripcion" class="form-control mayusculas" name="descripcion" required>
+                        </div>
+                    </div>
+                    <label>TIPO ORIGEN</label>
+                    <div class="form-group">
+                        <div class="form-line ">
+                            <select class="form-control show-tick" id="cmbTipoOrigen" name="idtiporigen" required>
+                            </select>
+                        </div>
+                    </div>
+                    <label>DEPARTAMENTO</label>
+                    <div class="form-group">
+                        <div class="form-line ">
+                            <select class="form-control show-tick" id="MCC_cmbdepartamento" name="iddepartamento" required>
+                            </select>
+                        </div>
+                    </div>
+                    <label>PROVINCIA</label>
+                    <div class="form-group">
+                        <div class="form-line ">
+                            <select class="form-control show-tick" id="MCC_cmbprovincia" name="idprovincia" required>
+                            </select>
+                        </div>
+                    </div>
+                    <label>DISTRITO</label>
+                    <div class="form-group">
+                        <div class="form-line ">
+                            <select class="form-control show-tick" id="cmbDistrito" name="iddistrito" required>
+                            </select>
+                        </div>
+                    </div>
+                    <label>DIRECCIÓN</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtdireccion" class="form-control mayusculas" name="direccion" required>
+                        </div>
+                    </div>
+                    <label>ESTADO</label>
+                    <div class="form-group">
+                        <div class="form-line ">
+                            <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                <option value="HABILITADO" selected>HABILITADO</option>
+                                <option value="DESHABILITADO">DESHABILITADO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block" id="btnguardar" type="submit">GUARDAR DATOS</button>
+                    <button class="btn btn-info btn-block " id="btnlimpiar" type="reset">LIMPIAR</button>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/js/areas/maestros/origenreceta/index.js"></script>
+<script src="~/js/controller/maestros/OrigenRecetaController.js"></script>
+<script src="~/js/controller/maestros/TipoOrigenRecetaController.js"></script>

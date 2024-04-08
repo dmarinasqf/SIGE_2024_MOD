@@ -1,0 +1,101 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Hora OP Terminado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="box box-success main-card card" style="margin-top:10px">
+
+    <div class="box-body card-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <h3 class="text-center">REPORTE HORA OP Y TERMINADO</h3>
+
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">SUCURSAL</label>
+                    </div>
+                    <select class="custom-select" id="cmbSucursal" style="width:285px">
+                        <option value="0" selected>[SELECCIONE]</option>
+                    </select>
+                </div>
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">RANGO DE FECHA</label>
+                    </div>
+                    <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                </div>
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">ESTADO</label>
+                    </div>
+                    <select class="custom-select" id="cmbestado" style="width:285px">
+                        <option value="0" selected>[SELECCIONE]</option>
+                        <option value="PENDIENTE">PENDIENTE</option>
+                        <option value="EN PROCESO">EN PROCESO</option>
+                        <option value="TERMINADO">TERMINADO</option>
+                        <option value="ENTREGADO">ENTREGADO</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+                <div class="form-group text-center">
+                    <button class="btn btn-outline-info " style="width:150px;margin-bottom:3px" id="btnConsultar" onclick="getReporteGeneral()">CONSULTAR</button>
+                    <button class="btn btn-outline-success " style="width: 150px; margin-bottom: 3px" id="btnExportar" @*onclick="exportTableToExcel()"*@>EXPORTAR</button>
+                    <button class="btn btn-outline-secondary " style="width:150px;margin-bottom:3px" id="btnImprimir" onclick="imprimir()">IMPRIMIR</button>
+                </div>
+                <div class="text-center mostrar" id="spinners">
+                    <div class="spinner-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-secondary" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-danger" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <div class="spinner-grow text-warning" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table.dataTable.dataTable_width_auto {
+        width: auto;
+    }
+</style>
+<div class="box box-success main-card card mt-2">
+    <div class="box-body text-center card-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <button type="button" class="btn btn-primary">
+                    N° REGISTROS <span class="badge badge-light" id="numRegistros">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12" id="tabla" style="font-size:10px">
+                <table class="table table-responsive-sm  table-sm table-striped table-responsive-xl" id="tblReportes">
+                    <thead class="thead-dark">
+                    </thead>
+                    <tbody style="font-size:11px"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/pedidos/pedidos/reportes/horaOPTerminado.js"></script>

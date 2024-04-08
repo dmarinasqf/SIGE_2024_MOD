@@ -1,0 +1,31 @@
+﻿@*@model System.Data.DataTable*@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Impresión Masiva</title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <link href="~/css/pagina/impresiones/guia/guiadistribucion.css" rel="stylesheet" />
+</head>
+<body>
+    <script>
+        var data = @Html.Raw(JsonConvert.SerializeObject(Model));
+    </script>
+    <div id="aplicacion" class="table-box">
+        <div v-html="htmlPrueba"></div>
+    </div>
+
+</body>
+</html>
+
+<script src="~/js/areas/impresion/guiasdistribucion/imprimir.js"></script>
+<style>
+    * {
+        font-family: sans-serif !important;
+    }
+</style>

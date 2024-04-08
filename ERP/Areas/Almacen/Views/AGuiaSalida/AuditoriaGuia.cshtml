@@ -1,0 +1,128 @@
+﻿
+@{ ViewData["Title"] = "AuditoriaGuia";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="col-md-12">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    AUDITORÍA DE GUÍAS
+                </h1>
+            </div>
+        </div>
+        <div class="body">
+            <div class="col-xl-12">
+                <form autocomplete="off" id="form-busqueda">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-xl-2 col-xs-6">
+                                    <label>CÓDIGO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input class="form-control" id="txtcodigo" name="codigo" />
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-xl-3 col-xs-6">
+                                        <label>SUCURSAL ORIGEN </label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control form-control-sm" id="cmbsucursalorigen" name="idsucursalorigen">
+                                                    <option value="" selected>[SELECCIONE]</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                <div class="col-xl-2 col-xs-6">
+                                    <label>SUCURSAL DESTINO </label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <select class="form-control" id="cmbsucursaldestino" name="idsucursaldestino">
+                                                <option value="" selected>[SELECCIONE]</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-xs-6">
+                                    <label>TIPO GUIA</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <select class="form-control show-tick" id="cmbtipoguia" name="idtipoguia">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-2 col-xs-6">
+                                    <label>ESTADO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <select class="form-control show-tick" id="cmbestado" name="estadoguia">
+                                                <option value="" selected>[SELECCIONE]</option>
+                                                <option value="PENDIENTE">PENDIENTE</option>
+                                                <option value="ATENDIDO">ATENDIDO</option>
+                                                <option value="TRANSITO">TRANSITO</option>
+                                                <option value="ENTREGADO">ENTREGADO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="col-xl-3 col-xs-6">
+                                        <label>FECHA</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="month" class="form-control" id="dtpfecha" />
+                                            </div>
+                                        </div>
+                                    </div>*@
+                                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+                                    <label>RANGO DE FECHA <span class="text-info ml-2 mr-2" data-toggle="tooltip" data-title="Fecha de traslado"><i class="fas fa-info-circle"></i></span></label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="txtfecharango" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-1">
+                                    <label></label>
+                                    <button type="submit" class="btn btn-block btn-secondary" id="btnbusqueda"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-xl-12">
+                <div class="card bcard h-auto mt-2">
+                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                        <table class="table table-bordered collapsed" width="100%" id="tbllista">
+                            <thead class="">
+                                <tr>
+                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="padding:25px;"></th>
+                                    <th>IDGUIA</th>
+                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">NUM.DOC.</th>
+                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ORIGEN</th>
+                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">DESTINO</th>
+                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">FECHA TRASLADO</th>
+                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">TIPO GUIA</th>
+                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ESTADO</th>
+                                </tr>
+                            </thead>
+                            <tbody class="pos-rel">
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+
+<script src="~/js/areas/almacen/guiasalida/auditoriaguia/index.js"></script>
+<script src="~/js/controller/almacen/GuiaSalidaController.js"></script>
+<script src="~/js/areas/main/modalimprimir.js"></script>

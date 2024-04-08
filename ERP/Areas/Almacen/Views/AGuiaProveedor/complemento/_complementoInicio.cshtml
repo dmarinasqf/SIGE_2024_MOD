@@ -1,0 +1,140 @@
+﻿<script>
+    SUCURSALES = @Html.Raw(Json.Serialize(@ViewBag.sucursales));
+    IDEMPRESA = @Html.Raw(int.Parse(@ViewBag.IDEMPRESA));
+    IDSUCURSAL = @Html.Raw(int.Parse(@ViewBag.IDSUCURSAL));
+</script>
+<div class="card">
+    <div class="card-body">
+        <form method="post" autocomplete="off" id="CC_form-registro">
+            <div class="row">
+                <div class="col-xl-6 col-xs-12">
+                    <div class="row">
+                        <div class="col-xl-6 col-xs-12">
+                            <label>SUCURSAL</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="CD_cmbsucursal" name="idsucursal" disabled>
+                                        <option value="0">[SELECCIONE]</option>
+                                        @foreach (var item in ViewBag.sucursales)
+                                        {
+                                            <option value="@item.suc_codigo">@item.descripcion</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>ALMACÉN</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <div class="dropdown">
+                                        <button class="btn btn-block btn-outline-light dropdown-toggle"
+                                                type="button" id="dropdownMenu1" data-toggle="dropdown"
+                                                aria-haspopup="true" aria-expanded="false">
+                                            Seleccionar Almacenes
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu1" id="CD_cmbsucursalalmacen">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>RANGO DE VENTAS PASADAS</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="CC_cmbrango" required>
+                                        <option value="" selected>[SELECCIONE]</option>
+                                        <option value="BIMESTRE">BIMESTRE</option>
+                                        <option value="TRIMESTRE">TRIMESTRE</option>
+                                        <option value="CUATRIMESTRE">CUATRIMESTRE</option>
+                                        <option value="SEMESTRE" selected>SEMESTRE</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>SERIE GUIA</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="CC_cmbserie" name="seriedoc" required>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>FECHA TRASLADO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="date" class="form-control form-control-sm" id="CC_fechatraslado" name="fechatraslado" required />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-xs-12">
+                            <label>GUIA A</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="CC_cmbproveedorcliente" required>
+                                        <option value="PROVEEDOR" selected>PROVEEDOR</option>
+                                        <option value="CLIENTE">CLIENTE</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <button class="btn btn-secondary btn-block mt-5" id="btnaprobarcriterios">SIGUIENTE <i class="fa fa-arrow-right"> </i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-sm-12" id="CC_contenedor_proveedor">
+                    <div class="card bcard h-auto mt-2">
+                        <div class="border-t-3 brc-blue-m2 table-responsive">
+                            <table class="table table-bordered collapsed" width="100%" id="tbllista">
+                                <thead>
+                                    <tr>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ID</th>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">RUC</th>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">DESCRIPCION</th>
+                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> <input type="checkbox" id="CC_chk_todoproveedor" onclick="CC_seleccionarTodo()" class="chk-col-red checkbox" /></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="pos-rel">
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-12" id="CC_contenedor_cliente" hidden>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>N° DOCUMENTO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="hidden" id="CC_txtidcliente"/>
+                                    <input type="text" class="form-control form-control-sm" id="CC_txtnrodocumento" name="nrodocumento" readonly/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <label>NOMBRE</label>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <input type="text" class="form-control form-control-sm" id="CC_txtnombrecliente" name="nombrecliente" readonly/>
+                                    <div class="input-group-append">
+                                        <button class="btn btn-dark" id="CC_btnBuscarCliente" type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script src="~/js/areas/almacen/guiaproveedor/complemento/complementoInicio.js"></script>

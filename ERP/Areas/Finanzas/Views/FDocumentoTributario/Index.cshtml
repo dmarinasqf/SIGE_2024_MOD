@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ENTIDADES.Finanzas.FDocumentoTributario>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                MANTENEDOR DE DOCUMENTOS
+
+            </h1>
+
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                <!-- dataTables search box will be inserted here dynamically -->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+
+    <div class="col-xl-12 table-responsive">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table  table-sm table-hover table-bordered" width="100%" id="tbllista">
+                    <thead >
+                        <tr>
+                            <th style="width:10%">ID</th>
+                            <th style="width:10%">COD SUNAT</th>
+                            <th style="width:30%"> DESCRIPCION</th>
+                            <th style="width:25%"> CORRELATIVO</th>
+                            <th style="width:20%">ESTADO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.iddocumento)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.codigosunat)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.correlativo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.estado)
+                                </td>
+                                <td>
+                                    @if (item.estado == "HABILITADO")
+                                    {
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-sm bg-warning  btn-pasar font-10"><i class="fas fa-edit"></i></button>
+                                            <button class="btn btn-sm btn-danger  font-10" onclick="mensajeeliminar(@item.iddocumento)"><i class="fas fa-lock"></i></button>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="btn-group btn-group-sm">
+                                            <button class="btn btn-sm btn-success waves-effect  font-10" onclick="habilitar(@item.iddocumento)"><i class="fas fa-unlock"></i></button>
+                                        </div>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRO DE DOCUMENTOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+          
+                        <form method="post" autocomplete="off" id="form-registro">
+                            <input type="hidden" name="iddocumento" value="" id="txtcodigo" />
+                            <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                            <div class="form-group">
+                                <label>NOMBRE</label>
+                                <input type="text" id="txtdescripcion" class="form-control mayusculas" name="descripcion" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CORRELATIVO</label>
+                                <input type="text" id="txtcorrelativo" class="form-control mayusculas" name="correlativo" maxlength="10" required>
+                            </div>
+                            <div class="form-group">
+                                <label>CODIGO SUNAT</label>
+                                <input type="text" id="txtcodigosunat" class="form-control mayusculas" name="codigosunat" maxlength="2" required>
+                            </div>
+                            <div class="form-group">
+                                <label>ESTADO</label>
+                                <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                    <option value="HABILITADO" selected>HABILITADO</option>
+                                    <option value="DESHABILITADO">DESHABILITADO</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                            <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                        </form>
+                   
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/finanzas/mantenedores/documentotributario/documento_tributario.js"></script>

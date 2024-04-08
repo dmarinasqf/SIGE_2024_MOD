@@ -1,0 +1,116 @@
+﻿@{
+    ViewData["Title"] = "R. Produccion por laboratorio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="box box-success main-card card" style="margin-top:10px">
+
+
+    <div class="box-body card-body" id="cardacciones">
+        <div class="row">
+            <div class="col-xl-12">
+                <h3 class="text-center">PRODUCCIÓN POR LABORATORIO</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">RANGO DE FECHA</label>
+                    </div>
+                    <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                </div>
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">ESTADO</label>
+                    </div>
+                    <select class="custom-select" id="cmbEstado" style="width:285px">
+                        <option value="0" selected>[SELECCIONE]</option>
+                        <option value="PENDIENTE">PENDIENTE</option>
+                        <option value="EN PROCESO">EN PROCESO</option>
+                        <option value="TERMINADO">TERMINADO</option>
+                        <option value="ENTREGADO">ENTREGADO</option>
+                        <option value="DEVUELTO">DEVUELTO</option>
+                    </select>
+                </div>
+
+                <div class="input-group input-group-sm mb-1">
+                    <label>LABORATORIO</label><br>
+                    <select class="custom-select" id="cmbLaboratorio" style="width:285px">
+                        <option value="0" selected>[SELECCIONE]</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 ">
+                <div class="form-group text-center">
+                    <button class="btn btn-outline-info " style="width:150px;margin-bottom:3px" id="btnConsultar" onclick="getReporteGeneral()">CONSULTAR</button>
+                    <button class="btn btn-outline-success " style="width:150px" id="btnExportar" @*onclick="exportTableToExcel()"*@>EXPORTAR</button>
+                    <button class="btn btn-outline-secondary " style="width:150px;margin-bottom:3px" id="btnImprimir" onclick="imprimir()">IMPRIMIR</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table.dataTable.dataTable_width_auto {
+        width: auto;
+    }
+</style>
+<div class="main-card card mt-2">
+    <div class="box-body card-body text-center">
+        <div class="row">
+            <div class="col-xl-12">
+                <button type="button" class="btn btn-primary">
+                    N° REGISTROS <span class="badge badge-light" id="numRegistros">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 col-sm-12">
+                <div class="col-xl-12 table-responsive" id="tabla">
+                    <table class="table table-responsive-sm  table-sm table-striped" id="tblReportes">
+                        <thead class="thead-dark" style="font-size:10px">
+                        </thead>
+                        <tbody style="font-size:10px"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @*<div class="row">
+            <div class="col-xl-12 table-responsive">
+                <table class="table  table-sm table-striped table-bordered" id="tblReportes" style="font-size:10px">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>N° PEDIDO</th>
+                            <th>LABORATORIO</th>
+                            <th>SUCURSAL</th>
+                            <th>VENDEDOR</th>
+                            <th>PACIENTE</th>
+                            <th>FECHA</th>
+                            <th>COSTO</th>
+                            <th>CODIGO</th>
+                            <th>FORMULA-MAGISTRAL</th>
+                            <th>CANT.</th>
+                            <th>ESTADO</th>
+                            <th>N° DOC</th>
+                            <th>ORDEN P.</th>
+                            <th>MEDICO</th>
+                            <th>CMP</th>
+                            <th>ORIGEN RECETA</th>
+                            <th>TIPO PEDIDO</th>
+                            <th>TIPO EMPRESA</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>*@
+    </div>
+</div>
+
+<script src="~/js/areas/pedidos/pedidos/reportes/produccionPorLaboratorio.js"></script>
+<script src="~/js/controller/pedidos/LaboratorioController.js"></script>

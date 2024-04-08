@@ -1,0 +1,110 @@
+﻿@model System.Data.DataTable
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>  </title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/site.js"></script>
+
+    <link href="~/css/pagina/impresiones/guia/guiadistribucion.css" rel="stylesheet" />
+    @*<style>
+                * {
+                    padding: 0px;
+                    margin: 0px;
+                }
+
+                td {
+                    font-size: 12px;
+                    font-family: Calibri;
+                    font-weight: 500;
+                    letter-spacing: -0.3px
+                }
+
+
+                /* table, th, td {
+                border: 1px solid black;
+            }*/
+
+                #tbltbodydetalleimprecion tr td {
+                    font-size: 10px;
+                    font-weight: 500;
+                }
+
+                #tbldetalleimprecion thead tr th {
+                    font-size: 11px;
+                }
+        </style>*@
+</head>
+<body>
+    <script>
+        var data = @Html.Raw(JsonConvert.SerializeObject(Model));
+        console.log(data);
+        var cabecera = JSON.parse(data[0]['CABECERA'])[0];
+        var transporte = JSON.parse(data[0]['TRANSPORTE'])[0];
+        var detalle = JSON.parse(data[0]['DETALLE']);
+    </script>
+    <div id="aplicacion" class="table-box">
+        <div class="row">
+            <table width="100%">
+                <tr>
+                    <td colspan="2">.</td>
+                    <td colspan="1"> {{ cabecera.DIATRASLADO }}</td>
+                    <td colspan="2"> {{ cabecera.MESTRASLADO }}</td>
+                    <td colspan="2"> {{ cabecera.ANOTRASLADO }}</td>
+                    <td colspan="2"> {{ cabecera.NUMDOC }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-size:12px;font-weight: 700;">{{ cabecera.EMPRESADESTINATARIO }}</td>
+
+
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-weight: 700;margin-right:10px">{{ cabecera.RUCDESTINATARIO }}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">{{ cabecera.PUNTOPARTIDA }}</td>
+                    <td colspan="6">{{ cabecera.PUNTOLLEGADA }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="font-weight: 700;margin-right:10px">{{ cabecera.FECHATRASLADO }}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">{{transporte.MARCA}}</td>
+                    <td colspan="6">{{transporte.EMPRESATRANSPORTE}}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">{{transporte.MATRICULA}}</td>
+                    <td colspan="6">{{transporte.RUCTRANSPORTE}}</td>
+                </tr>
+                <tr>
+                    <td colspan="6">{{transporte.CONDUCTOR}}</td>
+                    <td colspan="6">{{transporte.LICENCIA}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="row" style="margin-top:10px">
+            <table width="100%" id="tbldetalleimprecion">
+                <thead style="font-size:10px">
+                    <tr>
+                        <th>ITEM</th>
+                        <th>CODIGO</th>
+                        <th>PRODUCTO</th>
+                        <th>LAB.</th>
+                        <th>CANT.</th>
+                        <th>LOTE</th>
+                        <th>F.VENCE</th>
+                    </tr>
+                </thead>
+                <tbody v-html="detallehtml">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
+<script src="~/js/areas/almacen/guiasalida/auditoriaguia/imprimirauditoria.js"></script>

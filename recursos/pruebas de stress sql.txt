@@ -1,0 +1,3 @@
+documentcion en : https://datoptim.com/estres-en-sql-server-con-ostress/
+
+ostress.exe -S. -dpedidosqf -i”G:\test.sql” -n5 -r10

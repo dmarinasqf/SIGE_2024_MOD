@@ -1,0 +1,73 @@
+﻿<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalAgregarLote" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="exampleModalLabel">NUEVO LOTE</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" id="MAL_FormNuevoLote" autocomplete="off">
+                <div class="modal-body" id="contenedorLote">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="hidden" class="form-control" name="MAL_txtidproducto" id="MAL_txtidproducto" required>
+                                    <input type="hidden" class="form-control" name="MAL_txtcodigobarra" id="MAL_txtcodigobarra" required>
+                                    <label>CODIGO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="MAL_txtcodigo" name="MAL_txtcodigo" required readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>PRODUCTO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="MAL_txtproducto" name="MAL_txtproducto" required readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>LOTE</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="MAL_txtlote" name="MAL_txtlote" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>REG. SANITARIO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" class="form-control" id="MAL_txtregsanitario" name="MAL_txtregsanitario" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>FECHA VENCIMIENTO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="date" class="form-control" id="MAL_txtfechavencimiento" name="MAL_txtfechavencimiento" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button type="button" class="btn btn-success" id="MAL_btnGuardarLote"><i class="fa fa-save mr-2"></i>GUARDAR LOTE</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer"> 
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+<script src="~/js/areas/almacen/inventario/modal/modalagregarlote.js"></script>

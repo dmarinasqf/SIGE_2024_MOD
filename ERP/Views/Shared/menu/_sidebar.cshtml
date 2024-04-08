@@ -1,0 +1,430 @@
+﻿
+<div id="sidebar" class="sidebar sidebar-fixed hoverable sidebar-light">
+    <div class="sidebar-inner">
+
+        <div class="ace-scroll flex-grow-1" data-ace-scroll="{}">
+
+            <div class="sidebar-section my-2">
+
+            </div>
+            <ul class="nav has-active-border active-on-right">
+                <li class="nav-item-caption">
+                    <span class="fadeable pl-3">MENU</span>
+                    <span class="fadeinable mt-n2 text-125">&hellip; </span>
+                </li>
+                <li class="nav-item">
+
+                    <a href="/Home" class="nav-link">
+                        <i class="nav-icon fa fa-home"></i>
+                        <span class="nav-text fadeable">
+                            <span>Inicio</span>
+                        </span>
+
+
+                    </a>
+
+                    <b class="sub-arrow"></b>
+
+                </li>
+                <partial name="~/Views/Shared/menu/submenu/_submenupedidos.cshtml" />
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU ADMINISTRADOR"))
+                {
+
+
+            <li class="nav-item">
+
+
+
+                <b class="sub-arrow"></b>
+
+            </li>}
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU ALMACEN"))
+                {
+            <li class="nav-item">
+
+                <a href="#" class="nav-link dropdown-toggle collapsed">
+                    <i class="nav-icon fa fa-cube"></i>
+                    <span class="nav-text fadeable">
+                        <span>Maestros</span>
+                    </span>
+                    <b class="caret fa fa-angle-left rt-n90"></b>
+                </a>
+
+                <div class="hideable submenu collapse">
+                    <ul class="submenu-inner">
+
+                        <li class="nav-item">
+
+                            <a href="#" class="nav-link dropdown-toggle collapsed">
+                                <span class="nav-text">
+                                    <span>Empleados</span>
+                                </span>
+
+                                <b class="caret fa fa-angle-left rt-n90"></b>
+                            </a>
+                            <div class=" submenu collapse">
+                                <ul class="submenu-inner">
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_EMPLEADO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Administrador" asp-controller="Empleado" asp-action="Index">Empleados</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_USUARIOS_GRUPO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Administrador" asp-controller="ModulosGrupo" asp-action="Index">Grupos</a>
+                    </li>}
+                                </ul>
+                            </div>
+
+                            <b class="sub-arrow"></b>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a href="#" class="nav-link dropdown-toggle collapsed">
+                                <span class="nav-text">
+                                    <span>Sucursal</span>
+                                </span>
+
+                                <b class="caret fa fa-angle-left rt-n90"></b>
+                            </a>
+                            <div class=" submenu collapse">
+                                <ul class="submenu-inner">
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_SUCURSAL"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Administrador" asp-controller="Sucursal" asp-action="Index">Sucursal</a>
+                    </li>
+}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_LUGAR_SUCURSAL"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Administrador" asp-controller="LugarSucursal" asp-action="Index">Lugar de sucursal</a>
+                    </li>
+}
+                                </ul>
+                            </div>
+
+                            <b class="sub-arrow"></b>
+
+                        </li>
+                        <li class="nav-item">
+
+                            <a href="#" class="nav-link dropdown-toggle collapsed">
+                                <span class="nav-text">
+                                    <span>Empresa</span>
+                                </span>
+
+                                <b class="caret fa fa-angle-left rt-n90"></b>
+                            </a>
+                            <div class=" submenu collapse">
+                                <ul class="submenu-inner">
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_EMPRESA"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Administrador" asp-controller="Empresa" asp-action="Index">Empresa</a>
+                    </li>
+}
+
+                                </ul>
+                            </div>
+
+                            <b class="sub-arrow"></b>
+
+                        </li>
+
+
+                        <li class="nav-item">
+
+                            <a href="#" class="nav-link dropdown-toggle collapsed">
+                                <span class="nav-text">
+                                    <span>Categorias</span>
+                                </span>
+
+                                <b class="caret fa fa-angle-left rt-n90"></b>
+                            </a>
+                            <div class=" submenu collapse">
+                                <ul class="submenu-inner">
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("PREINGRESO CARACTERISTICAAO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Preingreso" asp-controller="PICaracteristicaAO" asp-action="Index">Caracteristica AO</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("PREINGRESO CATEGORIAAO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Preingreso" asp-controller="PICategoriaAO" asp-action="Index">Categoria AO</a>
+                    </li>}
+                                </ul>
+                            </div>
+
+                            <b class="sub-arrow"></b>
+
+                        </li>
+
+                        <li class="nav-item">
+
+                            <a href="#" class="nav-link dropdown-toggle collapsed">
+                                <span class="nav-text">
+                                    <span>Otros</span>
+                                </span>
+
+                                <b class="caret fa fa-angle-left rt-n90"></b>
+                            </a>
+                            <div class=" submenu collapse">
+                                <ul class="submenu-inner">
+                                    @if (User.IsInRole("ADMINISTRADOR"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Maestros" asp-controller="ColegioMedico" asp-action="Index">Colegio Médico</a>
+                    </li>
+}
+
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MANTENEDOR_ESPECIALIDADES"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Maestros" asp-controller="Especialidad" asp-action="Index">Especialidad</a>
+                    </li>
+}
+
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_PAIS"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Maestros" asp-controller="Pais" asp-action="Index">Pais</a>
+                    </li>
+}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MANTENEDOR_CLIENTE"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Maestros" asp-controller="Cliente" asp-action="Index">Cliente</a>
+                    </li>
+}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MANTENEDOR_MEDICO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Maestros" asp-controller="Medico" asp-action="Index">Medico</a>
+                    </li>
+}
+
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MANTENEDOR_MEDICO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Maestros" asp-controller="Institucion" asp-action="Index">Institución</a>
+                    </li>
+}
+                                </ul>
+                            </div>
+
+                            <b class="sub-arrow"></b>
+
+                        </li>
+
+
+
+
+                        <li class="nav-item">
+
+                            <a href="#" class="nav-link dropdown-toggle collapsed">
+                                <span class="nav-text">
+                                    <span>Productos</span>
+                                </span>
+
+                                <b class="caret fa fa-angle-left rt-n90"></b>
+                            </a>
+                            <div class=" submenu collapse">
+                                <ul class="submenu-inner">
+
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_ALMACEN_CLASE"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Almacen" asp-controller="AClase" asp-action="Index">Clase de producto</a>
+                    </li>}
+
+
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_ALMACEN_LABORATORIO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Almacen" asp-controller="ALaboratorio" asp-action="Index">Laboratorio</a>
+                    </li>}
+
+
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_ALMACEN_PRODUCTO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Almacen" asp-controller="AProducto" asp-action="Index">Productos</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_ALMACEN_SUBCLASE"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Almacen" asp-controller="ASubClase" asp-action="Index">Sub Clase de producto</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_ALMACEN TIPO PRODUCTO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Almacen" asp-controller="ATipoProducto" asp-action="Index">Tipo Producto</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_ALMACEN_TEMPERATURA"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Almacen" asp-controller="ATemperatura" asp-action="Index">Temperatura</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_ALMACEN_UNIDADMEDIDA"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Almacen" asp-controller="AUnidadMedida" asp-action="Index">Unidad de Medida</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("M_ALMACEN_PRODUCTOPARECIDO"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Almacen" asp-controller="AProductoParecido" asp-action="Index">Producto Parecido</a>
+                    </li>}
+                                </ul>
+                            </div>
+
+                            <b class="sub-arrow"></b>
+
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link dropdown-toggle collapsed">
+                                <span class="nav-text">
+                                    <span>Lista de precios</span>
+                                </span>
+
+                                <b class="caret fa fa-angle-left rt-n90"></b>
+                            </a>
+                            <div class=" submenu collapse">
+                                <ul class="submenu-inner">
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VER LISTA DE PRECIOS"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Comercial" asp-controller="ListaPrecios" asp-action="Index"> Listar</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VER LISTA DE PRECIOS"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Comercial" asp-controller="ListaPrecios" asp-action="SubirLista"> Subir lista</a>
+                    </li>}
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("LISTA DE PRECIOS CLIENTE"))
+                                    {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="Comercial" asp-controller="ListaPreciosCliente" asp-action="Index"> Lista de cliente</a>
+                    </li>}
+                                </ul>
+                            </div>
+                            <b class="sub-arrow "></b>
+                        </li>
+
+
+                    </ul>
+                </div>
+
+                <b class="sub-arrow"></b>
+
+            </li>
+}
+
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU PEDIDOS"))
+                {
+            <li class="nav-item">
+
+                <a href="#" class="nav-link dropdown-toggle collapsed">
+                    <i class="nav-icon fa fa-cube"></i>
+                    <span class="nav-text fadeable">
+                        <span>Traking de Pedidos</span>
+                    </span>
+                    <b class="caret fa fa-angle-left rt-n90"></b>
+                </a>
+
+                <div class="hideable submenu collapse">
+
+
+
+                </div>
+
+
+
+                <b class="sub-arrow"></b>
+
+            </li>
+            }
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU PEDIDOS"))
+                {
+            <li class="nav-item">
+
+                <a href="#" class="nav-link dropdown-toggle collapsed">
+                    <i class="nav-icon fa fa-cube"></i>
+                    <span class="nav-text fadeable">
+                        <span>Devolucion</span>
+                    </span>
+                    <b class="caret fa fa-angle-left rt-n90"></b>
+                </a>
+
+                <div class="hideable submenu collapse">
+
+
+
+                </div>
+
+
+
+                <b class="sub-arrow"></b>
+
+            </li>
+ } @*<partial name="~/Views/Shared/menu/submenu/_submenucomercial.cshtml" />*@ @*@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU COMPRAS"))
+    {
+
+    }*@
+                <!--partial name="~/Views/Shared/menu/submenu/_submenupromocion.cshtml" /-->
+                @*<partial name="~/Views/Shared/menu/submenu/_submenumotorizado.cshtml" />*@
+                @*<partial name="~/Views/Shared/menu/submenu/_submenumaestros.cshtml" />*@
+
+
+            </ul>
+
+        </div>
+
+
+        <div class="sidebar-section">
+            <div class="sidebar-section-item fadeable-bottom">
+                <div class="fadeinable">
+                    <!-- shows this when collapsed -->
+                    <div class="pos-rel">
+                        <img src="~/imagenes/empleados/@ViewBag.FOTOEMPLEADO" width="42" class="px-1px radius-round mx-2 border-2 brc-default-m2" />
+                        <span class="bgc-success radius-round border-2 brc-white p-1 position-tr mr-1 mt-2px"></span>
+                    </div>
+                </div>
+
+                <div class="fadeable hideable w-100 bg-transparent shadow-none border-0">
+                    <!-- shows this when full-width -->
+                    <div id="sidebar-footer-bg" class="d-flex align-items-center bgc-white shadow-sm mx-2 mt-2px py-2 radius-t-1 border-x-1 border-t-2 brc-primary-m3">
+                        <div class="d-flex mr-auto py-1">
+                            <div class="pos-rel">
+                                <img src="~/imagenes/empleados/@ViewBag.FOTOEMPLEADO" width="42" class="px-1px radius-round mx-2 border-2 brc-default-m2" />
+                                <span class="bgc-success radius-round border-2 brc-white p-1 position-tr mr-1 mt-2px"></span>
+                            </div>
+
+                            <div>
+                                <span class="text-blue-d1 font-bolder">@ViewBag.USERNAME</span>
+                                <div class="text-80 text-grey">
+                                    @ViewBag.GRUPO
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="#" class="d-style btn btn-outline-primary btn-h-light-primary btn-a-light-primary border-0 p-2 mr-2px ml-4" title="Settings" data-toggle="modal" data-target="#id-ace-settings-modal">
+                            <i class="fa fa-cog text-150 text-blue-d2 f-n-hover"></i>
+                        </a>
+
+                        @*<a href="html/page-login.html" class="d-style btn btn-outline-orange btn-h-light-orange btn-a-light-orange border-0 p-2 mr-1" title="Logout">
+                                <i class="fa fa-sign-out-alt text-150 text-orange-d2 f-n-hover"></i>
+                            </a>*@
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

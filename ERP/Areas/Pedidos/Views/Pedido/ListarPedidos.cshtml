@@ -1,0 +1,185 @@
+﻿
+@{ ViewData["Title"] = "ListarPedidos";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+<script>
+    var IsAdmin = false;
+
+</script>
+@if (User.IsInRole("ADMINISTRADOR"))
+{
+<script>
+    IsAdmin = true;
+</script>}
+<div class="row justify-content-center">
+
+    <div class="col-xl-12 text-center">
+        <h4>LISTA DE PEDIDOS</h4>
+    </div>
+</div>
+<div class="card mb-1">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                <div class="row">
+                    <div class="col-xl-12">
+                        @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("ACCESO A TODAS LAS SUCURSALES"))
+                        {
+            <div class="form-group">
+                <label class="input-group-text">SUCURSAL</label>
+
+                <select class="custom-select" id="txtsucursal" style="width:285px" tipo="select">
+                    <option value="" selected>[SELECCIONE]</option>
+
+                </select>
+            </div> }
+                        else
+                        {
+            <input type="hidden" id="txtsucursal" tipo="input" />}
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">ESTADO</label>
+                            </div>
+                            <select class="custom-select" id="cmbestado" style="width:285px">
+                                <option value="" selected>[TODOS]</option>
+                                @foreach (var item in ViewBag.estadopedido)
+                                {
+                    <option value="@item.idestado">@item.descripcion</option>}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-6 col-md-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">FECHA INICIO</label>
+                            </div>
+                            <input type="date" class="form-control" id="txtfechainicio" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">FECHA FIN</label>
+                            </div>
+                            <input type="date" class="form-control" id="txtfechafin" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">HORA INICIO</label>
+                            </div>
+                            <input type="time" class="form-control" value="01:00" id="txthorainicio" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-md-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">HORA FIN</label>
+                            </div>
+                            <input type="time" class="form-control" id="txthorafin" value="23:00" />
+                        </div>
+                    </div>
+                    <div class="col-xl-12">
+                        <div class="input-group input-group-sm mb-1">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">TIPO</label>
+                            </div>
+                            <select class="custom-select" id="cmbtipo" style="width:285px">
+                                <option value="" selected>[TODOS]</option>
+                                <option value="1">VETERINARIA</option>
+                                <option value="2">CABIS</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <label>PACIENTE</label>
+                    <select class="form-control" id="cmbpaciente"></select>
+                </div>
+                <div class="form-group">
+                    <label>CLIENTE</label>
+                    <select class="form-control" id="cmbcliente"></select>
+                </div>
+
+                <div class="form-group mt-1">
+                    <label>FILTRAR POR USUARIO</label>
+                    <input type="checkbox" id="checkusuario" class="mt-1 ml-2" />
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-12 col-sm-12 col-xs-12">
+                <div class="form-group">
+                    <a class="btn btn-success btn-block" asp-action="Registrar"><i class="fas fa-plus ml-2 mr-2"></i> Registrar</a>
+                    <button class="btn btn-info btn-block" id="btnconsultar"><i class="fas fa-search ml2- mr-2"></i> Consultar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="~/Areas/Pedidos/Views/Pedido/complemento/_cometiquetapedido.cshtml" />
+<div class="card mt-1" id="carddetalle">
+    <div class="row">
+        <div class="col-xl-12 table-responsive" style="min-height:500px">
+            <table class="table   table-sm  table-bordered" width="100%" id="tblpedidos" style="font-size:10.5px">
+                <thead class="thead-dark">
+                    <tr>
+                        <th style="width:3%"></th>
+                        <th></th>
+                        <th></th>
+                        <th>COD</th>
+                        <th>SUCURSAL</th>
+                        <th>LABORATORIO</th>
+                        <th>FECHA</th>
+                        <th>CLIENTE</th>
+                        <th>DOC. CLI.</th>
+                        <th>PACIENTE</th>
+                        <th>CMP</th>
+                        <th>MÉDICO</th>
+                        <th>TOTAL</th>
+                        <th>ADEL.</th>
+                        <th>SALDO</th>
+                        <th>USUARIO</th>
+                        <th title="Estado del pedido  y estado del DELIVERY">ESTADO Ped. / DELIVERY</th>
+                        <th>N°DOC</th>
+                        <th>O. PROD.</th>
+                        <th data-toggle="tooltip" data-placement="top" title="Usuario que entrega">U. ENT</th>
+                        <th data-toggle="tooltip" data-placement="top" title="Fecha de entrega de delivery">F.ENT</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbodydetalle"></tbody>
+            </table>
+        </div>
+        <div class=col-xl-12>
+            <div id="paginacion">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Areas/Pedidos/Views/Pedido/complemento/_modalverpedido.cshtml" />
+<partial name="~/Views/Modales/_modalValidarUsuario.cshtml" />
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modaldevolverpedido.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalentregarpedido.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modaleditarpedido.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalsubirimagen.cshtml" />
+<partial name="~/Areas/Maestros/Views/OrigenReceta/modal/_modalbuscarorigenreceta.cshtml" />
+<partial name="~/Areas/Pedidos/Views/Pedido/modal/_modalListaPrecioClientes.cshtml" />
+
+<script src="~/js/areas/pedidos/pedidos/listar/listarpedidos.js"></script>
+
+
+
+<script src="~/js/controller/maestros/PacienteController.js"></script>
+<script src="~/js/controller/pedidos/PedidoController.js"></script>
+<script src="~/js/controller/pedidos/EstadoPedidoController.js"></script>
+<script src="~/js/controller/pedidos/LaboratorioController.js"></script>

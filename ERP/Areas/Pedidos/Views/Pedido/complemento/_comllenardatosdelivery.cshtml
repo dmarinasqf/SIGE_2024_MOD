@@ -1,0 +1,145 @@
+﻿
+<form id="formdatosdelivery" name="formdatosdelivery" autocomplete="off">
+    <div class="row">
+        <div class="col-xl-8 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <input type="hidden" name="iddelivery" value="" id="CDDEtxtiddelvery">
+                    <input type="hidden" name="idpedido" value="" id="CDDEtxtidpedido">
+
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>TIPO DE ENTREGA</label>
+                                <select class="form-control form-control-sm" id="CDDEcmbtipoentrega" name="idtipoentrega" required>
+                                    
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-6">
+                            <div class="form-group">
+                                <label>RECOGER EN (MOTORIZADO)</label>
+                                <select class="form-control form-control-sm" id="CDDEcmbrecogeren" name="idsucursalentrega" disabled>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-5">
+                            <div class="form-group">
+                                <label>FECHA DE ENTREGA DE PEDIDO </label>
+                                <input type="date" name="fechaentrega" value="" id="CDDEtxtfechaentrega" class="form-control form-control-sm" required="">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label>HORA ENTREGA </label>
+                                <select class="form-control  form-control-sm" id="CDDEcmbhoraentrega" name="horaentrega">
+
+                                    <option value="08-12" selected="">08 - 12(08- 16)</option>
+                                    <option value="12-18">12 - 18(16 - 22)</option>
+                                    <optgroup label="Terceros" class="text-primary">
+                                        <option value="9-14" class="text-dark">9 - 14(7 - 16)</option>
+                                        <option value="14-18" class="text-dark">14 - 18(16 - 21)</option>
+                                    </optgroup>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label>ENVIAR A </label>
+                                <select class="form-control  form-control-sm" id="CDDEcmbenviara" name="enviara">
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    <option value="PACIENTE">PACIENTE</option>
+                                    <option value="CLIENTE">CLIENTE</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="form-group">
+                                <label>DEPARTAMENTO </label>
+                                <select class="form-control  form-control-sm cmbdepartamento" name="iddepartamento" id="CDDEcmbdepartamento" required=""></select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="form-group">
+                                <label>PROVINCIA </label>
+                                <select class="form-control  form-control-sm" name="idprovincia" id="CDDEcmbprovincia" required="">
+                                    <option>[SELECCIONE]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="form-group">
+                                <label>DISTRITO </label>
+                                <select class="form-control  form-control-sm" name="iddistrito" id="CDDEcmbdistrito">
+                                    <option>[SELECCIONE]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-8 col-sm-12">
+                            <div class="form-group">
+                                <label>DIRECCION  DE ENVIO </label>
+                                <textarea type="text" name="direcciondeenvio" value="" id="CDDEtxtdireccion" class="form-control  form-control-sm" rows="2" ></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-sm-12">
+                            <div class="form-group">
+                                <label>NÚMERO DE CLIENTE</label>
+                                <input type="number" name="numero" value="" id="CDDEtxtnumero" class="form-control  form-control-sm" maxlength="12">
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>REFERENCIA 1</label>
+                                <textarea type="text" name="referencia1" id="CDDEtxtreferencia1" value="" class="form-control  form-control-sm" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>REFERENCIA 2</label>
+                                <textarea type="text" name="referencia2" id="CDDEtxtreferencia2" value="" class="form-control  form-control-sm" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>ENVIAR POR ENCOMIENDA </label>
+                        <input type="checkbox" name="isencomienda"  id="CDDEcheckagencia">
+                    </div>
+                    <div class="form-group">
+                        <label>AGENCIA DE ENVIO</label>
+                        <select class="form-control  form-control-sm" name="idagencia" id="CDDEcmbagencia" disabled></select>
+                    </div>
+                    <div class="form-group">
+                        <label>DOCUMENTO CLIENTE/PACIENTE</label>
+                        <input type="text" name="docenvioagencia" class="form-control form-control-sm" id="CDDEtxtdocenvioagencia" value="" disabled="">
+                    </div>
+                    <div class="form-group">
+                        <label>PERSONA RECOGE</label>
+                        <input type="text" name="personarecoge" class="form-control form-control-sm" id="CDDEtxtpersonarecoge" value="" disabled="">
+                    </div>
+                    <div class="form-group">
+                        <label>CLAVE</label>
+                        <input type="text" name="claveagrencia" class="form-control form-control-sm" id="CDDEtxtclaveenvioagencia" value="" disabled="">
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success btn-block mt-2" type="submit" id="CDDEbtnconservarcambios">Conservar cambios</button>
+        </div>
+    </div>
+</form>
+
+
+<script src="~/js/areas/pedidos/pedidos/complemento/comllenardatosdelivery.js"></script>
+
+<script src="~/js/controller/pedidos/TipoEntregaController.js"></script>

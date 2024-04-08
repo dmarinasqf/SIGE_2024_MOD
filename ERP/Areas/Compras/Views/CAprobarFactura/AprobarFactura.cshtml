@@ -1,0 +1,421 @@
+﻿@model ENTIDADES.preingreso.PIFacturaPreingreso
+@{ ViewData["Title"] = "AprobarFactura";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+<script>
+    var MODELO = @Html.Raw(Json.Serialize(Model));
+    var IGV =@Html.Raw(Json.Serialize(ViewBag.IGV));
+    if (IGV == null || IGV === '')
+        IGV = 0.18;
+    else if (IGV > 0.9)
+        IGV = IGV / 100;
+</script>
+<div onpaste="return false">
+    <div class="row">
+        <div class="col-xl-10 col-md-8">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+
+                <h1 class="page-title text-primary-d2 text-140">
+                    APROBAR FACTURA N° <span id="lblnumfacturaaprobar"> @Model.serie - @Model.numdoc</span>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" onpaste="return false">
+    <div class="card-body" id="cardaprobacion">
+
+        <div class="row">
+            <div class="col-xl-7 col-md-7 col-sm-12">
+                <div class="row">
+                    <div class="col-xl-3 col-sm-12">
+                        <div class="form-group">
+                            <label>RUC</label>
+                            <input type="hidden" id="txtidproveedor" disabled />
+                            <input type="text" id="txtruc" class="form-control form-control-sm" name="" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-sm-12">
+
+                        <div class="form-group">
+                            <label>RAZON SOCIAL</label>
+                            <input type="text" id="txtrazonsocial" class="form-control form-control-sm" name="" disabled>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-xl-3 col-sm-6">
+
+                        <div class="form-group">
+                            <label>TIPO MONEDA</label>
+                            <input type="text" class="form-control form-control-sm" id="txtnombremoneda" disabled />
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-6">
+
+                        <div class="form-group">
+                            <label>CAMBIO</label>
+                            <input type="text" id="txtcambiomoneda" class="form-control form-control-sm" name="cambiomoneda" maxlength="20" onkeypress="return justNumbers(event);" required>
+                        </div>
+                    </div>
+
+                    <div class="col-xl-3 col-sm-6">
+                        <div class="form-group">
+                            <label>TIPO PAGO</label>
+                            <select class="form-control form-control-sm " id="cmbtipopago">
+                                <option value="" selected>[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.tipopago)
+                                {
+                                    <option value="@item.idtipopago">@item.descripcion</option>
+}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6">
+
+                        <div class="form-group">
+                            <label>CONDICIÓN PAGO</label>
+                            <select class="form-control form-control-sm show-tick" id="cmbcondicionpago" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.condicionpago)
+                                {
+                                    <option value="@item.idcondicionpago">@item.descripcion</option>
+}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-6">
+
+                        <div class="form-group">
+                            <label>EMPRESA</label>
+                            <input type="text" id="txtempresa" class="form-control form-control-sm" name="" disabled>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-sm-6">
+                        <div class="form-group">
+                            <label>SUCURSAL DESTINO</label>
+                            <select class="form-control form-control-sm" id="txtsucursaldestino" required disabled>
+                            </select>
+                        </div>
+                    </div>
+                    @*<div class="col-xl-4 col-sm-6">
+                        <div class="form-group">
+                            <label>ALMACEN</label>
+                            <select class="form-control form-control-sm" id="cmbalmacen" required>
+                            </select>
+                        </div>
+                    </div>*@
+                    <div class="col-xl-12 col-sm-12">
+                        <div class="form-group">
+                            <label>OBSERVACIÓN</label>
+                            <input type="text" class="form-control form-control-sm" id="txtobservacion" />
+                        </div>
+                    </div>
+                </div>
+                <hr />
+
+
+            </div>
+            <div class="col-xl-5 col-md-5 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <nav>
+                            <ul class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link active" id="navbar-factura" data-toggle="tab" href="#nav-factura" role="tab">
+                                        Factura <button class="font-7 btn-dark btnbuscarfactura ml-1" type="button" data-toggle="modal" data-target="#modalbuscarpreingresos"><i class="fas fa-search"></i></button>
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="navbar-preingreso" data-toggle="tab" href="#nav-preingreso" role="tab">
+                                        Preingreso <button class="font-7 btn-dark btnbuscarfactura ml-1" type="button" data-toggle="modal" data-target="#modalbuscarpreingresos"><i class="fas fa-search"></i></button>
+                                    </a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <a class="nav-link" id="navbar-compra" data-toggle="tab" href="#nav-compra" role="tab">Orden compra</a>
+
+                                </li>
+
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content" id="nav-tabContent">
+                            <div class="tab-pane fade show active" id="nav-factura" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-xl-7 col-sm-12">
+                                        <div class="form-group">
+                                            <label>TIPO DOCUMENTO</label>
+                                            <span class="ml-2" id="lbltipodocumeto"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>NUM DOCUMENTO</label>
+                                            <span class="ml-2" id="lblnumdocumento">@Model.serie - @Model.numdoc</span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>FECHA DOCUMENTO</label>
+                                            <span class="ml-2" id="lblfechadocumento"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 col-sm-12">
+                                        <div class="form-group">
+                                            <label>ESTADO</label>
+                                            <span class="ml-2" id="lblestadodocumento"></span>
+                                        </div>
+                                        <div class="form-group" hidden>
+                                            <label>ID FACTURA</label>
+                                            <span class="ml-2" id="lblidfactura"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="nav-preingreso" role="tabpanel">
+                                <div class="form-group">
+                                    <label>NUMERO</label>
+                                    <span class="ml-2" id="lblnumpreingreso"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>FECHA</label>
+                                    <span class="ml-2" id="lblfechapreingreso"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label>ESTADO</label>
+                                    <span class="ml-2" id="lblestadopreingreso"></span>
+                                </div>
+                                <div class="form-group" hidden>
+                                    <label>ID PREINGRESO</label>
+                                    <span class="ml-2" id="lblidpreingreso"></span>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="nav-compra" role="tabpanel">
+                                <div class="row">
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>NUMERO</label>
+                                            <span class="ml-2" id="lblnumoc"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>FECHA</label>
+                                            <span class="ml-2" id="lblfechaoc"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>ESTADO</label>
+                                            <span class="ml-2" id="lblestadooc"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>FECHA VENC.</label>
+                                            <span class="ml-2" id="lblfechavencimientooc"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="row mt-1 mb-1">
+            <div class="col-xl-4 col-sm-12 mb-2">
+                <label>
+                    <i class="fa fa-search pos-abs mt-2 pt-3px ml-25 text-blue-m2"></i>
+                    <input type="text" id="txtfiltrotabladetalle" class="form-control form-control-sm input-datatable-search" placeholder=" Buscar registros">
+                </label>
+
+            </div>
+            <div class="offset-6 col-xl-2 col-sm-12">
+                <div class="custom-control custom-checkbox text-right">
+                    <input type="checkbox" id="chkConIGV" class="custom-control-input">
+                    <label class="custom-control-label pt-1" for="chkConIGV">CON IGV</label>
+                </div>
+            </div>
+            <div class="col-xl-12 col-sm-12">
+                <div class="card bcard h-auto">
+                    <div class="border-t-3 brc-blue-m2 table-responsive contenedor-sticky">
+                        <table class="table table-sm table-striped table-bordered text-center" id="tbldetalle" width="100%">
+                            <thead class="thead-dark shadow-sm font-10">
+                                <tr>
+                                    <th></th>
+                                    <th class="header-sticky" style="width:1%">#</th>
+                                    <th class="header-sticky">COD</th>
+                                    <th class="header-sticky" style="width:20%">DESCRIPCION</th>
+                                    <th class="header-sticky">CANT.<br />ING.</th>
+                                    <th class="header-sticky">CANT.<br />DEV.</th>
+                                    <th class="header-sticky">VVF</th>
+                                    <th class="header-sticky">PVF</th>
+                                    <th class="header-sticky">%D1</th>
+                                    <th class="header-sticky">%D2</th>
+                                    <th class="header-sticky">%D3</th>
+                                    <th class=" header-sticky">COSTO</th>
+                                    <th class="header-sticky">COSTO <br />FACT.</th>
+                                    <th class="header-sticky">SUBTOTAL</th>
+                                    <th class="header-sticky">TOTAL</th>
+                                    <th class="header-sticky">MON.<br /> DOC.</th>
+                                    <th class="header-sticky">MON. DOC.<br /> IGV</th>
+                                    <th class="header-sticky">DIFERENCIA</th>
+                                    <th class="header-sticky">MON. DEV.</th>
+                                    @*<th class="header-sticky">TIPO DEVOLUCIÓN</th>*@
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col-xl-3 col-sm-12 border ">
+                <div class="row mt-3 justify-content-center">
+                    <div class="col-xl-6 col-xs-6  mt-2">
+                        <button class="btn btn-block btn-success" type="button" id="btnguardar"><i class="fas fa-save mr-4"></i>GUARDAR</button>
+                    </div>
+                    <div class="col-xl-6 col-xs-6  mt-2">
+                        <button class="btn btn-block btn-danger" type="button" id="btnanular"><i class="fas fa-trash mr-4"></i> ANULAR</button>
+                    </div>
+                    <div class="col-xl-6 col-xs-6 mt-2">
+                        <button class="btn btn-block btn-outline-dark" type="button" id="btnimprimir"><i class="fas fa-print mr-4"></i> IMPRIMIR</button>
+                    </div>
+                    @*<div class="col-xl-3 col-xs-4">
+                            <button class="btn btn-block btn-primary" type="button" id="btnnuevo"><i class="fas fa-redo-alt mr-4"></i> LIMPIAR</button>
+                        </div>*@
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-12 border ">
+                <div class="form-group row mt-3">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">NC X DEVOLUCIÓN</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txtncxdevolucion" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">NC X DIF. DSCTOS.</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txtncxdifdescuentos" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-12 col-sm-12">
+                        <button type="button" class="mt-1" id="btnimprimirdevoluciondiferencia">IMPRIMIR <i class="fas fa-print"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-12 border">
+
+                <div class="form-group row mt-3">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">SUBTOTAL DOCUMENTO</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txtsubtotaldocumento" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">IGV DOCUMENTO</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txtigvdocumento" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">TOTAL DOCUMENTO</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txttotaldocumento" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-xl-3 col-sm-12 border">
+
+                <div class="form-group row mt-3">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">SUBTOTAL</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txtsubtotal" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">IGV</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txtigv" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">TOTAL S/.</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txttotal" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">PRONTO PAGO</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txtprontopago" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">TOTAL REAL</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txttotalreal" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group row ">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">PERCEPCIÓN</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txtpercepcion" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-xl-6 col-sm-6">
+                        <label class="font-10">TOTAL A PAGAR</label>
+                    </div>
+                    <div class="col-xl-6 col-sm-6">
+                        <input type="text" id="txttotalpagar" class="form-control form-control-sm" disabled />
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<partial name="~/Areas/PreIngreso/Views/PIPreingreso/modal/_modalbuscarpreingresos.cshtml" />
+<partial name="~/Areas/Compras/Views/CAprobarFactura/modal/_modalprecioutilidad.cshtml" />
+<partial name="~/Areas/Compras/Views/CAprobarFactura/modal/_modallistaprecioproducto.cshtml" />
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/_modalValidarUsuario.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/_modalProveedores.cshtml" />
+
+<script src="~/js/modelos/preingreso/PIPreingreso.js"></script>
+<script src="~/js/areas/compras/aprobarfactura/aprobarfactura.js"></script>
+<script src="~/js/controller/comercial/ListaPreciosController.js"></script>
+<script src="~/js/controller/compras/CotizacionController.js"></script>
+<!--btnguardar/>

@@ -1,0 +1,181 @@
+﻿
+
+@model IEnumerable<ENTIDADES.compras.CRepresentanteLaboratorio>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-12">
+    
+            <div class="col-xl-12">
+                <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                    <h1 class="page-title text-primary-d2 text-140">
+                        REPRESENTANTES DEL LABORATORIO  <bold>"@ViewBag.laboratorio"</bold>
+
+                    </h1>
+                    <input type="hidden" name="name" value="@ViewBag.idlaboratorio" id="hdidlaboratorio" />
+                   
+                </div>
+            </div>           
+            <div class="col-xl-12">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card border-0 shadow-sm radius-0">
+                            <div class="card-header bgc-primary-d1">
+                                <h6 class="card-title text-white">
+                                    DATOS DE REPRESENTANTE
+                                </h6>
+                            </div>
+                            <div class="card-body bgc-transparent p-0 border-1 brc-primary-m3 border-t-0">
+                                <form method="post" autocomplete="off" id="form-registro">
+                                    <input type="hidden" name="idlaboratorio" value="@ViewBag.idlaboratorio" id="txtidlaboratorio" />
+                                    <input type="hidden" name="idrepresentante" id="txtcodigo" />
+                                    <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+
+
+
+                                    <div class="col-md-12">
+                                        <label>DOCUMENTO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txtdocumento" class="form-control form-control-sm" name="documento" maxlength="12" onkeypress="return justNumbers(event);">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>NOMBRES</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txtnombres" class="form-control form-control-sm mayusculas" name="nombres" maxlength="100" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label>TELEFONO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txttelefono" class="form-control form-control-sm" name="telefono" onkeypress="return justNumbers(event);" maxlength="12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>CELULAR</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txtcelular" class="form-control form-control-sm" name="celular" onkeypress="return justNumbers(event);" maxlength="12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label>EMAIL</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txtemail" class="form-control form-control-sm" name="correo" maxlength="200">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12">
+                                        <label>ESTADO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control form-control-sm" id="cmbestado" name="estado" required>
+                                                    <option value="HABILITADO" selected>HABILITADO</option>
+                                                    <option value="DESHABILITADO">DESHABILITADO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                                    <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                        <div class="card border-0 shadow-sm radius-0">
+                            <div class="card-header bgc-primary-d1">
+                                <h6 class="card-title text-white">
+                                    LISTA DE REPRESENTANTES
+                                </h6>
+                            </div>
+                            
+                            <div class="card-body bgc-transparent p-0 border-1 brc-primary-m3 border-t-0">
+                                <div class="row justify-content-end">
+                                    <div class="col-xl-4 col-sm-12 mt-2">
+                                        <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-sm-12">
+                                        <div class="border-t-3 brc-blue-m2 table-responsive">
+                                            <table class="table table-sm table-bordered collapsed" width="100%" id="tbllista">
+                                                <thead class="">
+                                                    <tr>
+                                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ID</th>
+                                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">DOCUMENTO</th>
+                                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">NOMBRES</th>
+                                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">TELEFONO</th>
+                                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">CELULAR</th>
+                                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">EMAIL</th>
+                                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">ESTADO</th>
+                                                        <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="pos-rel">
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.idrepresentante)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.documento)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.nombres)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.telefono)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.celular)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.correo)
+                                                            </td>
+                                                            <td>
+                                                                @Html.DisplayFor(modelItem => item.estado)
+                                                            </td>
+                                                            <td>
+                                                                <div class="btn-group btn-group-sm">
+                                                                    <button class="btn btn-sm bg-warning waves-effect btn-pasar"><i class="fas fa-edit"></i></button>
+                                                                    <button class="btn btn-sm bg-danger waves-effect text-white" onclick="mensajeeliminar(@item.idrepresentante)"><i class="fas fa-trash-alt"></i></button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                            
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+   
+    </div>
+</div>
+
+
+
+
+<script src="~/js/areas/almacen/laboratorio/representante.js"></script>

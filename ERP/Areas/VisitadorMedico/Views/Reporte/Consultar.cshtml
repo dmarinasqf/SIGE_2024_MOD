@@ -1,0 +1,107 @@
+﻿
+@{ ViewData["Title"] = "Horarios - Consultar";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+
+<link href="~/lib/datetimepicker/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+<script src="~/lib/datetimepicker/tempusdominus-bootstrap-4.min.js"></script>
+<link href="~/lib/fullCalendar/fullcalendar.min.css" rel="stylesheet" />
+<div class="card card-success main-card card">
+    <div class="card-body card-body" style="font-size:11px">
+        <div class="row">
+            <div class="col-xl-12">
+                <h3 class="text-center">CONSULTAR HORARIO</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-10 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-2 col-xs-12" style="margin-top:5px">
+                        <div class="form-group">
+                            <label>Código</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control form-control-sm" id="txtSerie" disabled style="text-align:center;font-weight: bold;" aria-describedby="button-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="btnBuscarSucursal"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-md-6 col-sm-6 col-xs-12" style="margin-top:5px">
+                        <div class="form-group ">
+                            <label>Sucursal</label>
+                            <input type="hidden" id="txtidSucursal">
+                            <input id="txtSucursal" type="text" class="form-control  form-control-sm" style="text-align:center;font-size:larger;font-weight: bold;" disabled="">
+                            <input type="hidden" id="txtnmroConsultorio">
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-3 col-xs-12" style="margin-left:10px;margin-top:5px">
+                        <label>Consultorio</label>
+                        <select class="form-control" id="cboConsultorio"></select>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" id="div_medicoBuscar1" style="display: inline;">
+                        <div class="form-group">
+                            <label>CMP</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control form-control-sm" id="txtcmpf" aria-describedby="button-addon2" onkeypress="buscarMedico(event)">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="button" id="btnBuscarMedico"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12" id="div_medicoBuscar2" style="display: inline;">
+                        <div class="form-group ">
+                            <label>Médico</label>
+                            <input type="hidden" id="txtidmedicof" value="0">
+                            <input id="txtMedicof" type="text" class="form-control input-border-bottom form-control-sm" value="" disabled="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-xs-12">
+                <button class="btn  btn-success btn-sm btn-block" style="margin-top:20px" id="btn_consultar"><i class="fas fa-calendar fa-1x"></i>  Consultar</button>
+                <button class="btn  btn-warning btn-sm btn-block" style="margin-top: 20px; display: inline;" id="btn_limpiar">
+                    <i class="fas fa-x-ray fa-1x"></i>  Limpiar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-12">
+        <div id="calender"></div>
+    </div>
+</div>
+<style>
+    table.dataTable.dataTable_width_auto {
+        width: auto;
+    }
+</style>
+<div class="card card-success main-card card mt-2" id="cardreport">
+    <div class="card-body card-body text-center">
+        <div class="row">
+            <div class="col-xl-12 col-sm-12">
+                <div class=" table-responsive" id="tabla">
+                    <table class="table table-responsive-sm  table-sm table-striped" id="tblReportes">
+                        <thead class="thead-dark" style="font-size:10px">
+                        </thead>
+                        <tbody style="font-size:10px"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Areas/Maestros/Views/Medico/modal/_modalMedicosDisponibles.cshtml" />
+<partial name="~/Areas/Administrador/Views/Sucursal/modal/_modalSucursalAsignarHorario.cshtml" />
+<partial name="~/Areas/VisitadorMedico/Views/turno/_modalRegistrarTurno.cshtml" />
+<partial name="~/Areas/VisitadorMedico/Views/Horarios/modal/_modalHxdiaxMedico.cshtml" />
+
+<script src="~/js/areas/visitadormedico/horarios/consultar.js"></script>
+<script src="~/lib/fullCalendar/moment.min.js"></script>
+<script src="~/lib/fullCalendar/fullcalendar.js"></script>

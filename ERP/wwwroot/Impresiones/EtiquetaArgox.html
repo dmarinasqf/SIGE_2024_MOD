@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+
+    <link href="../css/otros/etiquetaargox.css" rel="stylesheet" />
+    <script src="../lib/jquery/dist/jquery.min.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        @media print {
+            .oculto-impresion,
+            .oculto-impresion * {
+                display: none !important;
+            }
+        }
+    </style>
+    <script>
+
+        window.onload = function () {
+            var txtetiqueta = $("#divetiqueta");
+            var datosetiqueta = localStorage.getItem("etiquetaargox");
+            var tipoetiqueta = localStorage.getItem("tipoetiquetaargox");
+            //txtetiqueta.addClass("etiqueta-argox-" + tipoetiqueta);
+            txtetiqueta.append(datosetiqueta);
+            window.print();
+        };
+
+        function unloadPage() {
+            localStorage.clear();
+        }
+    </script>
+</head>
+<body onunload="unloadPage()">
+    <div id="">
+        <div class="" id="divetiqueta" disabled>
+        </div>
+    </div>
+    <button class="oculto-impresion" onclick=" window.print()">Imprimir</button>
+
+</body>
+
+</html>

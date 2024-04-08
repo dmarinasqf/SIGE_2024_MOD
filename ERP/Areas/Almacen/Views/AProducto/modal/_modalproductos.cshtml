@@ -1,0 +1,28 @@
+﻿
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalproductos" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1200 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <div class="form-inline">
+                    <label class="modal-title" id="exampleModalLabel">BUSCAR PRODUCTOS</label>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <partial name="~/Areas/Almacen/Views/AProducto/complemento/_combuscarproducto.cshtml" />
+                    </div>
+                </div>
+                       
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/almacen/producto/modal/modalproductos.js"></script>

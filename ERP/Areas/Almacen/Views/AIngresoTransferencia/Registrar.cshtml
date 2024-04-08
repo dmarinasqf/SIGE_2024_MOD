@@ -1,0 +1,201 @@
+﻿@model ENTIDADES.Almacen.AIngresoTransferencia
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    var MODELO =@Html.Raw(Json.Serialize(Model)) ;
+  
+</script>
+@if (ViewBag.mensajebusqueda == "ok" || ViewBag.mensajebusqueda == "nuevo")
+{
+      <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+          <h1 class="page-title text-primary-d2 text-140">
+              <a class="" asp-action="Index"><i class="fa fa-arrow-left"></i> </a>
+              REGISTRO INGRESO DE TRANSFERENCIA
+          </h1>            
+        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="body">
+                    <form method="post" autocomplete="off" id="form-registro">
+                        <div class="row">
+                            <div class="col-lg-3 col-xs-12 cards-container">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h7 class="card-title">
+                                            SALIDA TRANSFERENCIA
+                                        </h7>
+                                    </div>
+                                    <div class="card-body bgc-transparent">
+                                        <label>CÓDIGO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="hidden" asp-for="idsalidatransferencia" required />
+                                                <input type="text" class="form-control form-control-sm" id="txtcodigosalidatransferencia" required />
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label>NUM.DOC</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" class="form-control form-control-sm" id="txtnumguiasalida" disabled />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.card-body -->
+                                </div><!-- /.card -->
+                            </div><!-- /.col -->
+                            <div class="col-lg-9 col-xs-12 cards-container">
+                                <div class="card shadow-sm">
+                                    <div class="card-header">
+                                        <h7 class="card-title">
+                                            INGRESO TRANSFERENCIA
+                                        </h7>
+                                    </div>
+                                    <div class="card-body bgc-transparent">
+                                        <div class="row">
+                                            <div class="col-xl-3 col-xs-12">
+                                                <label>CODIGO GUÍA</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="hidden" asp-for="idingresotransferencia" />
+                                                        <input class="form-control form-control-sm" asp-for="codigo" placeholder="AUTOGENERADO" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-xs-12">
+                                                <label>FECHA</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input class="form-control form-control-sm" type="date" asp-for="fecha" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-xs-12">
+                                                <label>USUARIO RECEPCIONA</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input class="form-control form-control-sm" asp-for="empleado.userName" disabled />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-5 col-xs-12">
+                                                <label>EMPRESA</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input class="form-control form-control-sm" asp-for="empresa.descripcion" value="@ViewBag.EMPRESA" disabled />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-xs-12">
+                                                <label>SUCURSAL</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input class="form-control form-control-sm" asp-for="sucursal.descripcion" value="@ViewBag.SUCURSAL" disabled />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-3 col-xs-12">
+                                                <label>ALMACÉN</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm" asp-for="idalmacensucursal" required>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-xs-12">
+                                                <label>SUCURSAL ENVIA</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm" asp-for="idsucursalenvia" disabled>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-xs-12">
+                                                <label>OBSERVACIÓN</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <textarea class="form-control form-control-sm" asp-for="observacion"></textarea>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><!-- /.card-body -->
+                                </div><!-- /.card -->
+                            </div><!-- /.col -->
+                        </div>
+
+
+                        <div class="card-body">
+                            <div class="card bcard h-auto">
+                                <div class="table-responsive border-t-3 brc-blue-m2 ">
+                                    <div class="contenedor-sticky-500">
+                                        <table class="table table-sm table-hover tabla-sticky table-striped table-bordered " width="100%" id="tbldetalleguia">
+                                            <thead class="text-center">
+                                                <tr>
+                                                    <th style="width:3%" class="header-sticky-cruce">ITEM</th>
+                                                    <th class="header-sticky" style="width:10%">IDDETALLE</th>
+                                                    <th class="header-sticky" style="width:0%">IDPRODUCTO</th>
+                                                    <th class="header-sticky" style="width:10%">CODIGO</th>
+                                                    <th class="header-sticky" style="width:45%">ARTICULO</th>
+                                                    <th class="header-sticky" style="width:10%">CANTIDAD</th>
+                                                    <th class="header-sticky" style="width:5%">F</th>
+                                                    <th class="header-sticky" style="width:10%">CANTIDAD INGRESADA</th>
+                                                    <th class="header-sticky" style="width:10%">POR DIFERENCIA</th>
+                                                    <th class="header-sticky" style="width:0%">IDSTOCK</th>
+                                                    <th class="header-sticky" style="width:10%">LOTE</th>
+                                                    <th class="header-sticky" style="width:10%">REGSEAA</th>
+                                                    <th class="header-sticky" style="width:10%">FVENC.</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody class="text-center font-11">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row justify-content-center">
+                            <div class="col-xl-3 col-xs-12">
+                                <button type="submit" class="btn btn-success waves-effect btn-block" id="btn-guardar"><i class="fa fa-save"></i> GUARDAR</button>
+                            </div>
+                            <div class="col-xl-3 col-xs-12 ocultar">
+                                <button type="button" class="btn btn-light waves-effect btn-block" id="btn-imprimir"><i class="fa fa-print"></i> IMPRIMIR</button>
+                            </div>
+                            <div class="col-xl-3 col-xs-12">
+                                <button type="button" class="btn btn-primary waves-effect btn-block" id="btn-limpiar"><i class="fa fa-eraser"></i> LIMPIAR</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <partial name="~/Areas/Almacen/Views/ASalidaTransferencia/modal/_modalListarSalidaTransferencia.cshtml" />
+    <script src="~/js/areas/almacen/ingresotransferencia/registrar.js"></script>
+    <script src="~/js/controller/almacen/IngresoTransferenciaController.js"></script>
+
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="body">
+                <div class="alert-warning" style="color:black; padding:50px;margin:50px; font-size:1.2rem" role="alert">
+                    <h4 class="alert-heading">ADVERTENCIA</h4>
+                    @ViewBag.mensajebusqueda .
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

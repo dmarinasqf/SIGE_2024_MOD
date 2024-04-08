@@ -1,0 +1,68 @@
+﻿@model List<ENTIDADES.comercial.ListaPrecios>
+@{
+    ViewData["Title"] = "HistorialVentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/lib/sheetjs/dist/xlsx.full.min.js"></script>
+<div class="card acard" id="cardlista">
+    <div class="card-header">
+        <div class="card-title">
+            <a asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-3"></i></a>SUBIR PRECIOS
+        </div>
+    </div>
+    <div class=" card-body">
+        <div class="row mt-2 justify-content-center">
+            <div class="col-xl-4">
+                <div class="form-group">
+                    <label>SELECCIONAR ARCHIVO (.xlsx)</label>
+                    <input type="file" class="form-control form-control-sm" id="txtfile" />
+
+                </div>
+            </div>
+            <div class="col-xl-3">
+                <div class="form-group">
+                    <label>SELECCIONAR LISTA</label>
+                    <select class="form-control form-control-sm" id="cmblista">
+                        <option value="">[SELECCIONE]</option>
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.idlistaprecio">@item.descripcion</option>
+
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-xl-1 mt-4 text-center">
+                COD ADESY <input type="checkbox" id="checkadesy" />
+            </div>
+            <div class="col-xl-1 mt-4">
+                <button class="btn btn-success" id="btnguardar"><i class="fas fa-save"></i></button>
+            </div>
+
+        </div>
+        <div class="row justify-content-center mt-4">
+
+            <div class="col-xl-7 col-sm-12 ">
+                <div class="card bcard h-auto">
+                    <div class="border-t-3 brc-blue-m2 table-responsive">
+                        <table class="table  table-bordered" id="tbllista" width="100%">
+                            <thead>
+                                <tr>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">codigoproducto</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">nombre</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">precio</th>
+                                    <th class="border-0  bgc-h-yellow-l3 shadow-sm">precioxfraccion</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/controller/comercial/ListaPreciosController.js"></script>
+<script src="~/js/modelos/comercial/PreciosProducto.js"></script>
+<script src="~/js/areas/comercial/listaprecios/subirlista.js"></script>

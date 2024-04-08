@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+   
+        <div class="col-xl-12">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    MANTENEDOR DE EQUIVALENCIA
+                </h1>
+                <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12">
+            <div class="card bcard h-auto">
+                <div class="border-t-3 brc-blue-m2 table-responsive">
+                    <table class="table table-sm table-bordered collapsed" width="100%" id="tbllista">
+                        <thead class="">
+                            <tr>
+
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="width:10%">ID</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"> U.M.I.</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="width:30%">U.M. INICIAL</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">U.M.F.</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="width:30%">U.M. FINAL</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="width:20%">EQUIVALENCIA</th>
+                                <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="pos-rel">
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRO DE EQUIVALENCIA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+
+                <form method="post" autocomplete="off" id="form-registro">
+                    <input type="hidden" name="idequivalencia" value="" id="txtcodigo" />
+                    <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+
+
+                    <label>UNIDAD MEDIDA INICIAL</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbumi" name="unidadmedidainicial" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.unidadmedida)
+                                {
+                                    <option value="@item.idunidadmedida">@item.descripcion</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <label>UNIDAD MEDIDA FINAL</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbumf" name="unidadmedidafinal" required>
+                                <option value="" selected>[SELECCIONE]</option>
+                                @foreach (var item in ViewBag.unidadmedida)
+                                {
+                                    <option value="@item.idunidadmedida">@item.descripcion</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <label>EQUIVALENCIA</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtequivalencia" class="form-control " name="equivalencia" required onkeypress="return justNumbers(event);">
+                        </div>
+                    </div>
+                    <label>ESTADO</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                <option value="HABILITADO" selected>HABILITADO</option>
+                                <option value="DESHABILITADO">DESHABILITADO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+                    <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                </form>
+
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/almacen/equivalencia.js"></script>

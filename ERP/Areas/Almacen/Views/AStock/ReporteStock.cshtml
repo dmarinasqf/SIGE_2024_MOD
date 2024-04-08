@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "ReporteStock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE DE STOCK
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("ACCESO A TODAS LAS SUCURSALES"))
+    {
+        <div class="col-xl-3 col-md-4">
+            <div class="form-group">
+                <label>SUCURSAL</label>
+                <select class="form-control" id="txtsucursal" tipo="select"></select>
+            </div>
+        </div>
+    }
+    else
+    {
+        <input type="hidden" id="txtsucursal" tipo="input" />
+    }
+
+    <div class="col-xl-3 col-md-4">
+        <div class="form-group">
+            <label>Almacén</label>
+            <select id="cmbalmacen" class="form-control form-control-sm"></select>
+        </div>
+    </div>
+
+    <div class="col-xl-3 col-md-4">
+
+        <label>Laboratorio</label>
+        <input type="checkbox" id="checkbox">Seleccionar todos
+        <div class="tag-input-style" id="select2-parent">
+            <select multiple id="cmblaboratorio" class="select2 form-control form-control-sm" data-placeholder="Buscar">
+            </select>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-xl-5 col-md-4">
+        <div class="form-group">
+            <label>Producto</label>
+            <input type="text" class="form-control" id="txtproducto" placeholder="CODIGO O NOMBRE DE PRODUCTO" autocomplete="off" data-toggle="tooltip" data-placement="top" title="Presionar la tecla [Enter] para buscar" />
+            <label id="lblnombreproducto"></label>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-xl-2 col-md-4 text-center">
+        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search ml-2 mr-2"></i>Consultar</button>
+    </div>
+    <div class="col-xl-2 col-md-4  text-center">
+        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel ml-2 mr-2"></i>Exportar</button>
+    </div>
+    <div style="display: none;" class="col-xl-2 col-md-4  text-center">
+        <button class="btn btn-primary" id="btnpdf"><i class="fas fa-file-pdf ml-2 mr-2"></i>Pdf</button>
+    </div>
+    <div class="col-xl-2 col-md-4  text-center">
+        <button class="btn btn-danger" id="btnimprimir" title="Reporte Stock"><i class="fas fa-file-pdf ml-2 mr-2"></i>PDF</button>
+    </div>
+</div>
+<div class="col-xl-12 table-responsive mt-2" id="contenedor">
+    <table class="table">
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+
+
+<script src="~/js/areas/almacen/stock/reportestock.js"></script>
+

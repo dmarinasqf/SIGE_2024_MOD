@@ -1,0 +1,53 @@
+﻿
+@{ ViewData["Title"] = "Recepcion_Validacion";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE DE RECEPCIÓN Y VALIDACION DE RECETAS MÉDICAS
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-xl-2  col-md-2 col-sm-4 ">
+        <label>Sucursal</label>
+        <select id="cmbsucursal" class="form-control form-control-sm">
+            @foreach (var item in ViewBag.sucursales2)
+            {
+                <option value="@item[0]">@item[1]</option>
+            }
+        </select>
+    </div>
+    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-xs-12">
+        <label>RANGO DE FECHA <span class="text-info ml-2 mr-2" data-toggle="tooltip" data-title="Fecha de Pedidos"><i class="fas fa-info-circle"></i></span></label>
+        <div class="form-group">
+            <div class="form-line">
+                <input type="text" id="txtfecharango" class="form-control form-control-sm">
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel"></i></button>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-danger" id="btnimprimir"><i class="fas fa-file-pdf"></i></button>
+    </div>
+    <div class="col-xl-12">
+        <div class=" table-responsive mt-2" id="contenedor">
+            <table class="table" id="tblreporte">
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<script src="~/js/controller/pedidos/PedidoController.js"></script>
+<script src="~/js/areas/pedidos/pedidos/reportes/recepcion_validacion.js"></script>

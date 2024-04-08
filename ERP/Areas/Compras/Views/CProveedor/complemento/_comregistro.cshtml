@@ -1,0 +1,220 @@
+﻿<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-12 col-sm-12 ">
+                <form method="post" autocomplete="off" id="form-registro">
+
+
+                    <input type="hidden" value="nuevo" id="txtoperacion" disabled />
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>COD</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtcodigo" class="form-control form-control-sm mayusculas text-center" name="idproveedor" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label>RUC</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtruc" class="form-control form-control-sm " name="ruc" maxlength="11" required>
+                                    <span class="text-info font-9">[ENTER] para buscar en SUNAT</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                          
+                            <div class="form-group">
+                                <label>HABIDO</label>
+                                <select class="form-control form-control-sm" id="cmbhabido" name="habido">
+                                    <option value="HABIDO">HABIDO</option>
+                                    <option value="NO HABIDO">NO HABIDO</option>
+                                </select>
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-6 col-md-12">
+
+                            <div class="form-group">
+                                <label>RAZON SOCIAL</label>
+                                <textarea rows="2" type="text" id="txtrazonsocial" class="form-control form-control-sm mayusculas" name="razonsocial" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-md-12">
+                            <div class="form-group">
+                                <label>NOMBRE COMERCIAL</label>
+                                <textarea rows="2" type="text" id="txtnombrecomercial" class="form-control form-control-sm mayusculas" name="nombrecomercial" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>UBICACION</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="cmbubicacion" name="ubicacion" required>
+                                        <option value="NACIONAL" selected>NACIONAL</option>
+                                        <option value="INTERNACIONAL">INTERNACIONAL</option>
+
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>PAIS</label>
+                                <select class="form-control form-control-sm" id="cmbpais" name="idpais">
+                                    <option value="" selected>[SELECCIONE]</option>
+                                    @foreach (var item in ViewBag.pais)
+                                    {
+                                        <option value="@item.idpais">@item.nombre</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>DEPARTAMENTO</label>
+                                <select class="form-control form-control-sm" id="cmbdepartamento" name="iddepartamento">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>PROVINCIA</label>
+                                <select class="form-control form-control-sm" id="cmbprovincia" name="idprovincia">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>DISTRITO</label>
+                                <select class="form-control form-control-sm" id="cmbdistrito" name="iddistrito">
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label>DIRECCION</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <textarea type="text" id="txtdirecciond" class="form-control form-control-sm mayusculas" name="direcciond" rows="2"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label>TELEFONO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txttelefonod" class="form-control form-control-sm" onkeypress="return justNumbers(event);" maxlength="12" name="telefonod">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <label>EMAIL</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtcorreo" class="form-control form-control-sm" name="email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-2 col-md-6">
+                            <label>MONEDA</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="cmbmoneda" name="idmoneda" required>
+                                        <option value="" selected>[SELECCIONE]</option>
+                                        @foreach (var item in ViewBag.moneda)
+                                        {
+                                            <option value="@item.idmoneda">@item.nombre</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <label>CONDICIÓN PAGO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="cmbcondicionpago" name="idcondicionpago">
+                                        <option value="" selected>[SELECCIONE]</option>
+                                        @foreach (var item in ViewBag.condicionpago)
+                                        {
+                                            <option value="@item.idcondicionpago">@item.descripcion</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <label>DESCUENTO FINANCIERO(%)</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="txtdescuento" class="form-control form-control-sm" name="des1" min="1" onkeypress="return justNumbers(event);">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-2 col-md-6">
+                            <label>TIPO PROVEEDOR</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="cbtipoproveedor" name="idtipoproducto" required>
+                                        <option value="" selected>[SELECCIONE]</option>
+                                        @foreach (var item in ViewBag.tproductos)
+                                        {
+                                            <option value="@item.idtipoproducto">@item.descripcion</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-md-6">
+                            <label>ESTADO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-sm" id="cmbsituacion" name="estado" required>
+                                        <option value="HABILITADO" selected>HABILITADO</option>
+                                        <option value="DESHABILITADO">DESHABILITADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 mt-3">
+                            <div class="form-group">
+                                <label>OBSERVACIONES</label>
+                                <textarea type="text" rows="3" class="form-control" id="txtobservaciones" name="observaciones"></textarea>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row justify-content-center mt-2">
+                        <div class="col-xl-3 col-sm-4 ">
+                            <button class="btn btn-success btn-block" id="btn-guardar" type="submit">GUARDAR DATOS</button>
+
+                        </div>
+                        <div class="col-xl-3 col-sm-4">
+                            <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,114 @@
+﻿@media print {
+    @page {
+        margin-left:30px;
+        margin-right:30px;
+        margin-top:0px;
+        margin-bottom:0px;
+        
+    }
+    .print {
+        font-size: 9px;
+        width:100%;
+    }
+    #tabla-detalle {
+        font-size:8px;
+        border:0.4px solid black;
+    }
+    #tabla-detalle thead{
+        font-weight:bold;
+        font-size:8px;
+    }
+    #titulo{
+        text-align:left;
+        font-size:12px;
+    }
+    .logo {
+        width: auto;
+        height: 40px;
+    }
+    table {
+        font-size: 8px;
+    }
+}
+
+
+
+/*.logo {
+    width: auto;
+    height: 60px;
+}
+.print {
+    font-size: 9px;
+    width: 100%;
+}
+
+#tabla-detalle {
+    font-size: 10px;
+    border: 0.4px solid black;
+}
+
+    #tabla-detalle thead {
+        font-weight: bold;
+        font-size: 8px;
+    }
+
+#titulo {
+    text-align: left;
+    font-size: 12px;
+}
+
+.logo {
+    width: auto;
+    height: 40px;
+}
+
+table {
+    font-size: 9px;
+}*/
+
+td, th {
+    font-size: 10px;
+}
+
+.logo {
+    width: auto;
+    height: 100px;
+}
+
+.print {
+    font-size: 9px;
+    width: 100%;
+}
+
+#tabla-detalle {
+    font-size: 10px;
+    border: 0.4px solid black;
+}
+
+    #tabla-detalle thead {
+        font-weight: bold;
+        font-size: 8px;
+    }
+
+#titulo {
+    text-align: left;
+    font-size: 12px;
+}
+
+.logo {
+    width: auto;
+    height: 40px;
+}
+
+table {
+    font-size: 8px;
+}
+
+.tabla-detalle thead tr {
+    background: rgba(25, 24, 24, 0.69);
+    color: white;
+}
+
+.tabla-detalle tbody tr:nth-child(2n) {
+    background: rgba(109, 107, 107, 0.31);
+}

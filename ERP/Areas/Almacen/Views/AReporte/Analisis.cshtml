@@ -1,0 +1,49 @@
+﻿
+@{ ViewData["Title"] = "Analisis";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE DE ANALISIS DE STOCK
+            </h1>
+        </div>
+    </div>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-xl-2  col-md-2 col-sm-4 ">
+        <label>Sucursal</label>
+        <select id="cmbsucursal" class="form-control form-control-sm"><option>[TODOS]</option></select>
+    </div>
+    <div class="col-xl-2  col-md-2 col-sm-4 ">
+        <label>LABORATORIO</label>
+        <div class="form-group">
+            <div class="form-line">
+                <select id="cmblaboratorio" class="form-control form-control-sm"><option>[SELECCIONE]</option></select>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-2  col-md-2 col-sm-4 ">
+        <label>Alerta</label>
+        <select id="cmbalerta" class="form-control form-control-sm"></select>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="col-xl-1 col-sm-4 mt-4">
+        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel"></i></button>
+    </div>
+    <div class="col-xl-12">
+        <div class=" table-responsive mt-2" id="contenedor">
+            <table class="table" id="tblreporte">
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/almacen/reportes/analisis.js"></script>
+<script src="~/js/controller/almacen/ReporteController.js"></script>
+

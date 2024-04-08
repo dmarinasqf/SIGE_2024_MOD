@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Agregar Usuarios Autorizantes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                USUARIOS AUTORIZANTES
+            </h1>
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+            </div>
+        </div>
+
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table table-sm table-bordered collapsed" width="100%" id="tbllista">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width:10%">DOCUMENTO</th>
+                            <th style="width:40%">USUARIO</th>
+                            <th style="width:15%">PERFIL</th>
+                            <th style="width:20%">SUCURSAL</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="pos-rel">
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@* Inicio Modal *@
+
+<div class="modal fade" id="modalListaUsuarioA" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Seleccionar médico</h5>
+                <button type="button" class="close" onclick="cerrarModal_Empleados()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <table class="table table-sm table-hover table-responsive-sm table-responsive-md table-responsive-xl" id="tblUsuariosAutorizantes" width="100%" style="font-size:15px">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>DOCUMENTO</th>
+                            <th>USUARIO</th>
+                            <th>PERFIL</th>
+                            <th>SUCURSAL</th>
+                            <th>OPCION</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Fin Modal *@
+
+
+
+@*<partial name="~/Areas/Administrador/Views/Empleado/modal/_modalEmpleadosA.cshtml" />*@
+
+<script src="~/js/areas/administrador/empleados/modal/modalEmpleadosA.js"></script>
+
+<script src="~/js/controller/administrador/EmpleadoController.js"></script>
+<script src="~/js/controller/asistencia/AsistenciaController.js"></script>
+<script src="~/js/areas/asistencia/control/agregarAutoridad.js"></script>

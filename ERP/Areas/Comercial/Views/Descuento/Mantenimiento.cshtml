@@ -1,0 +1,323 @@
+﻿
+@{
+    ViewData["Title"] = "Mantenimiento";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/plantilla/modulos/smartwizard/dist/css/smart_wizard.min.css" rel="stylesheet" />
+<link href="~/plantilla/modulos/smartwizard/dist/css/smart_wizard_theme_circles.min.css" rel="stylesheet" />
+<div class="row justify-content-center">
+    <div class="col-xl-11 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                <a asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-3"></i></a>CREACIÓN DE DESCUENTOS
+            </h1>
+        </div>
+    </div>
+
+</div>
+<hr />
+<div class="card">
+    <div class="card-header">
+        <div class="card-toolbar mr-auto no-border">
+        </div>
+
+        @*<div class="card-toolbar pl-3">
+                <button id="wizard-1-prev" type="button" class="mx-2px btn btn-outline-default btn-h-outline-primary btn-bgc-white btn-a-primary border-2 radius-1" disabled>
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+
+                <button id="wizard-1-next" type="button" class="mx-2px btn btn-outline-default btn-h-outline-primary btn-bgc-white btn-a-primary border-2 radius-1">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+
+                <button id="wizard-1-finish" type="button" class="d-none mx-2px px-3 btn btn-outline-success btn-h-outline-success btn-bgc-white border-2 radius-1">
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>*@
+    </div>
+
+
+    <div class="card-body">
+
+        <div id="smartwizard-1" class="d-none mx-n3 mx-sm-auto">
+            <ul class="mx-auto">
+                <li class="wizard-progressbar"></li><!-- the progress line connecting wizard steps -->
+
+                <li>
+                    <a href="#step-1">
+                        <span class="step-title">
+                            1
+                        </span>
+
+                        <span class="step-title-done">
+                            <i class="fa fa-check text-success"></i>
+                        </span>
+                    </a>
+
+                    <span class="step-description">
+                        Seleccionar Atributos
+                    </span>
+                </li>
+
+
+                <li>
+                    <a href="#step-2">
+                        <span class="step-title">
+                            2
+                        </span>
+
+                        <span class="step-title-done">
+                            <i class="fa fa-check text-success"></i>
+                        </span>
+                    </a>
+
+                    <span class="step-description">
+                        Ingresar descuentos
+                    </span>
+                </li>
+
+
+                <li>
+                    <a href="#step-3">
+                        <span class="step-title">
+                            3
+                        </span>
+
+                        <span class="step-title-done">
+                            <i class="fa fa-check text-success"></i>
+                        </span>
+                    </a>
+
+                    <span class="step-description">
+                        Guardar cambios
+                    </span>
+                </li>
+
+
+            </ul>
+
+
+            <div class="px-2 py-2 mb-4">
+                <div id="step-1">
+                    @*<div class="row justify-content-center">
+                        <div class="col-xl-8">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">DESCUENTO POR</span>
+                                </div>
+                                <select class="form-control" id="cmbdescuentopor">
+
+                                    <option value="">SELECCIONE</option>
+                                    <option value="PRODUCTO">PRODUCTO</option>
+                                    <option value="LABORATORIO">LABORATORIO</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">                      
+                        <div class="col-xl-8 ocultar" id="divlaboratorio">
+                            <label>LABORATORIO</label>
+                            <div class="form-group">
+                                <select style="width: 75%" class="form-control form-control-lg" id="cmblaboratorio"></select>
+                            </div>
+                        </div>                                     
+                    </div>*@
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-md-10">
+                            <div class="form-group">
+                                <label>DESCRIPCIÓN</label>
+                                <textarea class="form-control" id="txtdescripcion" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-10">
+                            <div class="form-group">
+                                <label>DESCUENTO PARA </label>
+                                <table class=" table table-sm table-bordered" width="100%">
+                                    <tr>
+                                        <td>Proveedor</td>
+                                        <td> <input type="radio" name="tiporadio" id="rdproveedor" value="proveedor"/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Laboratorio</td>
+                                        <td> <input type="radio" name="tiporadio"id="rdlaboratorio" value="laboratorio"/></td>
+                                    </tr>
+                                </table>
+                                <div id="divlaboratorio" class="ocultar">
+                                    <select class="form-control form-control-sm" id="cmblaboratorio"></select>
+                                </div>
+                                <div id="divproveedor" class="ocultar">
+                                    <select class="form-control form-control-sm" id="cmbproveedor"></select>
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        @*<div class="col-xl-4 col-sm-12">
+                            <div class="form-group">
+                                <label>CANAL DE VENTAS.</label>
+                                <select name="canalVentas" id="canalVentas" class="form-control form-control-sm">
+                                    <option value="">---SELECCIONE---</option>
+                                    @foreach (var m in ViewBag.canalVentas)
+                                    {
+                                        <option value="@m.idcanalventa">@m.descripcion</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>*@
+                        <div class="col-xl-4 col-sm-12">
+                            <div class="form-group">
+                                <label>FECHA INICIO</label>
+                                <input type="datetime-local" class="form-control" id="txtfechainicio" />
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-12">
+                            <div class="form-group">
+                                <label>FECHA FIN</label>
+                                <input type="datetime-local" class="form-control" id="txtfechafin" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-1">
+                        <div class="col-xl-4 col-sm-12">
+                            <label>CANALES DE VENTA</label>
+                            <table class="table table-bordered" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="width:5%"></th>
+                                        <th>DESCRIPCION</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyCanalesPrecios"></tbody>
+                            </table>
+                        </div>
+
+                        <div class="col-xl-6 col-sm-12">
+                            <label>LISTA DE PRECIOS</label>
+                            <table class="table table-bordered" style="width:100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="width:5%"></th>
+                                        <th style="width:15%">Cod</th>
+                                        <th>Lista</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodylistas"></tbody>
+                            </table>
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div id="step-2">
+                    <div class="row">
+                        <div class="col-xl-6 text-right">
+                            <div class="row">
+                                <div class="col-xl-12">
+                                    <div class="btn-group btn-group-sm">
+                                        <button class="btn  btn-outline-info" id="btntodolaboratorio"><i class="fas fa-plus mr-2"></i>TODO LABORATORIO</button>
+                                        <button class="btn  btn-outline-info" id="btncargarproductos"><i class="fas fa-plus mr-2"></i>AGREGAR PRODUCTOS</button>
+
+                                    </div>
+                                    
+                                </div>
+                               
+                            </div>
+                        </div>
+                        <div class="col-xl-6 text-right">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Descuento para</span>
+                                </div>
+                                <select class="form-control" id="cmbtipodescuento">                                 
+                                    <option value="uno" selected>Un producto</option>
+                                    <option value="dos" disabled>2 o mas</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row justify-content-end mt-1" id="rowproductos">
+
+                        <div class="col-xl-6 col-md-6 contenedor-sticky-400">
+                            <label>PRODUCTOS</label>
+                            <table class="table table-bordered" width="100%" id="tblproductos">
+                                <thead class="thead-dark">
+                                    <tr>
+                               
+                                        <th style="width:5%" class="header-sticky">Tipo</th>
+                                        <th style="width:5%"class="header-sticky">Cod</th>
+                                        <th style="width:30%"class="header-sticky">Producto</th>
+                                        <th style="width:20%"class="header-sticky">Laboratorio</th>
+                                        <th style="width:5%"class="header-sticky">Cantidad</th>
+                                        <th style="width:5%"class="header-sticky">vvf</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyproductos"></tbody>
+                            </table>
+                        </div>
+                        <div class="col-xl-6 col-md-6 contenedor-sticky-400">
+                            <label>DESCUENTOS</label>
+                            <table class="table table-bordered" width="100%">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="width:40%"class="header-sticky">Lista</th>
+                                        <th style="width:15%"class="header-sticky">Pv</th>
+                                        <th style="width:15%"class="header-sticky">%D QF</th>
+                                        <th style="width:15%"class="header-sticky">%D proveedor</th>
+                                        <th style="width:15%"class="header-sticky">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodydescuentos"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div id="step-3" class="">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 contenedor-sticky-500">
+                            <table class="table table-sm table-bordered" width="100%" id="tblfinal">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="width:5%" class="header-sticky">Tipo</th>
+                                        <th style="width:15%"  class="header-sticky">Producto</th>
+                                        <th style="width:5%"  class="header-sticky">PC</th>
+                                        <th style="width:8%"  class="header-sticky"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyfinal">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>                    
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="menuopciones" class="div-menu-izquierdo">
+    <ul class="ul-menu-izquierdo">     
+        <li id="eliminar"class="li-menu-izquierdo"><i class="fas fa-times text-danger ml-1 mr-1"></i> Eliminar</li>
+    </ul>
+</div>
+
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/_modalValidarUsuario.cshtml" />
+<partial name="~/Areas/Comercial/Views/Descuento/modal/_modalagregardescuentoporlaboratorio.cshtml" />
+
+<script src="~/plantilla/modulos/smartwizard/dist/js/jquery.smartWizard.js"></script>
+<script src="~/plantilla/views/form-wizard/page-script.js"></script>
+
+<script src="~/js/areas/comercial/descuentos/mantenimiento.js"></script>
+<script src="~/js/areas/comercial/descuentos/mantenimiento/step2.js"></script>
+<script src="~/js/areas/comercial/descuentos/mantenimiento/step3.js"></script>
+<script src="~/js/controller/comercial/ListaPreciosController.js"></script>
+<script src="~/js/controller/comercial/DescuentoController.js"></script>
+<script src="~/js/modelos/comercial/ListaDescuento.js"></script>
+<script src="~/js/modelos/comercial/DescuentoDetalle.js"></script>

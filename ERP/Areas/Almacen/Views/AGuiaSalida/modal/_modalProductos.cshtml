@@ -1,0 +1,59 @@
+﻿<div class="modal fade" id="modalbuscarproducto" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-900  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">BUSCAR PRODUCTOS</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <input type="hidden" name="idproducto" id="MDP_cantidadenviar" />
+                                        <form method="post" autocomplete="off" id="MDP_form-registro">
+                                            <div class="row">
+                                                <input type="hidden" name="idproducto" id="MDP_txtidproducto" />
+                                                <input type="hidden" name="almacen" id="MDP_txtalmacen" />
+                                                <input type="hidden" name="sucursal" id="MDP_txtsucursal" />
+                                                <div class="col-xl-8 col-xs-12">
+                                                    <input type="text" class="form-control mb-2 mt-4 text-uppercase" placeholder="LOTE" name="lote" id="MDP_txtlote" autocomplete="off" />
+                                                </div>
+                                                <div class="col-xl-4 col-xs-12">
+                                                    <label>FALTANTE</label>
+                                                    <input type="number" class="form-control" id="MDP_txtfaltante" disabled />
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                        <div class="table-responsive contenedor-sticky-300">
+                                            <table class="table table-sm table-bordered " width="100%" id="MD_tblproductos">
+                                                <thead class="thead-dark">
+                                                    <tr>
+                                                        <th class="header-sticky">IDSTOCK</th>
+                                                        <th class="header-sticky">IDPRODUCTO</th>
+                                                        <th class="header-sticky">CODIGO</th>
+                                                        <th class="header-sticky">PRODUCTO</th>
+                                                        <th class="header-sticky">LOTE</th>
+                                                        <th class="header-sticky">FECHA VENCE</th>
+                                                        <th class="header-sticky">DISPONIBLE</th>
+                                                        <th class="header-sticky"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                    
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/almacen/guiasalida/auditoriaguia/modal/modalproductos.js"></script>

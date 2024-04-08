@@ -1,0 +1,79 @@
+﻿<!-- Modal //EARTCOD1009// -->
+<div class="modal fade" id="modalPromoPackSucursales" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="modal_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">ASIGNAR SUCURSALES Y VIGENCIA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal_body">
+                <div id="notificacion" class="modal-notificacion"></div>
+                
+                <form name="frm-example" id="frm-example" method="POST">
+                    @*<form id="form_reasignar_resp_caja">*@
+                    <div class="row mx-2 px-1">
+                        @*<div class="col-xl-3 col-sm-3 px-1">
+            <label>NOMBRE O CODIGO DEL PACK:</label>
+        </div>
+        <div class="col-xl-6 col-sm-6 px-1">
+            <input type="text" id="mhMCPP_txtNombrePack" class="form-control form-control-sm" name="mhMCPP_txtNombrePack">
+        </div>*@
+
+                        @*<div class="col-xl-6">
+                            <label style="font-size:10px">PROMO FECHA DESDE:</label>
+                            <input class="form-control form-control-sm date_fecha" id="msucMCPP_txtfechaInicio" name="date_fecha"
+                                   placeholder="DD/MM/YYYY" type="text" required readonly />
+                        </div>
+
+                        <div class="col-xl-6">
+                            <label style="font-size:10px">PROMO FECHA HASTA:</label>
+                            <input class="form-control form-control-sm date_fecha" id="msucMCPP_txtfechaTermino" name="date_fecha"
+                                   placeholder="DD/MM/YYYY" type="text" required readonly />
+                        </div>*@
+
+                        @*<div class="col-xl-4 col-sm-4">
+                            <div class="form-group">
+                                <label>INCENTIVO:</label>
+                                <input type="number" id="MCPP_txtPromocionIncentivo" name="MCPP_txtPromocionIncentivo" class="form-control form-control-sm" value=0.01 min=0.01 step=".01" required>
+                            </div>
+                        </div>
+                        <div class="col-xl-4">
+                           
+                        </div>*@
+                        @*<div class="col-xl-4">
+                            <button id="msucMCPP_btnGuardarCambios" style="height:50px; margin-top:8px" type="button" class="btn btn-primary btn-block padding-0" ><i class="bi bi-save2-fill h5 pr-2"></i>GUARDAR</button>
+                        </div>*@
+                    </div>
+                    @*</form>*@
+
+                    <div class="col-xl-12 col-md-12 col-sm-12">
+                        @*<div class="py-0 my-0" id="contenedor_promopacksucursales">
+            </div>
+            <div style="width:100%">
+                <div id="pagination-container-sucursales" style="float:right; margin-right:15px"></div>
+            </div>*@
+
+                        <table class="table" id="tabla_promocionpacksucursales">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="chkallsucursales"/></th>
+                                    <th>CODIGO</th>
+                                    <th>NOMBRE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+
+</form>
+</div>
+            <div class="modal-footer">
+                @*<button id="btnCerrar" type="button" class="btn btn-danger" data-dismiss="modal">CERRRAR</button>
+                    <button id="mMCPPbtnProductoAgregar" type="button" class="btn btn-success">AGREGAR PRODUCTO</button>*@
+            </div>
+        </div>
+    </div>
+</div>

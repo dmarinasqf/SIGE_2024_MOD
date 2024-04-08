@@ -1,0 +1,38 @@
+[
+  {
+    "outputFileName": "wwwroot/plantilla/modulos/tiny-date-picker/dist/date-range-picker.min.js",
+    "inputFiles": [
+      "wwwroot/plantilla/modulos/tiny-date-picker/dist/date-range-picker.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plantilla/modulos/select2/dist/js/select2.min.js",
+    "inputFiles": [
+      "wwwroot/plantilla/modulos/select2/dist/js/select2.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plantilla/modulos/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js",
+    "inputFiles": [
+      "wwwroot/plantilla/modulos/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/plantilla/modulos/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css",
+    "inputFiles": [
+      "wwwroot/plantilla/modulos/bootstrap-duallistbox/dist/bootstrap-duallistbox.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/areas/almacen/producto/registrareditar.min.js",
+    "inputFiles": [
+      "wwwroot/js/areas/almacen/producto/registrareditar.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/controller/visitadormedico/VisitaMedicaController.min.js",
+    "inputFiles": [
+      "wwwroot/js/controller/visitadormedico/VisitaMedicaController.js"
+    ]
+  }
+]

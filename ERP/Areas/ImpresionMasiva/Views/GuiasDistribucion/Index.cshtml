@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "ImpresionMasiva";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                Impresión Guías de Distribución
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card p-2">
+            <div class="header bg-blue-grey">
+                <h7>PANEL DE BÚSQUEDA</h7>
+            </div>
+            <div class="body">
+                <form autocomplete="off" id="form-busqueda">
+                    <div class="row">
+                        <div class="col-md-11">
+                            <div class="row">
+                                @*<div class="col-lg-3">
+                                    <label>CODIGO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="txtcodigo" class="form-control" name="txtcodigo">
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="col-lg-3">
+                                    <label>FECHA INICIO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="date" id="txtfechainicio" class="form-control" name="txtfechainicio">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>FECHA FIN</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="date" id="txtfechafin" class="form-control" name="txtfechafin">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <label>ESTADO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <select class="form-control" id="txtestadoguia" name="txtestadoguia">
+                                                <option value=""> [TODO]</option>
+                                                <option value="PENDIENTE"> PENDIENTE</option>
+                                                <option value="TRANSITO"> TRANSITO</option>
+                                                <option value="ENTREGADO"> ENTREGADO</option>
+                                                <option value="ATENDIDO"> ATENDIDO</option>
+                                                <option value="ANULADO"> ANULADO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 mt-3">
+                            <button type="submit" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-xl-8 offset-2">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-5">
+                        <input type="text" class="form-control" id="txtbuscarizquierda" placeholder="Buscar"/>
+                    </div>
+                    <div class="col-xl-2 text-center">
+                        <input type="button" class="btn btn-success btn-block btnimprimir" style="height: 100%;" value="IMPRIMIR" />
+                    </div>
+                    <div class="col-xl-5 text-center">
+                        <input type="text" class="form-control" id="txtbuscarderecha" placeholder="Buscar"/>
+                    </div>
+                    <div class="col-xl-5 mt-2">
+                        <select class="custom-select" id="cmbIzquierda" size="15" style="width: 100%;" multiple="multiple">
+                        </select>
+                    </div>
+                    <div class="col-xl-2 align-self-center text-center">
+                        <button class="btn btn-lg btn-outline-secondary mb-2" id="agregarArrDerecha"><i class="fas fa-chevron-right"></i></button><br />
+                        <button class="btn btn-lg btn-outline-secondary" id="agregarArrIzquierda"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                    <div class="col-xl-5 mt-2">
+                        <select class="custom-select" id="cmbDerecha" size="15" style="width: 100%;" multiple="multiple">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<script src="~/js/controller/almacen/GuiaSalidaController.js"></script>
+<script src="~/js/areas/impresion/guiasdistribucion/index.js"></script>

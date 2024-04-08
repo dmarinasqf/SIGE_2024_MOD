@@ -1,0 +1,207 @@
+﻿
+@{
+    ViewData["Title"] = "RegistrarIncentivos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/plantilla/modulos/smartwizard/dist/css/smart_wizard.min.css" rel="stylesheet" />
+<link href="~/plantilla/modulos/smartwizard/dist/css/smart_wizard_theme_circles.min.css" rel="stylesheet" />
+
+<div class="row justify-content-center">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                <a asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-3"></i></a> REGISTRO DE INCENTIVOS
+            </h1>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="card">
+    <div class="card-header">
+        <div class="card-toolbar mr-auto no-border">
+        </div>
+
+        @*<div class="card-toolbar pl-3">
+                <button id="wizard-1-prev" type="button" class="mx-2px btn btn-outline-default btn-h-outline-primary btn-bgc-white btn-a-primary border-2 radius-1" disabled>
+                    <i class="fa fa-chevron-left"></i>
+                </button>
+
+                <button id="wizard-1-next" type="button" class="mx-2px btn btn-outline-default btn-h-outline-primary btn-bgc-white btn-a-primary border-2 radius-1">
+                    <i class="fa fa-chevron-right"></i>
+                </button>
+
+                <button id="wizard-1-finish" type="button" class="d-none mx-2px px-3 btn btn-outline-success btn-h-outline-success btn-bgc-white border-2 radius-1">
+                    <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>*@
+    </div>
+
+
+    <div class="card-body">
+
+        <div id="smartwizard-1" class="d-none mx-n3 mx-sm-auto">
+            <ul class="mx-auto">
+                <li class="wizard-progressbar"></li><!-- the progress line connecting wizard steps -->
+
+                <li>
+                    <a href="#step-1">
+                        <span class="step-title">
+                            1
+                        </span>
+
+                        <span class="step-title-done">
+                            <i class="fa fa-check text-success"></i>
+                        </span>
+                    </a>
+
+                    <span class="step-description">
+                        Seleccionar Atributos
+                    </span>
+                </li>
+
+
+                <li>
+                    <a href="#step-2">
+                        <span class="step-title">
+                            2
+                        </span>
+
+                        <span class="step-title-done">
+                            <i class="fa fa-check text-success"></i>
+                        </span>
+                    </a>
+
+                    <span class="step-description">
+                        Ingresar incentivos
+                    </span>
+                </li>
+
+
+                <li>
+                    <a href="#step-3">
+                        <span class="step-title">
+                            3
+                        </span>
+
+                        <span class="step-title-done">
+                            <i class="fa fa-check text-success"></i>
+                        </span>
+                    </a>
+
+                    <span class="step-description">
+                        Guardar cambios
+                    </span>
+                </li>
+
+
+            </ul>
+
+
+            <div class="px-2 py-2 mb-4">
+                <div id="step-1">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 col-sm-12">
+                            <table class="table table-bordered" width="100%" id="tblsucursal">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th> <input type="checkbox" id="checkallsucursal" /></th>
+                                        <th>Cod</th>
+                                        <th>Sucursal</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-2">
+                    <div class="row justify-content-center">
+
+                        <div class="col-xl-4 col-sm-6">
+                            <label>Buscar productos</label>
+                            <input type="text" class="form-control form-control-sm" id="txtfiltroproducto" placeholder="Buscar productos" />
+                        </div>
+                        <div class="col-xl-2 col-sm-6">
+                            <label>Tipo producto</label>
+                            <select class="form-control form-control-sm" id="cmbtipoproducto"></select>
+                        </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-xl-6 col-md-6 col-sm-12 contenedor-sticky-500">
+                            <table class="table table-bordered" width="100%" id="tblproductos">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="width:10%" class="header-sticky">Cod</th>
+                                        <th style="width:50%" class="header-sticky">Producto</th>
+                                        <th style="width:40%" class="header-sticky">Laboratorio</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodyproductos"></tbody>
+                            </table>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12 ">
+                            <input type="hidden" id="txtidproducto" />
+                            <input type="hidden" id="txtnombreproducto" />
+                            <div  class="table-scroll-500 table-scroll">
+                                <table class="table table-bordered " width="100%" id="tblincentivos">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th style="width:20%" class="header-sticky">Sucursal</th>
+                                            <th style="width:20%" class="header-sticky">Monto</th>
+                                            <th style="width:20%" class="header-sticky">Monto Receta</th>
+                                            <th style="width:20%" class="header-sticky">Fechainicio</th>
+                                            <th style="width:20%" class="header-sticky">FechaFin</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodyincentivos"></tbody>
+                                    <tfoot class="thead-dark">
+                                        <tr>
+                                            <th>Todos</th>
+                                            <th><input type="number" step="any" id="txtcantidadparatodos" /></th>
+                                            <th><input type="number" step="any" id="txtcantidadparatodosreceta" /></th>
+                                            <th><input type="date" id="txtfechainiciotodos" /></th>
+                                            <th><input type="date" id="txtfechafintodos" /></th>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="step-3" class="text-center">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-8 col-md-8 col-sm-8 contenedor-sticky-500">
+                            <table class="table table-bordered " width="100%" id="tblcambios">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th style="width:40%" class="header-sticky">Producto</th>
+                                        <th style="width:10%" class="header-sticky">Sucursal</th>
+                                        <th style="width:10%" class="header-sticky">Monto</th>
+                                        <th style="width:10%" class="header-sticky">Monto Receta</th>
+                                        <th style="width:20%" class="header-sticky">Fechainicio</th>
+                                        <th style="width:20%" class="header-sticky">FechaFin</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodycambios"></tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script src="~/plantilla/modulos/smartwizard/dist/js/jquery.smartWizard.js"></script>
+<script src="~/plantilla/views/form-wizard/page-script.js"></script>
+<script src="~/js/areas/comercial/incentivos/registrarincentivos.js"></script>
+<script src="~/js/modelos/comercial/Incentivo.js"></script>
+<script src="~/js/controller/comercial/IncentivoController.js"></script>

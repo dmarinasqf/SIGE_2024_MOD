@@ -1,0 +1,514 @@
+﻿@model ENTIDADES.compras.COrdenCompra
+<link href="~/lib/jquery-steps/steps.css" rel="stylesheet" />
+<script src="~/lib/jquery-steps/steps.js"></script>
+
+
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<script>
+    var IDSUCURSALALMACEN=@Html.Raw(Json.Serialize(ViewBag.IDALMACENSUCURSAL));
+    var PERCEPCION =@Html.Raw(Json.Serialize(ViewBag.PERCEPCION));
+    var MODELO = @Html.Raw(Json.Serialize(Model));
+    var lMonedas = @Html.Raw(Json.Serialize(@ViewBag.monedas));
+    PERCEPCION = parseFloat(PERCEPCION);
+    if (PERCEPCION >= 1)
+        PERCEPCION = PERCEPCION / 100;
+
+    /* SPRINT 1 - Alejandro */
+    var IGV;
+         try {
+            var IGV = parseFloat( @Html.Raw(Json.Serialize(@ViewBag.IGV)));
+            if (IGV === 0 || IGV===null || isNaN(IGV))
+                IGV = 0.18;
+            if (IGV >= 1)
+                IGV = IGV / 100;
+        } catch (e) {
+            IGV = 0.18;
+        }
+</script>
+<style>
+    #tbllista tbody {
+        height: 600px;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+</style>
+<div class="row">
+    <div class="col-xl-10 col-md-8">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                <a asp-action="Index"><i class="fas fa-long-arrow-alt-left font-22"></i></a>
+                ORDEN DE COMPRA
+                <small class="page-info text-dark-m3">
+                    <i class="fa fa-angle-double-right text-80"></i>
+                    @if (Model.idordencompra is 0)
+                    {
+                        <span>REGISTRO</span>
+
+                    }
+                    else
+                    {
+                        <span>EDICIÓN</span>
+
+                    }
+                </small>
+            </h1>
+
+
+        </div>
+    </div>
+</div>
+<div class="card card border border-secundary">
+    <div class="card-header border border-secundary border-left-0 border-right-0 border-top-0" style="display: block;">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <label for="cmbOrdenPor">ORDEN POR:</label>
+                    </div>
+                    <div class="col-lg-9">
+                        <select id="cmbOrdenPor" class="form-control form-control-sm">
+                            <option value="" selected="">SELECCIONAR</option>
+                            <option value="PROFORMA">PROFORMA</option>
+                            <option value="REQUERIMIENTO">REQUERIMIENTO</option>
+                            <option value="VACIO">VACIO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 offset-5">
+                <button type="button" class="btn btn-success btn-block" id="btnProformaRequerimiento" disabled>BUSCAR PROFORMA / REQUERIMIENTO</button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="body">
+                        <form method="post" autocomplete="off" id="form-registro">
+                            <input type="hidden" id="txtidcotizacion" />
+                            <div class="row">
+                                <div class="col-lg-7 col-md-12">
+                                    <div class="row">
+                                        <div class="col-xl-3 col-md-6">
+                                            <label>NUM ORDEN</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtcodigoorden" asp-for="codigoorden" placeholder="AUTO" class="form-control form-control-sm codigo-documento" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <label>ESTADO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    @if (Model.idordencompra is 0)
+                                                    {
+                                                        <input type="text" id="txtestado" class="form-control form-control-sm" value="PENDIENTE" name="estado" readonly required />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="text" id="txtestado" class="form-control form-control-sm" value="@Model.estado" name="estado" readonly required />
+                                                    }
+                                                    @*@if (Model.estado == null || Model.estado == "PENDIENTE")
+                                                    {<select id="txtestado" class="form-control form-control-sm" name="estado" required disabled>
+                                                            <option value="PENDIENTE" selected>PENDIENTE</option>
+                                                            <option value="APROBADO">APROBADO</option>
+                                                        </select>
+                                                    }
+                                                    else
+                                                    {
+
+                                                    }*@
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+
+                                            <div class="form-group">
+                                                <label>FECHA</label>
+                                                <input id="txtfecha" class="form-control form-control-sm" asp-for="fecha" type="text" readonly>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <label>EMPRESA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtempresa" class="form-control form-control-sm text-center" value="@ViewBag.EMPRESA" disabled />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <label>RUC PROVEEDOR</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtrucproveedor" class="form-control form-control-sm" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-md-12">
+                                            <label>RAZON SOCIAL PROVEEDOR</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtrazonsocial" class="form-control form-control-sm" readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <label>TELEFONO PROVEEDOR</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txttelefonoproveedor" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-6 col-md-12">
+                                            <label>CONTACTO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtnombrescontacto" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <label>TELEFONO CONTACTO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txttelefonocontacto" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <label>CELULAR CONTACTO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtcelularcontacto" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-12 col-md-12">
+                                            <label>OBSERVACION</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtobservacion" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row ocultar" id="divrepresentante">
+                                        <div class="col-xl-6 col-md-12">
+                                            <label>REPRESENTANTE</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtnombresrepresentante" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+                                            <label>TELEFONO REPRESENTANTE</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txttelefonorepresentante" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3 col-md-6">
+
+                                            <label>CELULAR REPRESENTANTE</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtcelularrepresentante" class="form-control form-control-sm" disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>SUCURSAL DESTINO</label>
+                                                <select id="cmbsucursaldestino" asp-for="idsucursaldestino" class="form-control form-control-sm" required disabled>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>FECHA VENCIMIENTO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" id="txtfechavencimiento" class="form-control form-control-sm " asp-for="fechavencimiento" required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>TIPO MONEDA</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="hidden" asp-for="idmoneda" value="" id="txtidmoneda" required />
+                                                    @*<input type="text" value="" class="form-control form-control-sm" id="txtnombremoneda" disabled />*@
+                                                    <select class="form-control form-control-sm show-tick" id="cmbmoneda" asp-for="idmoneda" required disabled>
+                                                        <option value="" selected>[SELECCIONE]</option>
+                                                        @foreach (var item in ViewBag.monedas)
+                                                        {
+                                                            <option value="@item.idmoneda">@item.nombre</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>CAMBIO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="text" id="txtcambiomoneda" class="form-control form-control-sm" asp-for="cambiomoneda" maxlength="20" onkeypress="return justNumbers(event);" required disabled>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>TIPO PAGO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select class="form-control form-control-sm show-tick" id="cmbtipopago" asp-for="idtipopago" disabled>
+                                                        <option value="" selected>[SELECCIONE]</option>
+                                                        @foreach (var item in ViewBag.tipopago)
+                                                        {
+                                                            <option value="@item.idtipopago">@item.descripcion</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label>CONDICIÓN PAGO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select class="form-control form-control-sm show-tick" id="cmbcondicionpago" asp-for="idcondicionpago" disabled>
+                                                        <option value="" selected>[SELECCIONE]</option>
+                                                        @foreach (var item in ViewBag.condicionpago)
+                                                        {
+                                                            <option value="@item.idcondicionpago">@item.descripcion</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6 ocultar" id="divicoterms">
+                                            <div class="form-group">
+                                                <label>ICOTERMS</label>
+                                                <select class="form-control form-control-sm show-tick" id="cmbicoterms" asp-for="idicoterms">
+                                                    <option value="" selected>[SELECCIONE]</option>
+                                                    @foreach (var item in ViewBag.icoterms)
+                                                    {
+                                                        <option value="@item.idicoterms">@item.idicoterms</option>
+                                                    }
+                                                </select>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6 text-center">
+                                            <div class="form-inline">
+                                                <label>PERCEPCIÓN</label>
+                                                <input type="checkbox" id="checkpercepcion" class="mr-3 ml-3" disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-lg-2 col-md-12">
+                                    <div class="row">
+                                        <div class="col-xl-12 mt-2">
+                                            <button type="submit" class="btn btn-success btn-block" id="btnguardar" disabled><i class="fas fa-save mr-2"></i>GUARDAR</button>
+                                        </div>
+                                        <div class="col-xl-12  mt-2" hidden>
+                                            <button type="button" id="btnanular" class="btn btn-outline-danger btn-block" onclick="fnanular(@Model.idordencompra)"><i class="fas fa-trash-alt mr-2"></i> ANULAR</button>
+                                        </div>
+                                        <div class="col-lg-12 mt-2">
+                                            <button class="btn btn-outline-info btn-block" id="btnnuevo" href="#" type="button" disabled><i class="fas fa-redo mr-2"></i>NUEVO</button>
+                                        </div>
+                                        <div class="col-lg-12 mt-2">
+                                            <button class="btn btn-outline-dark btn-block" id="btnimprimir" href="#" type="button" disabled><i class="fas fa-print mr-2"></i>IMPRIMIR</button>
+                                        </div>
+                                        <div class="col-lg-12 mt-2">
+                                            <button class="btn btn-outline-dark btn-block" id="btnduplicar" href="#" type="button" disabled><i class="fas fa-print mr-2"></i>DUPLICAR</button>
+                                        </div>
+                                        <div class="col-lg-12 mt-2">
+                                            <button class="btn btn-outline-dark btn-block" id="btnModificar" href="#" type="button" disabled><i class="fas fa-pen mr-2"></i>MODIFICAR</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="txtidorden" asp-for="idordencompra" placeholder="AUTO" class="form-control form-control-sm text-center">
+                            <input type="hidden" name="idtipocotizacion" id="txttipocotizacion" value="" />
+                            <input type="hidden" asp-for="idcontacto" id="txtidcontacto" />
+                            <input type="hidden" asp-for="idempresa" />
+                            <input type="hidden" asp-for="idrepresentante" id="txtidrepresentante" />
+                            <input type="hidden" id="txtidproveedor" asp-for="idproveedor">
+                            <input type="hidden" id="txtpercepcion" asp-for="percepcion">
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-xl-3 col-md-6">
+                        <label>
+                            <i class="fa fa-search pos-abs mt-2 pt-3px ml-25 text-blue-m2"></i>
+                            <input type="text" id="txtfiltrotabladetalle" class="form-control form-control-sm input-datatable-search" placeholder=" Buscar registros">
+                        </label>
+                    </div>
+                    <div class="col-xl-1 col-md-2">
+                        <button class="btn btn-primary btn-block btn-sm" id="btnaddproducto">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </div>
+                    <div class="col-xl-1 col-md-2 offset-md-2 offset-xl-7">
+                        <input class="form-check-input" type="checkbox" value="" id="chkConIgv" checked>
+                        <label class="form-check-label" for="chkConIgv">
+                            CON IGV
+                        </label>
+                    </div>
+                </div>
+                <div class="card bcard h-auto">
+                    <div class="border-t-3 brc-blue-m2 table-responsive contenedor-sticky-500">
+                        <table class=" table table-bordered " width="100%" id="tbllista">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="display:none">IDORDENDETALLE</th>
+                                    <th style="display:none">IDPROFORMADETALLE</th>
+                                    <th class=" header-sticky-cruce">N°</th>
+                                    <th class="header-sticky">COD </th>
+                                    <th class=" header-sticky">DESCRIPCION</th>
+                                    <th class="header-sticky"></th>
+                                    <th class=" header-sticky">LAB.</th>
+                                    <th class=" header-sticky">CANT</th>
+                                    <th class=" header-sticky">U. M</th>
+                                    <th class=" header-sticky">VVF</th>
+                                    <th class=" header-sticky">PVF</th>
+                                    <th class="header-sticky">BF.</th>
+                                    <th class=" header-sticky">COSTO</th>
+                                    <th class=" header-sticky">C.FAC.</th>
+                                    <th class="header-sticky" id="tooltipdes1" data-toggle="tooltip" data-placement="top" title="DESCUENTO DE PROVEEDOR">D%1</th>
+                                    <th class=" header-sticky" id="tooltipdes2" data-toggle="tooltip" data-placement="top" title="DESCUENTO DE LABORATORIO">D%2</th>
+                                    <th class=" header-sticky" id="tooltipdes3">D%3</th>
+                                    <th class=" header-sticky">S.TOTAL</th>
+                                    <th class=" header-sticky">TOTAL</th>
+                                    <th class=" header-sticky"></th>
+                                </tr>
+                            </thead>
+                            <tbody class=" font-12" id="tbody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-6 mt-2" hidden>
+                        <div class="card">
+                            <div class="header">
+                                BONIFICACIONES
+                            </div>
+                            <div class="body table-responsive">
+                                <table class="table table-sm table-bordered font-13 " id="tblbonificaciones" width="100%">
+                                    <thead class="thead-dark text-center">
+                                        <tr>
+                                            <th>N°</th>
+                                            <th>DESCRIPCION</th>
+                                            <th>CANTIDAD</th>
+                                            <th>TIPO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-2 offset-6"></div>
+                    <div class="col-lg-4">
+                        <table border="0" class="table table-sm">
+                            <tr>
+                                <td style="text-align:right">SUB TOTAL: <label>S/.</label></td>
+                                <td><label id="lblsubtotal" class="text-left font-weight-bold font-13">00.00</label>  </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">IMPUESTO: <label>S/.</label></td>
+                                <td id=""> <label id="lblimpuesto" class="text-left font-weight-bold font-13">00.00</label> </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">PERCEPCIÓN: <label>S/.</label></td>
+                                <td id=""> <label id="lblpercepcion" class="text-left font-weight-bold font-13">00.00</label> </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">TOTAL FACTURA: <label>S/.</label></td>
+                                <td id=""> <label id="lbltotalfactura" class="text-left font-weight-bold font-13">00.00</label> </td>
+                            </tr>
+                            <tr>
+                                <td style="text-align:right">TOTAL PRONT. PGO: <label>S/.</label></td>
+                                <td id=""><label id="lbltotal" class="text-left font-weight-bold font-13">00.00</label> </td>
+                            </tr>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Compras/Views/modales/_modalInsumosProveedor.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/_modalProductoProveedorxLaboratorio.cshtml" />
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/_modalProveedores.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/cotizacion/_modalBuscarCotizacion.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/requerimiento/_modalBuscarRequerimiento.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/cotizacion/_modalBonificacion.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/cotizacion/_modalAnalisisProducto.cshtml" />
+<script src="~/js/controller/compras/CotizacionController.js"></script>
+<script src="~/js/areas/compras/ordencompra/registrar/registrar.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Función para habilitar o deshabilitar el botón según el valor del campo txtidorden
+        function habilitarDeshabilitarBoton() {
+            var dynamicId = $("#txtidorden").val();
+            var boton = $("#btnduplicar");
+
+            if (dynamicId !== "0") {
+                boton.prop("disabled", false); // Habilitar el botón
+            } else {
+                boton.prop("disabled", true); // Deshabilitar el botón
+            }
+        }
+
+        // Llamar a la función cuando se carga la página
+        habilitarDeshabilitarBoton();
+
+        $("#txtidorden").on("change", function () {
+            habilitarDeshabilitarBoton();
+        });
+
+        $("#btnduplicar").on("click", function () {
+            var dynamicId = $("#txtidorden").val();
+
+            if (dynamicId !== "0") {
+                var url = ORIGEN + '/Compras/COrdenCompra/RegistrarEditar/' + dynamicId + 'D';
+                window.location.href = url;
+            } else {
+                alert("El campo txtidorden debe ser diferente de 0 para activar el botón.");
+            }
+        });
+    });
+</script>

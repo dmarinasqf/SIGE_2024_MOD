@@ -1,0 +1,33 @@
+﻿@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("SUPERVISOR") ||
+   User.IsInRole("VENTAS") || User.IsInRole("VENTASSM")
+   || User.IsInRole("MENU HORARIOS MEDICO"))
+{
+    <li class="nav-item">
+        <a href="#" class="nav-link dropdown-toggle collapsed">
+            <i class="nav-icon fa fa-cube"></i>
+            <span class="nav-text fadeable">
+                <span>Horarios</span>
+            </span>
+            <b class="caret fa fa-angle-left rt-n90"></b>
+        </a>
+        <div class="hideable submenu collapse">
+            <ul class="submenu-inner">
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("SUPERVISOR"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="VisitadorMedico" asp-controller="Horarios" asp-action="AsignarMedicos">Asignar</a>
+                    </li>
+                }
+
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("SUPERVISOR") || User.IsInRole("VENTAS") || User.IsInRole("VENTASSM"))
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="VisitadorMedico" asp-controller="Reporte" asp-action="Consultar">Consultar Médicos</a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+        <b class="sub-arrow"></b>
+    </li>
+}

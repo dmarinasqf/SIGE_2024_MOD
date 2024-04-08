@@ -1,0 +1,121 @@
+﻿
+@{ ViewData["Title"] = "Index";
+                Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="row">
+    <div class="col-xl-10">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                GUIAS INTERNAS DE DEVOLUCIONES
+            </h1>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-sm-12">
+        @* <a asp-action="Registrar" class="btn btn-primary "> <I class="fas fa-plus"></I> </a>*@
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-xl-12">
+        <form autocomplete="off" id="form-busqueda">
+            <div class="row justify-content-center">
+
+                <div class="col-lg-2 col-sm-3">
+                    <label>N° GUIA</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtnumguia" class="form-control" name="guia">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-3">
+                    <label>FACTURA</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtfactura" class="form-control" name="factura">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-3">
+                    <label>N° PREINGRESO</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtpreingreso" class="form-control" name="preingreso">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-sm-3">
+                    <label>N° ORDEN</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtordencompra" class="form-control" name="ordencompra">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4" id="id-daterange-wrapper">
+                    <label>RANGO DE FECHAS</label>
+                    <div class="form-row">
+                        <div class="col">
+                            <input type="date" id="txtfechainicio" class="form-control" name="fechainicio" placeholder="Fecha inicio" />
+                        </div>
+                        <div class="col">
+                            <input type="date" id="txtfechafin" class="form-control " name="fechafin" placeholder="Fecha fin" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 mt-4">
+                    <button type="submit" class="btn btn-lg  btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+                </div>
+
+            </div>
+        </form>
+        @*<div class="header text-center font-14">
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5></h5>
+                    </div>
+                    <div class="col-md-2">
+                        <button data-toggle="modal" data-target="#modalguiainternadevolucion" class="btn btn-primary btn-block"> NUEVO GUIA</button>
+                    </div>
+                </div>
+            </div>*@
+
+
+    </div>
+    <div class="col-xl-12 mt-2">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive  " id=" paneltabla ">
+                <table class="table   table-hover  table-bordered " width="100%" id="tbllista">
+                    <thead class="">
+                        <tr>
+                            <th></th>
+                            <th>Fecha</th>
+                            <th>NumGuia</th>
+                            <th>Factura</th>
+                            <th>Preingreso</th>
+                            <th>OrdenCompra</th>
+                            <th>Ruc</th>
+                            <th>RazonSocial</th>
+                            <th>Estado</th>
+                            <th>Usuario</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="~/Areas/PreIngreso/Views/GuiaInternaDevolucion/modal/_modalregistro.cshtml" />
+<script src="~/js/controller/preingreso/GuiaInternaDevolucionController.js"></script>
+<script src="~/js/modelos/preingreso/GuiaDevolucionDetalle.js"></script>
+<script src="~/js/areas/main/modalimprimir.js"></script>
+<script src="~/js/areas/preingreso/guiadevolucion/index.js"></script>
+

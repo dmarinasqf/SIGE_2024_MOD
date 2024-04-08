@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "M. Producto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/css/pagina/loading.css" rel="stylesheet" />
+<style>
+    #config {
+        overflow: auto;
+        margin-bottom: 10px;
+    }
+
+    .config {
+        float: left;
+        width: 200px;
+        height: 250px;
+        border: 1px solid #000;
+        margin-left: 10px;
+    }
+
+        .config .title {
+            font-weight: bold;
+            text-align: center;
+        }
+
+    #submit {
+        clear: both;
+    }
+</style>
+<div class="row">
+    <div class="col-xl-10 col-md-8">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                <a class=" " asp-controller="AProducto" asp-action="Index" id="btnlistarproductos"><i class="fa fa-arrow-left"></i> </a>
+                <span style="color:black" id="txttiporegistro"></span>
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-4">
+        <div class="col-xl-2">
+            <button class="btn btn-warning" id="btneditar"><i class="fas fa-edit ml-2"></i>EDITAR</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="cardprincipal">
+
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" data-toggle="tab" id="nav-maestro-tab" href="#nav-maestro" role="tab">Maestro</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link"  data-toggle="tab" id="nav-generico-tab" href="#nav-generico" role="tab"> Principio activo y Acción Farma.</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link"  data-toggle="tab"  id="nav-regsanitario-tab" href="#nav-regsanitario" role="tab"> Reg sanitario.</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link"  data-toggle="tab"  id="nav-listaprecios-tab" href="#nav-listaprecios" role="tab"> Lista de precios</a>
+        </li>
+    </ul>
+    <div class="tab-content">       
+        <div class="tab-pane fade show active" id="nav-maestro" role="tabpanel">
+            <partial name="complemento/_comformproductos" />
+        </div>
+        <div class="tab-pane fade" id="nav-generico" role="tabpanel">
+            <partial name="complemento/_comgenericoaccionfarma" />
+        </div>
+        <div class="tab-pane fade" id="nav-regsanitario" role="tabpanel">
+            <partial name="complemento/_comregistrosanitario" />
+        </div>
+        <div class="tab-pane fade" id="nav-listaprecios" role="tabpanel">
+            <partial name="complemento/_comlistaprecios" />
+        </div>
+    </div>    
+</div>
+
+<script src="~/js/areas/almacen/producto/registrareditar.js"></script>
+<script src="~/lib/jquery-barcode/jquery-barcode.min.js"></script>

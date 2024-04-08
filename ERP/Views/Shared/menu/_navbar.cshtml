@@ -1,0 +1,234 @@
+﻿
+
+<script src="~/js/controlinactividad/jquery.idle.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-fixed navbar-blue" id="navbar">
+    <div class="navbar-inner">
+
+        <div class="navbar-intro justify-content-xl-between">
+
+            <button type="button" class="btn btn-burger burger-arrowed static collapsed ml-2 d-flex d-xl-none" data-toggle-mobile="sidebar" data-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle sidebar">
+                <span class="bars"></span>
+            </button><!-- mobile sidebar toggler button -->
+
+            <a class="navbar-brand text-white" href="#">
+
+                <span class="font-12">@ViewBag.NOMBREAPP</span>
+
+            </a><!-- /.navbar-brand -->
+
+            <button type="button" class="btn btn-burger mr-2 d-none d-xl-flex" data-toggle="sidebar" data-target="#sidebar" aria-controls="sidebar" aria-expanded="true" aria-label="Toggle sidebar">
+                <span class="bars"></span>
+            </button><!-- sidebar toggler button -->
+
+        </div><!-- /.navbar-intro -->
+
+
+        <div class="navbar-content">
+            <!--<button class="navbar-toggler py-2" type="button" data-toggle="collapse" data-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle navbar search">
+                <i class="fa fa-search text-white text-90 py-1"></i>
+            </button>-->
+            <!-- mobile #navbarSearch toggler -->
+            <!--<div class="collapse navbar-collapse navbar-backdrop" id="navbarSearch">
+                <form class="d-flex align-items-center ml-lg-4 py-1" data-submit="dismiss">
+                    <i class="fa fa-search text-white d-none d-lg-block pos-rel"></i>
+                    <input type="text" class="navbar-input mx-3 flex-grow-1 mx-md-auto pr-1 pl-lg-4 ml-lg-n3 py-2 autofocus" placeholder="SEARCH ..." aria-label="Search" />
+                </form>
+            </div>-->
+        </div><!-- .navbar-content -->
+        <!-- mobile #navbarMenu toggler button -->
+        <button class="navbar-toggler ml-1 mr-2 px-1" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navbar menu">
+            <span class="pos-rel">
+                <img class="border-2 brc-white-tp1 radius-round" width="36" src="~/imagenes/empleados/@ViewBag.FOTOEMPLEADO">
+                <span class="bgc-warning radius-round border-2 brc-white p-1 position-tr mr-n1px mt-n1px"></span>
+            </span>
+        </button>
+
+
+        <div class="navbar-menu collapse navbar-collapse navbar-backdrop" id="navbarMenu">
+
+            <div class="navbar-nav">
+                <ul class="nav">
+
+                    <li class="nav-item dropdown dropdown-mega">
+                        <a class="nav-link dropdown-toggle  " href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-list-alt mr-2 d-lg-none"></i>
+                            @ViewBag.EMPRESA
+                            @*<i class="caret fa fa-angle-down d-none d-lg-block"></i>
+                                <i class="caret fa fa-angle-left d-block d-lg-none"></i>*@
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown dropdown-mega">
+                        <a class="nav-link dropdown-toggle " href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-list-alt mr-2 d-lg-none"></i>
+                            @ViewBag.SUCURSAL
+                            @*<i class="caret fa fa-angle-down d-none d-lg-block"></i>
+                                <i class="caret fa fa-angle-left d-block d-lg-none"></i>*@
+                        </a>
+
+                    <li class="nav-item dropdown dropdown-mega">
+                        <a class="nav-link dropdown-toggle pl-lg-3 pr-lg-4" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            @*<i class="fa fa-info-circle text-110 icon-animated-bell mr-lg-2"></i>*@
+                            <i class="fas fa-caret-square-down"></i>
+                            <span class="d-inline-block d-lg-none ml-2">Acceso rápido</span>
+                            @*<span id="id-navbar-badge1" class="badge badge-sm bgc-warning-d2 text-white radius-round text-85 border-1 brc-white-tp5">3</span>*@
+
+                            @*<i class="caret fa fa-angle-left d-block d-lg-none"></i>
+                                <div class="dropdown-caret brc-white"></div>*@
+                        </a>
+                        <div class="dropdown-menu dropdown-sm dropdown-animated p-0 bgc-white brc-primary-m3 border-b-2 shadow">
+                            <ul class="nav nav-tabs nav-tabs-simple w-100 nav-justified dropdown-clickable border-b-1 brc-secondary-l2" role="tablist">
+                                <li class="nav-item">
+                                    <a class="d-style px-0 mx-0 py-3 nav-link active text-600 brc-blue-m1 text-dark-tp5 bgc-h-blue-l4" data-toggle="tab" href="#navbar-notif-tab-1" role="tab">
+                                        <span class="d-active text-blue-d1 text-105">Acceso rápido</span>
+                                        <span class="d-n-active">Acceso rápido</span>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item">
+                                        <a class="d-style px-0 mx-0 py-3 nav-link text-600 brc-purple-m1 text-dark-tp5 bgc-h-purple-l4" data-toggle="tab" href="#navbar-notif-tab-2" role="tab">
+                                            <span class="d-active text-purple-d1 text-105">Messages</span>
+                                            <span class="d-n-active">Messages</span>
+                                        </a>
+                                    </li>*@
+                            </ul>
+
+
+                            <div class="tab-content tab-sliding p-0">
+
+                                <div class="tab-pane mh-none show active px-md-1 pt-1" id="navbar-notif-tab-1" role="tabpanel">
+
+                                    @if (!User.IsInRole("MOTORIZADO") && !User.IsInRole("JEFE_MOTORIZADO"))
+                                    {
+                                        <a class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary" target="_blank" asp-area="Asistencia" asp-controller="Control" asp-action="Index">
+                                            <i class="fas fa-file bgc-blue-tp1 text-white text-110 mr-15 p-2 radius-1"></i>
+                                            <span class="text-muted">Asistencia  </span>
+                                        </a>
+                                        <a class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary" target="_blank" asp-area="Digemid" asp-controller="Alerta" asp-action="Index">
+                                            <i class="fas fa-file bgc-blue-tp1 text-white text-110 mr-15 p-2 radius-1"></i>
+                                            <span class="text-muted">Alertas de digemid  </span>
+                                        </a>
+
+
+                                    }
+
+                                    @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU ALMACEN"))
+                                    {
+                                        <a class="mb-0 border-0 list-group-item list-group-item-action btn-h-lighter-secondary" target="_blank" href="#" id="hrefanalissproducto">
+                                            <i class="fas fa-file bgc-blue-tp1 text-white text-110 mr-15 p-2 radius-1"></i>
+                                            <span class="text-muted">Análisis de producto  </span>
+                                        </a>}
+
+                                    <hr class="mt-1 mb-1px brc-secondary-l2" />
+
+                               
+                                </div>
+
+
+                              
+
+                            </div>
+                        </div>
+                    </li>
+
+
+
+
+                    <li class="nav-item dropdown order-first order-lg-last">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img id="id-navbar-user-image" class="d-none d-lg-inline-block radius-round border-2 brc-white-tp1 mr-2 w-6" src="~/imagenes/empleados/@ViewBag.FOTOEMPLEADO">
+                            <span class="d-inline-block d-lg-none d-xl-inline-block">
+                                <span class="text-90" id="id-user-welcome">Bienvenido,</span>
+                                <span class="nav-user-name">@ViewBag.USERNAME</span>
+                            </span>
+
+                            <i class="caret fa fa-angle-down d-none d-xl-block"></i>
+                            <i class="caret fa fa-angle-left d-block d-lg-none"></i>
+                        </a>
+
+                        <div class="dropdown-menu dropdown-caret dropdown-menu-right dropdown-animated brc-primary-m3 py-1">
+                            <div class="d-none d-lg-block d-xl-none">
+                                <div class="dropdown-header">
+                                    Bienvenido, @ViewBag.USERNAME
+                                </div>
+                                <div class="dropdown-divider"></div>
+                            </div>
+
+                         
+
+                            <div class="dropdown-divider brc-primary-l2"></div>
+
+                            <partial name="~/Views/Shared/_LoginPartial.cshtml" />
+                        </div>
+                    </li><!-- /.nav-item:last -->
+
+                </ul><!-- /.navbar-nav menu -->
+            </div><!-- /.navbar-nav -->
+
+        </div><!-- /#navbarMenu -->
+
+
+    </div><!-- /.navbar-inner -->
+</nav>
+
+<style>
+    .idModalParamodalPersonalizadosclas .modal-dialog {
+        max-width: 700px;
+        /* Establecer el ancho máximo del modal */
+    }
+
+    .idModalParamodalPersonalizadosclas .modal-body {
+        max-height: 520px;
+        /* Establecer la altura máxima del cuerpo del modal */
+        overflow-y: auto;
+        /* Agregar scroll vertical si es necesario */
+    }
+</style>
+<!-- MODAL CONTROL DE MODAL-->
+<div class="modal idModalParamodalPersonalizadosclas" id="idModalParamodalPersonalizados" tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-content-Modal-Per" id="modalContent">
+            <!-- Elimina la clase bg-primary aquí -->
+            <div class="modal-header d-flex align-items-center justify-content-center">
+                <i class="fa fa-info" aria-hidden="true"
+                   style="color:red ; font-size: 2em; font-weight: bold; width: 60px; height: 60px; border: 6px solid red; border-radius: 50%; display: flex; justify-content: center; align-items: center;"></i>
+            </div>
+            <div class="modal-body text-center">
+                <!-- Corregir aquí la etiqueta de cierre -->
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  id="btncerrarmodalpersonalizado" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CODIGO SCRIP PARA CONTROALR EL CIERRE DE SECCION POR INACTIVIDAD-->
+<!--CODIGO SE PASO A NAVBAR.JS--->
+<script>
+    $(document).ready(function () {
+
+
+    });
+
+
+
+</script>
+
+
+
+
+
+<!-- Incluye pdf.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+
+<!-- Incluye pdf.worker.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js"></script>
+
+
+<script src="~/js/areas/main/Views/shared/navbar.js"></script>

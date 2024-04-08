@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "AuditoriaCaja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="row">
+        <div class="col-xl-12 col-md-12">
+            <div class="card">
+                <div class="card-header bg-green">
+                    CAJAS ABIERTAS
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm " id="tblcajasabiertas" width="100%">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>SUCURSAL</th>
+                                    <th>CAJA</th>
+                                    <th>FECHA</th>
+                                    <th>USUARIO</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12 col-md-12">
+            <div class="card">
+                <div class="card-header bg-green">
+                    CAJAS CERRADAS
+                </div>
+                <div class="card-body">
+                    <div class="row" id="cardacciones">
+                        <div class="col-xl-4">
+                            <div class="form-group">
+                                <label>FECHA</label>
+                                <input type="text" class="form-control form-control-sm" id="txtfecharango" autocomplete="off" />
+                                @*<input type="date" id="txtfecha" class="form-control form-control-sm" />*@
+                            </div>
+                        </div>
+                    <div class="col-xl-2 mt-3">
+                        <button class="btn btn-dark" id="btnbuscarcajacerrada"><i class="fas fa-search"></i></button>
+                        @*<button class="btn btn-success " id="btnExportar">EXPORTAR</button>*@
+                    </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm  " id="tblcajascerradas" width="100%">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>SUCURSAL</th>
+                                    <th>CAJA</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="Fecha apertura">FECHA A</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="Usuario apertura">USUARIO A</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="Fecha cierre">FECHA C</th>
+                                    <th data-toggle="tooltip" data-placement="top" title="Usuario cierra">USUARIO C</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    <script src="~/js/areas/ventas/caja/auditoriacaja.js"></script>

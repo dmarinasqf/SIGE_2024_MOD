@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="C:\Users\CUERVO\.nuget\packages\libwkhtmltox-32\0.12.6.1\contentFiles\any\any\libwkhtmltox.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AspNetCore.Reporting" Version="2.1.0" />
+    <PackageReference Include="ClosedXML" Version="0.95.4" />
+    <PackageReference Include="DinkToPdf" Version="1.0.8" />
+    <PackageReference Include="DotNetCorePdf" Version="1.0.3" />
+    <PackageReference Include="Haukcode.DinkToPdf" Version="1.1.2" />
+    <PackageReference Include="Haukcode.WkHtmlToPdfDotNet" Version="1.5.8" />
+    <PackageReference Include="LibWkHtmlToX-32" Version="0.12.6.1" />
+    <PackageReference Include="MailKit" Version="2.14.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.8" />
+    <PackageReference Include="Microsoft.NETCore.App" Version="2.2.8" />
+    <PackageReference Include="WkHtmlToPdf" Version="1.0.2" />
+  </ItemGroup>
+
+</Project>

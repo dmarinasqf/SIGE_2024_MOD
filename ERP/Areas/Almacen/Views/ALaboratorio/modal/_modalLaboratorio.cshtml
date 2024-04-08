@@ -1,0 +1,49 @@
+﻿
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="ML_idmodallaboratorio" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h7 class="modal-title" id="exampleModalLabel">LISTA LABORATORIOS</h7>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        @*<form id="form-busqueda-laboratorio">*@
+                            <div class="row">
+
+                                <div class="col-xl-6 col-md-12">
+                                    <div class="form-group">
+                                        <label>LABORATORIO</label>
+                                        <input type="text" id="ML_txtlaboratorio" class="form-control text-uppercase" name="laboratorio">
+                                    </div>
+                                </div>     
+                            </div>
+                        @*</form>*@
+
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover table-striped table-bordered " width="100%" id="ML_tbllaboratorio">
+                                <thead class="thead-dark text-center">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>DESCRIPCION</th>
+                                        <th>COMPRAS</th>
+                                        <th></th>                                       
+                                    </tr>
+                                </thead>
+                                <tbody class="text-center font-11" id="ML_tbodylaboratorio">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/almacen/laboratorio/modal/modallaboratorio.js"></script>

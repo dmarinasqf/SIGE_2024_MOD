@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Facturas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-md-6">
+        <div class="page-header pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE FACTURAS
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-6 pt-1">
+        <a asp-action="AprobarFactura" class="btn btn-primary btn-block">Aprobar Factura<i class="fas fa-check ml-2"></i></a>
+    </div>
+</div>
+
+<div class="body">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card p-2">
+                <div class="header bg-blue-grey">
+                    <h7>PANEL DE BÚSQUEDA</h7>
+                </div>
+                <div class="body">
+                    <form autocomplete="off" id="form-busqueda">
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="row">
+                                    <div class="col-lg-3">
+                                        <label>NÚMERO FACTURA</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txtnumfactura" class="form-control" name="numfactura">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label>NÚMERO PREINGRESO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txtnumpreingreso" class="form-control" name="numpreingreso">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <label>NÚMERO ORDENCOMPRA</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="txtnumordencompra" class="form-control" name="numordencompra">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-md-2">
+                                            <label>FECHA REGISTRO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <input type="date" id="txtfechaconsulta" class="form-control" name="fecha">
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="col-lg-3">
+                                        <label>ESTADO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <select class="form-control" id="cmbestado" name="estado">
+                                                    <option value=""> [TODO]</option>
+                                                    <option value="APROBADO"> APROBADO</option>
+                                                    <option value="HABILITADO"> HABILITADO</option>
+                                                    <option value="DESHABILITADO"> DESHABILITADO</option>
+                                                    <option value="ANULADO"> ANULADO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2 mt-3">
+                                <button type="submit" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-detalle table-sm table-hover  text-center" width="100%" id="tbllista">
+            <thead>
+                <tr class="thead-dark">
+                    <th></th>
+                    <th>N° FACTURA</th>
+                    <th>N° PREINGRESO</th>
+                    <th>N° ORDENCOMPRA</th>
+                    <th>PROVEEDOR</th>
+                    <th>FECHA APROBACIÓN</th>
+                    <th>ESTADO</th>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+
+<script src="~/js/areas/compras/aprobarfactura/index.js"></script>
+<script src="~/js/controller/compras/AprobarFacturaController.js"></script>

@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                MANTENEDOR DE CLIENTES
+            </h1>
+
+
+        </div>
+
+
+    </div>
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    LISTA DE CLIENTES
+                </div>
+                <div class="card-toolbar">
+                    <a class="card-toolbar-btn btn btn-sm radius-1 btn-info btn-brc-tp mx-2px" asp-action="RegistrarEditar">
+                        <i class="fas fa-plus w-2 mx-1px"></i>
+                    </a>
+                    <button class="card-toolbar-btn btn btn-sm radius-1 btn-success btn-brc-tp mx-2px" id="btnexportar">
+                        <i class="fas fa-file-excel w-2 mx-1px"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <input type="text" id="txtfiltro" placeholder="Ingrese documento o Razon Social/ Nombres" class="form-control mb-2 ">
+                    </div>
+                    <div class="col-xl-12 contenedor-sticky-600">
+                        <table class="table table-sm table-hover  table-bordered" width="100%">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="header-sticky" style="width:5%">ID</th>
+                                    <th class="header-sticky" style="width:5%">DOCUMENTO</th>
+                                    <th class="header-sticky" style="width:25%">CLIENTE</th>
+                                    <th class="header-sticky" style="width:10%">NOMBRE COMERCIAL</th>
+                                    <th class="header-sticky" style="width:25%">DIRECCIÓN</th>
+                                    <th class="header-sticky" style="width:10%">TELÉFONO</th>
+                                    <th class="header-sticky" style="width:10%">CELULAR</th>
+                                    <th class="header-sticky" style="width:10%">EMAIL</th>
+                                    <th class="header-sticky" style="width:5%">ESTADO</th>
+                                    @*<th class="header-sticky">MEDICO</th>*@
+                                    <th class="header-sticky"></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                        </table>
+                    </div>
+                    <div class="col-xl-12">
+                        <div id="paginacion">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="~/js/areas/maestros/cliente/index.js"></script>

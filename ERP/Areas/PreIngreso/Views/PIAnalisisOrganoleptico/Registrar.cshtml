@@ -1,0 +1,248 @@
+﻿@model ENTIDADES.preingreso.PIAnalisisOrganoleptico
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css" /><!--EARTCOD1012-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script><!--EARTCOD1012-->
+
+
+<script>
+    var MODELO =@Html.Raw(Json.Serialize(Model)) ;
+    console.log(MODELO);
+</script>
+<div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+    <h1 class="page-title text-primary-d2 text-140">
+        <a class="" asp-action="Index"><i class="fa fa-arrow-left"></i> </a>
+        REGISTRO ANÁLISIS ORGANOLÉPTICO
+    </h1>
+</div>
+
+<form method="post" autocomplete="off" id="form-registro">
+
+    <div class="col-xl-12">
+        <div class="body">
+            <input type="hidden" id="txtidpreingreso" name="idpreingreso" required>
+            <div class="col-xl-12 col-md-12 col-xs-12 cards-container">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-sm-12 col-xs-12">
+                                <div class="row">
+                                    <div class="col-xl-4 col-xs-12">
+                                        <label>CÓDIGO</label>
+                                        <div class="form-group">
+                                            <input type="hidden" id="txtidanalisisorganoleptico" asp-for="idanalisisorganoleptico" required>
+                                            <input type="text" id="txtcodigoanalisisorganoleptico" placeholder="[AUTO]" class="form-control form-control-sm" asp-for="codigoanalisisorganoleptico" required readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-4 col-xs-12">
+                                        <label>FECHA</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                @*<input type="text" asp-for="fecha" value="@DateTime.Now" class="form-control form-control-sm" readonly />*@
+                                                <input type="text" asp-for="fecha"  class="form-control form-control-sm fecha" name="fecha" id="datetimepicker" required/><!--EARTCOD1012-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @*<div class="col-xl-4 col-xs-12">
+                                            <label>ESTADO</label>
+                                            <div class="form-group">
+                                                <div class="form-line">
+                                                    <select class="form-control form-control-sm show-tick" id="cmbestadocc" name="estado">
+                                                        <option value="PENDIENTE" selected>PENDIENTE</option>
+                                                        <option value="TERMINADO">TERMINADO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                    <div class="col-xl-6 col-sm-12">
+                                        <label>EMPRESA</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" asp-for="empresa.descripcion" class="form-control form-control-sm" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-6 col-sm-12">
+                                        <label>SUCURSAL</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" asp-for="sucursal.descripcion" class="form-control form-control-sm" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-sm-12">
+                                        <label>QUIMICO</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" asp-for="quimico.userName" class="form-control form-control-sm" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-12 col-sm-12">
+                                        <label>OBSERVACÓN</label>
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <textarea rows="2" asp-for="observacion" class="form-control form-control-sm"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 cards-container">
+                                <div class="card shadow-sm">
+                                    <div class="card-header bg-blue-grey text-center">
+                                        <h7>INFORMACIÓN DE PREINGRESO</h7>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-xl-4 col-md-6 col-xs-12">
+                                                <label>Nº PREINGRESO</label>
+                                                <div class="form-group">
+                                                    <input type="text" id="txtnropreingreso" class="form-control form-control-sm number">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-sm-12">
+                                                <label>SUCURSAL</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="txtsucursalpreingreso" class="form-control form-control-sm" readonly />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6 col-xs-12">
+                                                <label>ALMACEN</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm show-tick" id="cmbalmacen" name="idalmacensucursal" disabled>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6 col-xs-12">
+                                                <label>RUC</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="txtrucempresa" class="form-control form-control-sm" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-8 col-md-6 col-xs-12">
+                                                <label>PROVEEDOR</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="txtproveedor" class="form-control form-control-sm" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6 col-xs-12">
+                                                <label>ESTADO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <select class="form-control form-control-sm show-tick" id="cmbestado" name="estado" disabled>
+                                                            <option value="">SELECCIONE</option>
+                                                            <option value="PENDIENTE">PENDIENTE</option>
+                                                            <option value="TERMINADO">TERMINADO</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xl-4 col-md-6 col-xs-12">
+                                                <label>TIPO DOCUMENTO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="hidden" asp-for="idfactura" required />
+                                                        <select class="form-control form-control-sm show-tick" id="cmbdocumentotributario" name="iddocumentotributario" disabled>
+                                                            <option value="" selected>[SELECCIONE]</option>
+                                                            @foreach (var item in ViewBag.documentotributario)
+                                                            {
+                                                                <option value="@item.iddocumento">@item.descripcion</option>
+                                                            }
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-4 col-md-6 col-xs-12">
+                                                <label>Nº DOCUMENTO</label>
+                                                <div class="form-group">
+                                                    <div class="form-line">
+                                                        <input type="text" id="txtserie_numdoc" class="form-control form-control-sm" disabled>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-2 col-md-6 col-xs-12">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mt-2">
+                <div class="col-xl-2 col-md-3 col-xs-12">
+                    <button type="reset" class="btn btn-primary  btn-block" id="btnNuevo" onclick="limpiar()"><i class="fa fa-plus"></i> NUEVO</button>
+                </div>
+                <div class="col-xl-2 col-md-3 col-xs-12">
+                    <button type="submit" class="btn btn-success  btn-block" id="btn-guardar"><i class="fa fa-save"></i> GUARDAR</button>
+                </div>
+                <div class="col-xl-2 col-md-3 col-xs-12">
+                    <button type="button" class="btn btn-warning  btn-block" id="btnimprimir" disabled><i class="fa fa-print"></i> IMPRIMIR</button>
+                </div>
+                <div class="col-xl-2 col-md-3 col-xs-12">
+                    <button type="button" class="btn btn-orange  btn-block" id="btngenerarguiadevolucion"><i class="fa fa-print"></i> GENERAR GUÍA DEVOLUCIÓN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card-body">
+            <div class="table-responsive">
+                <div class="contenedor-sticky-400">
+                    <table class="table table-sm table-hover tabla-sticky " width="100%" id="tbldetalle" name="tabla">
+                        <thead class="thead-dark text-center">
+                            <tr>
+                                <th class="header-sticky-cruce" style="width:5%"> Nº</th>
+                                <th class="header-sticky"> IDDETALLEAO</th>
+                                <th class="header-sticky"> IDCONTROLCALIDAD</th>
+                                <th class="header-sticky"> IDDETALLEPREINGRESO</th>
+                                <th class="header-sticky"> IDPRODUCTO</th>
+                                <th class="header-sticky"> IDSTOCK</th>
+                                <th class="header-sticky"> LOTE</th>
+                                <!--th class="header-sticky" style="width:10%"> F.VENCIMIENTO</th-->
+                                <th class="header-sticky" style="width:30%"> PRODUCTO</th>
+                                <th class="header-sticky" style="width:15%"> LABORATORIO</th>
+                                <th class="header-sticky" style="width:10%"> ANALISIS <br />ORGANOLÉPTICO</th>
+                                <th class="header-sticky" style="width:10%"> CANT. PREING.</th>
+                                <!-- <th class="header-sticky" style="width:10%"> CANT. INGRESADA</th>-->
+                                <th class="header-sticky" style="width:10%"> CANT. MUESTRA</th>
+                                <th class="header-sticky" style="width:10%" data-toggle="tooltip" data-placement="top" title="CANTIDAD APROBADA"> <i class="fa fa-check text-success fa-2x"></i></th>
+                                <th class="header-sticky" style="width:10%" data-toggle="tooltip" data-placement="top" title="CANTIDAD RECHAZADA"> <i class="fa fa-times fa-2x  text-danger"></i></th>
+                                <!--<th class="header-sticky"> IDTIPOENVASE</th>--><!--EARTCOD1016-->
+                            </tr>
+                        </thead>
+                        <tbody class=" text-center" id="tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="modal/_modalPreIngresos.cshtml" />
+<partial name="modal/_modalDetalleAO.cshtml" />
+@*FUNCIONES JS*@
+<script src="~/js/areas/preingreso/analisisorganoleptico/registro_control_calidad.js"></script>
+@*CONTROLLES JS*@
+<script src="~/js/controller/preingreso/PreingresoController.js"></script>
+<script src="~/js/controller/preingreso/RangoAOController.js"></script>
+<script src="~/js/controller/preingreso/AnalisisOrganolepticoController.js"></script>
+@*MODELOS JS*@
+<script src="~/js/modelos/preingreso/PIAnalisisOrganoletico.js"></script>

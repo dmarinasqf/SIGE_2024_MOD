@@ -1,0 +1,167 @@
+﻿
+@{
+    ViewData["Title"] = "AsignarLineaCredito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-md-12 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    MANTENIMIENTO DE LÍNEA DE CRÉDITO DEL CLIENTE:  <span class="text-success font-weight-bold text-right" id="lblclienteprincipal"></span>
+
+                </div>
+                <div class="card-toolbar">
+                    <a class="btn btn-info text-right" asp-area="Maestros" asp-controller="Cliente" asp-action="Index"><i class="fas fa-user ml-2 mr-2">Clientes</i></a>
+
+                </div>
+            </div>
+            <div class="card-body">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active" id="registro-tab" data-toggle="tab" href="#tab1" role="tab">Registro</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="creditosasignados-tab" data-toggle="tab" href="#tab2" role="tab">Créditos asignados</a>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link" id="documentosporcobrar-tab" data-toggle="tab" href="#tab3" role="tab">Documentos por cobrar</a>
+                    </li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                        <div class="row justify-content-center">
+                            <div class="col-xl-10 col-md-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <form autocomplete="off" id="formregistro">
+                                            <input type="hidden" name="idcliente" id="txtidcliente" />
+                                            <div class="row">
+                                                <div class="col-xl-12 mb-3">
+                                                    <label>BUSCAR CLIENTE</label>
+                                                    <select class="form-control" id="cmbbuscarcliente"></select>
+                                                </div>
+                                                <div class="col-xl-4 col-md-4">
+                                                    <div class="form-group">
+                                                        <label>RUC</label>
+                                                        <input type="text" class="form-control " id="txtruc" disabled />
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xl-8 col-md-8">
+                                                    <div class="form-group">
+                                                        <label>NOMBRES / RAZON SOCIAL</label>
+                                                        <textarea type="text" class="form-control " id="txtnombres" rows="2" disabled></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-12 col-md-12">
+                                                    <div class="form-group">
+                                                        <label>DIRECCIÓN</label>
+                                                        <textarea type="text" class="form-control " id="txtdireccion" rows="2" disabled></textarea>
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-4 col-md-4">
+                                                    <label>MONEDA</label>
+                                                    <select class="form-control" id="cmbmoneda" name="idmoneda" required>
+                                                        <option value="">[SELECCIONE]</option>
+                                                        @foreach (var item in ViewBag.monedas)
+                                                        {
+                                                            <option value="@item.idmoneda">@item.nombre </option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="col-xl-4 col-md-4">
+                                                    <label>CONDICIÓN DE PAGO</label>
+                                                    <select class="form-control" id="cmbcondicionpago" name="idcondicionpago" required>
+                                                        <option value="">[SELECCIONE]</option>
+                                                        @foreach (var item in ViewBag.condicionpagos)
+                                                        {
+                                                            <option value="@item.idcondicionpago">@item.descripcion</option>
+                                                        }
+                                                    </select>
+                                                </div>
+                                                <div class="col-xl-4 col-md-4">
+                                                    <div class="form-group mt-2">
+                                                        <table class="table table-bordered " width="100%">
+                                                            <tr>
+                                                                <td>Bloquear crédito</td>
+                                                                <td><input type="checkbox" name="isbloqueado" value="false" id="checkbloquearcredito" /></td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+
+                                                </div>
+                                                <div class="col-xl-12">
+                                                    <div class="form-group">
+                                                        <label>OBSERVACIÓN</label>
+                                                        <textarea class="form-control" rows="3" id="txtobservacion" name="observacion"></textarea>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="row justify-content-center">
+                                                <div class="col-xl-3">
+                                                    <div class="form-group">
+                                                        <label>MONTO DE CRÉDITO</label>
+                                                        <input type="number" class="form-control form-control-sm" name="nuevocredito" step="any" id="txtmontocredito" />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3">
+                                                    <div class="form-group">
+                                                        <label>MONTO DISPONIBLE</label>
+                                                        <input type="number" class="form-control form-control-sm" step="any" id="txtmontodisponible" disabled />
+                                                    </div>
+                                                </div>
+                                                <div class="col-xl-3">
+                                                    <button class="btn btn-success btn-block mt-2" type="submit"><i class="fas fa-save ml-2 mr-2"></i> GUARDAR</button>
+                                                </div>
+                                                <div class="col-xl-3">
+                                                    <button class="btn btn-info btn-block mt-2" type="reset" id="btnnuevo"><i class="fas fa-redo ml-2 mr-2"></i> LIMPIAR</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="tab-pane fade" id="tab2" role="tabpanel">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="contenedor-sticky-500">
+                                    <table class="table table-bordered table-hover" width="100%">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th class="header-sticky">Fecha</th>
+                                                <th class="header-sticky">Monto ingresado</th>
+                                                <th class="header-sticky">Monto Disponible</th>
+                                                <th class="header-sticky">Usuario</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodycreditos"></tbody>
+                                    </table>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="tab3" role="tabpanel">
+                        <partial name="~/Areas/Finanzas/Views/FLineaCredito/complementos/_documentosporcobrar.cshtml"/>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+<script src="~/js/controller/finanzas/LineaCreditoController.js"></script>
+<script src="~/js/areas/finanzas/lineacredito/asignarlineacredito.js"></script>

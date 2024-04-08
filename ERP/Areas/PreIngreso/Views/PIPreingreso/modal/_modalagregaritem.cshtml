@@ -1,0 +1,86 @@
+﻿
+
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalagregaritem" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="exampleModalLabel">AGREGAR ITEM POR <span id="AI_lbltipodeitem"></span></h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" id="formadditem" autocomplete="off">
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="hidden" id="AI_txtid" class="form-control" name="id" required>
+                                    <input type="hidden" id="AI_txttipo" class="form-control" name="tipo" required>
+                                    <input type="hidden" id="AI_txtuma" class="form-control" name="uma" required>
+
+                                    <label>CODIGO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="AI_txtcodigo" class="form-control" name="codigo" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>PRODUCTO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="AI_txtproducto" class="form-control" name="producto" required readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>LABORATORIO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="AI_txtlaboratorio" class="form-control" name="laboratorio" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>CANTIDAD</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="number" id="AI_txtcantidad" class="form-control" min="1" name="cantidad" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <label>TIPO BONIFICACIÓN</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <select class="form-control" id="AI_txttipobonificacion" name="tipobonificacion" required>
+                                                <option value="">SELECCIONAR</option>
+                                                <option value="AFECTO">AFECTO</option>
+                                                <option value="INAFECTO">INAFECTO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button class="btn btn-success " id="AI_btnaddcambios" type="submit"> AGREGAR ITEM</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                   
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+<script src="~/js/areas/preingreso/preingreso/modal/modalagregaritem.js"></script>
+
+
+
+

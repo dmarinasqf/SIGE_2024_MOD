@@ -1,0 +1,191 @@
+﻿
+
+@{
+    ViewData["Title"] = "Listar PreIngresos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (ViewBag.verificar == "ok")
+{
+    <div class="row">
+        <div class="col-xl-10">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+                <h1 class="page-title text-primary-d2 text-140">
+                    LISTADO PRUEBA
+                </h1>
+
+            </div>
+        </div>
+        <div class="col-xl-2 col-sm-12">
+            <a asp-action="Registrar" class="btn btn-primary "> <I class="fas fa-plus"></I> </a>
+        </div>
+    </div>
+    <hr />
+    <form autocomplete="off" id="form-busqueda">
+        <div class="row">
+            <div class="col-xl-3 col-md-12">
+                <div class="form-group">
+                    <label>N° PRE INGRESO</label>
+                    <input type="text" id="txtcodpreingreso" class="form-control" name="preingreso">
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-12">
+                <div class="form-group">
+                    <label>N° DE ORDEN</label>
+                    <input type="text" id="txtcodigororden" class="form-control" name="orden">
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-12">
+                <div class="form-group">
+                    <label>Cod de Lote</label>
+                    <input type="text" id="txtidlote" class="form-control" name="factura">
+                </div>
+            </div>
+            <div class="col-xl-2 col-md-12">
+                <label>ESTADO</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        <select class="form-control" name="estado" id="txtestadolote">
+                            <option value=""> </option>
+                            <option value="ANULADO"> ANULADO</option>
+                            <option value="PENDIENTE"> PENDIENTE</option>
+                            <option value="TERMINADO"> TERMINADO</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-1 mt-4">
+                <button type="submit" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </form>
+    <div class="row mt-2">
+        <div class="col-xl-12">
+            <div class="card bcard h-auto">
+                <div class="border-t-3 brc-blue-m2 table-responsive  " id=" paneltabla ">
+                    <table class="table   table-hover  table-bordered " width="100%" id="tbllista">
+                        <thead class="">
+                            <tr>
+                                <th></th>
+                                <th>PREINGRESO</th>
+                                <th>NUM ORDEN</th>
+                                @*
+                                <th>FECHA</th>*@
+                                <th>ESTADO</th>
+                                <th>CODIGO PRODUC</th>
+                                <th>DESCRIPCION</th>
+                                @*
+                                <th>TIPO</th>
+                                <th>LAB</th>*@
+                                <th>CANT OC</th>
+                                @*
+                                <th>TIPO</th>*@
+                                <th>UBICACION ARCHIVO</th>
+                                <th>CARPETA</th>
+                                <th>DOCUEMTNO</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class=" font-10">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+}
+else
+{
+    <div class="card">
+        <div class="card-body">
+            <div class="alert-warning" style="color:black; padding:50px;margin:50px; font-size:1.2rem" role="alert">
+                <h4 class="alert-heading">ADVERTENCIA</h4>
+                @ViewBag.verificar
+            </div>
+        </div>
+    </div>
+
+}
+
+
+<div class="modal fade" id="modaleditardocumento" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog " role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="myModalLabel">Editar DocLote</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" id="idcodigomodaleditardoc">
+                    <!-- Formulario para elegir un archivo PDF -->
+                    <form>
+                        <style>
+                            #labellink {
+                                color: rgb(25, 5, 252); /* Color gris al pasar el mouse */
+                                text-decoration: underline; /* Subrayado por defecto */
+                            }
+
+                                #labellink:hover {
+                                    color: rgb(240, 7, 101); /* Color gris al pasar el mouse */
+                                    text-decoration: underline; /* Mantener el subrayado al pasar el mouse */
+                                }
+                        </style>
+                        <input type="hidden" id="txtcodigocarpeta" class="form-control" name="factura" value="valor_codigocarpeta">
+                        <input type="hidden" id="txtcodigodocumento" class="form-control" name="factura" value="valor_codigoarchivo">
+                        <input type="hidden" id="txtiddocumentoDrive" class="form-control" name="factura" value="valor_iddocumentoDrive">
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="campo1" class="font-weight-bold text-dark">CODIGO LOTE:</label>
+                                <br>
+                                <label for="22" class="font-weight-normal text-dark" id="codigoLoteLabel"></label>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="campo1" class="font-weight-bold  text-dark">DOCUMENTO:</label>
+                                <br>
+                                <a target="_blank" href="#" class="text-secondary d-block mb-2" id="urlidlabel">
+                                    <label for="22" class="font-weight-bold text-secondary" id="nombreArchivoLabel"></label>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="form-group col-md-12">
+                                <label for="archivoPDF">ELEGIR NUEVO PDF:</label>
+                                <input type="file" class="form-control-file" accept=".pdf" id="archivoPDF">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                            <div class="form-group col-md-12 text-center">
+                                <button type="button" class="btn btn-primary" onclick="editararchivolote()">Editar Archivo</button>
+                            </div>
+                        </div>
+                    </form>
+                    <!-- Fin del formulario -->
+                    <div id="nombreArchivo"></div> <!-- Mostrar el nombre del archivo aquí -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/js/areas/preingreso/preingreso/IndexLisEditDoc.js"></script>
+    <script src="~/js/controller/preingreso/PreingresoController.js"></script>

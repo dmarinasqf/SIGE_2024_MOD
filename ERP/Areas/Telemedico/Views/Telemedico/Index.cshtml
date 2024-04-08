@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "Horario Telemedico";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/lib/fullCalendar/fullcalendar.min.css" rel="stylesheet" />
+<link href="~/lib/fullCalendar/fullcalendar.print.min.css" media="print" />
+
+<div class="box box-primary main-card card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                <h3 class="text-center">REGISTRAR HORARIOS</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-4 col-xs12">
+                <input type="hidden" value="" id="txtconsultaonline" />
+                <input type="hidden" value="" id="txtconsultapresencial" />
+                <input type="hidden" name="name" value="" id="txtidmedico" />
+                <div class="form-group">
+                    <label>COLEGIATURA</label>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control form-control-sm" id="txtcolegiatura" aria-describedby="button-addon2" disabled>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="button" id="btnbuscarmedico"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-8 col-xs-12">
+                <div class="form-group ">
+                    <label>NOMBRES DE MÉDICO</label>
+                    <input id="txtnombresmedico" type="text" class="form-control form-control-sm" style="text-align:center;font-size:larger;font-weight: bold;" value="" disabled>
+                </div>
+            </div>
+            <div class="form-inline">
+                <div class="form-group ">
+                    <span class="badge-leyend badge-mañana-online">Mañana Online <br></span>
+                    <span class="badge-leyend badge-tarde-online">Tarde Online</span>
+                    <span class="badge-leyend badge-mañana-presencial">Mañana Presencial</span>
+                    <span class="badge-leyend badge-tarde-presencial">Tarde Presencial</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="box box-primary main-card card">
+    <div class="box-body card-body">
+
+        <div class="box-body">
+            <div class="row">
+                <div class="col">
+                    <div id="calender"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="~/lib/fullCalendar/moment.min.js"></script>
+<script src="~/lib/fullCalendar/fullcalendar.js"></script>
+<script src="~/js/areas/telemedico/registrarhorariomedico.js"></script>

@@ -1,0 +1,88 @@
+﻿
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalbuscarpreingresos" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title" id="exampleModalLabel">FACTURAS DE PREINGRESO</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="form-busqueda-preingreso" autocomplete="off">
+                            <div class="row">
+
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="form-group">
+                                        <label>N° DE FACTURA</label>
+                                        <input type="text" id="MBPRE_txtcodigofactura" class="form-control form-control-sm" name="factura">
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-md-12">
+                                    <div class="form-group">
+                                        <label>PROVEEDOR</label>
+                                        <input type="text" id="MBPRE_txtproveedor" class="form-control form-control-sm" name="proveedor">
+                                    </div>
+                                </div>
+                                @*<div class="col-xl-3 col-md-12">
+                                    <div class="form-group">
+                                        <label>N° PRE INGRESO</label>
+                                        <input type="text" id="MBPRE_txtcodpreingreso" class="form-control form-control-sm" name="preingreso">
+                                    </div>
+                                </div>*@
+                                <div class="col-xl-3 col-md-12">
+                                    <label>ESTADO</label>
+                                    <div class="form-group">
+                                        <select class="form-control form-control-sm" name="estado" id="MBPRE_cmbestado">
+                                            <option value=""> [TODOS]</option>
+                                            <option value="PENDIENTE"> PENDIENTE</option>
+                                            <option value="TERMINADO"> TERMINADO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                @*<div class="col-xl-3 col-md-12">
+                                    <div class="form-group">
+                                        <label>N° DE ORDEN</label>
+                                        <input type="text" id="MBPRE_txtcodigororden" class="form-control form-control-sm" name="orden">
+                                    </div>
+                                </div>*@
+
+                            </div>
+                        </form>
+
+                        <div class="card bcard h-auto">
+                            <div class="border-t-3 brc-blue-m2 table-responsive ">
+                                <table class="table  table-hover table-bordered " width="100%" id="MBPRE_tblpreingresos">
+                                    <thead class=" text-center">
+                                        <tr>
+                                            <th></th>
+                                            <th>NUM PREINGRESO</th>
+                                            <th>NUM ORDEN</th>
+                                            <th>FACTURAS</th>
+                                            <th>FECHA</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>USUARIO</th>
+                                            <th data-toggle="tooltip" title="ESTADO DE PREINGRESO">E PRE</th>
+                                            <th data-toggle="tooltip" title="ESTADO DE FACTURA">E FACT</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-center font-11">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/preingreso/preingreso/modal/modalbuscarpreingresos.js"></script>
+<script src="~/js/controller/preingreso/PreingresoController.js"></script>

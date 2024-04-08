@@ -1,0 +1,62 @@
+﻿<div class="modal fade" id="modalProforma" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1500">
+        <div class="modal-content">
+            <div class="modal-header bg-blue-grey">
+                <h5 class="modal-title" id="exampleModalLabel">PROFORMA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body font-11">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <label>PROVEEDOR</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="name" value="" class="idproveedor form-control form-control-sm" id="codigoproveedor" readonly />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-5">
+                                <label>RAZON SOCIAL</label>
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input type="text" name="name" value="" class="razonproveedor form-control form-control-sm" id="razonproveedor" disabled />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-12 table-responsive">
+                                <table class="table table-bordered" id="tblproformas" width="100%">
+                                    <thead class="thead-dark shadow-sm">
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>N° PROFORMA</th>
+                                            <th>RUC</th>
+                                            <th>PROVEEDOR</th>
+                                            <th>FECHA</th>
+                                            <th>FECHA VENCIMIENTO</th>
+                                            <th>CONTACTO</th>
+                                            <th>REPRESENTANTE</th>
+                                            <th>ESTADO</th>
+                                            <th>TOTAL</th>
+                                            <th>USUARIO</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="font-12">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/compras/modales/cotizacion/_modalBuscarCotizacion.js"></script>

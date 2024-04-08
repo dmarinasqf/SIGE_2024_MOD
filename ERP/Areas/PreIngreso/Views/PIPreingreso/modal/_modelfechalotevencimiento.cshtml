@@ -1,0 +1,78 @@
+﻿
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="modalfechaylote" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1400 modal-dialog-scrollable">
+        <div class="modal-content">
+            <form method="post" id="formlotes" autocomplete="off">
+                <div class="modal-header bg-blue">
+                    <label class="modal-title" id="exampleModalLabel">REGISTRO DE LOTE Y FECHA DE VENCIMIENTO</label>
+                    <input type="hidden" id="txtindexlote" value="" disabled />
+                    <input type="hidden" id="txtidedetallemodallotes" value="" disabled />
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-xl-12 col-sm-12">
+                                    <div class="form-inline">
+                                        <label class="form-control">CANTIDAD DE FACTURA</label>
+                                        <input type="text" name="name" class="form-control text-center font-13" id="txtcantidadtotalmodallote" disabled />
+                                        <label class="form-control">RESTANTE</label>
+                                        <input type="text" name="name" class="form-control text-center font-13" id="txtcantidadrestantelote" disabled />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="card bcard h-auto">
+                                        <div class="border-t-3 brc-blue-m2 table-responsive">
+                                            <table class="table  table-sm table-bordered " id="tbllotevencimiento" width="100%">
+                                                <thead>
+                                                    <tr>
+                                                        <th>IDLOTE</th>
+                                                        <th>IDPREINGRESODETALLE</th>
+                                                        <th style="width:20%">DESCRIPCION</th>
+                                                        <th style="width:5%">CANT.</th>
+                                                        <th style="width:5%">LOTE</th>
+                                                        <th style="width:12%">F. VENC.</th>
+                                                        <th style="width:10%">REG. SANIT.</th>
+                                                        <th style="width:10%">N° PRESCR.</th>
+                                                        <th style="width:12%">VIGENCIA</th>
+                                                        <th style="width:20%">OBSERVACIÓN</th>
+                                                        <th> <button class="btn btn-sm btn-block btn-primary" id="btnagregaritemlote" type="button"><i class="fas fa-plus"></i></button></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-end mt-1">
+                                <div class="col-xl-2">
+                                    <button class="btn btn-success " id="btnguardarlotes" type="submit">GUARDAR CAMBIOS</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+</div>
+
+<script src="~/js/areas/preingreso/preingreso/modal/loteyfechavencimiento.js"></script>

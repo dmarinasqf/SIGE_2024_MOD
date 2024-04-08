@@ -1,0 +1,122 @@
+﻿@model Erp.SeedWork.mensajeJson
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>GenerarPDFCierre</title>
+    <script>
+
+        var data =@Html.Raw(Json.Serialize(Model.objeto))
+            //console.log(data);
+    </script>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <div class="row" id="aplicacion">
+        <div class="col-xl-4 border">
+            <div class="card">
+                <div class="card-header">
+                    <h6>DATOS DE CAJA</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-bordered" style="font-size:11px">
+                        <tbody>
+                            <tr>
+                                <td>SUCURSAL</td>
+                                <td>{{cajaaperturada.sucursal}}</td>
+                                <td colspan="2">{{cajaaperturada.caja}}</td>
+                            </tr>
+                            <tr>
+                                <td>FECHA APERTURA</td>
+                                <td>{{cajaaperturada.fechaapertura}}</td>
+                                <td>USUARIO APERTURA</td>
+                                <td>{{cajaaperturada.usuarioapertura}}</td>
+                            </tr>
+                            <tr>
+                                <td>FECHA CIERRE</td>
+                                <td>{{cajaaperturada.fechacierre}}</td>
+                                <td>USUARIO CIERRA</td>
+                                <td>{{cajaaperturada.usuariocierra}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-xl-8 border">
+            <div class="card">
+                <div class="card-header">
+                    <h6>MONTOS DE CIERRE</h6>
+                </div>
+                <div class="card-body">
+                    <table width="100%" class="table table-sm table-bordered" style="font-size:11px" id="tblmontos">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>FECHA</th>
+                                <th>CAJA</th>
+                                <th>MONEDA</th>
+                                <th>TIPO </th>
+                                <th class="text-right">NUM VENTAS</th>
+                                <th class="text-right">MONTO SISTEMA</th>
+                                <th class="text-right">MONTO DECLARADO</th>
+                                <th class="text-right">DIFERENCIA</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblbodydetalle" v-html="detallehtml"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 border" id="cardgastos">
+            <div class="card">
+                <div class="card-header">
+                    <h6>GASTOS</h6>
+                </div>
+                <div class="card-body">
+                    <table width="50%" class="table table-sm table-bordered" style="font-size:11px" id="tblgasto">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>TIPO</th>
+                                <th>DESCRIPCIÓN</th>
+                                <th class="text-right">MONTO</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tblbodydetallegastos" v-html="detallegastoshtml"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-12 mt-2">
+            <h4 id="lbltotaltarjetas"></h4>
+        </div>
+        <div class="col-xl-12 mt-2">
+            <h4 id="lblsaldoneto"></h4>
+        </div>
+
+
+        <div class="col-xl-12">
+            <br />
+            <h6>OBSERVACIONES</h6>
+            {{cajaaperturada.observaciones}}
+            <hr />
+
+        </div>
+        <div class="col-xl-4">
+            <br />
+            <h6>RESPONSABLE</h6>
+            <hr />
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/js/areas/ventas/caja/imprimirpdfcierre.js"></script>

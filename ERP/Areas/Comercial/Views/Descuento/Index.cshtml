@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+               DESCUENTOS
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-2">
+        <a asp-action="Mantenimiento" class="btn btn-primary "> <i class="fas fa-plus"></i></a>
+        <a asp-area="Comercial" asp-controller="Descuento" asp-action="ReporteDescuentosACobrar">Reporte</a>
+
+    </div>
+</div>
+<hr />
+<div class="row justify-content-center">
+    <div class="col-xl-10 col-sm-12 mb-2">
+        <div class="card">
+            <div class="card-body">
+                <div class="row justify-content-center">
+                    <div class="col-xl-4 col-sm-4">
+                        <label>Descripción</label>
+                        <input type="text" class="form-control" id="txtdescripcion" />
+                    </div>
+                    <div class="col-xl-4 col-sm-4">
+                        <label>Fecha</label>
+                        <input type="date" class="form-control" id="txtfechainicio" />
+                    </div>
+                    <div class="col-xl-4 col-sm-4">
+                        <button class="btn btn-secondary mt-4" id="btnconsultar"><i class="fas fa-search ml-2 mr-2"></i> Buscar</button>
+                    </div>
+                    <div class="col-xl-12 col-sm-12 mt-2">
+                        <div class="card bcard h-auto">
+                            <div class="border-t-3 brc-blue-m2 table-responsive">
+                                <table class="table  table-bordered" id="tbllista" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">Fecha</th>
+                                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">Descripción</th>
+                                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FechaInicio</th>
+                                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FechaFin</th>
+                                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">Usuario</th>
+                                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">UsuarioValida</th>
+                                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">Estado</th>
+                                            <th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="text-uppercase" id="tbodylista"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-12 col-sm-12">
+                        <div id="paged">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+  
+  
+</div>
+
+<div class="modal fade" id="modalasignarsucursal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog   modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <label class="modal-title" id="staticBackdropLabel">ASIGNAR DESCUENTO A SUCURSAL</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-sm table-bordered" width="100%" id="tblsucursal">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th style="width:70%">Sucursal</th>
+                                    <th style="width:30%">
+                                        <div class="form-inline">
+                                            <input type="checkbox" id="checkallsucursal" />
+                                            <button id="btnguardarofertassucubloque"><i class="fas fa-save"></i></button>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<partial name="~/Areas/Comercial/Views/Descuento/modal/_modaldatosdescuento.cshtml"/>
+
+
+
+<script src="~/js/areas/comercial/descuentos/index.js"></script>
+<script src="~/js/controller/comercial/DescuentoController.js"></script>

@@ -1,0 +1,94 @@
+﻿@model System.Data.DataTable
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PROFORMA</title>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <link href="~/css/librerias/bootstrap/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="~/lib/vue/vue.min.js"></script>
+    <script src="~/js/site.js"></script>
+</head>
+<body>
+    <script>
+        var data =@Html.Raw(JsonConvert.SerializeObject(Model));
+        var cabecera = JSON.parse(data[0]['CABECERA'])[0];
+        var detalle = JSON.parse(data[0]['DETALLE']);
+        var empresa = JSON.parse(data[0]['EMPRESA'])[0];
+        console.log(cabecera,detalle,empresa);
+    </script>
+    <div class="row justify-content-center">
+        <div class="col-xl-6">
+            <div class="row" id="aplicacion">
+                <div class="col-xl-12">
+                    <table width="100%" border="1">
+                        <tr>
+                            <td width="50%">
+                                <img v-bind:src="'/imagenes/empresas/' + empresa.logo" width="100%" />
+                            </td>
+                            <td width="50%">
+                                <label class="font-weight-bold">RUC:{{ empresa.ruc }}</label><br />
+                                <label class="font-weight-bold">{{ empresa.descripcion }}</label> - <label class="font-weight-bold">{{ empresa.nombrecomercial }}</label><br />
+                                <label style="font-size:10px">{{ empresa.direccion }}</label> <br />
+                                <label>Telefono: {{empresa.celular}}</label> -  <label>Celular:{{empresa.telefono}}</label><br />
+                            </td>
+
+
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-xl-12 mt-4">
+                    <h4 style="text-align:right">FECHA : {{cabecera.fecha}}</h4>
+                </div>
+                <div class="col-xl-12 text-center">
+                    <h4>PROFORMA N <bold id="lblidproformaimprimir">{{cabecera.codigoproforma}}</bold></h4>
+
+                </div>
+                <div class="col-xl-12  p-5">
+                    <table class="table table-bordered" width="100%">
+                        <thead class="thead-light">
+                            <tr>
+                                <td style="width:5%">N</td>
+                                <td style="width:50%">FORMULA</td>
+                                <td style="width:10%" class="text-right">UNID</td>
+                                <td style="width:10%" class="text-right">PRECIO</td>
+                                <td style="width:10%" class="text-right">DESC%</td>
+                                <td style="width:10%" class="text-right">SUBT</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="index in detalle.length">
+                                <td>{{ index }}</td>
+                                <td>{{ detalle[index-1].formulacion }}</td>
+                                <td class="text-right">{{ detalle[index-1].cantidad }}</td>
+                                <td class="text-right">{{ detalle[index-1].preal }}</td>
+                                <td class="text-right">{{ detalle[index-1].dsc }}</td>
+                                <td class="text-right">{{ detalle[index-1].subtotal}}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="5">TOTAL</td>
+                                <td  class="text-right">{{total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xl-12 p-4">
+
+                    <h5 style="text-align:left" v-if="cabecera.cliente!=''">CLIENTE: <bold id="lblidproformaimprimir">{{cabecera.nombrecliente}}</bold></h5>
+                    <h5 style="text-align:left" v-if="cabecera.paciente!=''">PACIENTE: <bold id="lblidproformaimprimir">{{cabecera.paciente}}</bold></h5>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="~/js/areas/ventas/proforma/imprimirproforma1.js"></script>
+</body>
+
+</html>

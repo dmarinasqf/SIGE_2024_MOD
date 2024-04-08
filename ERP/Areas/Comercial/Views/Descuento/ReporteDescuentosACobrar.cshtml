@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewData["Title"] = "ReporteDescuentosACobrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REPORTE DE DESCUENTOS APLICADOS
+            </h1>
+        </div>
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-xl-6 col-sm-6">
+        <div class="row">
+            <div class="col-xl-6 col-md-6">
+                <div class="form-group">
+                    <label>FECHA INICIO</label>
+                    <input type="date" class="form-control" id="txtfechainicio" />
+                </div>
+            </div>
+            <div class="col-xl-6 col-sm-6">
+                <div class="form-group">
+                    <label>FECHA FIN</label>
+                    <input type="date" class="form-control" id="txtfechafin" />
+                </div>
+            </div>
+            <div class="col-xl-12 col-md-12">
+                <label>DESCUENTO DE </label>
+                <table class=" table table-sm table-bordered" width="100%">
+                    <tr>
+                        <td>Proveedor</td>
+                        <td> <input type="radio" name="tiporadio" id="rdproveedor" value="proveedor" /></td>
+                    </tr>
+                    <tr>
+                        <td>Laboratorio</td>
+                        <td> <input type="radio" name="tiporadio" id="rdlaboratorio" value="laboratorio" /></td>
+                    </tr>
+                </table>
+            </div>
+        </div>       
+    </div>    
+    <div class="col-xl-4 col-md-10">
+        <div class="form-group">
+            <label>ESTADO</label>
+            <select class="form-control form-control-sm" id="cmbestado">
+                <option value="" selected>TODOS</option>
+                <option value="HABILITADO">HABILITADO</option>
+                <option value="PAGADO">PAGADO</option>
+            </select>
+        </div>
+        <div class="form-group">
+           
+            <div id="divlaboratorio" class="ocultar">
+                <label>LABORATORIO</label>
+                <select class="form-control form-control-lg" id="cmblaboratorio"></select>
+            </div>
+            <div id="divproveedor" class="ocultar">
+                <label>PROVEEDOR</label>
+                <select class="form-control form-control-lg" id="cmbproveedor"></select>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-2 col-md-4 text-center">
+        <div class="btn-group btn-group-vertical">
+            <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search ml-2 mr-2"></i>Consultar</button>
+            <button class="btn btn-success mt-1" id="btnexportar"><i class="fas fa-file-excel ml-2 mr-2"></i>Exportar</button>
+
+        </div>
+       
+    </div>
+   <div class="col-xl-12 table-responsive mt-2" id="contenedor">
+        <table class="table">
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+
+<script src="~/js/areas/comercial/descuentos/reportedescuentosacobrar.js"></script>
+
+<script src="~/js/controller/comercial/DescuentoController.js"></script>
+
+
+
+
+
+
+
+

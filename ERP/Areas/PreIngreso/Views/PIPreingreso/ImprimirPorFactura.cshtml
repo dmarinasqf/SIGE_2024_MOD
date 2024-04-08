@@ -1,0 +1,160 @@
+﻿
+<script src="~/lib/vue/axios/axios.min.js"></script>
+<script src="~/lib/vue/vue.min.js"></script>
+@*<link href="~/css/pagina/impresiones/cotizacion-orden-compra.css" rel="stylesheet" />*@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jspdf/jspdf.min.js"></script>
+<script src="~/lib/jspdf/jspdf.debug.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/pagina/colores.css" rel="stylesheet" />
+@model List<string>
+
+<script>
+    var DATA =@Html.Raw(Json.Serialize(Model)) ;
+    var CABECERA = JSON.parse( DATA[0]);
+    var DETALLE = JSON.parse(DATA[1]);
+    var EMPRESA = JSON.parse(DATA[2]);
+    console.log(CABECERA);
+    console.log(DETALLE);
+    console.log(EMPRESA);
+</script>
+
+<style>
+    body {
+        padding: 10px;
+        margin: 10px;
+    }
+    .table tbody tr td, table tr td, .table thead tr th {
+        font-size: 10px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    h5, h6 {
+        font-size: 0.7rem;
+    }
+</style>
+<body>
+    <div class="row">
+        <div class="col-xl-12 mt-4 ml-4 mr-4">
+            <table width="100%" class="table table-sm text-left" id="aplicacion">
+                <tr>
+
+                    <td width="22%"><img v-bind:src="'/imagenes/empresas/' + empresa.imagen" style="width:150px;height:100px" /></td>
+                    <td>
+                        <h5>{{empresa.descripcion}}</h5>
+                        <h6>{{empresa.direccion}}</h6>
+                        <h6>RUC: {{empresa.ruc}}</h6>
+                        <h6>TELEFONO:{{empresa.telefono}} &emsp;-&emsp; CELULAR: {{empresa.celular}}</h6>
+                        <h6>SUCURSAL:{{ cabecera[0]['SUCURSAL'] }}</h6>
+                    </td>                  
+                    <td width="30%">
+                        <h6 class="bg-blue-grey">ORDEN DE COMPRA N°</h6>
+                        <h6>{{cabecera[0]['CODIGOORDEN']}}</h6>
+                        <h6 class="bg-blue-grey">ESTADO</h6>
+                        <h6>{{cabecera[0]['ESTADOORDEN']}}</h6>
+                        <h6 class="bg-blue-grey">FECHA</h6>
+                        <h6>{{cabecera[0]['FECHAORDEN']}}</h6>
+                    </td>
+                    <td width="22%">
+                        <h6 class="bg-blue-grey">PREINGRESO N°</h6>
+                        <h6>{{cabecera[0]['CODIGO']}}</h6>
+                        <h6 class="bg-blue-grey">ESTADO</h6>
+                        <h6>{{cabecera[0]['ESTADO']}}</h6>
+                        <h6 class="bg-blue-grey">FECHA</h6>
+                        <h6>{{cabecera[0]['FECHA']}}</h6>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><label>FACTURA N°: </label>{{cabecera[0]['SERIEFACTURA'] }}{{cabecera[0]['NUMDOCFACTURA'] }}</td>                  
+                    <td><label>FECHA:</label> {{cabecera[0]['FECHADOC']}}</td>              
+                    <td><label>PROVEEDOR:</label> {{cabecera[0]['PRO_RAZONSOCIAL']}}</td>        
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><label>MONEDA:</label></td>
+                    <td>{{cabecera[0]['MONEDA']}}</td>
+                    <td><label>TIPO DE CAMBIO:</label></td>
+                    <td> {{cabecera[0]['MONEDA CAMBIO']}}</td>
+                </tr>
+                <tr>
+                    <td><label>EMPLEADO:</label></td>
+                    <td>{{cabecera[0]['EMPLEADO']}}</td>
+                    <td><label>QUIMICO:</label></td>
+                    <td>{{cabecera[0]['QUIMICO']}}</td>
+                </tr>
+                <tr>
+                    <td><label>RECHAZADO POR ERROR DE DATOS</label></td>
+                    <td>
+
+
+                        <span v-if="cabecera[0]['RECHAZADO']">SI</span>
+                        <span v-else>NO</span>
+
+
+                    </td>
+                    <td><label>OBS</label></td>
+                    <td>{{cabecera[0]['OBS']}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <table width="100%" class="table table-sm table-bordered">
+                            <thead class="thead-dark">
+                                <tr>                                 
+                                    <th style="width:3%">N°</th>
+                                    <th style="width:5%">COD </th>
+                                    <th style="width:18%">DESCRIPCION</th>
+                                    <th style="width:8%">TIPO</th>
+                                    <th style="width:8%">LAB.</th>
+                                    <th style="width:5%">CANT OC</th>
+                                    <th style="width:6%">U. M</th>
+                                    <th style="width:5%">CANT FAC</th>
+                                    <th style="width:5%">CANT ING</th>
+                                    <th style="width:5%">CANT DEV</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <tr v-for="index in DETALLE.length">                                 
+                                    <td>{{index}}</td>
+                                    <td><span>{{ DETALLE[index-1]['CODPRODUCTO'] }}</span><br /><span v-if="DETALLE[index-1]['CODPROPOROV'] !=''">{{ DETALLE[index-1]['CODPROPOROV'] }}</span> </td>
+                                    <td><span>{{ DETALLE[index-1]['PRODUCTO'] }}</span><br /><span v-if="DETALLE[index-1]['CODPROPOROV'] !=''">{{ DETALLE[index-1]['PROPROV'] }}</span> </td>
+                                    <td>{{ DETALLE[index-1]['TIPOPRODUCTO'] }}</td>
+                                    <td>{{ DETALLE[index-1]['LABORATORIO'] }}</td>
+                                    <td><span>{{ DETALLE[index-1]['CANTIDADOC'] }}</span><br /><span v-if="DETALLE[index-1]['CODPROPOROV'] !=''">{{ DETALLE[index-1]['EQUIVALENCIA'] }}</span> </td>
+                                    <td><span>{{ DETALLE[index-1]['UMA'] }}</span><br /><span v-if="DETALLE[index-1]['CODPROPOROV'] !=''">{{ DETALLE[index-1]['UMP'] }}</span> </td>
+
+                                    <td>{{ DETALLE[index-1]['CANFACTURA'] }}</td>
+                                    <td>{{ DETALLE[index-1]['CANINGRESADA'] }}</td>
+                                    <td>{{ DETALLE[index-1]['CANDEVUELTA'] }}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <div style="font-size:8px">
+                            <div><label>OBSERVACIÓN</label></div>
+                            <div><span> {{cabecera[0]['OBSERVACION']}}</span></div>
+                        </div>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="text-align:right"><label>@DateTime.Now</label></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</body>
+<script src="~/js/site.js"></script>
+
+
+
+<script src="~/js/areas/compras/aprobarfactura/imprimir.js"></script>

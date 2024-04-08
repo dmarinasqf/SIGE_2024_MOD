@@ -1,0 +1,120 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/lib/jquery-steps/steps.css" rel="stylesheet" />
+<script src="~/lib/jquery-steps/steps.js"></script>
+
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE PRODUCTOS
+            </h1>
+
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+                <a asp-action="RegistrarEditar" class="btn btn-primary ">
+                    <i class="fas fa-plus"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="row">
+  
+    <div class="col-xl-12">
+        <form autocomplete="off" id="form-busqueda">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-5">
+
+                            <div class="form-group">
+                                <label>PRODUCTO</label>
+                                <input type="text" id="txtcodproducto" class="form-control" name="nombreproducto">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <label>TIPO PRODUCTO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+
+                                    <select class="form-control" id="reg_cmbtipoproducto" name="idtipoproducto">
+                                        <option value="" selected>[TODOS]</option>
+                                        @foreach (var item in ViewBag.tipoproducto)
+                                        {
+                                            <option value="@item.idtipoproducto">@item.descripcion</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2">
+                            <label>ESTADO</label>
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <select class="form-control form-control-md show-tick" id="reg_pro_cmbestado" name="estado" required>
+                                        <option value="HABILITADO" selected>HABILITADO</option>
+                                        <option value="DESHABILITADO" selected>DESHABILITADO</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="btn-group mt-3 ">
+                                <button type="submit" class="btn  btn-secondary" id="btnbusqueda"><i class="fa fa-search"></i></button>
+                                <button type="button" class="btn btn-success" id="btndescargar"><i class="fa fa-file-excel"></i></button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-xl-12">
+        <div class="card bcard h-auto mt-2">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table table-bordered collapsed" width="100%" id="tbllista">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="">ID</th>
+                            <th class=""></th>
+                            <th class="">CODIGO</th>
+                            <th class="">CODIGOBARRA</th>
+                            <th class="">NOMBRE</th>
+                            <th class="">LABORATORIO</th>
+                            <th class="">TIPO</th>
+                            <th class="">CLASE</th>
+                            @*<th>SUBCLASE</th>*@
+                            @*<th>UMA</th>*@
+                            @*<th>UMC</th>*@
+                            <th class="">PRESENTACIÓN</th>
+                            <th class="">PVFP</th>
+                            @*<th class="">STOCK_MATRIZ</th>
+                            <th class="">SALIDA_2MESES</th>*@
+
+                        </tr>
+                    </thead>
+                    <tbody class="pos-rel">
+                     
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+
+
+
+<partial name="modal/_ProveedoresDeProducto" />
+<script src="~/js/areas/almacen/producto/index.js"></script>
+
+

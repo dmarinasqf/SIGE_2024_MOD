@@ -1,0 +1,138 @@
+﻿<div class="row">
+    <!--SECCION DE CAMPOS CABECERA-->
+    <div class="col-xl-8 col-md-8 col-sm-12" id="seccionCabecera">
+        <div class="row ml-2 py-0 my-0">
+            <!--FILA1-->
+            <div class="col-xl-3 col-sm-3 py-0 my-0">
+                <div class="form-group">
+                    <label>MONTO CAJA CHICA</label>
+                    <input type="text" id="montoCajaChica" name="txtmontoCajaChica" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-3 py-0 my-0">
+                <div class="form-group">
+                    <label>SALDO ULTIMA REP.</label>
+                    <input type="text" id="saldoUltimaRep" name="txtsaldoUltimaRep" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-3 py-0 my-0">
+                <div class="form-group">
+                    <label>MONTO ULTIMA REP.</label>
+                    <input type="text" id="montoUltimaRep" name="montoUltimaRep" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-3 py-0 my-0">
+                <div class="form-group">
+                    <label>FECHA ULTIMA REP.</label>
+                    <input type="text" id="fechaUltimaRep" name="fechaUltimaRep" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+
+            <!--FILA2-->
+            <div class="col-xl-2 col-sm-2 py-0 my-0">
+                <div class="form-group">
+                    <label>MONTO DISP.</label>
+                    <input type="text" id="montoDisponible" name="txtmontoDisponible" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+            <div class="col-xl-2 col-sm-2 py-0 my-0">
+                <div class="form-group">
+                    <label>SALDO CAJA</label>
+                    <input type="text" id="saldoCaja" name="saldoCaja" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+            <div class="col-xl-2 col-sm-2 py-0 my-0">
+                <div class="form-group">
+                    <label>MONTO A REP.</label>
+                    <input type="text" id="montoReponer" name="montoReponer" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+            <div class="col-xl-2 col-sm-2 py-0 my-0">
+                <div class="form-group">
+                    <label>TOT. GASTOS</label>
+                    <input type="text" id="totalGastos" name="totalGastos" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+
+            <!--FILA3-->
+            @*<div class="col-xl-3 col-sm-3 py-0 my-0">
+                    <div class="form-group">
+                        <label>STATUS</label>
+                        <input type="text" id="txtestado" name="txtestado" value=""
+                               class="form-control form-control-sm" disabled>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-3 py-0 my-0">
+                    <div class="form-group">
+                        <label>VALIDACIÓN SAV</label>
+                        <input type="text" id="txtvalidacionSAV" name="txtvalidacionSAV" value=""
+                               class="form-control form-control-sm" disabled>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-3 py-0 my-0">
+                    <div class="form-group">
+                        <label>VALIDACIÓN CONT</label>
+                        <input type="text" id="txtvalidacionCont" name="txtvalidacionCont" value=""
+                               class="form-control form-control-sm" disabled>
+                    </div>
+                </div>*@
+            <div class="col-xl-4 col-sm-4 py-0 my-0">
+                <div class="form-group">
+                    <label>RESPONSABLE CAJA</label>
+                    <input type="text" id="responsable" name="responsable" value=""
+                           class="form-control form-control-sm" disabled>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <!--SECCION DE CONTROLES-->
+    <div class="col-xl-4 col-md-4 col-sm-4" id="seccionControles">
+        <div class="card ml-4 px-3">
+            <div class="row">
+                <div class="col-xl-12 col-sm-12">
+                    <input name="btnAgregarRendicion" class="btn btn-primary btn-block mt-2 mb-2" type="button"
+                           id="btnAgregarRendicion" value="AGREGAR RENDICIÓN">
+                    <button name="btnExportarExcel" class="btn btn-success btn-block mt-2 mb-2" type="button"
+                            id="btnExportarExcel" onclick="ExportarRendicionExcel('@ViewBag.idSucursalResp')">
+                        <i class="bi bi-file-earmark-excel-fill"></i>EXPORTAR EXCEL
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <!--DETALLE DE CAJA CHICA-->
+    <div class="col-xl-12 col-md-12 col-sm-12" id="contenedor_detalle">
+
+    </div>
+    <div style="width:100%">
+        <div id="pagination-container" style="float:right; margin-right:15px"></div>
+    </div>
+
+</div>
+
+
+<style>
+    .table td {
+        text-align: center;
+        padding: 0px;
+        height: 54px;
+        vertical-align: middle;
+    }
+
+    .table td img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>

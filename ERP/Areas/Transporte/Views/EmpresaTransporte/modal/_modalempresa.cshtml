@@ -1,0 +1,70 @@
+﻿<div class="modal fade" id="MRE_modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">REGISTRO DE EMPRESA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="row">
+                        <div class="col-lg-5 col-xs-12">
+                            <div class="body">
+                                <form method="post" autocomplete="off" id="MRE_form_empresa">
+                                    <input type="hidden" name="idempresa" value="" id="MRE_txtcodigo" />
+                                    <input type="hidden" value="nuevo" id="MRE_txtoperacion" disabled />
+                                    <label>RUC</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="MRE_txtruc" class="form-control form-control-sm" name="ruc" minlength="11" maxlength="11"  onkeypress="return justNumbers(event);" required>
+                                        </div>
+                                    </div>
+                                    <label>RAZÓN SOCIAL</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="MRE_txtrazonsocial" class="form-control form-control-sm mayusculas" onblur="fnmayusculas(this);" name="razonsocial" required>
+                                        </div>
+                                    </div>
+                                    <label>DIRECCIÓN FISCAL</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="MRE_txtdireccionfiscal" class="form-control form-control-sm mayusculas" onblur="fnmayusculas(this);" name="direccionfiscal">
+                                        </div>
+                                    </div>
+                                    <label>TELEFONO</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="text" id="MRE_txttelefono" class="form-control form-control-sm mayusculas" maxlength="10" name="telefono">
+                                        </div>
+                                    </div>
+                                    <label>EMAIL</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="email" id="MRE_txtemail" class="form-control form-control-sm mayusculas" onblur="fnmayusculas(this);" name="email">
+                                        </div>
+                                    </div>
+                                    <label>ESTADO</label>
+                                    <div class="form-group">
+                                        <div class="form-line ">
+                                            <select class="form-control form-control-sm show-tick" id="MRE_cmbestado" name="estado" required>
+                                                <option value="HABILITADO" selected>HABILITADO</option>
+                                                <option value="DESHABILITADO">DESHABILITADO</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-success btn-block" id="MRE_btnguardar" type="submit">GUARDAR DATOS</button>
+                                    <button class="btn btn-info btn-block " onclick="limpiar()" type="reset">LIMPIAR</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-xs-12">
+                            <partial name="complemento/_cmodallistarvehiculos" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

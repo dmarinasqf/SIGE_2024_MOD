@@ -1,0 +1,34 @@
+﻿<div class="modal fade" id="modaleditarpago" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+        <div class="modal-content ">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">EDITAR DATOS DE PAGO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body ">
+                <form autocomplete="off" id="formeditardatospago">
+                    <input type="hidden" name="idpago" value="" id="MED_txtxtidpago" />
+                    <input type="hidden" name="sistema" value="" id="MED_txtsistema" />
+                    <div class="form-group">
+                        <label>N° operación</label>
+                        <input type="text" id="MED_txtnumoperacion" name="numoperacion" class="form-control form-control-sm" onkeypress="return isNumberKey(event);" required />
+                    </div>
+                    <div class="form-group">
+                        <label>OBSERVACIÓN</label>
+                        <textarea type="text" id="MED_txtobservacion" name="observacion" class="form-control "></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-sm btn-success">GUARDAR</button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,80 @@
+﻿
+@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<link href="~/css/pagina/login.css" rel="stylesheet" />
+<script src="~/plantilla/modulos/jquery/dist/jquery.js"></script>
+
+<form id="account" method="post" autocomplete="off">
+    <div class="materialContainer">
+        <div class="box">
+
+            <div class="title">BIENVENIDO FARMACIAS QF</div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+         
+            <div class="row" style="padding-bottom:15px">
+                <div class="col-lg-12">
+                    <label for="">USUARIO</label>
+                    <input asp-for="Input.Email" class=" form-control"  required/>
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="row mt-1">
+                <div class="col-lg-12">
+                    <label for="">CONTRASEÑA</label>
+                    <input asp-for="Input.Password" class="form-control" required/>
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+            </div>
+
+            @*<div class="row mt-1">
+                <div class="col-lg-12">
+                    <label for="">EMPRESA</label>
+                    <select asp-for="Input.idempresa" class="form-control" id="cmbempresa" required>
+                        @foreach (var item in ViewData["empresas"] as List<ENTIDADES.Generales.Empresa>)
+                        {
+                            if (item.idempresa == 10001)
+                            {
+                                <option value="@item.idempresa" selected>@item.descripcion</option>
+                            }
+                            else
+                            {
+                                <option value="@item.idempresa">@item.descripcion</option>
+                            }
+                        }
+                    </select>
+                    <span asp-validation-for="Input.idempresa" class="text-danger"></span>
+                </div>
+
+            </div>*@
+            <div class="row mt-1">
+                <div class="col-lg-12">
+                    <label for="">SUCURSAL</label>
+                    <select asp-for="Input.idsucursal" class="form-control" id="cmbsucursal" required>
+                    </select>
+                    <span asp-validation-for="Input.idsucursal" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="button login">
+                <button type="submit" class="btn btn-success btn-block" style="font-size:14px; color:white"> INICIAR SESIÓN</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+<script src="~/js/site.js"></script>
+<script src="~/js/controller/main/PublicController.js"></script>
+<script src="~/js/areas/identity/login.js"></script>

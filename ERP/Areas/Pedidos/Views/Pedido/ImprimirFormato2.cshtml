@@ -1,0 +1,190 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ImprimirPedido</title>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <link href="~/css/pagina/impresiones/venta/ticket.css" rel="stylesheet" />
+    <script src="~/lib/otros/moment.min.js"></script>
+    <script src="~/js/site.js"></script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        td {
+            font-size: 12px;
+            font-family: Calibri;
+            font-weight: 500;
+            letter-spacing: -0.3px
+        }
+
+        #tbltbodydetalleimprecion tr td {
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        #tbldetalleimprecion thead tr th {
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        var pedido=@Html.Raw(JsonConvert.SerializeObject(ViewBag.pedido));
+    </script>
+    <div id="aplicacion" class="table-box">
+        <div class="row">
+            <table width="100%">
+                <tr>
+                    <td>N° PEDIDO:</td>
+                    <td>{{cabecera.codigopedido}}</td>
+                </tr>
+                <tr style="margin-top:15px;" v-if="cabecera.paciente!=''">
+                    <td>PACIENTE:</td>
+                    <td colspan="2">{{cabecera.paciente}}</td>
+                    <td>DOC: {{cabecera.docpaciente}}</td>
+                </tr>
+                <tr style="margin-top:15px;" v-if="cabecera.cliente!=''">
+                    <td>CLIENTE:</td>
+                    <td colspan="2">{{cabecera.cliente}}</td>
+                    <td>DOC: {{cabecera.doccliente}}</td>
+                </tr>
+                <tr style="margin-top:15px">
+                    <td>FECHA:</td>
+                    <td colspan="3">
+                        {{ cabecera.fecha }}
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+        <div class="row" style="margin-top:10px">
+            <table width="100%" id="tbldetalleimprecion">
+                <thead style="font-size:12px">
+                    <tr>
+                        <th>PRODUCTO</th>
+                        @*<th style="text-align:right">U.</th>
+                        <th style="text-align:right">P.U</th>
+                        <th style="text-align:right">IMP.</th>*@
+                    </tr>
+                </thead>
+                <tbody v-html="detallehtml">
+                </tbody>
+                @*<tfoot>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">Total</td>
+                        <td style="text-align:right">{{cabecera.total}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">Adelanto</td>
+                        <td style="text-align:right">{{cabecera.adelanto}}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="2">Saldo</td>
+                        <td style="text-align:right">{{cabecera.saldo}}</td>
+                    </tr>
+                </tfoot>*@
+
+            </table>
+            <hr style="margin-top:10px" />
+
+        </div>
+
+        <table width="100%">
+            <tr>
+                <td colspan="4" style="text-align:center; font-size:10px">
+                    ESTE COMPROBANTE NO TIENE VALOR FISCAL
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;font-size:10px">
+                    7 días como máximo para recoger su fórmula
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="text-align:center;font-size:10px">
+                    @DateTime.Now
+                </td>
+            </tr>
+        </table>
+        <div v-if="delivery!='x'">
+            <table border="0" class="tbl1" style="margin-top:10px" id="tblenvio">
+                <tr>
+                    <td colspan="2">TIPO DE ENTREGA:</td>
+                    <td colspan="2">{{delivery.tipoentrega}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">TIPO PAGO:</td>
+                    <td colspan="2">{{delivery.tipopago}}</td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">FECHA DE ENTREGA:</td>
+                    <td colspan="2">{{delivery.fechaentrega}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">HORA DE ENTREGA:</td>
+                    <td colspan="2">{{delivery.horaentrega}}</td>
+                </tr>
+            </table>
+            <table border="0" class="tbl1" style="margin-top:10px" v-if="delivery.tipoentrega=='DELIVERY'">
+
+                <tr>
+                    <td colspan="4" style="text-align:center">DATOS DE ENVIO</td>
+                </tr>
+                <tr>
+                    <td>DEPARTAMENTO:</td>
+                    <td>{{delivery.departamento}}</td>
+
+                </tr>
+                <tr>
+                    <td>PROVINCIA:</td>
+                    <td>{{delivery.provincia}}</td>
+                </tr>
+                <tr>
+                    <td>DISTRITO:</td>
+                    <td>{{delivery.distrito}}</td>
+                </tr>
+                <tr>
+                    <td>DIRECCION:</td>
+                    <td colspan="3">{{delivery.direcciondeenvio}}</td>
+                </tr>
+                <tr>
+                    <td>CALLE:</td>
+                    <td colspan="3">{{delivery.calle}}</td>
+
+                </tr>
+                <tr>
+                    <td>NUMERO:</td>
+                    <td colspan="3">{{delivery.numero}}</td>
+                </tr>
+
+                <tr>
+                    <td>REFERENCIA 1:</td>
+                    <td colspan="3">{{delivery.referencia1}}</td>
+                </tr>
+                <tr>
+                    <td>REFERENCIA 2:</td>
+                    <td colspan="3">{{delivery.referencia2}}</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+
+    <script src="~/js/areas/pedidos/pedidos/listar/imprimirformato2.js"></script>
+</body>
+</html>

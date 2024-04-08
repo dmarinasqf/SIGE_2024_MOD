@@ -1,0 +1,372 @@
+﻿
+<style type="text/css">
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+/*
+    input[type=number] {
+        -moz-appearance: textfield;
+    }*/
+</style>
+
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalprecioutilidad" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl-1400 modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <div class="form-inline">
+                    <h6 class="modal-title" id="exampleModalLabel">PRECIO - UTILIDAD</h6>
+
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-12 col-sm-12">
+                                <div class="row mb-3">
+                                    <div class="col-xl-7 col-sm-12">
+                                        <div class="form-group row">
+                                            <div class="col-xl-2 col-sm-12">
+                                                <label>ARTICULO</label>
+                                            </div>
+                                            <div class="col-xl-3 col-sm-4">
+                                                <input type="text" class="form-control form-control-sm" id="MPU_txtcodproducto" readonly />
+                                                <input type="hidden" id="MPU_txtidproducto" />
+
+                                            </div>
+                                            <div class="col-xl-6 col-sm-8">
+                                                <input type="text" class="form-control form-control-sm" id="MPU_txtnombreproducto" readonly />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-5 col-sm-12">
+                                        <div class="row">
+                                            <div class="col-xl-6 col-sm-6">
+                                                <button class="btn  btn-secondary" id="MPU_btndatosiniciales">DATOS <br /> INICIALES</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="col-xl-6 col-sm-12 border">
+                                <span class="bg-blue-grey p-1">DATOS ANTERIORES</span>
+                                <div class="row text-center">
+                                    <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>VVF</label>
+                                            <input type="number" id="MPU_txtvvfanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>PVF</label>
+                                            <input type="number" id="MPU_txtpvfanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>PVP</label>
+                                            <input type="number" id="MPU_txtpvpanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>PVPx</label>
+                                            <input type="number" id="MPU_txtpvpxanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>PVPx Blist.</label>
+                                            <input type="number" id="MPU_txtpvpxblistanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>PVPx Fracc.</label>
+                                            <input type="number" id="MPU_txtpvpxfraccanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>%D1</label>
+                                            <input type="number" id="MPU_txtd1anterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>%D2</label>
+                                            <input type="number" id="MPU_txtd2anterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>%D3</label>
+                                            <input type="number" id="MPU_txtd3anterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>Pronto Pago</label>
+                                            <input type="number" id="MPU_txtprontopagoanterior" class="form-control form-control-sm" disabled/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row text-center">
+
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>Bonif</label>
+                                            <input type="number" id="MPU_txtbonifanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>Prorroteo</label>
+                                            <input type="number" id="MPU_txtprorroteoanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row text-center">
+                                    <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>Utilidad %</label>
+                                            <input type="number" id="MPU_txtutilidadanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>Costo Fact</label>
+                                            <input type="number" id="MPU_txtcostofactanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+                                    <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                        <div class="form-group">
+                                            <label>Costo</label>
+                                            <input type="number" id="MPU_txtcostoanterior" class="form-control form-control-sm" disabled />
+                                        </div>
+                                    </div>
+
+                                    @*<div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Promedio</label>
+                                                <input type="number" id="MPU_txtpromedioanterior" class="form-control form-control-sm" disabled />
+                                            </div>
+                                        </div>*@
+
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-sm-12 border">
+                                <span class="bg-blue-grey p-1">NUEVA COMPRA</span>
+                                <form autocomplete="off" id="MPU_form_nuevacompra">
+                                    <div class="row text-center">
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>VVF</label>
+                                                <input type="number" id="MPU_txtvvf" name="vvf" class="form-control form-control-sm text-center" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>PVF</label>
+                                                <input type="number" id="MPU_txtpvf" name="pvf" class="form-control form-control-sm text-center" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Cant. Ing.</label>
+                                                <input type="number" id="MPU_txtcantidadIngresada" name="cantidadIngresada" class="form-control form-control-sm text-center" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Cant. Dev.</label>
+                                                <input type="number" id="MPU_txtcantidadDevuelta" name="cantidadDevuelta" class="form-control form-control-sm text-center" readonly />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Subtotal</label>
+                                                <input type="number" id="MPU_txtsubtotal" name="subtotal" class="form-control form-control-sm text-center" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Total</label>
+                                                <input type="number" id="MPU_txttotal" name="total" class="form-control form-control-sm text-center" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>%D1</label>
+                                                <input type="number" id="MPU_txtd1" name="des1" costoinicial="" class="form-control form-control-sm text-center" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>%D2</label>
+                                                <input type="number" id="MPU_txtd2" name="des2" class="form-control form-control-sm text-center"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>%D3</label>
+                                                <input type="number" id="MPU_txtd3" name="des3" class="form-control form-control-sm text-center" />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Pronto Pago</label>
+                                                <input type="number" id="MPU_txtprontopago" class="form-control form-control-sm text-center" readonly/>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Bonif Cant.</label>
+                                                <input type="number" id="MPU_txtbonif" name="bonificacion" class="form-control form-control-sm text-center" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Bonif Costo</label>
+                                                <input type="number" id="MPU_txtbonifcosto" class="form-control form-control-sm" disabled />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Prorrateo</label>
+                                                <input type="number" id="MPU_txtprorrateo" class="form-control form-control-sm text-center" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Costo Fact</label>
+                                                <input type="number" id="MPU_txtcostofact" name="costofactura" costoinicial="" class="form-control form-control-sm text-center" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>Costo</label>
+                                                <input type="number" id="MPU_txtcosto" name="costo" costoinicial="" class="form-control form-control-sm text-center"  />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4" id="MPU_contenedorCostoCamb" hidden>
+                                            <div class="form-group">
+                                                <label>Costo Camb.</label>
+                                                <input type="number" id="MPU_txtcostocamb" class="form-control form-control-sm text-center" readonly/>
+                                            </div>
+                                        </div>
+
+                                        @*<div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                                <div class="form-group">
+                                                    <label>Promedio</label>
+                                                    <input type="number" id="MPU_txtpromedio" class="form-control form-control-sm text-center" readonly />
+                                                </div>
+                                            </div>*@
+                                        <div class="col-xl-2  col-md-2 col-sm-3 col-xs-4">
+                                            <div class="form-group">
+                                                <label>PVP</label>
+                                                <input type="number" id="MPU_txtpvp" class="form-control form-control-sm text-center" readonly />
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4 offset-2" id="MPU_contenedorMoneda">
+                                            <div class="form-group">
+                                                <label>MONEDA</label>
+                                                <select id="MPU_txtidmoneda" name="idmoneda" class="form-control form-control-sm">
+                                                    <option value="100000">SOL</option>
+                                                    <option value="100001">DOLAR</option>
+                                                    <option value="100002">EURO</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-2 col-md-2 col-sm-3 col-xs-4" id="MPU_contenedorCambio">
+                                            <div class="form-group">
+                                                <label>CAMBIO</label>
+                                                <input type="number" id="MPU_txtcambio" name="cambio" class="form-control form-control-sm text-center"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+
+
+
+
+
+
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="card bcard h-auto">
+                                    <div class="border-t-3 brc-blue-m2 table-responsive contenedor-sticky-200 mt-2">
+                                        <table class="table table-sm table-bordered" width="100%" >
+                                            <thead class="">
+                                                <tr>
+                                                    <th class="header-sticky" style="width:10%">COD</th>
+                                                    <th class="header-sticky" style="width:20%">LISTA DE PRECIOS</th>
+                                                    @*<th class="header-sticky"style="width:10%">%DESC</th>*@
+                                                    <th class="header-sticky" style="width:10%">%UTIL</th>
+                                                    <th class="header-sticky" style="width:10%">PVPx</th>
+                                                    @*<th class="header-sticky" style="width:1%">F</th>
+                                                        <th class="header-sticky">%DESC</th>
+                                                        <th class="header-sticky">%UTILu</th>*@
+                                                    <th class="header-sticky" style="width:10%">PVPu</th>
+                                                    <th class="header-sticky" style="width:10%">PVPb</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="MPU_tblprecios"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="row  justify-content-end">
+                            <div class="col-xl-2 col-sm-4">
+                                <button class="btn btn-success" id="MPU_btnconservarcambios">CONSERVAR CAMBIOS</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/areas/compras/aprobarfactura/modal/modalpprecioutilidad.js"></script>
+<script src="~/js/modelos/comercial/PreciosProducto.js"></script>
+
+
+

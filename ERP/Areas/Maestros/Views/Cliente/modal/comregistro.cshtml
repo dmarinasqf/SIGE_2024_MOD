@@ -1,0 +1,170 @@
+﻿<form  autocomplete="off" id="MCC_formregistro" >
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <input type="hidden" id="MCC_txtcodigo" name="idcliente" />
+                @*<div class="col-xl-2 col-sm-6">
+            <div class="form-group ">
+                <label>TIPO </label>
+                <select id="MCC_cmbtipocliente" class="form-control form-control-sm" required name="tipocliente">
+                    <option value="PACIENTE">PACIENTE</option>
+                    <option value="CLIENTE">CLIENTE</option>
+                </select>
+            </div>
+        </div>*@
+                <div class="col-xl-2 col-sm-6">
+                    <div class="form-group ">
+                        <label>TIPO DE DOCUMENTO</label>
+                        <select id="MCC_cmbtipodoc" class="form-control form-control-sm" required name="iddocumento"></select>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="form-group ">
+                        <label>N°DOCUMENTO</label>
+                        <input id="MCC_txtnumdocumento" type="text" onkeypress="return justNumbers(event);" class="form-control form-control-sm" required name="nroDocumento"  maxlength="8">
+                        <span class="text-info font-9">[ENTER] para buscar en SUNAT O RENIEC</span>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-sm-12">
+                    <div class="form-group ">
+                        <label id="MCC_lblnombre">NOMBRES/RAZON SOCIAL</label>
+                        <input id="MCC_txtnombres" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" required name="descripcion" >
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 divpaciente">
+                    <div class="form-group ">
+                        <label>APELLIDO PATERNO</label>
+                        <input id="MCC_txtapepaterno" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" required name="apepaterno" >
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 divpaciente">
+                    <div class="form-group ">
+                        <label>APELLIDO MATERNO</label>
+                        <input id="MCC_txtapematerno" type="text" onkeypress="return isLetrasKey(event);" class="form-control form-control-sm mayusculas" required name="apematerno" >
+                    </div>
+                </div>
+                @*<div class="col-xl-3 col-sm-6 divpaciente">
+            <div class="form-group ">
+                <label>SEXO</label>
+                <select class="form-control form-control-sm" id="MCC_cmbsexo" name="sexo">
+                    <option value=""></option>
+                    <option value="M">MASCULINO</option>
+                    <option value="F">FEMENINO</option>
+                </select>
+            </div>
+        </div>*@
+                <div class="col-xl-3 col-sm-6 ">
+            <div class="form-group ">
+                <label>FECHA NACIMIENTO</label>
+                <input id="MCC_txtfechanacimiento" type="date" class="form-control form-control-sm" name="fechanacimiento" />
+            </div>
+        </div>
+                <div class="col-xl-3 col-sm-6">
+                    <div class="form-group ">
+                        <label>EMAIL</label>
+                        <input id="MCC_txtemail" type="text" class="form-control form-control-sm"  name="email" >
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-4">
+                    <div class="form-group ">
+                        <label>TELÉFONO</label>
+                        <input id="MCC_txttelefono" type="number" maxlength="8" class="form-control form-control-sm"  name="telefono" >
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-4">
+
+                    <div class="form-group ">
+                        <label>CELULAR 1</label>
+                        <input id="MCC_txtcelular" type="number" maxlength="11" class="form-control form-control-sm" required name="celular">
+                    </div>
+
+                </div>
+                @*<div class="col-xl-3 col-sm-4">
+
+            <div class="form-group ">
+                <label>CELULAR 2</label>
+                <input id="MCC_txtcelular2" type="number" maxlength="11" class="form-control form-control-sm" name="celular2">
+            </div>
+
+        </div>*@
+                <div class="col-xl-3 col-sm-4">
+                    <div class="form-group ">
+                        <label>DEPARTAMENTO </label>
+                        <select class="form-control form-control-sm cmbdepartamento" id="MCC_cmbdepartamento"  name="iddepartamento">
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-4">
+                    <div class="form-group ">
+                        <label>PROVINCIA </label>
+                        <select class="form-control form-control-sm" id="MCC_cmbprovincia"  name="idprovincia">
+                        </select>
+
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-4">
+                    <div class="form-group ">
+                        <label>DISTRITO </label>
+                        <select class="form-control form-control-sm" id="MCC_cmbdistrito"  name="iddistrito">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-sm-8"></div>
+                <div class="col-xl-6 col-sm-12">
+                    <div class="form-group ">
+                        <label>DIRECCIÓN</label>
+                        <textarea id="MCC_txtdireccion" type="text" class="form-control form-control-sm" rows="2"  name="direccion"></textarea>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-12">
+                    <div class="form-group ">
+                        <label>DIRECCION ENTREGA</label>
+                        <textarea id="MCC_txtreferencia" type="text" class="form-control form-control-sm mayusculas" rows="2"  name="direccionentrega"></textarea>
+                    </div>
+                </div>
+                @if (Convert.ToInt32(ViewBag.IDEMPRESA) > 1999 && Convert.ToInt32(ViewBag.IDEMPRESA) < 3000)
+                {
+                    <div class="col-xl-3 col-sm-4">
+                        <div class="form-group ">
+                            <label>TIPO CLIENTE</label>
+                            <select name="idtipocliente" id="MCC_cmbtipocliente" class="form-control form-control-sm">
+                            </select>
+                        </div>
+                    </div>
+                }
+                @*<div class="col-xl-3 col-sm-4">
+            <div class="form-group ">
+                <label>ES EMPLEADO</label>
+                <input name="isempleado" type="checkbox" id="MCC_chekisempleado" style="height:20px;width:20px" />
+            </div>
+        </div>
+        <div class="col-xl-3 col-sm-8 ocultar" id="MCC_divarea">
+            <div class="form-group ">
+                <label>AREA</label>
+                <select class="form-control form-control-sm " id="MCC_cmbarea" name="idgrupo">
+                </select>
+            </div>
+        </div>*@
+
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-sm-3">
+                    <button type="reset" class="btn btn-primary btn-block" id="MCC_btnlimpiar">LIMPIAR</button>
+                </div>
+                <div class="col-xl-3 col-sm-3">
+                    <button type="submit" class="btn btn-success  btn-block" id="MCC_btnguardar">GUARDAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  
+</form>
+<script src="~/js/controller/Utils/ApiController.js"></script>
+<script src="~/js/controller/maestros/TipoClienteController.js"></script>
+<script src="~/js/areas/maestros/cliente/comregistro.js"></script>
+

@@ -1,0 +1,174 @@
+﻿@*EARTCOD1008*@
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+@*<partial name="~/Areas/Comercial/Views/Descuento/modal/_modaldescuentocliente.cshtml" />*@
+<partial name="~/Areas/Comercial/Views/Descuento/modal/_modaldescuentopersonallistar.cshtml" />
+<partial name="~/Areas/Comercial/Views/Descuento/modal/_modaldescuentoclientesucursal.cshtml" />
+<partial name="~/Areas/Maestros/Views/Cliente/modal/modalbusquedayregistrocliente.cshtml" />
+
+
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                DESCUENTO ESPECIAL PARA CLIENTE
+            </h1>
+        </div>
+    </div>
+</div>
+<hr />
+
+
+<form autocomplete="off" id="MCD_formregistro">
+    <div class="card">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-xl-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-xl-2 col-sm-2 mb-2">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="MCDP_radio" id="MCDP_crunico" checked>
+                                <label class="custom-control-label pt-1" for="MCDP_crunico">ÚNICO</label>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-sm-2 mb-2">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" name="MCDP_radio" id="MCDP_crmasivo">
+                                <label class="custom-control-label pt-1" for="MCDP_crmasivo">MASIVO</label>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-sm-8"></div>
+                        <div class="col-xl-12 col-sm-12">
+                            <div class="form-group ">
+                                <label>NOMBRE DESCUENTO</label>
+                                <input id="MCD_txtnombredescuento" class="form-control form-control-sm" name="nombredescuento" />
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-6" id="MCDP_contenedor_unico_1">
+                            <div class="form-group ">
+                                <input type="hidden" id="MCD_txtiddescuentocliente" name="iddescuentocliente" />
+                                <label>TIPO DE DOCUMENTO</label>
+                                <select id="MCD_cmbtipodoc" class="form-control form-control-sm" name="iddocumentos"></select>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-6" id="MCDP_contenedor_unico_2">
+                            <div class="form-group ">
+                                <label>N°DOCUMENTO</label>
+                                <input id="MCD_txtnumdocumento" type="text" class="form-control form-control-sm" name="nroDocumento" maxlength="8">
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-sm-12" id="MCDP_contenedor_unico_3">
+                            <div class="form-group ">
+                                <input type="hidden" id="MCD_txtiddescuentoclientedetalle" name="iddescuentoclientedetalle" />
+                                <input type="hidden" id="MCD_txtidcliente" name="idcliente" />
+                                <label id="MCD_lblnombre">NOMBRE</label>
+                                <input id="MCD_txtnombre" type="text" class="form-control form-control-sm mayusculas" name="descripcion" readonly>
+                            </div>
+                        </div>
+                        <div class="col-xl-12 col-sm-12" id="MCDP_contenedor_masivo_1" hidden>
+                            <table class="table" id="MCDP_tabla_clientes">
+                                <thead class="bg-primary text-light">
+                                    <tr>
+                                        <th class="py-2">N° DOCUMENTO</th>
+                                        <th class="py-2">CLIENTE</th>
+                                        <th class="py-2 text-center">
+                                            <button type="button" class="btn btn-dark" id="MCDP_btnTodos">TODOS</button>
+                                            <button type="button" class="btn btn-dark" id="MCDP_btnAgregarCliente"><i class="fa fa-plus"></i></button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-xl-4 col-sm-4 ">
+                            <div class="form-group ">
+                                <label id="MCD_lbldescuento">DESCUENTO %</label>
+                                <input id="MCD_txtdescuento" type="text" class="form-control form-control-sm mayusculas" required name="descripcion" maxlength="2" pattern="[0-9]+$">
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <div class="form-group">
+                                <label>FECHA INICIO</label>
+                                <input class="form-control form-control-sm date_fecha" id="MCD_txtfechaInicio" name="date_fecha"
+                                       placeholder="DD/MM/YYYY" type="text" required readonly />
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-sm-4 py-0 my-0">
+                            <div class="form-group">
+                                <label>FECHA TERMINO</label>
+                                <input class="form-control form-control-sm date_fecha" id="MCD_txtfechaTermino" name="date_fecha"
+                                       placeholder="DD/MM/YYYY" type="text" required readonly />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xl-6 col-sm-6">
+                    <div class="row">
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="card">
+                                <label class="mx-1 py-0 my-0 pt-1">TIPOS DE PRODUCTOS</label>
+                                <div id="contenedor_DP_tabla_productos_tipos">
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-sm-6">
+                            <div class="card">
+                                <label class="mx-1 py-0 my-0 pt-1">CANALES DE VENTAS</label>
+                                <div id="contenedor_DP_tabla_canal_ventas">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="row justify-content-center">
+                <div class="col-xl-3 col-sm-3">
+                    <button type="button" class="btn btn-danger btn-block" id="MCDP_btnsucursales">SUCURSALES</button>
+                </div>
+                <div class="col-xl-3 col-sm-3">
+                    <button type="button" class="btn btn-warning btn-block" id="MCD_btnhistorial">HISTORIAL</button>
+                </div>
+                <div class="col-xl-3 col-sm-3">
+                    <button type="button" class="btn btn-primary btn-block" id="MCD_btnlimpiar">LIMPIAR</button>
+                </div>
+                <div class="col-xl-3 col-sm-3">
+                    <button type="submit" class="btn btn-success  btn-block" id="MCC_btnguardar">GUARDAR</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<style>
+    .sorting_disabled {
+        width: auto;
+    }
+    #MCDP_tabla_clientes tbody tr td {
+        padding: 0px;
+    }
+</style>
+@*<div class="col-xl-12 col-md-12 col-sm-12">
+        <div class="col-xl-12 col-md-12 col-sm-12" id="contenedor_detalle">
+        </div>
+        <div style="width:100%">
+            <div id="pagination-container" style="float:right; margin-right:15px"></div>
+        </div>
+    </div>*@
+
+
+<script src="~/js/areas/comercial/descuentos/descuentopersonal.js"></script>
+@*<script src="~/js/controller/Utils/ApiController.js"></script>*@
+<script src="~/js/controller/comercial/DescuentoController.js"></script>
+<script src="~/js/controller/comercial/ListaPreciosController.js"></script>

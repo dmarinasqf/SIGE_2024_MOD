@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Index";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+
+
+<script src="~/js/areas/contabilidad/RendicionCajaChica/funciones_interaccion.js"></script>
+<script src="~/js/areas/contabilidad/RendicionCajaChica/funciones_ajax.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.5.3/bootbox.min.js" integrity="sha512-U3Q2T60uOxOgtAmm9VEtC3SKGt9ucRbvZ+U3ac/wtvNC+K21Id2dNHzRUC7Z4Rs6dzqgXKr+pCRxx5CyOsnUzg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+
+
+<div>
+    <row>
+        <h6 class="text-primary">FORMATO DE RENDICION DE CAJA CHICA</h6>
+        <hr class="text-primary mt-1 pt-0" />
+    </row>
+</div>
+
+<div>
+    <partial name="~/Areas/Contabilidad/Views/RendicionCajaChica/Modal/_ModalImagenPrevia.cshtml" />
+    <partial name="~/Areas/Contabilidad/Views/RendicionCajaChica/Modal/_ModalAgregarRendicion.cshtml" />
+    <partial name="~/Areas/Contabilidad/Views/RendicionCajaChica/Shared/_RendicionCajaChica.cshtml" />
+</div>
+
+<script type="text/javascript">
+    var idSurcursalResp = $('#idSucursalResp').val();
+    $('#btnAgregarRendicion').click(function () {
+        $('#modalRendicionCaja').modal('show');
+        $("#imgPreview").attr("src", icono_upload_file);
+        $("#imgFile").val(null);
+    });
+    $(document).ready(function () {
+        consultarFichaRendicion(idSurcursalResp);
+    });
+</script>

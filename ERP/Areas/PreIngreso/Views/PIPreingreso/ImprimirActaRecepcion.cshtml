@@ -1,0 +1,98 @@
+﻿@using Newtonsoft.Json;
+@model System.Data.DataTable
+
+
+<script src="~/lib/vue/axios/axios.min.js"></script>
+<script src="~/lib/vue/vue.min.js"></script>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="~/css/pagina/colores.css" rel="stylesheet" />
+
+
+<script>
+    var data =@Html.Raw(JsonConvert.SerializeObject(Model)) ;
+    
+</script>
+
+<style>
+    body {
+        padding: 10px;
+        margin: 10px;      
+    }
+    table {
+        font-size: 12px
+    }
+</style>
+<body >
+    <div id="aplicacion">
+        <table width="100%" border="1">
+            <thead>
+                <tr>
+                    <th colspan="3">N° Acta</th>
+                    <th id="threcepcion" colspan="3" class="text-center">Recepción </th>
+                </tr>
+                <tr>
+                    <th colspan="3">Proveedor : {{cabecera.proveedor}}</th>
+                    <th colspan="3" rowspan="2">Fecha {{factura.fechacreacion}}</th>
+                    <th id="thcondicionemb" rowspan="2">Condición de embalaje y almacenamiento</th>
+                </tr>
+                <tr>
+                    <th colspan="3">N°Documento - Fecha :  {{factura.serie}}-{{factura.numdoc}} - {{factura.fecha}}</th>                   
+                </tr>
+                <tr id="headertabledetalle">
+                    <th>N°</th>
+                    <th>Producto</th>
+                    <th>Laboratorio</th>
+                    <th >lote</th>
+                    <th>Fv</th>
+                    <th>Uni</th>
+                </tr>
+            </thead>
+            <tbody v-html="detallehtml"></tbody>
+        </table>
+        <div class="row">
+            <div class="col-xl-12">
+                <label>OBSERVACIONES</label>
+                <table width="100%" border="1">
+                    <tr>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>-</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xl-12 mt-5">
+                <table width="100%" class="text-center">
+                    <tr>
+                        <td>_____________________________</td>
+                        <td>_____________________________</td>
+                    </tr>
+                    <tr>
+                        <td>Responsable recepción</td>
+                        <td>Responsable evaluación</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-xl-12 mt-5">
+                <table width="100%" >
+                    <thead class="text-center">
+                        <tr>
+                            <th>LEYENDA</th>
+                        </tr>
+                    </thead>
+                    <tbody v-html="leyendaembalaje" class="text-left">
+
+                    </tbody>
+                   
+                </table>
+            </div>
+        </div>
+       
+    </div>
+    
+
+</body>
+<script src="~/js/site.js"></script>
+<script src="~/js/areas/preingreso/preingreso/actarecepcion.js"></script>

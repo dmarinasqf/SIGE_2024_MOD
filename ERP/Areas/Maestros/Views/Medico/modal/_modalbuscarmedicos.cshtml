@@ -1,0 +1,62 @@
+﻿
+<div class="modal fade" id="modalmedico" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title" id="exampleModalLabel">BUSCAR MÉDICOS</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Tipo Colegio</span>                                       
+                                    </div>
+                                    <select class="form-control " id="MMcmbtipodocmedico">
+                                    </select>
+                                </div>                               
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                               
+                                    <input type="text" id="MMtxtfiltro" class="form-control " placeholder="Ingresar nombres o numero de colegio"/>
+                           
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-12 contenedor-sticky-450">
+                                <table class="table table-bordered table-sm table-hover " id="MMtblmedicos" width="100%">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th class="header-sticky"></th>
+                                            <th class="header-sticky">COLEGIO</th>
+                                            <th class="header-sticky">NUMERO</th>
+                                            <th class="header-sticky">NOMBRES</th>
+                                            <th class="header-sticky">ESPECIALIDAD</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="MMtbodymedicos"></tbody>
+                                </table>
+                                
+                            </div>
+                            <div class="col-xl-12 mt-2">
+                                <div id="MMpaginacion">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                         
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/areas/maestros/medico/modal/modalbuscarmedicos.js"></script>

@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewData["Title"] = "ReporteVentas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link href="~/plantilla/modulos/bootstrap-duallistbox/dist/bootstrap-duallistbox.min.css" rel="stylesheet" />
+<script src="~/plantilla/modulos/bootstrap-duallistbox/dist/jquery.bootstrap-duallistbox.min.js"></script>
+
+<link href="~/plantilla/modulos/select2/dist/css/select2.css" rel="stylesheet" />
+<script src="~/plantilla/modulos/select2/dist/js/select2.min.js"></script>
+<div class="row">
+    <div class="col-xl-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                REGISTRO DE VENTAS
+            </h1>
+        </div>
+    </div>
+</div>
+<hr />
+<div class="card">
+    <div class="card-body">
+        <div class="row justify-content-center">
+            <div class="col-xl-6 col-md-6   ">
+
+                @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("ACCESO A TODAS LAS SUCURSALES"))
+                {
+                    <div class="card">
+                        <div class="card-body">
+                            <select id='cmbsucursales' size="10" name="cmbsucursales[]" multiple='multiple'>
+                            </select>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-xl-6 col-md-6">
+                <div class="row">
+                    <div class="col-xl-6 col-md-6 ">
+                        <div class="form-group">
+                            <label>Tipo</label>
+                            <select id="cmbtipoplantilla" class="form-control form-control-sm">
+                                <option value="plantilla1" selected>Plantilla 1</option>
+                                <option value="plantilla2">Plantilla 2</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-12 col-md-12 ">
+                        <div class="form-group">
+                            <label>Tipo de documento</label>
+                            <select id="cmbtipodocumento" multiple class="form-control form-control-sm">
+                            </select>
+                        </div>
+
+                    </div>
+                    <div class="col-xl-6 col-md-6 ">
+                        <div class="form-group">
+                            <label>Fecha inicio</label>
+                            <input class="form-control form-control-sm" type="date" id="txtfechainicio" />
+                        </div>
+
+                    </div>
+                    <div class="col-xl-6 col-md-6">
+                        <div class="form-group">
+                            <label>Fecha fin</label>
+                            <input class="form-control form-control-sm" type="date" id="txtfechafin" />
+                        </div>
+
+                    </div>
+                    <div class="col-xl-12 col-md-12">
+
+                        <div class="form-group">
+                            <label>CLIENTE</label>
+                            <input type="text" id="txtcliente" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-xl-6  mt-4 text-center">
+                        <button class="btn btn-dark"  id="btnconsultar">
+                            <i class="fas fa-search ml-2 mr-2"></i> Consultar
+                        </button>
+                    </div>
+                    <div class="col-xl-6  mt-4  text-center">
+                        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel  ml-2 mr-2"></i>Descargar</button>
+                    </div>
+                    <div class="col-xl-6  mt-4 text-center">
+                        <img src="~/imagenes/reloj.gif" id="imgload" style="visibility:hidden;width:25%"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="card bcard h-auto mt-2">
+            <div class="border-t-3 brc-blue-m2 table-responsive " id="contenedor">
+                <table class="table">
+                    <tr>
+                        <td></td>
+                    </tr>
+                </table>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<partial name="~/Areas/Maestros/Views/Cliente/modal/modalbusquedayregistrocliente.cshtml" />
+<script src="~/js/controller/ventas/ReporteVentasController.js"></script>
+<script src="~/js/areas/ventas/reporte/reporteventas.js"></script>

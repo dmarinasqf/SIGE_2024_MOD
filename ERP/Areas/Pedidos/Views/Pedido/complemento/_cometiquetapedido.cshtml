@@ -1,0 +1,55 @@
+﻿<div class="row" style="font-size:12px">
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-info">
+                PENDIENTES <span class="badge badge-light" id="lblnumpendientes" style="font-size:13px">0</span>
+            </button>
+            <button type="button" class="btn btn-warning" style="margin-left:1px">
+                EN PROCESO <span class="badge badge-light" id="lblnumenproceso" style="font-size:13px">0</span>
+            </button>
+            <button type="button" class="btn btn-dark" style="margin-left:1px">
+                TERMINADOS <span class="badge badge-light" id="lblnumterminados" style="font-size:13px">0</span>
+            </button>
+            <button type="button" class="btn btn-success" style="margin-left:1px">
+                ENTREGADOS <span class="badge badge-light" id="lblnumentregados" style="font-size:13px">0</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 text-center" style="">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-danger">
+                DEVUELTOS <span class="badge badge-light" id="lblnumdevueltos" style="font-size:13px">0</span>
+            </button>
+            <button type="button" style="margin-left:2px" class="btn btn-danger">
+                DESCARGADO A LAB. <span class="badge badge-light" id="lblnumdevueltoslab" style="font-size:13px">0</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12 text-center">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-primary">
+                N° PEDIDOS <span class="badge badge-light" id="lblnumpedidos" style="font-size:13px">0</span>
+            </button>
+            <button type="button" style="margin-left:2px" class="btn btn-primary">
+                N° F. MAGISTRALES <span class="badge badge-light" id="lblnumformulas" style="font-size:13px">0</span>
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12 text-center">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+            <button type="button" class="btn btn-secondary" id="difBaja">
+                BAJA <span class="badge badge-light" id="lbldifBaja" style="font-size:13px">0</span>
+            </button>
+            <button type="button" style="margin-left:2px" class="btn btn-secondary" id="difMedia">
+                MEDIA <span class="badge badge-light" id="lbldifMedia" style="font-size:13px">0</span>
+            </button>
+            <button type="button" style="margin-left:2px" class="btn btn-secondary" id="difAlta">
+                ALTA <span class="badge badge-light"id="lbldifAlta" style="font-size:13px">0</span>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/pedidos/pedidos/complemento/cometiquetapedido.js"></script>
+<script src="~/js/areas/pedidos/pedidos/laboratorio/laboratorio.js"></script>
+<script src="~/js/areas/pedidos/pedidos/modal/modalverdificultadpedidos.js"></script>

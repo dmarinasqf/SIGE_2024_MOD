@@ -1,0 +1,170 @@
+﻿@model ENTIDADES.Almacen.AIngresoManual
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-md-12">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                <a asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-3"></i></a> REGISTRAR INGRESO MANUAL
+            </h1>
+        </div>
+    </div>
+
+</div>
+<hr />
+<form autocomplete="off" id="formregistro">
+
+    <input type="hidden" asp-for="idingreso" id="txtidingreso" />
+
+    <div class="row">
+        <div class="col-xl-3 col-sm-12 border">
+            <div class="form-group ">
+                <label>USUARIO</label>
+                <input type="text" id="txtusuario" class="form-control form-control-sm" value="@User.Identity.Name" disabled />
+            </div>
+            <div class="form-group ">
+                <label>EMPRESA</label>
+                <input type="text" id="txtnombreempresa" class="form-control form-control-sm" value="@ViewBag.EMPRESA" disabled />
+            </div>
+
+            <div class="form-group ">
+                <label>SUCURSAL</label>
+                <select class="form-control form-control-sm" asp-for="idsucursal" id="txtidsucursal" required></select>
+            </div>
+            <div class="form-group ">
+                <label>OBSERVACIÓN</label>
+                <textarea type="text" id="txtobservacion" asp-for="observacion" rows="3" class="text-uppercase form-control form-control-sm"></textarea>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    @if (Model == null)
+                    {
+                        <div class="col-xl-6 col-sm-3 mt-3">
+                            <button class="btn btn-success btn-block" type="submit" id="btnguardar"><i class="fas fa-save  mr-2 mb-1"></i>  GUARDAR [F1]</button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="col-xl-6 col-sm-3 mt-3">
+                            <button class="btn btn-success btn-block" type="submit" id="btnguardar" disabled><i class="fas fa-save  mr-2 mb-1"></i>  GUARDAR [F1]</button>
+                        </div>
+                    }
+
+                    <div class="col-xl-6 col-sm-3 mt-3">
+                        <button class="btn btn-outline-info btn-block" type="button" id="btnnuevo"><i class="fas fa-redo mr-2 mb-1"></i> NUEVO [F2]</button>
+                    </div>
+                    <div class="col-xl-6 col-sm-3 mt-3">
+                        <button class="btn btn-outline-dark btn-block ocultar" type="button" id="btnimprimir"> <i class="fas fa-print mr-2 mb-1"></i> IMPRIMIR [F3]</button>
+                    </div>
+                    @*<div class="col-xl-6 col-sm-3 mt-3">
+                            <button class="btn btn-outline-danger btn-block" type="button" id="btncancelar"><i class="fas fa-times-circle mr-2 mb-1"></i>  CANCELAR [F4]</button>
+                        </div>*@
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-xl-9 col-sm-12 border">
+            <span class="text-warning font-10">NOTA: solo se registrarán los productos con cantidad >=1</span>
+            <div class="row justify-content-end mt-4">
+                <div class="col-xl-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">ALMACEN</label>
+                        </div>
+                        <select id="cmbalmacen" class="form-control form-control-sm "></select>
+                    </div>
+                </div>
+                <div class="col-xl-4">
+                    <div class="input-group input-group-sm mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text">LAB.</label>
+                        </div>
+                        <select class="form-control form-control-sm" id="cmblaboratorio">
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-xl-2 col-sm-4  ">
+                    <button class="btn btn-sm btn-primary btn-block waves-effect" id="btnnuevoproducto" type="button"><i class="fas fa-plus mr-2"></i>NUEVO PRODUCTO</button>
+                </div>
+                <div class="col-xl-2 col-sm-4  ">
+                    <button class="btn btn-sm btn-primary btn-block waves-effect" id="btnactualizarstock" type="button"><i class="fas fa-plus mr-2"></i>STOCK EXISTENTE</button>
+                </div>
+
+            </div>
+            <div class="card bcard h-auto mt-2">
+                <div class="border-t-3 brc-blue-m2 table-responsive">
+                    <table class="table table-sm table-bordered collapsed" id="tbldetalle" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:2%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">#</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">COD</th>
+                                <th style="width:30%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">PRODUCTO</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">ALMACEN</th>
+                                <th style="width:5%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">CANTIDAD</th>
+                                <th style="width:2%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">F</th>
+                                @*<th style="width:2%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">B</th>*@
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">LOTE</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">FV</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">REGSA</th>
+                                <th style="width:5%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+
+
+<div class="modal fade" id="modalagregarproductoslab" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content border-none radius-0 border-t-4 brc-warning-m1 px-3">
+            <div class="modal-header py-2">
+                <i class="bgc-white fas fa-exclamation-circle mb-n4 mx-auto fa-3x text-info-m2"></i>
+            </div>
+
+            <div class="modal-body text-center">
+                <p class="text-orange-d3 text-130 mt-3">
+                    Agregar datos del laboratorio <label id="lblMlaboratorio"></label>
+                </p>
+
+                <p class="text-secondary-d1 text-105">
+                    Seleccione tipo de producto
+                </p>
+            </div>
+
+            <div class="modal-footer flex-nowrap bgc-white justify-content-between px-0 py-3">
+                <button type="button" id="btnMproductonuevo" class="btn px-4 px-2 px-md-4 btn-light-secondary btn-h-light-warning btn-a-light-danger" data-dismiss="modal">
+
+                    Producto Nuevo
+                </button>
+
+                <button type="button" id="btnMstockexistente" class="btn px-4 px-2 px-md-4 btn-light-secondary btn-h-light-success btn-a-light-success" data-dismiss="modal">
+                    Stock existente
+                </button>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="~/js/controller/almacen/IngresoController.js"></script>
+
+<script src="~/js/modelos/almacen/AIngresoManual.js"></script>
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductosconstock.cshtml" />
+<script src="~/js/areas/almacen/ingreso/registrar.js"></script>

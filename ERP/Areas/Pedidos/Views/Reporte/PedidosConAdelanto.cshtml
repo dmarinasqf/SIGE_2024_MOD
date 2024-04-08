@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "Pedidos Con Adelanto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="box box-success main-card card" style="margin-top:10px">
+
+    <div class="box-body card-body">
+        <div class="row">
+            <div class="col-xl-12">
+                <h3 class="text-center">REPORTE PEDIDOS POR ADELANTO</h3>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">SUCURSAL</label>
+                    </div>
+                    <select class="custom-select" id="cmbSucursal" style="width:285px" tipo="select">
+                        <option value="0" selected>[SELECCIONE]</option>
+                    </select>
+                </div>
+                <div class="input-group input-group-sm mb-1">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text">RANGO DE FECHA</label>
+                    </div>
+                    <input type="text" class="form-control" id="txtfecharango" autocomplete="off" />
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12 ">
+                <div class="form-group text-center">
+                    <button class="btn btn-outline-info " style="width:150px;margin-bottom:3px" id="btnConsultar" onclick="getReporteGeneral()">CONSULTAR</button>
+                    <a class="btn btn-outline-success " style="width:150px" id="btnExportar">EXPORTAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    table.dataTable.dataTable_width_auto {
+        width: auto;
+    }
+</style>
+<div class="main-card card mt-2">
+
+    <div class="card-body text-center">
+        <div class="row">
+            <div class="col-xl-12">
+                <button type="button" class="btn btn-primary">
+                    N° REGISTROS <span class="badge badge-light" id="numRegistros">0</span>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-12 table-responsive">
+                <table class="table  table-sm table-striped " id="tblReportes">
+                    <thead class="thead-dark" style="font-size:12px">
+                        <tr>
+                            <th>ID</th>
+                            <th>N° PEDIDO</th>
+                            <th>SUCURSAL</th>
+                            <th>DOCUMENTO</th>
+                            <th>PACIENTE</th>
+                            <th>FECHA</th>
+                            <th>#F.M.</th>
+                            <th>TOTAL</th>
+                            <th>ADELANTO</th>
+                            <th>SALDO</th>
+                            <th>USUARIO</th>
+                            <th>ESTADO</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size:12px"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="~/js/areas/pedidos/pedidos/reportes/conAdelanto.js"></script>

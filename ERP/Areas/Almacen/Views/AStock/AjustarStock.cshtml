@@ -1,0 +1,113 @@
+﻿@model ENTIDADES.Almacen.AStockLoteProducto
+@{
+    ViewData["Title"] = "AjustarStock";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-xl-8 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <h6>AJUSTE DE STOCK</h6>
+            </div>
+            <div class="card-body">
+                <h6 class="text-center">BUSCAR STOCK</h6>
+                <hr />
+                <div class="row justify-content-end">
+                    <div class="col-xl-4 col-md-4 col-sm-12">
+                        <label>SUCURSAL</label>
+                        <select class="form-control" id="cmbsucursal" ></select>
+                    </div>
+                    <div class="col-xl-7 col-md-7 col-sm-12">
+                        <label>PRODUCTO</label>
+                        <input type="hidden"  id="txtcodproducto" />
+                        <input type="text" class="form-control" id="txtproducto" placeholder="Seleccionar producto" data-toggle="tooltip" data-placement="top" title="Doble click para buscar" readonly/>
+                    </div>
+                    <div class="col-xl-1 col-md-1 col-sm-12 mt-4">
+                        <button class="btn btn-sm btn-dark btn-block" id="btnbuscar"><i class="fas fa-search"></i></button>                      
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-xl-12 contenedor-sticky-500 table-responsive">
+                        <table class="table table-sm table-bordered table-hover" width="100%">
+                            <thead class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm">
+                                <tr>
+                                    <th style="width:10%" class="header-sticky">Sucursal</th>
+                                    <th style="width:10%" class="header-sticky">Almacen</th>
+                                    <th style="width:30%" class="header-sticky">Producto</th>
+                                    <th style="width:15%" class="header-sticky">Laboratorio</th>
+                                    <th style="width:5%" class="header-sticky">Stock</th>
+                                    <th style="width:5%" class="header-sticky">Multiplo</th>
+                                    <th style="width:5%" class="header-sticky">Lote</th>
+                                    <th style="width:10%" class="header-sticky">FV</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodystock"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-4 col-sm-12">
+        <div class="card">
+         
+            <div class="card-body">
+                <h6 class="text-center">DATOS DE STOCK</h6>
+                <hr />
+                <div class="card-body">
+                    <form autocomplete="off" id="formregistro">
+                        <input type="hidden" asp-for="idstock" id="txtidstock"/>
+                        <input type="hidden" asp-for="idproducto" id="txtidproducto"/>
+                        <div class="row justify-content-center">
+                            <div class="col-xl-12">
+                                <label>PRODUCTO</label>
+                                <input type="text" id="txtproductoedit" class="form-control form-control-sm" disabled />
+                            </div>
+                            <div class="col-xl-12">
+                                <label>ALMACEN</label>
+                                <input type="text" id="txtalmacen" class="form-control form-control-sm" disabled />
+
+                            </div>
+                            <div class="col-xl-6 col-sm-12">
+                                <label>FECHA INGRESO</label>
+                                <input type="date" class="form-control form-control-sm" id="txtfechaingreso" disabled />
+                            </div>
+                            <div class="col-xl-6 col-sm-12">
+                                <label>FECHA VENCIMIENTO</label>
+                                <input type="date" class="form-control form-control-sm" id="txtfechavencimiento" disabled />
+                            </div>
+                            <div class="col-xl-6 col-sm-12">
+                                <label>LOTE</label>
+                                <input type="text" class="form-control form-control-sm" id="txtlote" disabled />
+                            </div>
+                            <div class="col-xl-6 col-sm-12">
+                                <label>REG SAN.</label>
+                                <input type="text" class="form-control form-control-sm" id="txtregsanitario" disabled />
+                            </div>
+                            <div class="col-xl-6 col-sm-12">
+                                <label>MULTIPLO</label>
+                                <input type="text" class="form-control form-control-sm" id="txtmultiplo" asp-for="multiplo" min="1" />
+                            </div>
+                            @*<div class="col-xl-6 col-sm-12">
+                                <label>MULTIPLO BLISTER</label>
+                                <input type="text" class="form-control form-control-sm" id="txtmultiploblister" asp-for="multiploblister" min="0" />
+                            </div>*@
+                            <div class="col-xl-6 col-sm-12">
+                                <label>CANTIDAD</label>
+                                <input type="number" class="form-control form-control-sm" id="txtcantidad" asp-for="candisponible" required />
+                            </div>
+                            <div class="col-xl-8 mt-4">
+                                <button class="btn btn-success btn-block" id="btneditar"type="submit">GUARDAR</button>
+                            </div>
+                        </div>
+                    </form>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductos.cshtml" />
+<script src="~/js/areas/almacen/stock/ajsutestock.js"></script>

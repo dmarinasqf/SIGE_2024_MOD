@@ -1,0 +1,68 @@
+﻿
+body {
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+  body.font-roboto {
+        font-family: 'Roboto';
+        letter-spacing: 0.5px;
+    }
+.ticket-venta {
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: start;
+    height: 100vh;
+    margin: 10px;
+    /*  font-size: 13px;*/
+    letter-spacing: 0;
+    /*font-family: Arial 'Times New Roman', Times, serif;*/
+    /*  width: 10cm;*/
+}
+.table-box {
+    padding: 10px;
+    margin: 10px;
+    display: inline-block;
+    justify-content: center;
+    align-items: start;
+    height: 100vh;
+    margin-top: 20px;
+    font-size: 9px;
+    letter-spacing: 0;
+    /*font-family: Arial 'Times New Roman', Times, serif;*/
+    width:80mm;
+}
+
+tr, th {
+    text-align: left;
+    font-size: 9px;
+}
+label{
+    font-weight:bold;
+}
+#tbldetalleimprecion thead tr {
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    /*   background: rgba(30, 29, 29, 0.56);
+    color:white;*/
+}
+/*#tbltbodydetalleimprecion tr:nth-child(2n) {
+    background: rgba(168, 167, 167, 0.10);
+}*/
+#tbltbodydetalleimprecion tr td {
+    font-size: 8px;
+}
+.text-center{
+    text-align:center;
+}
+.filatotal {
+    border-bottom: 0.1px double;
+    border-top: 0.1px double;
+}
+
+    .filatotal td {
+        margin: 2px;
+        padding: 2px;
+    }

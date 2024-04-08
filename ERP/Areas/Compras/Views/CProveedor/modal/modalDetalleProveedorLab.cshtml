@@ -1,0 +1,52 @@
+﻿<!-- Modal -->
+<div class="modal fade" id="modaldetalleproveedorlab" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog  modal-lg modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h5 class="modal-title" id="staticBackdropLabel">LABORATORIOS </h5>
+                <button type="button" class="close" id="DPL_btncerrarrepresentante" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 text-center">
+                              
+                                <label>
+                                    <i class="fa fa-search pos-abs mt-2 pt-3px ml-25 text-blue-m2"></i>
+                                    <input type="text" id="DPL_laboratorio" class="form-control form-control-sm input-datatable-search" placeholder=" Buscar registros">
+                                </label>
+                            </div>
+                            <div class="col-xl-12 mt-2">
+                                <div class="card bcard h-auto">
+                                    <div class="border-t-3 brc-blue-m2 table-responsive" id="contenedortabla">
+                                        <input type="hidden" id="DPL_txtidproveedor" />
+                                        <table class="table table-hover" width="100%" id="tbllaboratorio">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="width:10%">ID</th>
+                                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="width:80%">LABORATORIO</th>
+                                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="width:0%">ESTADO</th>
+                                                    <th class="border-0 bgc-white bgc-h-yellow-l3 shadow-sm" style="width:10%"></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/js/areas/compras/distribuidor/modal/modaldetalleproveedorlab.js"></script>

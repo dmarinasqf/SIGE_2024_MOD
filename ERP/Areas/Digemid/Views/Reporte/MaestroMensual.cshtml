@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewData["Title"] = "ReporteMensual";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" id="panelprincipal">
+    <div class="col-xl-12 col-md-12">
+        <div class="card acard">
+            <div class="card-header">
+
+                <div class="card-title text-125 text-primary-d2">
+                    MAESTRO MENSUAL
+                </div>
+
+            </div>
+            <div class="card-body">
+               
+                <div class="row justify-content-center">
+                    <div class="col-xl-3">
+                        <div class="form-group">
+                            <label>EMPRESA</label>
+                            <select id="cmbempresa" class="form-control form-control-sm"></select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="form-group">
+                            <label>SUCURSAL</label>
+                            <select id="cmbsucursal" class="form-control form-control-sm"></select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3">
+                        <div class="form-group">
+                            <label>LISTA DE PRECIO</label>
+                            <select id="cmbprecios" class="form-control form-control-sm"></select>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 ocultar">
+                        <div class="form-group">
+                            <label>FECHA INICIO</label>
+                            <input type="date" class="form-control form-control-sm" id="txtfechainicio" />
+                        </div>
+                    </div>
+                    <div class="col-xl-3 ocultar">
+                        <div class="form-group">
+                            <label>FECHA FIN</label>
+                            <input type="date" class="form-control form-control-sm" id="txtfechafin" />
+                        </div>
+                    </div>
+                    <div class="col-xl-1 col-sm-6 mt-1  text-center">
+                        <button class="btn btn-dark" id="btnconsultar"><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="col-xl-1 col-sm-6 mt-1  text-center">
+                        <button class="btn btn-success" id="btnexportar"><i class="fas fa-file-excel"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-12 mt-1">
+        <div class="card">
+            <div class="card-body">
+                <div class="table-responsive contenedor-sticky-600" id="contenedor">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/digemid/reporte/reportemensual.js"></script>
+<script src="~/js/controller/digemid/ReporteController.js"></script>

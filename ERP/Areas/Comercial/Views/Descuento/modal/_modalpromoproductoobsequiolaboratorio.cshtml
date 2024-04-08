@@ -1,0 +1,48 @@
+﻿<!-- Modal //EARTCOD1021// -->
+<div class="modal fade" id="modalProductoObsequioLaboratorio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-anchura">
+        <div class="modal-content" id="modal_content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">AGREGUE UN LABORATORIO DE LA LISTA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal_body">
+
+                <form id="form_reasignar_resp_caja">
+                    <div class="row mx-2 px-1" style="display: flex; justify-content: center; align-items: center;">
+                        <div class="col-xl-4 col-sm-4 px-1">
+                            <label>INGRESE EL NOMBRE:</label>
+                        </div>
+                        <div class="col-xl-5 col-sm-5 px-1">
+                            <input type="text" id="mMCPO_txtNombreLaboratorio" class="form-control form-control-sm" name="mMCPO_txtNombreLaboratorio" value="">
+                        </div>
+                        <div class="col-xl-3 col-sm-3 px-1">
+                            <button id="mMCPO_btnBuscarLaboratorio" type="button" class="btn btn-success btn-block">BUSCAR</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="col-xl-12 col-md-12 col-sm-12">
+                    <div class="py-0 my-0" id="contenedor_productoobsequiolaboratorio">
+                    </div>
+                    <div style="width:100%">
+                        <div id="pagination-container-historial" style="float:right; margin-right:15px"></div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .modal-anchura {
+        max-width: 450px;
+    }
+</style>

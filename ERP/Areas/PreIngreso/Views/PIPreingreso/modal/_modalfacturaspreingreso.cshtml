@@ -1,0 +1,38 @@
+﻿
+<div class="modal fade bd-example-modal-sm" data-backdrop="static" id="modalfacturapreingreso" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-blue">
+                <h7 class="modal-title" id="exampleModalLabel">FACTURAS DE PREINGRESO</h7>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <div class="modal-body text-center">
+                <div class="card bcard h-auto">
+                    <div class="border-t-3 brc-blue-m2  table-responsive">
+                        <table class="table table-bordered" width="100%" id="tblfacturapreingreso">
+                            <thead >
+                                <tr>
+                                    <th>ID</th>
+                                    <th>DOCUMENTO</th>
+                                    <th>FECHA</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<partial name="~/Areas/Compras/Views/modales/_modalValidarUsuario.cshtml" />
+<script src="~/js/areas/preingreso/preingreso/modal/facturaspreingreso.js"></script>

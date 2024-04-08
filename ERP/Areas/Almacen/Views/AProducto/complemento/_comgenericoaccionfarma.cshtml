@@ -1,0 +1,94 @@
+﻿<div class="row mt-2">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="card">
+            <div class="card-header  text-center font-14">
+                <h7>PRINCIPIO ACTIVO</h7>
+            </div>
+            <div class="card-body">
+                <div class="row justify-content-end">
+                    <div class="col-xl-1 mb-2">
+                        <button class="btn btn-sm btn-secondary" id="CGbtnbuscarprincipio" data-toggle="modal" data-target="#modalprincipioactivo"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="contenedor-sticky ">
+                    <table class=" table table-sm  table-bordered " width="100%" id="CGtbldetalleprincipio">
+                        <thead class="thead-dark">
+                            <tr>                                
+                                <th style="width:40%" class="header-sticky">Principio</th>
+                                <th class="header-sticky">CodConcentración</th>
+                                <th class="header-sticky">UM</th>
+                                <th class="header-sticky"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="CGtbodyprincipio">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @*<div class="card">
+            <div class="header bg-blue-grey text-center font-14">
+                <h7>PRODUCTOS GENÉRICOS</h7>
+            </div>
+            <div class="body">
+                <div class="row justify-content-end">
+                    <div class="col-xl-1 mb-2">
+                        <button class="btn btn-sm btn-secondary" id="CGbtnbuscargenerico" data-toggle="modal" data-target="#modalgenericos"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="contenedor-sticky ">
+                    <table class=" table table-sm  table-bordered " width="100%" id="CGtbldetallegenericos">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th style="width:5%" class="header-sticky">Id</th>
+                                <th style="width:40%" class="header-sticky">Generico</th>
+                                <th  class="header-sticky">CodConcentración</th>
+                                <th  class="header-sticky">UM</th>
+                                <th  class="header-sticky"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="CGtbodygenerico">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>*@
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+        <div class="card">
+            <div class="card-header text-center font-14">
+                <h7 class="color-blanco">ACCIÓNES FARMACOLÓGICAS</h7>
+            </div>
+
+            <div class="card-body">
+                <div class="row justify-content-end">
+                    <div class="col-xl-1 mb-2">
+                        <button class="btn btn-sm btn-secondary " id="CGbtnbuscaraccionfarma" data-toggle="modal" data-target="#modalaccionesfama"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                <div class="contenedor-sticky ">
+                    <table class=" table table-sm table-bordered" width="100%" id="CGtblaccionfarma">
+                        <thead class="thead-dark ">
+                            <tr>
+                                <th style="width:5%" class="header-sticky">Id</th>
+                                <th style="width:86%" class="header-sticky">Acción Farmacologica</th>
+                                <th style="width:6%" class="header-sticky"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="CGtbodyaccionfarma">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/almacen/producto/complemento/congenericoaccionfarma.js"></script>
+<script src="~/js/modelos/almacen/DetalleGenerico.js"></script>
+<script src="~/js/modelos/almacen/DetallePrincipioACtivo.js"></script>
+
+
+<partial name="~/Areas/Almacen/Views/AProductoDetalle/modal/_modalAccioneFarmacologicas.cshtml" />
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalbuscargenericos.cshtml" />
+<partial name="~/Areas/Almacen/Views/APrincipioACtivo/modal/_modalprincipioactivo.cshtml" />

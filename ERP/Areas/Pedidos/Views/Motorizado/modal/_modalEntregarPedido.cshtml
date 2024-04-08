@@ -1,0 +1,229 @@
+﻿<style>
+    thead,
+    tfoot {
+        background-color: white;
+        color: black;
+        font-weight: bold;
+    }
+</style>
+<div class="modal fade" id="modalEntregaPedido" data-backdrop="static" role="dialog">
+
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content modal-scrollable">
+            <div class="modal-header">
+                <label class="modal-title" id="exampleModalLabel">ENTREGA DEL PEDIDO N <span id="MEP_lblnumpedido"></span></label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <form method="post" autocomplete="off" id="MEP_form-registro">
+                    <input type="hidden" id="MEP_txtcodigo" name="entrega.identregadelivery" required />
+                    <div class="card">
+                        <div class="card-header">DATOS DE ENTREGA </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>IMAGEN DE ENTREGA</label>
+                                        <input type="file" class="form-control form-control-sm" value="" id="MEP_txtfoto" accept="image/*" />
+                                        <img alt="No tiene imagen" class="img-thumbnail" width="250px" height="250px" id="MEP_txtimagen" />
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>FECHA ENTREGA: </label>
+                                        <input id="MEP_txtfechaentrega" type="date" name="entrega.fechaentregapedido" class="form-control form-control-sm" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>ESTADO ENTREGA PEDIDO</label>
+                                        <select class="form-control form-control-sm" id="MEP_cmbestadoentrega" name="entrega.estadoentrega">
+                                            <option value="" selected>[SELECCIONE]</option>
+                                            @*<option value="RECEPCIONADO">RECEPCIONADO</option>*@
+                                            <option value="EN RUTA" disabled>EN RUTA</option>
+                                            <option value="ENTREGADO">ENTREGADO</option>
+                                            <option value="NO ENTREGADO">NO ENTREGADO</option>
+                                            <option value="REPROGRAMADO">REPROGRAMADO</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>OBSERVACIÓN: </label>
+                                        <textarea class="form-control form-control-sm" rows="2" id="MEP_txtobservacion" name="entrega.observacion"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="card mt-1" id="MEP_carddatosencomienda">
+                                        <div class="card-header">DATOS DE ENCOMIENDA</div>
+                                        <div class="card-body ">
+                                            <div class="row">
+                                                <div class="col-sm-12 text-center">
+                                                    <label>Agencia: </label>
+                                                    <label id="MEP_lblagenciaencomienda"></label>
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <label>Num Doc: </label>
+                                                    <input type="text" id="MEP_txtnumdocencomienda" class="form-control form-control-sm" name="delivery.docenvioagencia" />
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <label>Persona recoge: </label>
+                                                    <input type="text" id="MEP_txtpersonarecoge" class="form-control form-control-sm" name="delivery.personarecoge" />
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <label>Clave envio: </label>
+                                                    <input type="text" id="MEP_txtclaveencomienda" class="form-control form-control-sm" name="delivery.claveagrencia" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="card mt-1" id="MEP_carddatospago">
+                                        <div class="card-header">DATOS DE PAGO</div>
+                                        <div class="card-body ">
+                                            <div class="row">
+
+                                                <div class="col-sm-12">
+                                                    <label>Número de operación: </label>
+                                                    <input type="text" id="MEP_numoperacion" class="form-control form-control-sm" name="pago.numoperacion" />
+                                                </div>
+                                                <div class="col-sm-12">
+                                                    <label>Monto: </label>
+                                                    <input type="text" id="MEP_montopagocontraentrega" class="form-control form-control-sm" name="pago.monto" readonly />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-1">
+                        <div class="card-header">DATOS DE ENVIO</div>
+                        <div class="card-body">
+                            <div class=" col-sm-12">
+                                <label>NÚMERO CLIENTE: </label>
+                                <span id="MEP_lblnumerocliente"></span>
+                            </div>
+                            <div class=" col-sm-12">
+                                <label>DEPARTAMENTO: </label>
+                                <span id="MEP_lbldepartamento"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <label>PROVINCIA: </label>
+                                <span id="MEP_lblprovincia"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <label>DISTRITO: </label>
+                                <span id="MEP_lbldistrito"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <label>DIRECCION DE ENTREGA:</label>
+                                <span id="MEP_lbldireccion"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <label>REFERENCIA1:</label>
+                                <span id="MEP_txtreferencia1"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <label>REFERENCIA2:</label>
+                                <span id="MEP_txtreferencia2"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-1" id="MEP_cardpaciente">
+                        <div class="card-header">DATOS DE PACIENTE</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class=" col-sm-12">
+                                    <label>DOC:</label>
+                                    <span id="MEP_lbldocpaciente"></span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label>PACIENTE:</label>
+                                    <span id="MEP_txtpaciente"></span>
+                                </div>
+                                <div class="col-sm-12">
+                                    <label>CELULAR 1:</label>
+                                    <span id="MEP_lblcelular1"></span>
+                                </div>
+                                <div class=" col-sm-12">
+                                    <label>CELULAR 2:</label>
+                                    <span id="MEP_lblcelular2"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card mt-1" id="MEP_cardcliente">
+                        <div class="card-header">DATOS DE CLIENTE</div>
+                        <div class="card-body">
+                            <div class="col-sm-12">
+                                <label>DOC:</label>
+                                <span id="MEP_lbldoccliente"></span>
+                            </div>
+                            <div class=" col-sm-12">
+                                <label>CLIENTE:</label>
+                                <span id="MEP_txtcliente"></span>
+                            </div>
+                            <div class=" col-sm-12">
+                                <label>CELULAR:</label>
+                                <span id="MEP_lblcelularcliente"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <label>CELULAR CONTACTO:</label>
+                                <span id="MEP_lblcelularcontactocliente"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mt-1">
+                        <div class="card-header">DATOS DE PEDIDO</div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table table-sm table-responsive-sm text-center" width="100%" id="MEP_tbldetallepedido">
+                                        <thead style="font-size:12px;color:white" class="thead-dark">
+                                            <tr>
+                                                <th style="width:60%">ITEM</th>
+                                                <th style="width:20%">CANT.</th>
+                                                <th style="width:20%">PRECIO</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody style="font-size:11px;font-weight:bold; color:black"></tbody>
+                                        <tfoot id="tbl_tfoot">
+                                            <tr>
+                                                <th scope="row">Total</th>
+                                                <td><bold id="bold_cantidad"></bold></td>
+                                                <td><bold id="bold_total"></bold></td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+             
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary btn-sm" id="btnGuardar">Guardar</button>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<script src="~/js/areas/pedidos/motorizado/modal/modalentregarpedido.js"></script>

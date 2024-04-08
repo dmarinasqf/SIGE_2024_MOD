@@ -1,0 +1,45 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background: white;
+}
+
+td {
+    font-size: 12px;
+    font-family: Calibri;
+    font-weight: 100;
+    letter-spacing: -0.3px
+}
+label {
+    font-size: 12px;
+    font-family: Calibri;
+    font-weight: 300;
+    letter-spacing: -0.3px
+}
+
+#tbltbodydetalleimprecion tr td {
+    font-size: 10px;
+    font-weight: 500;
+}
+
+#tbldetalleimprecion thead tr th {
+    font-size: 11px;
+}
+
+.text-rigth {
+    text-align: right;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-rigth-margin {
+    text-align: right;
+    padding-right: 35px;
+}
+
+.text-left {
+    text-align: left;
+}
+

@@ -1,0 +1,177 @@
+﻿@model System.Data.DataTable
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>  </title>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/vue/vue.min.js"></script>
+    <link href="~/css/pagina/impresiones/analisisorganoleptico/analisisorganoleptico.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <style>
+
+        table, tfoot, tr {
+            border: 0px;
+            text-align: center;
+        }
+    </style>
+
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        th, td {
+            border: 1px solid black;
+            text-align: center;
+            padding: 10px;
+            overflow: hidden;
+            white-space: normal;
+        }
+
+        #idimagenes {
+            width: 20%; /* Ajusta el ancho según tus necesidades */
+        }
+
+        .fechasordenadas {
+            width: 33%;
+        }
+
+        .fechasordenadas1 {
+            width: 34%;
+        }
+
+        #iddescripcionderecha {
+            width: 20%; /* Ajusta el ancho según tus necesidades */
+        }
+
+        th[colspan="22"] {
+            width: 60%; /* Ajusta el ancho según tus necesidades */
+        }
+
+        #fechasordenadas2 {
+            width: 34% !important;
+        }
+
+        #fechasordenadas3 {
+            width: 33% !important;
+        }
+
+        #fechasordenadas {
+            width: 33% !important;
+        }
+        /* Agrega estilos para otras columnas si es necesario */
+    </style>
+</head>
+
+<body class="font-roboto">
+    <script>
+        var data =@Html.Raw(JsonConvert.SerializeObject(Model));
+    </script>
+    <div id="aplicacion" class="table-box">
+        <div class="row" style="margin-top:10px;margin-left:10px;margin-right:10px;">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th id="idimagenes" colspan="3" rowspan="3">
+                            <div style="text-align:center">
+                                <img src="~/imagenes/empresas/QF.png" height="30" width="180" id="imglogo" />
+                            </div>
+                        </th>
+                        <th colspan="22" rowspan="1" style="padding: 2px;">HOJA DE TOMA DE INVENTARIO</th>
+                        <th id="iddescripcionderecha" colspan="2" rowspan="3" style="padding: 2px;">
+                            <table width="100%">
+                                <tr>
+                                    <td style="font-weight: bold; border: none;">Código:</td>
+                                    <td style="font-weight: normal; border: none;">F.QF.GF.003</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: none;">Versión:</td>
+                                    <td style="font-weight: normal; border: none; ">01</td>
+                                </tr>
+                                <tr>
+                                    <td style="font-weight: bold; border: none;">Páginas:</td>
+                                    <td style="font-weight: normal; border: none;">#</td>
+                                </tr>
+                            </table>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th colspan="22" rowspan="1" style="padding: 2px;"><div class="text-left">Tipo de documento: <label style="font-weight: normal;">Formato</label></div></th>
+                    </tr>
+                    <tr>
+                        <th colspan="22" rowspan="1" style="padding: 2px;"><div class="text-left">Proceso: <label style="font-weight: normal;">Gestión Farmaceútica</label></div></th>
+                    </tr>
+                    <tr>
+                        <th id="fechasordenadas2" colspan="7" rowspan="1" style="padding: 4px 0px; text-align: center;">
+                            <div>
+                                <span style="font-weight: bold;">Elaborador por:</span>
+                                <span style="font-weight: normal;">Director Técnico</span>
+                            </div>
+                        </th>
+                        <th id="fechasordenadas3" colspan="14" rowspan="1" style="padding: 4px 0px; text-align: center;">
+                            <div>
+                                <span style="font-weight: bold;">Revisado por:</span>
+                                <span style="font-weight: normal;">Representante legal</span>
+                            </div>
+                        </th>
+                        <th id="fechasordenadas4" colspan="7" rowspan="1" style="padding: 4px 0px; text-align: center;">
+                            <div>
+                                <span style="font-weight: bold;">Aprobado por:</span>
+                                <span style="font-weight: normal;">Representante legal</span>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="fechasordenadas" colspan="7" rowspan="1" style="padding: 2px; margin-left: 2%; font-weight: normal;"><div class="text-left">Fecha : 26/02/2024</div></th>
+                        <th class="fechasordenadas1" colspan="14" rowspan="1" style="padding: 2px; margin-left: 2%; font-weight: normal;"><div class="text-left">Fecha : 29/02/2024</div></th>
+                        <th class="fechasordenadas" colspan="7" rowspan="1" style="padding: 2px; margin-left: 2%; font-weight: normal;"><div class="text-left">Fecha: 29/02/2024</div></th>
+                    </tr>
+                    <tr>
+                        <th colspan="30" rowspan="1" style="padding: 12px 0px; font-weight: normal;">
+                            <div class="text-center" style="display: flex; justify-content: space-between;">
+                                <span style="font-weight: bold; font-size: 1.2em; margin-left: 2%;">Responsable de Inventario:</span>
+                                <span style="font-weight: bold; font-size: 1.2em; margin-right: -5%;">Fecha de Inventario:</span>
+                                <span id="idfechaactual" style="font-weight: bold; font-size: 1.2em; margin-right: 18%;">Fecha de Descarga:</span>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th style="padding: 10px 0; width: 50px;" colspan="1" rowspan="1">Item</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="2" rowspan="1">Código</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="8" rowspan="1">Descripción</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="4" rowspan="1">Laboratorio</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="3" rowspan="1">Fecha de VCto</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="2" rowspan="1">Lote</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="2" rowspan="1">Stock sitema(und)</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="2" rowspan="1">Stock físico(und)</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="2" rowspan="1">Diferencia</th>
+                        <th style="padding: 10px 0; width: 100px;" colspan="3" rowspan="1">Observaciones</th>
+                    </tr>
+                </thead>
+                <tbody v-html="tbldetalleao">
+                </tbody>
+                @*<tfoot>
+                        <tr>
+                            <th colspan="30" class="Without-Border">
+                                (a) Nombre, dirección y número de colegiatura del profesional que la extiende y nombre de establecimiento de salud cuando se trate de recetas
+                                estandarizadas. (b) Identificación del paciente: Nombre, apellidos y edad del paciente. (c) Nombre del producto farmacéutico objeto de la prescripción
+                                en su denominación común internacional (DCI).(d) Concentración y forma farmacéutica.(e) Posología, número de unidades por toma y día, así como la duración
+                                del tratamiento. (f) Lugar y fecha de expedición y expiración de la receta. (g) Sello y firma del prescriptor que la extiende.
+                            </th>
+                        </tr>
+                    </tfoot>*@
+            </table>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+</html>
+<script src="~/js/areas/almacen/reportes/imprimirReporteStock.js"></script>

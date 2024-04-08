@@ -1,0 +1,119 @@
+﻿
+@model ENTIDADES.Almacen.ASalidaManual
+@{
+    ViewData["Title"] = "Registrar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-md-12">
+        <h1 class="page-title text-primary-d2 text-140">
+            <a asp-action="Index"><i class="fas fa-long-arrow-alt-left mr-3"></i></a>
+            REGISTRAR SALIDA MANUAL
+        </h1>
+    </div>
+</div>
+<hr />
+
+<form autocomplete="off" id="formregistro">
+
+    <input type="hidden" asp-for="idsalida" id="txtidsalida" />
+
+    <div class="row">
+        <div class="col-xl-3 col-sm-12 border">
+            <div class="form-group ">
+                <label>USUARIO</label>
+                <input type="text" id="txtusuario" class="form-control form-control-sm" value="@User.Identity.Name" disabled />
+            </div>
+            <div class="form-group ">
+                <label>EMPRESA</label>
+                <input type="text" id="txtnombreempresa" class="form-control form-control-sm" value="@ViewBag.EMPRESA" disabled />
+            </div>
+            <div class="form-group ">
+                <label>SERIE</label>
+                <input type="text" id="txtseriedoc" asp-for="seriedoc" class="form-control form-control-sm" disabled />
+            </div>
+            <div class="form-group ">
+                <label>N° GUIA</label>
+                <input type="text" id="txtnumdoc" asp-for="numdoc" class="form-control form-control-sm" disabled />
+            </div>
+
+            <div class="form-group ">
+                <label>SUCURSAL</label>
+                <select class="form-control form-control-sm" asp-for="idsucursal" id="txtidsucursal" required></select>
+            </div>
+            <div class="form-group ">
+                <label>MOTIVO</label>
+                <textarea type="text" id="txtmotivo" asp-for="motivo" rows="3" class="text-uppercase form-control form-control-sm"></textarea>
+            </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    @if (Model == null) {
+                        <div class="col-xl-6 col-sm-3 mt-3">
+                            <button class="btn btn-success btn-block" type="submit" id="btnguardar"><i class="fas fa-save  mr-2 mb-1"></i>  GUARDAR [F1]</button>
+                        </div>
+                    }
+                    else {
+                        <div class="col-xl-6 col-sm-3 mt-3">
+                            <button class="btn btn-success btn-block" type="submit" id="btnguardar" disabled><i class="fas fa-save  mr-2 mb-1"></i>  GUARDAR [F1]</button>
+                        </div>
+                    }
+
+                    <div class="col-xl-6 col-sm-3 mt-3">
+                        <button class="btn btn-outline-info btn-block" type="button" id="btnnuevo"><i class="fas fa-redo mr-2 mb-1"></i> NUEVO [F2]</button>
+                    </div>
+                    <div class="col-xl-6 col-sm-3 mt-3">
+                        <button class="btn btn-outline-dark btn-block ocultar" type="button" id="btnimprimir"> <i class="fas fa-print mr-2 mb-1"></i> IMPRIMIR [F3]</button>
+                    </div>
+                    @*<div class="col-xl-6 col-sm-3 mt-3">
+                    <button class="btn btn-outline-danger btn-block" type="button" id="btncancelar"><i class="fas fa-times-circle mr-2 mb-1"></i>  CANCELAR [F4]</button>
+                </div>*@
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-xl-9 col-sm-12 border">
+            <div class="row justify-content-end mt-4">
+                <div class="col-xl-4 col-sm-6  ">
+                    <button class="btn btn-primary btn-block waves-effect" id="btnactualizarstock" type="button"><i class="fas fa-plus mr-2"></i>SELECCIONAR STOCK</button>
+                </div>
+
+            </div>
+            <div class="card bcard h-auto mt-2">
+                <div class="border-t-3 brc-blue-m2 table-responsive">
+                    <table class="table table-sm table-bordered collapsed" id="tbldetalle" width="100%">
+                        <thead>
+                            <tr>
+                                <th style="width:2%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">#</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">COD</th>
+                                <th style="width:30%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">PRODUCTO</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">ALMACEN</th>
+                                <th style="width:5%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">CANTIDAD</th>
+                                <th style="width:2%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">F</th>
+                                @*<th style="width:2%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">B</th>*@
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">LOTE</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">FV</th>
+                                <th style="width:10%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky">REG</th>
+                                <th style="width:5%" class="border-0  bgc-h-yellow-l3 shadow-sm header-sticky"></th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+<script src="~/js/controller/almacen/SalidaController.js"></script>
+
+<script src="~/js/modelos/almacen/ASalidaManual.js"></script>
+<partial name="~/Areas/Almacen/Views/AProducto/modal/_modalproductosconstock.cshtml" />
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<script src="~/js/areas/almacen/salida/registrar.js"></script>
+

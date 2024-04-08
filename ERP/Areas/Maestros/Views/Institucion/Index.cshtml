@@ -1,0 +1,84 @@
+﻿
+@{
+    ViewData["Title"] = "Instituciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-12">
+
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                MANTENEDOR DE INSTITUCIONES
+            </h1>
+
+            <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+
+            </div>
+        </div>
+
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2 table-responsive">
+                <table class="table table-sm table-bordered collapsed" width="100%" id="tbllista">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th style="width: 10%">ID</th>
+                            <th style="width: 60%"> DESCRIPCION</th>
+                            <th style="width: 25%">ESTADO</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="pos-rel">
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="modalregistro" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm-2  modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title" id="staticBackdropLabel">REGISTRO DE COLEGIO MÉDICO</label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body ">
+                <form method="post" autocomplete="off" id="form-registro">
+                    <input type="hidden" name="idInstitucion" value="" id="txtcodigo" />
+                    <label>DESCRIPCIÓN</label>
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" id="txtdescripcion" class="form-control mayusculas" name="descripcion" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-line ">
+                            <select class="form-control show-tick" id="cmbestado" name="estado" required>
+                                <option value="HABILITADO" selected>HABILITADO</option>
+                                <option value="DESHABILITADO">DESHABILITADO</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block" id="btnguardar" type="submit">GUARDAR DATOS</button>
+                    <button class="btn btn-info btn-block " id="btnlimpiar" type="reset">LIMPIAR</button>
+                </form>
+            </div>
+            <div class="modal-footer"></div>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="~/js/controller/maestros/InstitucionesController.js"></script>
+<script src="~/js/areas/maestros/instituciones/index.js"></script>

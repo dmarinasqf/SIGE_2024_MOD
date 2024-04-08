@@ -1,0 +1,101 @@
+﻿
+
+@{
+    ViewData["Title"] = "Cotizaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row justify-content-center">
+    <div class="col-xl-11 col-md-6">
+        <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+            <h1 class="page-title text-primary-d2 text-140">
+                LISTA DE COTIZACIONES
+            </h1>
+        </div>
+    </div>
+    <div class="col-xl-1 col-md-6">
+        <a asp-action="RegistrarEditar" class="btn btn-primary btn-block"> <i class="fas fa-plus"></i></a>
+    </div>
+
+</div>
+<hr />
+<form autocomplete="off" id="form-busqueda">
+    <div class="row justify-content-center">
+
+
+        <div class="col-xl-4 col-md-4">
+            <label>NÚMERO PROFORMA</label>
+            <div class="form-group">
+                <div class="form-line">
+                    <input type="text" id="txtnumproforma" class="form-control" name="id">
+                </div>
+            </div>
+        </div>
+        @*<div class="col-md-2">
+                <label>FECHA REGISTRO</label>
+                <div class="form-group">
+                    <div class="form-line">
+                        <input type="date" id="txtfechaconsulta" class="form-control" name="fecha">
+                    </div>
+                </div>
+            </div>*@
+        <div class="col-xl-4 col-md-4">
+            <label>ESTADO</label>
+            <div class="form-group">
+                <div class="form-line">
+                    <select class="form-control" name="estado">
+                        <option value=""> [TODO]</option>
+                        <option value="ANULADO"> ANULADO</option>
+                        <option value="APLICADA"> APLICADA</option>
+                        <option value="PENDIENTE"> PENDIENTE</option>
+                        <option value="TERMINADO"> TERMINADO</option>
+                        <option value="VENCIDO"> VENCIDO</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-md-4 mt-4">
+            <button type="submit" class="btn btn-lg btn-secondary" id="btnbusqueda"><i class="fas fa-search"></i></button>
+        </div>
+    </div>
+</form>
+
+<div class="row justify-content-end mt-2" >
+    <div class="col-xl-2 ">
+        <div class="page-tools mt-3 mt-sm-0 mb-sm-n1">
+        </div>
+    </div>
+
+    <div class="col-xl-12 mt-2">
+        <div class="card bcard h-auto">
+            <div class="border-t-3 brc-blue-m2  table-responsive">
+                <table class="table table-bordered  table-hover text-center" width="100%" id="tbllista">
+                    <thead>
+                        <tr>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm"></th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">N° PROFORMA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">RUC</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">PROVEEDOR</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">FECHA VENCIMIENTO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">ESTADO</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">TOTAL</th>
+                            <th class="border-0  bgc-h-yellow-l3 shadow-sm">USUARIO</th>
+
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<partial name="~/Views/Modales/Imprimir.cshtml" />
+<partial name="~/Areas/Compras/Views/modales/modalcorreo.cshtml" />
+<script src="~/js/areas/compras/cotizacion/index.js"></script>
+<script src="~/js/controller/compras/CotizacionController.js"></script>

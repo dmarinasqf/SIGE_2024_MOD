@@ -1,0 +1,84 @@
+﻿@{ 
+ViewData["Title"] = "Deposito";
+Layout = "~/Views/Shared/_Layout.cshtml"; 
+}
+<div onpaste="return false">
+    <div class="row">
+        <div class="col-xl-10 col-md-8">
+            <div class="page-header mb-2 pb-2 flex-column flex-sm-row align-items-start align-items-sm-center py-25 px-1">
+
+                <h1 class="page-title text-primary-d2 text-140">
+                    DEPOSITO CAJA
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card" onpaste="return false">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-xl-12 col-md-12 col-sm-12">
+                <div class="row">
+                    @*<div class="col-xl-3 col-md-2">
+                        <div class="form-group">
+                            <label>EMPLEADO</label>
+                            <select id="txtidsucursal" class="form-control form-control-sm"></select>
+                        </div>
+                    </div>*@
+                    @*<div class="col-xl-3 col-md-3">
+                        <div class="form-group">
+                            <label>SUCURSAL</label>
+                            <select id="txtidsucursal" class="form-control form-control-sm"></select>
+                        </div>
+                    </div>*@
+                    <div class="col-xl-3 col-md-3">
+                        <div class="form-group">
+                            <label>FECHA INICIO</label>
+                            <input type="date" id="txtfechainicio" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3">
+                        <div class="form-group">
+                            <label>FECHA FIN</label>
+                            <input type="date" id="txtfechafin" class="form-control form-control-sm" />
+                        </div>
+                    </div>
+                    <div class="col-xl-1 mt-4">
+                        <button type="button" class="btn btn-md btn-secondary" id="btnbusqueda"><i class="fas fa-search mr-2"></i>Buscar</button>
+                    </div>
+                </div>
+                <hr />
+            </div>
+        </div>
+
+        <div class="row mt-1 mb-1">
+            <div class="col-xl-12 col-sm-12">
+                <div class="card bcard h-auto">
+                    <div class="border-t-3 brc-blue-m2 table-responsive contenedor-sticky" style="height:500px;">
+                        <table class="table table-sm table-striped table-bordered" id="tbldetalle" width="100%">
+                            <thead class="thead-dark shadow-sm font-10 text-center">
+                                <tr>
+                                    <th class="header-sticky">ID</th>
+                                    <th class="header-sticky" width="35%">CAJERO</th>
+                                    <th class="header-sticky">SUCURSAL</th>
+                                    <th class="header-sticky">FECHA</th>
+                                    <th class="header-sticky">CAJA</th>
+                                    <th class="header-sticky">MONTO</th>
+                                    <th class="header-sticky" width="8%">FECHA DEPOSITADO</th>
+                                    <th class="header-sticky" width="5%">MONTO DEPOSITADO</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 offset-9 mt-2">
+                <button type="button" class="btn btn-block btn-success" id="btnGuardarDeposito"><i class="fas fa-save mr-2"></i>Guardar Depósito</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/areas/ventas/caja/deposito.js"></script>

@@ -1,0 +1,215 @@
+﻿<div id="modalregistrovisita" class="modal fade" data-backdrop="static" role="dialog">
+    <div class="modal-dialog modal-xl  modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <label class="modal-title"><span id="turno"></span></label>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+            <div class="modal-body">
+                <div class="card"  style="min-height:500px">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-xl-6 col-md-12">
+                                <input type="hidden" value="" id="TIPOOPERACION" />
+                                <input type="hidden" value="" id="txthorCodigo" />
+                                <div class="row">
+                                    <div class="form-group col-12">
+                                        <div class="input-group input-group-sm">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text">OBJETIVOS</label>
+                                            </div>
+                                            <select class="custom-select form-control-sm" id="cboObjetivo">
+                                                <option value="">[SELECCIONE]</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>TIPO VISITA</label>
+                                            <select class="form-control form-control-sm" id="cbotipovisita">
+                                                <option value="" selected>[SELECCIONE]</option>
+                                                <option value="PRESENCIAL" selected>PRESENCIAL</option>
+                                                <option value="ONLINE" selected>ONLINE</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>MEDIO VISITA</label>
+                                            <select class="form-control form-control-sm" id="cbomediovisita">
+                                                <option value="">[SELECCIONE]</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>FECHA</label>
+                                            <input disabled type="date" style="font-weight:bold" id="dtpInicio" class="form-control form-control-sm" onchange="CambiarFechaEdicion()">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>TURNO</label>
+                                            <select class="form-control form-control-sm" id="cboTurno">
+                                                <option value="0" selected>[SELECCIONE]</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>HORA INICIO</label>
+                                            <div class="input-group date" data-target-input="nearest">
+
+                                                <input type="text" disabled id="dtpInicioh" class="form-control form-control-sm datetimepicker-input" data-target="#dtpInicioh" />
+                                                <div class="input-group-append" data-target="#dtpInicioh" data-toggle="datetimepicker">
+                                                    <div class="input-group-text" id="dtpInicioh_btn"><i class="fa fa-clock"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>HORA FIN</label>
+                                            <div class="input-group date" data-target-input="nearest">
+                                                <input type="text" disabled id="dtpFinh" class="form-control form-control-sm datetimepicker-input" data-target="#dtpFinh" />
+                                                <div class="input-group-append" id="dtpFinh_btn" data-target="#dtpFinh" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-clock"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label>CMP</label>
+                                            <div class="input-group mb-3">
+                                                <input type="text" class="form-control form-control-sm" id="txtcmp" disabled style="font-weight:bold">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-secondary" disabled type="button" id="btnBuscarMedicoA"><i class="fa fa-search"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+                                        <div class="form-group ">
+                                            <label>MÉDICO</label>
+                                            <input type="hidden" id="txtidmedico" />
+                                            <input id="txtMedico" type="text" class="form-control input-border-bottom form-control-sm" value="" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="form-group ">
+                                                <label>DIAGNÓSTICO/PATOLOGÍA</label>
+                                                <div class="input-group mb-3">
+                                                    <input type="hidden" id="txtiddiagnostico" />
+                                                    <input type="text" class="form-control form-control-sm" id="txtdiagnostico" disabled>
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-secondary" type="button" id="btnBuscardiagnostico"><i class="fa fa-search"></i></button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </div>
+                            <div class="col-xl-6 col-md-12">
+                                <div class="card">
+                                    <div class="card-header text-center">
+                                        <div class="row">
+                                            <div class="col-10"><h6>DETALLES DE VISITA</h6></div>
+                                            <div class="col-2">
+                                                <button type="button" id="btn_bloqueo" class="btn btn-danger" onclick="cambiarcondicionregistro(this)"><i class="fa fa-unlock"></i></button>
+                                                <input type="hidden" id="txtcondicionregistro" />
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row" id="div_otrosdatos">
+                                            <div class="col-lg-5 col-sm-6 col-xs-12">
+                                                <div class="form-group ">
+                                                    <label>VISITA REALIZADA</label>
+                                                    <select class="form-control form-control-sm" id="cbovisita">
+                                                        <option value="" selected>SELECCIONE</option>
+                                                        <option value="SI" selected>SI</option>
+                                                        <option value="NO">NO</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-7 col-sm-6 col-xs-12">
+                                                <div class="form-group " id="div_reprogramar">
+                                                    <label>REPROGRAMAR</label>
+                                                    <select class="form-control form-control-sm" id="cboestadovisita">
+                                                        <option value="" selected>SELECCIONE</option>
+                                                        <option value="NO REPROGRAMADA" selected>NO REPROGRAMADA</option>
+                                                        <option value="REPROGRAMADA">REPROGRAMADA</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="div_descripcionvisita">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div style="text-align:left">
+                                                        <label>DESCRIPCIÓN VISITA</label>
+                                                    </div>
+                                                    <textarea rows="3" cols="50" style="border:groove" id="txtdetallevisita" class="form-control form-control-sm text-uppercase"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="div_descripcion_novisita">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <div style="text-align:left">
+                                                        <label>MOTIVO</label>
+                                                    </div>
+                                                    <textarea rows="4" cols="50" id="txtdetallenovisita" class="form-control form-control-sm text-uppercase"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <div style="text-align:left">
+                                                    <label>OBSERVACIÓN</label>
+                                                </div>
+                                                <textarea rows="4" cols="50"  id="txtobservacion" class="form-control form-control-sm text-uppercase"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="card-footer text-right">
+                        <button class="btn  btn-danger btn-sm" id="btnDelete" onclick="eliminarActividad()"><i class="fas  fa-trash-alt  fa-1x"></i>  Eliminar</button>
+                        <button class="btn  btn-success btn-sm" id="btnGuardar" onclick="registrarActividad()"><i class="fas fa-save fa-1x"></i>  Guardar</button>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<partial name="~/Areas/VisitadorMedico/Views/MedicoRepresentante/modales/_modalmedicosrepmedico.cshtml" />
+
+<script src="~/js/controller/visitadormedico/ObjetivoController.js"></script>
+<script src="~/js/controller/visitadormedico/MedicoRepresentantController.js"></script>
+<script src="~/js/areas/visitadormedico/visitasmedicas/modal/modalregistrovisita.js"></script>

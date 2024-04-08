@@ -1,0 +1,32 @@
+﻿@*if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("SUPERVISOR") || User.IsInRole("REPORTE ASISTENCIA Y TEMPERATURA"))
+{*@
+<li class="nav-item">
+    <a href="#" class="nav-link dropdown-toggle collapsed">
+        <i class="nav-icon fa fa-cube"></i>
+        <span class="nav-text fadeable">
+            <span>Promocion</span>
+        </span>
+        <b class="caret fa fa-angle-left rt-n90"></b>
+    </a>
+    <div class="hideable submenu collapse">
+        <ul class="submenu-inner">
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Promocion" asp-controller="Promocion" asp-action="Index">Historial</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Promocion" asp-controller="Promocion" asp-action="Registrar">Crear Promocion</a>
+            </li>
+            <!--li class="nav-item">
+                <a class="nav-link" asp-area="Promocion" asp-controller="Reporte" asp-action="Reportegeneral">Reporte General</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Promocion" asp-controller="Reporte" asp-action="RMensual">Reporte Mensual</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-area="Asistencia" asp-controller="Reporte" asp-action="ReporteTemperatura">Reporte Temperatura</a>
+            </li-->
+        </ul>
+    </div>
+    <b class="sub-arrow"></b>
+</li>
+@*}*@

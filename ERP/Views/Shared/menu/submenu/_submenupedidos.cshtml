@@ -1,0 +1,123 @@
+﻿@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("MENU PEDIDOS"))
+{
+    <li class="nav-item">
+
+        <a href="#" class="nav-link dropdown-toggle collapsed">
+            <i class="nav-icon fa fa-cube"></i>
+            <span class="nav-text fadeable">
+                <span>Pedidos</span>
+            </span>
+            <b class="caret fa fa-angle-left rt-n90"></b>
+        </a>
+
+        <div class="hideable submenu collapse">
+            <ul class="submenu-inner">
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Pedidos</span>
+                        </span>
+
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REGISTRAR PEDIDO"))
+                            {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Pedidos" asp-controller="Pedido" asp-action="Registrar"> Registrar</a>
+                        </li> } @*@if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("HISTORIAL DELIVERY")|| User.IsInRole("LISTAR DELIVERY"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Pedidos" asp-controller="Delivery" asp-action="ListarDelivery"> Delivery </a>
+                        </li>
+                    }*@
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("HISTORIAL PEDIDO"))
+                            {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Pedidos" asp-controller="Pedido" asp-action="ListarPedidos"> Listar </a>
+                        </li>}
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("HISTORIAL DE PROFORMAS"))
+                            {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Ventas" asp-controller="Proforma" asp-action="HistorialProformas">Historial</a>
+                        </li>}
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REGISTRAR PROFORMA"))
+                            {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="Ventas" asp-controller="Proforma" asp-action="Proforma">Proforma</a>
+                        </li>}
+                        </ul>
+                    </div>
+                    <b class="sub-arrow "></b>
+                </li>
+
+
+                
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Delivery</span>
+                        </span>
+
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("JEFE_MOTORIZADO"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Pedidos" asp-controller="Delivery" asp-action="AsignarPedidos"> Asignar pedidos</a>
+                                </li>
+                            }
+
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("JEFE_MOTORIZADO"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Pedidos" asp-controller="Delivery" asp-action="ReporteAsignacion">Reporte</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <b class="sub-arrow "></b>
+                </li>
+                <li class="nav-item">
+
+                    <a href="#" class="nav-link dropdown-toggle collapsed">
+                        <span class="nav-text">
+                            <span>Depositos</span>
+                        </span>
+
+                        <b class="caret fa fa-angle-left rt-n90"></b>
+                    </a>
+                    <div class=" submenu collapse">
+                        <ul class="submenu-inner">
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("VISTA DEPOSITOS") || User.IsInRole("VALIDAR DEPOSITOS"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Pedidos" asp-controller="Depositos" asp-action="ValidarDepositos"> Validar</a>
+                                </li>
+                            }
+
+                            @if (User.IsInRole("ADMINISTRADOR") || User.IsInRole("REPORTE DEPOSITOS") || User.IsInRole("VALIDAR DEPOSITOS"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-area="Pedidos" asp-controller="Depositos" asp-action="Reporte">Reporte</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                    <b class="sub-arrow "></b>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <b class="sub-arrow"></b>
+
+    </li>
+
+}

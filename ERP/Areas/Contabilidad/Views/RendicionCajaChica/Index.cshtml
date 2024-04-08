@@ -1,0 +1,79 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<script src="~/js/areas/contabilidad/RendicionCajaChica/funciones_ajax.js"></script>
+<script src="~/js/areas/contabilidad/RendicionCajaChica/funciones_interaccion.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.4/pagination.css" />
+
+<!--CONTENEDOR-->
+<div>
+    <div class="row">
+        <div class="col-xl-12 col-sm-12 ml-4 my-2">
+            <h4>MIS FICHAS DE RENDICION DE CAJA CHICA</h4>
+        </div>
+
+        <div class="col-xl-5 col-md-5 col-sm-5">
+            <div class="row ml-2 py-0 my-0">
+                <!--CAMPOS-->
+                <div class="col-xl-6 col-sm-6 py-0 my-0">
+                    <div class="form-group">
+                        <label>FECHA DESDE</label>
+                        <input class="form-control form-control-sm date_fecha" id="date_fechaInicial" name="date_fecha"
+                               placeholder="DD/MM/YYYY" type="text" />
+                    </div>
+                </div>
+                <div class="col-xl-6 col-sm-6 py-0 my-0">
+                    <div class="form-group">
+                        <label>FECHA HASTA</label>
+                        <input class="form-control form-control-sm date_fecha" id="date_fechaFinal" name="date_fecha"
+                               placeholder="DD/MM/YYYY" type="text" />
+                    </div>
+                </div>
+                <!--CONTROLES DE VENTANA-->
+                <div class="col-xl-12 col-md-12 col-sm-12 mt-3">
+                    <input type="hidden" id="emp_codigo" value="@ViewBag.IDEMPLEADO" />
+                    <div class="card px-3">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-primary btn-block mt-2 mb-2"
+                                            onclick="cajaRendicionListarUser()">
+                                        BUSCAR FICHA RENDICION
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---->
+            </div>
+        </div>
+        <div class="col-xl-7 col-md-7 col-sm-7">
+            <!--DETALLE DE CAJA CHICA-->
+            <div class="col-xl-12 col-md-12 col-sm-12" id="contenedor_detalle">
+            </div>
+            <div style="width:100%">
+                <div id="pagination-container" style="float:right; margin-right:15px"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    //var ruta = '@Url.Action("cajaRendicionListarUser", "RendicionCajaChica")'
+    $(document).ready(function () {
+        cajaRendicionListarUser()
+    });
+</script>
+
+<!-- Bootstrap Date-Picker Plugin -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css" integrity="sha512-5PV92qsds/16vyYIJo3T/As4m2d8b6oWYfoqV+vtizRB6KhF1F9kYzWzQmsO6T3z3QG2Xdhrx7FQ+5R1LiQdUA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
